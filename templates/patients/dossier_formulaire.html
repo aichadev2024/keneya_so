@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Dossier médical" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Dossier médical" %} — {{ object.patient.nom_complet }}</h1>
+
+<form method="post" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% for field in form %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
+      {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+    </div>
+  {% endfor %}
+  <div class="d-flex gap-2">
+    <button type="submit" class="btn btn-primary">{% translate "Enregistrer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'patients:detail' object.patient.pk %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

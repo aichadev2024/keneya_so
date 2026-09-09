@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Patients" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Patients" %}</h1>
+  {% if perms.patients.add_patient %}
+    <a class="btn btn-primary" href="{% url 'patients:creer' %}">{% translate "Nouveau patient" %}</a>
+  {% endif %}
+</div>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-sm-8 col-md-6">
+    <input type="search" name="q" value="{{ recherche }}" class="form-control"
+           placeholder="{% translate 'Nom, prénom, n° de dossier, téléphone…' %}">
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary" type="submit">{% translate "Rechercher" %}</button>
+  </div>
+  <div class="col-auto d-flex align-items-center">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="inactifs" value="1"
+             id="inactifs" {% if inclure_inactifs %}checked{% endif %} onchange="this.form.submit()">
+      <label class="form-check-label small" for="inactifs">{% translate "Inclure les dossiers archivés" %}</label>
+    </div>
+  </div>
+</form>
+
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead>
+        <tr>
+          <th>{% translate "N° dossier" %}</th>
+          <th>{% translate "Nom" %}</th>
+          <th>{% translate "Sexe" %}</th>
+          <th>{% translate "Âge" %}</th>
+          <th>{% translate "Téléphone" %}</th>
+          <th>{% translate "Ville" %}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for patient in patients %}
+          <tr{% if not patient.actif %} class="text-body-secondary"{% endif %}>
+            <td><code>{{ patient.numero_dossier }}</code></td>
+            <td>{{ patient.nom_complet }}</td>
+            <td>{{ patient.get_sexe_display }}</td>
+            <td>{{ patient.age|default:"—" }}</td>
+            <td>{{ patient.telephone|default:"—" }}</td>
+            <td>{{ patient.ville|default:"—" }}</td>
+            <td class="text-end">
+              <a class="btn btn-sm btn-outline-secondary" href="{% url 'patients:detail' patient.pk %}">
+                {% translate "Ouvrir" %}
+              </a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7" class="text-center text-body-secondary py-4">
+            {% translate "Aucun patient trouvé." %}
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?q={{ recherche }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% endif %}
+    <li class="page-item disabled"><span class="page-link">
+      {% blocktranslate with n=page_obj.number t=page_obj.paginator.num_pages %}Page {{ n }} / {{ t }}{% endblocktranslate %}
+    </span></li>
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?q={{ recherche }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

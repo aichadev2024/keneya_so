@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if form.instance.pk %}{% translate "Modifier le patient" %}{% else %}{% translate "Nouveau patient" %}{% endif %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">
+  {% if form.instance.pk %}{% translate "Modifier" %} — {{ form.instance.nom_complet }}{% else %}{% translate "Nouveau patient" %}{% endif %}
+</h1>
+
+<form method="post" enctype="multipart/form-data" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="row g-3">
+    {% for field in form %}
+      <div class="col-md-6">
+        <label class="form-label" for="{{ field.id_for_label }}">
+          {{ field.label }}{% if field.field.required %} <span class="text-danger">*</span>{% endif %}
+        </label>
+        {{ field }}
+        {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
+        {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="mt-3 d-flex gap-2">
+    <button type="submit" class="btn btn-primary">{% translate "Enregistrer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% if form.instance.pk %}{% url 'patients:detail' form.instance.pk %}{% else %}{% url 'patients:liste' %}{% endif %}">
+      {% translate "Annuler" %}
+    </a>
+  </div>
+</form>
+{% endblock %}

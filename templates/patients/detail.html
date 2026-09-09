@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ patient.nom_complet }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb small">
+    <li class="breadcrumb-item"><a href="{% url 'patients:liste' %}">{% translate "Patients" %}</a></li>
+    <li class="breadcrumb-item active">{{ patient.numero_dossier }}</li>
+  </ol>
+</nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ patient.nom_complet }}
+      {% if not patient.actif %}<span class="badge text-bg-warning">{% translate "Archivé" %}</span>{% endif %}
+    </h1>
+    <div class="text-body-secondary">
+      <code>{{ patient.numero_dossier }}</code> ·
+      {{ patient.get_sexe_display }} ·
+      {% if patient.age is not None %}{% blocktranslate with a=patient.age %}{{ a }} ans{% endblocktranslate %}{% else %}{% translate "âge inconnu" %}{% endif %} ·
+      {% translate "Groupe" %} {{ patient.get_groupe_sanguin_display }}
+    </div>
+  </div>
+  {% if perms.patients.change_patient %}
+    <a class="btn btn-outline-primary" href="{% url 'patients:modifier' patient.pk %}">{% translate "Modifier" %}</a>
+  {% endif %}
+</div>
+
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Coordonnées" %}</div>
+      <div class="card-body">
+        <dl class="row mb-0">
+          <dt class="col-5">{% translate "Téléphone" %}</dt><dd class="col-7">{{ patient.telephone|default:"—" }}</dd>
+          <dt class="col-5">{% translate "Adresse" %}</dt><dd class="col-7">{{ patient.adresse|default:"—" }}</dd>
+          <dt class="col-5">{% translate "Ville" %}</dt><dd class="col-7">{{ patient.ville|default:"—" }}</dd>
+          <dt class="col-5">{% translate "Date de naissance" %}</dt>
+          <dd class="col-7">{{ patient.date_naissance|date:"d/m/Y"|default:"—" }}{% if patient.date_naissance_estimee %} <span class="badge text-bg-light">{% translate "estimée" %}</span>{% endif %}</dd>
+          <dt class="col-5">{% translate "Lieu de naissance" %}</dt><dd class="col-7">{{ patient.lieu_naissance|default:"—" }}</dd>
+          <dt class="col-5">{% translate "Profession" %}</dt><dd class="col-7">{{ patient.profession|default:"—" }}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Personne à prévenir" %}</div>
+      <div class="card-body">
+        <dl class="row mb-0">
+          <dt class="col-5">{% translate "Nom" %}</dt><dd class="col-7">{{ patient.personne_a_prevenir|default:"—" }}</dd>
+          <dt class="col-5">{% translate "Lien" %}</dt><dd class="col-7">{{ patient.lien_personne_a_prevenir|default:"—" }}</dd>
+          <dt class="col-5">{% translate "Téléphone" %}</dt><dd class="col-7">{{ patient.telephone_urgence|default:"—" }}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>{% translate "Dossier médical" %}</span>
+        {% if perms.patients.change_dossiermedical %}
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'patients:dossier_medical' patient.pk %}">{% translate "Modifier" %}</a>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        {% with d=patient.dossier_medical %}
+        <dl class="row mb-0">
+          <dt class="col-sm-3">{% translate "Antécédents médicaux" %}</dt><dd class="col-sm-9">{{ d.antecedents_medicaux|default:"—"|linebreaksbr }}</dd>
+          <dt class="col-sm-3">{% translate "Antécédents chirurgicaux" %}</dt><dd class="col-sm-9">{{ d.antecedents_chirurgicaux|default:"—"|linebreaksbr }}</dd>
+          <dt class="col-sm-3">{% translate "Antécédents familiaux" %}</dt><dd class="col-sm-9">{{ d.antecedents_familiaux|default:"—"|linebreaksbr }}</dd>
+          <dt class="col-sm-3">{% translate "Traitements en cours" %}</dt><dd class="col-sm-9">{{ d.traitements_en_cours|default:"—"|linebreaksbr }}</dd>
+          <dt class="col-sm-3">{% translate "Habitudes de vie" %}</dt><dd class="col-sm-9">{{ d.habitudes_vie|default:"—"|linebreaksbr }}</dd>
+          <dt class="col-sm-3">{% translate "Observations" %}</dt><dd class="col-sm-9">{{ d.observations|default:"—"|linebreaksbr }}</dd>
+          <dt class="col-sm-3">{% translate "Allergies" %}</dt>
+          <dd class="col-sm-9">
+            {% for a in d.allergies.all %}
+              <span class="badge text-bg-danger me-1">{{ a.libelle }} ({{ a.get_severite_display }})</span>
+            {% empty %}—{% endfor %}
+          </dd>
+        </dl>
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

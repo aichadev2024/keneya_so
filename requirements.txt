@@ -1,0 +1,16 @@
+# Kènèya Sô — dépendances de production
+# Voir docs/Kenya_So_Cahier_des_charges_enrichi.docx, section 8 (Architecture technique)
+
+Django==5.2.17
+djangorestframework==3.18.1
+django-environ==0.14.0
+django-cors-headers==4.9.0
+drf-spectacular==0.30.0
+psycopg[binary]==3.3.5      # pilote PostgreSQL (base de données cible, CDC 8)
+Pillow==12.3.0              # ImageField (logo établissement, pièces jointes imagerie)
+whitenoise==6.12.0          # service des fichiers statiques en production
+gunicorn==26.2.0            # serveur WSGI (déploiement Render/Railway, CDC 8)
+
+# --- Ajoutés dans les phases ultérieures du planning (CDC 11.2) ---
+# weasyprint            # phase 9 : export PDF des rapports (HTML -> PDF)
+# django-import-export  # phase 9 : export Excel des rapports

@@ -1,0 +1,21 @@
+/* Kènèya Sô — ajustements légers par-dessus Bootstrap 5 (CDC 7.3 — interface sobre). */
+
+:root {
+  --bs-primary: #1f3864; /* bleu profond, cohérent avec les tableaux du cahier des charges */
+}
+
+.navbar.bg-primary {
+  background-color: var(--bs-primary) !important;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+code {
+  color: var(--bs-primary);
+}
+
+/* Support RTL (arabe, CDC 4.11) : alignements de base. */
+html[dir="rtl"] .me-auto { margin-right: 0 !important; margin-left: auto !important; }
+html[dir="rtl"] .text-end { text-align: left !important; }
