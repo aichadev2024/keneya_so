@@ -63,6 +63,28 @@ _RELEVER_CONSTANTES = [
     "consultations.view_ordonnance",
 ]
 
+# Hospitalisation : séjours, lits, suivi (phase 4, CDC 4.4)
+_HOSPIT_LECTURE = [
+    "hospitalisation.view_service",
+    "hospitalisation.view_chambre",
+    "hospitalisation.view_lit",
+    "hospitalisation.view_hospitalisation",
+    "hospitalisation.view_notesuivi",
+    "hospitalisation.view_mouvementlit",
+]
+_HOSPIT_SOIGNANT = _HOSPIT_LECTURE + [
+    "hospitalisation.add_notesuivi",
+    "hospitalisation.change_notesuivi",
+]
+_HOSPIT_MEDECIN = _HOSPIT_SOIGNANT + [
+    "hospitalisation.add_hospitalisation",
+    "hospitalisation.change_hospitalisation",
+]
+_HOSPIT_ADMISSION = _HOSPIT_LECTURE + [
+    "hospitalisation.add_hospitalisation",
+    "hospitalisation.change_hospitalisation",
+]
+
 # Officine : catalogue, stock, dispensation (phase 3, CDC 4.5)
 _PHARMACIE = [
     "consultations.view_consultation",
@@ -91,16 +113,16 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.change_patient",
         "patients.view_patient",
         "patients.view_dossiermedical",
-    ],
-    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE,
-    Role.CHIRURGIEN: _SUIVI_MEDICAL + _PRESCRIRE,
+    ] + _HOSPIT_ADMISSION,
+    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN,
+    Role.CHIRURGIEN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN,
     Role.ANESTHESISTE: _LECTURE_PATIENT + [
         "consultations.view_consultation",
         "consultations.view_constantes",
         "consultations.view_ordonnance",
-    ],
-    Role.INFIRMIER: _LECTURE_PATIENT + _RELEVER_CONSTANTES,
-    Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"],
+    ] + _HOSPIT_LECTURE,
+    Role.INFIRMIER: _LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT,
+    Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"] + _HOSPIT_LECTURE,
     Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,
     Role.LABORANTIN: ["patients.view_patient"],
     Role.RADIOLOGUE: ["patients.view_patient"],

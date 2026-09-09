@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Admission" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-1">{% translate "Admission en hospitalisation" %}</h1>
+<p class="text-body-secondary">{{ patient.nom_complet }} — <code>{{ patient.numero_dossier }}</code></p>
+
+{% if sejour_actif %}
+  <div class="alert alert-warning">
+    {% translate "Ce patient a déjà un séjour en cours." %}
+    <a href="{% url 'hospitalisation:detail' sejour_actif.pk %}">{{ sejour_actif.reference }}</a>
+  </div>
+{% else %}
+  <form method="post" class="card card-body shadow-sm col-lg-8">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+        {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+      </div>
+    {% endfor %}
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary">{% translate "Admettre" %}</button>
+      <a class="btn btn-outline-secondary" href="{% url 'patients:detail' patient.pk %}">{% translate "Annuler" %}</a>
+    </div>
+  </form>
+{% endif %}
+{% endblock %}

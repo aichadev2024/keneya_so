@@ -25,6 +25,9 @@
         {% if perms.consultations.view_consultation %}
           <li class="nav-item"><a class="nav-link" href="{% url 'consultations:liste' %}">{% translate "Consultations" %}</a></li>
         {% endif %}
+        {% if perms.hospitalisation.view_hospitalisation %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'hospitalisation:occupation' %}">{% translate "Hospitalisation" %}</a></li>
+        {% endif %}
         {% if perms.pharmacie.view_dispensation %}
           <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:dispensations' %}">{% translate "Dispensations" %}</a></li>
         {% endif %}

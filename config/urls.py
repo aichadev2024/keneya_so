@@ -19,6 +19,7 @@ urlpatterns = [
     path("api/v1/", include("apps.patients.api_urls")),
     path("api/v1/", include("apps.consultations.api_urls")),
     path("api/v1/", include("apps.pharmacie.api_urls")),
+    path("api/v1/", include("apps.hospitalisation.api_urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="api-schema"), name="api-docs"),
 ]
@@ -32,6 +33,7 @@ urlpatterns += i18n_patterns(
     path("patients/", include("apps.patients.urls")),
     path("consultations/", include("apps.consultations.urls")),
     path("pharmacie/", include("apps.pharmacie.urls")),
+    path("hospitalisation/", include("apps.hospitalisation.urls")),
     prefix_default_language=True,
 )
 

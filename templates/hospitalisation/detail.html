@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ sejour.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'hospitalisation:liste' %}">{% translate "Séjours" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'patients:detail' sejour.patient.pk %}">{{ sejour.patient.nom_complet }}</a></li>
+  <li class="breadcrumb-item active">{{ sejour.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ sejour.reference }}
+      <span class="badge text-bg-{% if sejour.statut == 'SORTIE' %}success{% elif sejour.statut == 'ANNULEE' %}secondary{% else %}warning{% endif %}">{{ sejour.get_statut_display }}</span>
+    </h1>
+    <div class="text-body-secondary">
+      {{ sejour.service.nom }}{% if sejour.lit %} · {% translate "chambre" %} {{ sejour.lit.chambre.numero }} · {% translate "lit" %} {{ sejour.lit.numero }}{% else %} · {% translate "sans lit assigné" %}{% endif %}
+      · {% translate "admis le" %} {{ sejour.date_admission|date:"d/m/Y H:i" }} · {{ sejour.duree_jours }} j
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="card shadow-sm mb-3"><div class="card-body">
+      <dl class="row mb-0">
+        <dt class="col-5">{% translate "Motif" %}</dt><dd class="col-7">{{ sejour.motif }}</dd>
+        <dt class="col-5">{% translate "Diagnostic" %}</dt><dd class="col-7">{{ sejour.diagnostic_admission|default:"—"|linebreaksbr }}</dd>
+        <dt class="col-5">{% translate "Médecin référent" %}</dt><dd class="col-7">{{ sejour.medecin_referent.get_full_name|default:"—" }}</dd>
+        {% if sejour.statut == 'SORTIE' %}
+          <dt class="col-5">{% translate "Sortie le" %}</dt><dd class="col-7">{{ sejour.date_sortie|date:"d/m/Y H:i" }}</dd>
+          <dt class="col-5">{% translate "Mode" %}</dt><dd class="col-7">{{ sejour.get_mode_sortie_display }}</dd>
+        {% endif %}
+      </dl>
+    </div></div>
+
+    {% if sejour.statut == 'SORTIE' %}
+      <div class="card shadow-sm mb-3">
+        <div class="card-header">{% translate "Compte-rendu d'hospitalisation" %}</div>
+        <div class="card-body">
+          <p style="white-space:pre-wrap">{{ sejour.compte_rendu|default:"—" }}</p>
+          {% if sejour.consignes_sortie %}
+            <hr><strong>{% translate "Consignes de sortie" %}</strong>
+            <p class="mb-0" style="white-space:pre-wrap">{{ sejour.consignes_sortie }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if sejour.est_en_cours and peut_gerer %}
+      <div class="card shadow-sm mb-3">
+        <div class="card-header">{% translate "Transférer de lit" %}</div>
+        <div class="card-body">
+          <form method="post" action="{% url 'hospitalisation:transferer' sejour.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-8">{{ form_transfert.nouveau_lit }}</div>
+            <div class="col-4"><button class="btn btn-outline-primary w-100">{% translate "Transférer" %}</button></div>
+            <div class="col-12">{{ form_transfert.motif }}</div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-header">{% translate "Prononcer la sortie" %}</div>
+        <div class="card-body">
+          <form method="post" action="{% url 'hospitalisation:sortie' sejour.pk %}">
+            {% csrf_token %}
+            <div class="mb-2">{{ form_sortie.mode_sortie }}</div>
+            <div class="mb-2">{{ form_sortie.compte_rendu }}</div>
+            <div class="mb-2">{{ form_sortie.consignes_sortie }}</div>
+            <button class="btn btn-success">{% translate "Enregistrer la sortie" %}</button>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>{% translate "Suivi quotidien" %}</span>
+      </div>
+      {% if sejour.est_en_cours and peut_soigner %}
+        <div class="card-body border-bottom">
+          <form method="post" action="{% url 'hospitalisation:note_ajouter' sejour.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-md-3">{{ form_note.type }}</div>
+            <div class="col-md-9">{{ form_note.description }}</div>
+            <div class="col-6 col-md-3">{{ form_note.temperature_c }}<div class="form-text">°C</div></div>
+            <div class="col-6 col-md-3">{{ form_note.tension_systolique }}<div class="form-text">TA sys.</div></div>
+            <div class="col-6 col-md-3">{{ form_note.tension_diastolique }}<div class="form-text">TA dia.</div></div>
+            <div class="col-6 col-md-3">{{ form_note.pouls }}<div class="form-text">{% translate "pouls" %}</div></div>
+            <div class="col-12"><button class="btn btn-primary">{% translate "Ajouter la note" %}</button></div>
+          </form>
+        </div>
+      {% endif %}
+      <ul class="list-group list-group-flush">
+        {% for note in sejour.notes.all %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <strong>{{ note.get_type_display }}</strong>
+              <span class="small text-body-secondary">{{ note.date_note|date:"d/m/Y H:i" }} · {{ note.auteur.get_full_name|default:"—" }}</span>
+            </div>
+            <div style="white-space:pre-wrap">{{ note.description }}</div>
+            {% if note.temperature_c or note.tension_systolique or note.pouls %}
+              <div class="small text-body-secondary mt-1">
+                {% if note.temperature_c %}T° {{ note.temperature_c }} °C · {% endif %}
+                {% if note.tension_systolique %}TA {{ note.tension_arterielle }} · {% endif %}
+                {% if note.pouls %}{% translate "pouls" %} {{ note.pouls }}{% endif %}
+              </div>
+            {% endif %}
+          </li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary text-center py-4">{% translate "Aucune note de suivi." %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% if sejour.mouvements_lit.exists %}
+      <div class="card shadow-sm mt-3">
+        <div class="card-header">{% translate "Historique des lits" %}</div>
+        <ul class="list-group list-group-flush">
+          {% for m in sejour.mouvements_lit.all %}
+            <li class="list-group-item small">
+              {{ m.date|date:"d/m/Y H:i" }} — {{ m.lit_precedent|default:_("(admission)") }} → {{ m.lit_nouveau }}
+              {% if m.motif %}· {{ m.motif }}{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

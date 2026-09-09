@@ -28,7 +28,7 @@ Une application Django par module métier (CDC 7.5) :
 | `apps.patients` | Patients, dossiers médicaux, allergies | 2-3 | ✅ |
 | `apps.consultations` | Consultations, constantes, **ordonnances** + alertes de prescription | 3 | ✅ |
 | `apps.pharmacie` | Catalogue, **stock par lots (FEFO)**, mouvements, **dispensation** | 3 | ✅ |
-| `apps.hospitalisation` | Admission, lits, sortie | 4 | 🔜 |
+| `apps.hospitalisation` | Services, **chambres/lits**, admission, **suivi quotidien**, sortie, vue d'occupation | 4 | ✅ |
 | `apps.bloc_operatoire` | Planning salles, équipes, checklist, CR opératoire (CDC section 5) | 5-6 | 🔜 |
 | `apps.laboratoire` | Analyses biologiques et imagerie | 7 | 🔜 |
 | `apps.facturation` | Factures, paiements, part patient/assurance | 6 | 🔜 |
@@ -51,6 +51,20 @@ fixent l'architecture et seront développées à leur phase.
    **FEFO** (premier périmé, premier sorti), décrémente le stock et journalise
    chaque mouvement. Statuts d'ordonnance/dispensation mis à jour (partielle /
    complète). Seuils d'alerte et retrait des lots périmés gérés côté catalogue.
+
+### Hospitalisation (phase 4)
+
+- **Services → chambres → lits** (configurés via l'administration). L'occupation
+  d'un lit est **déduite des séjours en cours** — aucun champ dénormalisé à
+  resynchroniser.
+- **Admission** depuis la fiche patient : choix du service et d'un lit
+  disponible ; contrainte base de données « un seul séjour en cours par lit ».
+- **Suivi quotidien** : notes horodatées et nominatives (soin infirmier,
+  observation médicale, traitement, constantes rapides).
+- **Transfert de lit** tracé (`MouvementLit`) ; **sortie** avec mode
+  (domicile / transfert / contre avis / décès), compte-rendu et consignes — le
+  lit redevient disponible automatiquement.
+- **Vue d'occupation en temps réel** par service (taux, lits libres/occupés).
 
 ### Contrôle d'accès (RBAC)
 

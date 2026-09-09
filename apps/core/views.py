@@ -36,6 +36,8 @@ def _raccourcis_pour(utilisateur):
         raccourcis.append((_("Patients"), "patients:liste"))
     if utilisateur.has_perm("consultations.view_consultation"):
         raccourcis.append((_("Consultations"), "consultations:liste"))
+    if utilisateur.has_perm("hospitalisation.view_hospitalisation"):
+        raccourcis.append((_("Hospitalisation"), "hospitalisation:occupation"))
     if utilisateur.has_perm("pharmacie.view_dispensation"):
         raccourcis.append((_("Dispensations"), "pharmacie:dispensations"))
     if utilisateur.has_perm("pharmacie.view_medicament"):

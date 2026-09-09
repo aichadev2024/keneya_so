@@ -17,6 +17,8 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.core.models import ParametresSysteme
+from apps.hospitalisation.models import Chambre, Hospitalisation, Lit, Service
+from apps.hospitalisation.services import admettre
 from apps.patients.models import Patient
 from apps.pharmacie.models import InteractionMedicamenteuse, Medicament
 from apps.pharmacie.services import enregistrer_entree
@@ -127,6 +129,41 @@ class Command(BaseCommand):
         except Medicament.DoesNotExist:
             pass
 
+        self._seed_hospitalisation()
+
         self.stdout.write(self.style.SUCCESS(
             f"\nTerminé. Comptes de démonstration : mot de passe « {MOT_DE_PASSE_DEMO} »."
         ))
+
+    def _seed_hospitalisation(self):
+        plan = {
+            "Médecine générale": {"chambres": 3, "lits_par_chambre": 2},
+            "Chirurgie": {"chambres": 2, "lits_par_chambre": 2},
+            "Maternité": {"chambres": 2, "lits_par_chambre": 3},
+        }
+        medecin = Utilisateur.objects.filter(username="medecin").first()
+        for nom, conf in plan.items():
+            service, cree = Service.objects.get_or_create(nom=nom)
+            if cree:
+                for i in range(1, conf["chambres"] + 1):
+                    chambre = Chambre.objects.create(service=service, numero=f"{i:02d}")
+                    for j in range(1, conf["lits_par_chambre"] + 1):
+                        Lit.objects.create(chambre=chambre, numero=str(j))
+                self.stdout.write(self.style.SUCCESS(
+                    f"  + service {nom} ({service.nb_lits} lits)"))
+            else:
+                self.stdout.write(f"  = service {nom} déjà présent")
+
+        patient = Patient.objects.filter(nom="Konaté", prenom="Sékou").first()
+        service = Service.objects.filter(nom="Médecine générale").first()
+        if patient and service and not patient.hospitalisations.filter(
+                statut=Hospitalisation.Statut.EN_COURS).exists():
+            lit = next((l for l in service.lits if l.est_disponible), None)
+            if lit:
+                sejour = admettre(
+                    patient=patient, service=service, lit=lit,
+                    motif="Paludisme grave — surveillance", medecin_referent=medecin,
+                    par=medecin,
+                )
+                self.stdout.write(self.style.SUCCESS(
+                    f"  + hospitalisation {sejour.reference} ({patient.nom_complet})"))

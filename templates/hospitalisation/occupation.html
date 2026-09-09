@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Occupation des lits" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Occupation des lits" %}</h1>
+  <a class="btn btn-outline-secondary" href="{% url 'hospitalisation:liste' %}">{% translate "Liste des séjours" %}</a>
+</div>
+
+{% for s in services %}
+  <div class="card shadow-sm mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <strong>{{ s.obj.nom }}</strong>
+      <span class="badge text-bg-{% if s.taux >= 90 %}danger{% elif s.taux >= 70 %}warning{% else %}success{% endif %}">
+        {{ s.occupes }} / {{ s.nb_lits }} {% translate "lits" %} — {{ s.taux }} %
+      </span>
+    </div>
+    <div class="card-body">
+      {% for c in s.chambres %}
+        <div class="mb-3">
+          <div class="small text-body-secondary mb-1">{% translate "Chambre" %} {{ c.obj.numero }} · {{ c.obj.get_type_display }}</div>
+          <div class="d-flex flex-wrap gap-2">
+            {% for lit in c.lits %}
+              {% with h=lit.hospitalisation_active %}
+              <div class="border rounded p-2 {% if h %}bg-danger-subtle border-danger{% elif lit.statut != 'DISPONIBLE' %}bg-secondary-subtle{% else %}bg-success-subtle border-success{% endif %}"
+                   style="min-width:12rem">
+                <div class="fw-semibold small">{% translate "Lit" %} {{ lit.numero }}</div>
+                {% if h %}
+                  <a href="{% url 'hospitalisation:detail' h.pk %}" class="d-block small">{{ h.patient.nom_complet }}</a>
+                  <span class="small text-body-secondary">{% translate "depuis le" %} {{ h.date_admission|date:"d/m" }}</span>
+                {% elif lit.statut != 'DISPONIBLE' %}
+                  <span class="small">{{ lit.get_statut_display }}</span>
+                {% else %}
+                  <span class="small text-success">{% translate "Disponible" %}</span>
+                {% endif %}
+              </div>
+              {% endwith %}
+            {% empty %}
+              <span class="text-body-secondary small">{% translate "Aucun lit." %}</span>
+            {% endfor %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-body-secondary small mb-0">{% translate "Aucune chambre configurée." %}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% empty %}
+  <div class="alert alert-info">{% translate "Aucun service configuré. L'administrateur peut en créer via l'administration." %}</div>
+{% endfor %}
+{% endblock %}

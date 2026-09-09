@@ -26,11 +26,24 @@
     {% if perms.consultations.add_consultation %}
       <a class="btn btn-primary" href="{% url 'consultations:creer' patient.pk %}">{% translate "Nouvelle consultation" %}</a>
     {% endif %}
+    {% if perms.hospitalisation.add_hospitalisation %}
+      <a class="btn btn-outline-primary" href="{% url 'hospitalisation:admettre' patient.pk %}">{% translate "Admettre" %}</a>
+    {% endif %}
     {% if perms.patients.change_patient %}
       <a class="btn btn-outline-primary" href="{% url 'patients:modifier' patient.pk %}">{% translate "Modifier" %}</a>
     {% endif %}
   </div>
 </div>
+
+{% with sejour=patient.hospitalisations.first %}
+  {% if sejour and sejour.statut == 'EN_COURS' %}
+    <div class="alert alert-info d-flex justify-content-between align-items-center">
+      <span>{% blocktranslate with s=sejour.service.nom %}Patient hospitalisé — {{ s }}{% endblocktranslate %}
+        {% if sejour.lit %}· {% translate "lit" %} {{ sejour.lit.numero }}{% endif %}</span>
+      <a class="btn btn-sm btn-outline-primary" href="{% url 'hospitalisation:detail' sejour.pk %}">{{ sejour.reference }}</a>
+    </div>
+  {% endif %}
+{% endwith %}
 
 <div class="row g-3">
   <div class="col-md-6">
