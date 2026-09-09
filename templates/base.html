@@ -22,6 +22,15 @@
         {% if perms.patients.view_patient %}
           <li class="nav-item"><a class="nav-link" href="{% url 'patients:liste' %}">{% translate "Patients" %}</a></li>
         {% endif %}
+        {% if perms.consultations.view_consultation %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'consultations:liste' %}">{% translate "Consultations" %}</a></li>
+        {% endif %}
+        {% if perms.pharmacie.view_dispensation %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:dispensations' %}">{% translate "Dispensations" %}</a></li>
+        {% endif %}
+        {% if perms.pharmacie.view_medicament %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:medicaments' %}">{% translate "Stock" %}</a></li>
+        {% endif %}
         {% if user.is_staff %}
           <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">{% translate "Administration" %}</a></li>
         {% endif %}

@@ -21,21 +21,36 @@ Diagrammes UML et d'architecture : [`docs/diagrammes/`](docs/diagrammes/).
 
 Une application Django par module métier (CDC 7.5) :
 
-| App | Rôle | Phase (CDC 11.2) |
-|---|---|---|
-| `apps.core` | Socle : base horodatée, paramètres établissement, **journal d'audit** | 2 |
-| `apps.accounts` | Utilisateur personnalisé, **rôles & RBAC**, authentification | 2 |
-| `apps.patients` | Patients, dossiers médicaux, allergies | 2-3 |
-| `apps.consultations` | Consultations, constantes, diagnostics | 3 |
-| `apps.pharmacie` | Dispensation, stocks | 3 |
-| `apps.hospitalisation` | Admission, lits, sortie | 4 |
-| `apps.bloc_operatoire` | Planning salles, équipes, checklist, CR opératoire (CDC section 5) | 5-6 |
-| `apps.laboratoire` | Analyses biologiques et imagerie | 7 |
-| `apps.facturation` | Factures, paiements, part patient/assurance | 6 |
-| `apps.assurances` | Compagnies, contrats, bordereaux | 6 |
+| App | Rôle | Phase (CDC 11.2) | État |
+|---|---|---|---|
+| `apps.core` | Socle : base horodatée, paramètres établissement, **journal d'audit** | 2 | ✅ |
+| `apps.accounts` | Utilisateur personnalisé, **rôles & RBAC**, authentification | 2 | ✅ |
+| `apps.patients` | Patients, dossiers médicaux, allergies | 2-3 | ✅ |
+| `apps.consultations` | Consultations, constantes, **ordonnances** + alertes de prescription | 3 | ✅ |
+| `apps.pharmacie` | Catalogue, **stock par lots (FEFO)**, mouvements, **dispensation** | 3 | ✅ |
+| `apps.hospitalisation` | Admission, lits, sortie | 4 | 🔜 |
+| `apps.bloc_operatoire` | Planning salles, équipes, checklist, CR opératoire (CDC section 5) | 5-6 | 🔜 |
+| `apps.laboratoire` | Analyses biologiques et imagerie | 7 | 🔜 |
+| `apps.facturation` | Factures, paiements, part patient/assurance | 6 | 🔜 |
+| `apps.assurances` | Compagnies, contrats, bordereaux | 6 | 🔜 |
 
-Les modules au-delà de `patients` sont pour l'instant des applications déclarées
-sans modèle : ils fixent l'architecture et seront développés à leur phase.
+Les modules 🔜 sont pour l'instant des applications déclarées sans modèle : elles
+fixent l'architecture et seront développées à leur phase.
+
+### Parcours de soins (phase 3)
+
+1. Depuis une fiche patient : **nouvelle consultation** (motif, examen, diagnostic,
+   conduite à tenir) puis saisie des **constantes** (IMC, TA… calculés).
+2. **Ordonnance** rattachée à la consultation : ajout de lignes (médicament du
+   catalogue, posologie, durée, quantité). Des **alertes non bloquantes** (CDC 4.3)
+   signalent une allergie déclarée du patient ou une interaction connue entre deux
+   médicaments prescrits.
+3. **Transmission** de l'ordonnance : ouvre automatiquement une dispensation dans
+   la file de la pharmacie.
+4. Le pharmacien **délivre** ligne par ligne ; l'allocation puise dans les lots en
+   **FEFO** (premier périmé, premier sorti), décrémente le stock et journalise
+   chaque mouvement. Statuts d'ordonnance/dispensation mis à jour (partielle /
+   complète). Seuils d'alerte et retrait des lots périmés gérés côté catalogue.
 
 ### Contrôle d'accès (RBAC)
 

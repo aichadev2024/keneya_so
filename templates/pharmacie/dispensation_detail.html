@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Dispensation" %} {{ dispensation.ordonnance.reference }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'pharmacie:dispensations' %}">{% translate "Dispensations" %}</a></li>
+  <li class="breadcrumb-item active">{{ dispensation.ordonnance.reference }}</li>
+</ol></nav>
+
+<h1 class="h3 mb-1">{% translate "Dispensation" %} — {{ dispensation.ordonnance.reference }}
+  <span class="badge text-bg-secondary">{{ dispensation.get_statut_display }}</span></h1>
+<p class="text-body-secondary">
+  {{ dispensation.ordonnance.patient.nom_complet }} ·
+  {% translate "prescrite par" %} {{ dispensation.ordonnance.prescripteur.get_full_name|default:"—" }}
+</p>
+{% if dispensation.ordonnance.notes %}
+  <div class="alert alert-info py-2">{% translate "Note du prescripteur" %} : {{ dispensation.ordonnance.notes }}</div>
+{% endif %}
+
+<form method="post" action="{% url 'pharmacie:dispensation_delivrer' dispensation.pk %}"
+      class="card card-body shadow-sm">
+  {% csrf_token %}
+  <div class="table-responsive"><table class="table align-middle">
+    <thead><tr>
+      <th>{% translate "Médicament" %}</th><th>{% translate "Posologie" %}</th>
+      <th class="text-end">{% translate "Prescrit" %}</th>
+      <th class="text-end">{% translate "Déjà délivré" %}</th>
+      <th class="text-end">{% translate "Stock" %}</th>
+      <th class="text-end" style="width:8rem">{% translate "À délivrer" %}</th>
+    </tr></thead>
+    <tbody>
+      {% for row in lignes %}
+        <tr>
+          <td>{{ row.obj.medicament_libelle }}</td>
+          <td class="small">{{ row.obj.posologie }}</td>
+          <td class="text-end">{{ row.obj.quantite_prescrite|default:"—" }}</td>
+          <td class="text-end">{{ row.obj.quantite_dispensee }}</td>
+          <td class="text-end {% if row.utilisable == 0 %}text-danger{% endif %}">{{ row.utilisable }}</td>
+          <td class="text-end">
+            {% if not cloturee %}
+              <input type="number" min="0" name="ligne_{{ row.obj.id }}" class="form-control form-control-sm text-end"
+                     value="{{ row.reliquat|default:0 }}" max="{{ row.utilisable }}">
+            {% else %}—{% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table></div>
+
+  {% if not cloturee %}
+    <div class="mb-3">
+      <label class="form-label" for="commentaire">{% translate "Commentaire" %}</label>
+      <input type="text" name="commentaire" id="commentaire" class="form-control"
+             value="{{ dispensation.commentaire }}">
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary">{% translate "Enregistrer la délivrance" %}</button>
+      <a class="btn btn-outline-secondary" href="{% url 'pharmacie:dispensations' %}">{% translate "Retour" %}</a>
+    </div>
+    <p class="small text-body-secondary mt-2">
+      {% translate "L'allocation se fait automatiquement en FEFO (premier lot périmé, premier sorti)." %}
+    </p>
+  {% else %}
+    <p class="text-body-secondary mb-0">{% translate "Cette dispensation est clôturée." %}</p>
+  {% endif %}
+</form>
+
+{% if dispensation.lignes.exists %}
+  <div class="card shadow-sm mt-3">
+    <div class="card-header">{% translate "Détail des délivrances" %}</div>
+    <div class="table-responsive"><table class="table mb-0">
+      <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Médicament" %}</th>
+        <th>{% translate "Lot" %}</th><th class="text-end">{% translate "Qté" %}</th></tr></thead>
+      <tbody>
+        {% for l in dispensation.lignes.all %}
+          <tr>
+            <td class="small">{{ l.cree_le|date:"d/m/Y H:i" }}</td>
+            <td>{{ l.medicament.denomination }}</td>
+            <td>{{ l.lot.numero_lot|default:"—" }}</td>
+            <td class="text-end">{{ l.quantite_dispensee }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table></div>
+  </div>
+{% endif %}
+{% endblock %}

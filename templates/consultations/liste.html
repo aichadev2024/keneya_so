@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Consultations" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Consultations" %}</h1>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-sm-7 col-md-5">
+    <input type="search" name="q" value="{{ q }}" class="form-control"
+           placeholder="{% translate 'Référence, patient, motif…' %}">
+  </div>
+  <div class="col-auto"><button class="btn btn-outline-primary">{% translate "Rechercher" %}</button></div>
+  <div class="col-auto d-flex align-items-center">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="mes" value="1" id="mes"
+             {% if mes %}checked{% endif %} onchange="this.form.submit()">
+      <label class="form-check-label small" for="mes">{% translate "Mes consultations" %}</label>
+    </div>
+  </div>
+</form>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Référence" %}</th><th>{% translate "Date" %}</th>
+      <th>{% translate "Patient" %}</th><th>{% translate "Motif" %}</th>
+      <th>{% translate "Praticien" %}</th><th>{% translate "Statut" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for c in consultations %}
+        <tr>
+          <td><code>{{ c.reference }}</code></td>
+          <td>{{ c.date_consultation|date:"d/m/Y H:i" }}</td>
+          <td>{{ c.patient.nom_complet }}</td>
+          <td>{{ c.motif|truncatechars:40 }}</td>
+          <td>{{ c.praticien.get_full_name|default:"—" }}</td>
+          <td><span class="badge text-bg-{% if c.statut == 'CLOTUREE' %}success{% elif c.statut == 'ANNULEE' %}secondary{% else %}warning{% endif %}">{{ c.get_statut_display }}</span></td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'consultations:detail' c.pk %}">{% translate "Ouvrir" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="7" class="text-center text-body-secondary py-4">{% translate "Aucune consultation." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?q={{ q }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>{% endif %}
+    <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?q={{ q }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>{% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

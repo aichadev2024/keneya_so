@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Catalogue et stock" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Catalogue et stock" %}</h1>
+  <div class="d-flex gap-2">
+    {% if perms.pharmacie.add_lotmedicament %}
+      <a class="btn btn-outline-primary" href="{% url 'pharmacie:entree_stock' %}">{% translate "Entrée de stock" %}</a>
+    {% endif %}
+    {% if perms.pharmacie.add_medicament %}
+      <a class="btn btn-primary" href="{% url 'pharmacie:medicament_creer' %}">{% translate "Nouveau médicament" %}</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
+  <form method="get" class="d-flex gap-2">
+    <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="{% translate 'Rechercher…' %}">
+    <button class="btn btn-outline-primary">{% translate "Rechercher" %}</button>
+  </form>
+  <a class="btn btn-sm {% if alerte %}btn-warning{% else %}btn-outline-warning{% endif %}"
+     href="?{% if alerte %}{% else %}alerte=1{% endif %}">
+    {% blocktranslate count n=nb_alertes %}{{ n }} sous le seuil{% plural %}{{ n }} sous le seuil{% endblocktranslate %}
+  </a>
+  {% if perms.pharmacie.change_lotmedicament %}
+    <form method="post" action="{% url 'pharmacie:retirer_perimes' %}">{% csrf_token %}
+      <button class="btn btn-sm btn-outline-danger">{% translate "Retirer les périmés" %}</button>
+    </form>
+  {% endif %}
+  <a class="btn btn-sm btn-outline-secondary" href="{% url 'pharmacie:mouvements' %}">{% translate "Journal des mouvements" %}</a>
+</div>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Médicament" %}</th><th>{% translate "Forme" %}</th>
+      <th class="text-end">{% translate "Stock utilisable" %}</th>
+      <th class="text-end">{% translate "Seuil" %}</th><th></th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for m in medicaments %}
+        <tr>
+          <td>{{ m.denomination }} {{ m.dosage }}</td>
+          <td>{{ m.get_forme_display }}</td>
+          <td class="text-end">{{ m.quantite_utilisable }} {{ m.unite }}</td>
+          <td class="text-end">{{ m.seuil_alerte }}</td>
+          <td>
+            {% if m.en_alerte %}<span class="badge text-bg-warning">{% translate "Sous le seuil" %}</span>{% endif %}
+            {% if m.a_des_lots_perimes %}<span class="badge text-bg-danger">{% translate "Lots périmés" %}</span>{% endif %}
+            {% if not m.actif %}<span class="badge text-bg-secondary">{% translate "Inactif" %}</span>{% endif %}
+          </td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'pharmacie:medicament' m.pk %}">{% translate "Ouvrir" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Catalogue vide." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?q={{ q }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>{% endif %}
+    <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?q={{ q }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>{% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

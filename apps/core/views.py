@@ -2,6 +2,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext_lazy as _
 
 
 @login_required
@@ -32,7 +33,13 @@ def _raccourcis_pour(utilisateur):
     """Liste de raccourcis (libellé, url_name) selon les permissions réelles."""
     raccourcis = []
     if utilisateur.has_perm("patients.view_patient"):
-        raccourcis.append(("Patients", "patients:liste"))
+        raccourcis.append((_("Patients"), "patients:liste"))
+    if utilisateur.has_perm("consultations.view_consultation"):
+        raccourcis.append((_("Consultations"), "consultations:liste"))
+    if utilisateur.has_perm("pharmacie.view_dispensation"):
+        raccourcis.append((_("Dispensations"), "pharmacie:dispensations"))
+    if utilisateur.has_perm("pharmacie.view_medicament"):
+        raccourcis.append((_("Pharmacie — stock"), "pharmacie:medicaments"))
     if utilisateur.is_staff:
-        raccourcis.append(("Administration", "admin:index"))
+        raccourcis.append((_("Administration"), "admin:index"))
     return raccourcis

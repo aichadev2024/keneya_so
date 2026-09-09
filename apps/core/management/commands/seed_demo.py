@@ -10,12 +10,16 @@ Mot de passe par défaut de tous les comptes : « demo1234 » (à ne jamais
 utiliser hors démonstration).
 """
 
+from datetime import date, timedelta
+
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.core.models import ParametresSysteme
 from apps.patients.models import Patient
+from apps.pharmacie.models import InteractionMedicamenteuse, Medicament
+from apps.pharmacie.services import enregistrer_entree
 
 Utilisateur = get_user_model()
 MOT_DE_PASSE_DEMO = "demo1234"
@@ -37,6 +41,18 @@ PATIENTS = [
      "telephone": "65443322", "groupe_sanguin": "A+"},
     {"nom": "Maïga", "prenom": "Hawa", "sexe": "F", "ville": "Mopti",
      "telephone": "90778811", "groupe_sanguin": "B-"},
+]
+
+MEDICAMENTS = [
+    # denomination, dosage, forme, unite, seuil, stock_initial
+    ("Paracétamol", "500 mg", "COMPRIME", "comprimé", 100, 400),
+    ("Amoxicilline", "500 mg", "GELULE", "gélule", 60, 250),
+    ("Ibuprofène", "400 mg", "COMPRIME", "comprimé", 60, 30),   # sous le seuil volontairement
+    ("Métronidazole", "250 mg", "COMPRIME", "comprimé", 40, 180),
+    ("Artéméther + Luméfantrine", "20/120 mg", "COMPRIME", "comprimé", 50, 300),
+    ("Sérum glucosé 5%", "500 ml", "PERFUSION", "poche", 20, 60),
+    ("Oméprazole", "20 mg", "GELULE", "gélule", 40, 150),
+    ("Ceftriaxone", "1 g", "INJECTABLE", "flacon", 30, 90),
 ]
 
 
@@ -76,6 +92,40 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(
                 f"  + patient {p.numero_dossier} — {p.nom_complet}"
             ))
+
+        admin = Utilisateur.objects.filter(username="admin").first()
+        for deno, dosage, forme, unite, seuil, stock in MEDICAMENTS:
+            med, cree = Medicament.objects.get_or_create(
+                denomination=deno, dosage=dosage,
+                defaults={"forme": forme, "unite": unite, "seuil_alerte": seuil},
+            )
+            if cree:
+                enregistrer_entree(
+                    medicament=med, numero_lot="LOT-DEMO-1", quantite=stock,
+                    date_peremption=date.today() + timedelta(days=540),
+                    utilisateur=admin, fournisseur="PPM (démo)",
+                )
+                self.stdout.write(self.style.SUCCESS(
+                    f"  + médicament {med.denomination} ({stock} en stock)"
+                ))
+            else:
+                self.stdout.write(f"  = médicament {med.denomination} déjà présent")
+
+        try:
+            amox = Medicament.objects.get(denomination="Amoxicilline")
+            metro = Medicament.objects.get(denomination="Métronidazole")
+            _inter, cree = InteractionMedicamenteuse.objects.get_or_create(
+                medicament_a=amox, medicament_b=metro,
+                defaults={
+                    "gravite": InteractionMedicamenteuse.Gravite.MODEREE,
+                    "description": "Surveiller la tolérance digestive (exemple de démonstration).",
+                },
+            )
+            if cree:
+                self.stdout.write(self.style.SUCCESS(
+                    "  + interaction Amoxicilline / Metronidazole"))
+        except Medicament.DoesNotExist:
+            pass
 
         self.stdout.write(self.style.SUCCESS(
             f"\nTerminé. Comptes de démonstration : mot de passe « {MOT_DE_PASSE_DEMO} »."

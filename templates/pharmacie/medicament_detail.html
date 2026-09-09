@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ medicament.denomination }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'pharmacie:medicaments' %}">{% translate "Catalogue" %}</a></li>
+  <li class="breadcrumb-item active">{{ medicament.denomination }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ medicament.denomination }} {{ medicament.dosage }}</h1>
+    <div class="text-body-secondary">
+      {{ medicament.get_forme_display }} ·
+      {% translate "stock utilisable" %} : <strong>{{ medicament.quantite_utilisable }}</strong> {{ medicament.unite }} ·
+      {% translate "seuil" %} {{ medicament.seuil_alerte }}
+      {% if medicament.en_alerte %}<span class="badge text-bg-warning">{% translate "Sous le seuil" %}</span>{% endif %}
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    {% if perms.pharmacie.add_lotmedicament %}
+      <a class="btn btn-outline-primary" href="{% url 'pharmacie:entree_stock' %}">{% translate "Entrée de stock" %}</a>
+    {% endif %}
+    {% if perms.pharmacie.change_medicament %}
+      <a class="btn btn-outline-secondary" href="{% url 'pharmacie:medicament_modifier' medicament.pk %}">{% translate "Modifier" %}</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Lots en stock" %}</div>
+      <div class="table-responsive"><table class="table mb-0">
+        <thead><tr><th>{% translate "Lot" %}</th><th class="text-end">{% translate "Qté" %}</th>
+          <th>{% translate "Péremption" %}</th><th>{% translate "Fournisseur" %}</th></tr></thead>
+        <tbody>
+          {% for lot in lots %}
+            <tr{% if lot.est_perime %} class="text-danger"{% endif %}>
+              <td>{{ lot.numero_lot }}</td>
+              <td class="text-end">{{ lot.quantite }}</td>
+              <td>{{ lot.date_peremption|date:"d/m/Y" }}{% if lot.est_perime %} ⚠{% endif %}</td>
+              <td>{{ lot.fournisseur|default:"—" }}</td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="4" class="text-center text-body-secondary py-3">{% translate "Aucun lot." %}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Derniers mouvements" %}</div>
+      <div class="table-responsive"><table class="table mb-0">
+        <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Type" %}</th>
+          <th class="text-end">{% translate "Qté" %}</th><th>{% translate "Motif" %}</th></tr></thead>
+        <tbody>
+          {% for m in mouvements %}
+            <tr>
+              <td class="small">{{ m.cree_le|date:"d/m/Y H:i" }}</td>
+              <td class="small">{{ m.get_type_display }}</td>
+              <td class="text-end">{{ m.quantite_signee }}</td>
+              <td class="small">{{ m.motif }}</td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="4" class="text-center text-body-secondary py-3">{% translate "Aucun mouvement." %}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

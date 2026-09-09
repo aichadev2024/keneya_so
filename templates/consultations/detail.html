@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ consultation.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'consultations:liste' %}">{% translate "Consultations" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'patients:detail' consultation.patient.pk %}">{{ consultation.patient.nom_complet }}</a></li>
+  <li class="breadcrumb-item active">{{ consultation.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ consultation.reference }}
+      <span class="badge text-bg-{% if consultation.statut == 'CLOTUREE' %}success{% elif consultation.statut == 'ANNULEE' %}secondary{% else %}warning{% endif %}">{{ consultation.get_statut_display }}</span>
+    </h1>
+    <div class="text-body-secondary">
+      {{ consultation.date_consultation|date:"d/m/Y H:i" }} ·
+      {{ consultation.praticien.get_full_name|default:_("praticien inconnu") }}
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    {% if perms.consultations.change_consultation and consultation.statut == 'EN_COURS' %}
+      <a class="btn btn-outline-primary" href="{% url 'consultations:modifier' consultation.pk %}">{% translate "Modifier" %}</a>
+      <form method="post" action="{% url 'consultations:cloturer' consultation.pk %}">{% csrf_token %}
+        <button class="btn btn-outline-success">{% translate "Clôturer" %}</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-7">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <dl class="row mb-0">
+        <dt class="col-sm-4">{% translate "Motif" %}</dt><dd class="col-sm-8">{{ consultation.motif }}</dd>
+        <dt class="col-sm-4">{% translate "Histoire / symptômes" %}</dt><dd class="col-sm-8">{{ consultation.histoire_maladie|default:"—"|linebreaksbr }}</dd>
+        <dt class="col-sm-4">{% translate "Examen clinique" %}</dt><dd class="col-sm-8">{{ consultation.examen_clinique|default:"—"|linebreaksbr }}</dd>
+        <dt class="col-sm-4">{% translate "Diagnostic" %}</dt><dd class="col-sm-8">{{ consultation.diagnostic|default:"—"|linebreaksbr }}</dd>
+        <dt class="col-sm-4">{% translate "Conduite à tenir" %}</dt><dd class="col-sm-8">{{ consultation.conduite_a_tenir|default:"—"|linebreaksbr }}</dd>
+      </dl>
+    </div></div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card shadow-sm mb-3">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>{% translate "Constantes" %}</span>
+        {% if perms.consultations.change_constantes %}
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'consultations:constantes' consultation.pk %}">{% translate "Saisir" %}</a>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        {% with k=consultation.constantes %}
+        {% if k %}
+          <dl class="row mb-0 small">
+            <dt class="col-6">{% translate "Poids / Taille" %}</dt><dd class="col-6">{{ k.poids_kg|default:"—" }} kg / {{ k.taille_cm|default:"—" }} cm</dd>
+            <dt class="col-6">{% translate "IMC" %}</dt><dd class="col-6">{{ k.imc|default:"—" }}</dd>
+            <dt class="col-6">{% translate "Température" %}</dt><dd class="col-6">{{ k.temperature_c|default:"—" }} °C</dd>
+            <dt class="col-6">{% translate "Tension" %}</dt><dd class="col-6">{{ k.tension_arterielle }}</dd>
+            <dt class="col-6">{% translate "FC / FR" %}</dt><dd class="col-6">{{ k.frequence_cardiaque|default:"—" }} / {{ k.frequence_respiratoire|default:"—" }}</dd>
+            <dt class="col-6">{% translate "SpO₂ / Glycémie" %}</dt><dd class="col-6">{{ k.saturation_o2|default:"—" }} % / {{ k.glycemie_g_l|default:"—" }} g/L</dd>
+          </dl>
+        {% else %}
+          <p class="text-body-secondary small mb-0">{% translate "Aucune constante saisie." %}</p>
+        {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>{% translate "Ordonnance" %}</span>
+        {% if not ordonnance and perms.consultations.add_ordonnance %}
+          <form method="post" action="{% url 'consultations:ordonnance_creer' consultation.pk %}">{% csrf_token %}
+            <button class="btn btn-sm btn-outline-primary">{% translate "Créer" %}</button>
+          </form>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        {% if ordonnance %}
+          <p class="mb-1"><code>{{ ordonnance.reference }}</code>
+            <span class="badge text-bg-secondary">{{ ordonnance.get_statut_display }}</span></p>
+          <ul class="small mb-2">
+            {% for l in ordonnance.lignes.all %}<li>{{ l.medicament_libelle }} — {{ l.posologie }}</li>{% endfor %}
+          </ul>
+          {% if alertes %}
+            {% for a in alertes %}<div class="alert alert-{{ a.niveau }} py-1 px-2 small mb-1">{{ a.message }}</div>{% endfor %}
+          {% endif %}
+          <a class="btn btn-sm btn-outline-secondary" href="{% url 'consultations:ordonnance' ordonnance.pk %}">{% translate "Ouvrir l'ordonnance" %}</a>
+        {% else %}
+          <p class="text-body-secondary small mb-0">{% translate "Aucune ordonnance." %}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

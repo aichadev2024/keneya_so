@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Mouvements de stock" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Journal des mouvements de stock" %}</h1>
+
+<form method="get" class="mb-3">
+  <select name="type" class="form-select w-auto d-inline-block" onchange="this.form.submit()">
+    <option value="">{% translate "Tous les types" %}</option>
+    {% for value, label in types %}
+      <option value="{{ value }}" {% if value == type_actif %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+</form>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-sm align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Date" %}</th><th>{% translate "Médicament" %}</th>
+      <th>{% translate "Type" %}</th><th class="text-end">{% translate "Quantité" %}</th>
+      <th>{% translate "Opérateur" %}</th><th>{% translate "Motif" %}</th>
+    </tr></thead>
+    <tbody>
+      {% for m in mouvements %}
+        <tr>
+          <td class="small">{{ m.cree_le|date:"d/m/Y H:i" }}</td>
+          <td>{{ m.medicament.denomination }}</td>
+          <td>{{ m.get_type_display }}</td>
+          <td class="text-end {% if m.quantite_signee < 0 %}text-danger{% else %}text-success{% endif %}">{{ m.quantite_signee }}</td>
+          <td class="small">{{ m.utilisateur.get_full_name|default:"—" }}</td>
+          <td class="small">{{ m.motif }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucun mouvement." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?type={{ type_actif }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>{% endif %}
+    <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?type={{ type_actif }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>{% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

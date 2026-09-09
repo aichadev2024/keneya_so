@@ -5,3 +5,6 @@ class ConsultationsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.consultations"
     verbose_name = "Consultations et dossier médical"
+
+    def ready(self):
+        from . import signals  # noqa: F401

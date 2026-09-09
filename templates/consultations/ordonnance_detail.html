@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ ordonnance.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'consultations:detail' ordonnance.consultation.pk %}">{{ ordonnance.consultation.reference }}</a></li>
+  <li class="breadcrumb-item active">{{ ordonnance.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ ordonnance.reference }}
+      <span class="badge text-bg-secondary">{{ ordonnance.get_statut_display }}</span></h1>
+    <div class="text-body-secondary">{{ ordonnance.patient.nom_complet }} ·
+      {{ ordonnance.date_prescription|date:"d/m/Y" }} ·
+      {{ ordonnance.prescripteur.get_full_name|default:"—" }}</div>
+  </div>
+  {% if ordonnance.statut == 'BROUILLON' and perms.consultations.change_ordonnance %}
+    <form method="post" action="{% url 'consultations:ordonnance_transmettre' ordonnance.pk %}">{% csrf_token %}
+      <button class="btn btn-primary">{% translate "Transmettre à la pharmacie" %}</button>
+    </form>
+  {% endif %}
+</div>
+
+{% if alertes %}
+  <div class="mb-3">
+    {% for a in alertes %}
+      <div class="alert alert-{{ a.niveau }} py-2">{% translate "Alerte" %} — {{ a.message }}</div>
+    {% endfor %}
+    <p class="small text-body-secondary">{% translate "Ces alertes sont informatives et ne bloquent pas la prescription (CDC 4.3)." %}</p>
+  </div>
+{% endif %}
+
+<div class="card shadow-sm mb-3"><div class="table-responsive">
+  <table class="table align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Médicament" %}</th><th>{% translate "Posologie" %}</th>
+      <th>{% translate "Durée" %}</th><th>{% translate "Qté" %}</th>
+      <th>{% translate "Délivré" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for l in ordonnance.lignes.all %}
+        <tr>
+          <td>{{ l.medicament_libelle }}</td>
+          <td>{{ l.posologie }}{% if l.instructions %}<br><span class="small text-body-secondary">{{ l.instructions }}</span>{% endif %}</td>
+          <td>{% if l.duree_jours %}{{ l.duree_jours }} j{% else %}—{% endif %}</td>
+          <td>{{ l.quantite_prescrite|default:"—" }}</td>
+          <td>{{ l.quantite_dispensee }}</td>
+          <td class="text-end">
+            {% if peut_modifier %}
+              <form method="post" action="{% url 'consultations:ligne_supprimer' ordonnance.pk l.pk %}">{% csrf_token %}
+                <button class="btn btn-sm btn-outline-danger">&times;</button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-3">{% translate "Aucun médicament." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if peut_modifier %}
+  <div class="card card-body shadow-sm">
+    <h2 class="h6">{% translate "Ajouter un médicament" %}</h2>
+    <form method="post" action="{% url 'consultations:ligne_ajouter' ordonnance.pk %}" class="row g-2">
+      {% csrf_token %}
+      <div class="col-md-4">{{ form_ligne.medicament }}</div>
+      <div class="col-md-3">{{ form_ligne.posologie }}</div>
+      <div class="col-md-2">{{ form_ligne.duree_jours }}</div>
+      <div class="col-md-2">{{ form_ligne.quantite_prescrite }}</div>
+      <div class="col-md-1"><button class="btn btn-primary w-100">+</button></div>
+      <div class="col-12">{{ form_ligne.instructions }}</div>
+    </form>
+  </div>
+{% endif %}
+{% endblock %}

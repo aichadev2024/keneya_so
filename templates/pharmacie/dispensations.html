@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Dispensations" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "File de dispensation" %}</h1>
+
+<form method="get" class="mb-3">
+  <select name="statut" class="form-select w-auto d-inline-block" onchange="this.form.submit()">
+    <option value="">{% translate "En cours (par défaut)" %}</option>
+    {% for value, label in statuts %}
+      <option value="{{ value }}" {% if value == statut_actif %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+</form>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Ordonnance" %}</th><th>{% translate "Patient" %}</th>
+      <th>{% translate "Reçue le" %}</th><th>{% translate "Statut" %}</th>
+      <th>{% translate "Pharmacien" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for d in dispensations %}
+        <tr>
+          <td><code>{{ d.ordonnance.reference }}</code></td>
+          <td>{{ d.ordonnance.patient.nom_complet }}</td>
+          <td>{{ d.cree_le|date:"d/m/Y H:i" }}</td>
+          <td><span class="badge text-bg-{% if d.statut == 'COMPLETE' %}success{% elif d.statut == 'ANNULEE' %}secondary{% elif d.statut == 'PARTIELLE' %}info{% else %}warning{% endif %}">{{ d.get_statut_display }}</span></td>
+          <td>{{ d.pharmacien.get_full_name|default:"—" }}</td>
+          <td class="text-end"><a class="btn btn-sm btn-primary" href="{% url 'pharmacie:dispensation' d.pk %}">{% translate "Traiter" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucune dispensation en attente." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>{% endif %}
+    <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>{% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

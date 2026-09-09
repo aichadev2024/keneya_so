@@ -17,6 +17,8 @@ urlpatterns = [
     # API REST versionnée (CDC 8)
     path("api/v1/", include("apps.accounts.api_urls")),
     path("api/v1/", include("apps.patients.api_urls")),
+    path("api/v1/", include("apps.consultations.api_urls")),
+    path("api/v1/", include("apps.pharmacie.api_urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="api-schema"), name="api-docs"),
 ]
@@ -28,6 +30,8 @@ urlpatterns += i18n_patterns(
     path("", include("apps.core.urls")),
     path("comptes/", include("apps.accounts.urls")),
     path("patients/", include("apps.patients.urls")),
+    path("consultations/", include("apps.consultations.urls")),
+    path("pharmacie/", include("apps.pharmacie.urls")),
     prefix_default_language=True,
 )
 

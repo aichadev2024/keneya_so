@@ -22,9 +22,14 @@
       {% translate "Groupe" %} {{ patient.get_groupe_sanguin_display }}
     </div>
   </div>
-  {% if perms.patients.change_patient %}
-    <a class="btn btn-outline-primary" href="{% url 'patients:modifier' patient.pk %}">{% translate "Modifier" %}</a>
-  {% endif %}
+  <div class="d-flex gap-2">
+    {% if perms.consultations.add_consultation %}
+      <a class="btn btn-primary" href="{% url 'consultations:creer' patient.pk %}">{% translate "Nouvelle consultation" %}</a>
+    {% endif %}
+    {% if perms.patients.change_patient %}
+      <a class="btn btn-outline-primary" href="{% url 'patients:modifier' patient.pk %}">{% translate "Modifier" %}</a>
+    {% endif %}
+  </div>
 </div>
 
 <div class="row g-3">
@@ -85,5 +90,34 @@
       </div>
     </div>
   </div>
+
+  {% if perms.consultations.view_consultation %}
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header">{% translate "Historique des consultations" %}</div>
+      <div class="table-responsive"><table class="table mb-0 align-middle">
+        <thead><tr>
+          <th>{% translate "Référence" %}</th><th>{% translate "Date" %}</th>
+          <th>{% translate "Motif" %}</th><th>{% translate "Praticien" %}</th>
+          <th>{% translate "Statut" %}</th><th></th>
+        </tr></thead>
+        <tbody>
+          {% for c in patient.consultations.all %}
+            <tr>
+              <td><code>{{ c.reference }}</code></td>
+              <td>{{ c.date_consultation|date:"d/m/Y" }}</td>
+              <td>{{ c.motif|truncatechars:50 }}</td>
+              <td>{{ c.praticien.get_full_name|default:"—" }}</td>
+              <td><span class="badge text-bg-{% if c.statut == 'CLOTUREE' %}success{% elif c.statut == 'ANNULEE' %}secondary{% else %}warning{% endif %}">{{ c.get_statut_display }}</span></td>
+              <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'consultations:detail' c.pk %}">{% translate "Ouvrir" %}</a></td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="6" class="text-center text-body-secondary py-3">{% translate "Aucune consultation enregistrée." %}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Entrée de stock" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Entrée de stock" %}</h1>
+<form method="post" class="card card-body shadow-sm col-lg-8">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  {% for field in form %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+    </div>
+  {% endfor %}
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary">{% translate "Enregistrer l'entrée" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'pharmacie:medicaments' %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

@@ -36,6 +36,54 @@ _SUIVI_MEDICAL = _LECTURE_PATIENT + [
     "patients.delete_allergie",
 ]
 
+# Consultation + constantes + ordonnances (phase 3, CDC 4.2 / 4.3)
+_PRESCRIRE = [
+    "consultations.add_consultation",
+    "consultations.change_consultation",
+    "consultations.view_consultation",
+    "consultations.add_constantes",
+    "consultations.change_constantes",
+    "consultations.view_constantes",
+    "consultations.add_ordonnance",
+    "consultations.change_ordonnance",
+    "consultations.view_ordonnance",
+    "consultations.add_ligneordonnance",
+    "consultations.change_ligneordonnance",
+    "consultations.delete_ligneordonnance",
+    "consultations.view_ligneordonnance",
+    "pharmacie.view_medicament",
+    "pharmacie.view_interactionmedicamenteuse",
+]
+
+_RELEVER_CONSTANTES = [
+    "consultations.view_consultation",
+    "consultations.add_constantes",
+    "consultations.change_constantes",
+    "consultations.view_constantes",
+    "consultations.view_ordonnance",
+]
+
+# Officine : catalogue, stock, dispensation (phase 3, CDC 4.5)
+_PHARMACIE = [
+    "consultations.view_consultation",
+    "consultations.view_ordonnance",
+    "consultations.view_ligneordonnance",
+    "pharmacie.add_medicament",
+    "pharmacie.change_medicament",
+    "pharmacie.view_medicament",
+    "pharmacie.add_lotmedicament",
+    "pharmacie.change_lotmedicament",
+    "pharmacie.view_lotmedicament",
+    "pharmacie.add_mouvementstock",
+    "pharmacie.view_mouvementstock",
+    "pharmacie.add_dispensation",
+    "pharmacie.change_dispensation",
+    "pharmacie.view_dispensation",
+    "pharmacie.add_lignedispensation",
+    "pharmacie.view_lignedispensation",
+    "pharmacie.view_interactionmedicamenteuse",
+]
+
 PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     Role.ADMIN: ["*"],
     Role.AGENT_ACCUEIL: [
@@ -44,12 +92,16 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.view_patient",
         "patients.view_dossiermedical",
     ],
-    Role.MEDECIN: list(_SUIVI_MEDICAL),
-    Role.CHIRURGIEN: list(_SUIVI_MEDICAL),
-    Role.ANESTHESISTE: list(_LECTURE_PATIENT),
-    Role.INFIRMIER: list(_LECTURE_PATIENT),
+    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE,
+    Role.CHIRURGIEN: _SUIVI_MEDICAL + _PRESCRIRE,
+    Role.ANESTHESISTE: _LECTURE_PATIENT + [
+        "consultations.view_consultation",
+        "consultations.view_constantes",
+        "consultations.view_ordonnance",
+    ],
+    Role.INFIRMIER: _LECTURE_PATIENT + _RELEVER_CONSTANTES,
     Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"],
-    Role.PHARMACIEN: ["patients.view_patient"],
+    Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,
     Role.LABORANTIN: ["patients.view_patient"],
     Role.RADIOLOGUE: ["patients.view_patient"],
     Role.COMPTABLE: ["patients.view_patient"],
