@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Impayés" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Factures impayées échues" %}</h1>
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Référence" %}</th><th>{% translate "Patient" %}</th>
+      <th>{% translate "Échéance" %}</th><th class="text-end">{% translate "Reste à payer" %}</th>
+      <th>{% translate "Relances" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for f in factures %}
+        <tr>
+          <td><code>{{ f.reference }}</code></td>
+          <td>{{ f.patient.nom_complet }}<br><span class="small text-body-secondary">{{ f.patient.telephone }}</span></td>
+          <td class="text-danger">{{ f.date_echeance|date:"d/m/Y" }}</td>
+          <td class="text-end">{{ f.reste_a_payer|floatformat:0 }}</td>
+          <td>{{ f.relances.count }}</td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'facturation:detail' f.pk %}">{% translate "Ouvrir" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucun impayé échu. 🎉" %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}

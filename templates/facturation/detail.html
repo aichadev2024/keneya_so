@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ facture.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'facturation:liste' %}">{% translate "Factures" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'patients:detail' facture.patient.pk %}">{{ facture.patient.nom_complet }}</a></li>
+  <li class="breadcrumb-item active">{{ facture.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ facture.reference }}
+      <span class="badge text-bg-{% if facture.statut == 'REGLEE' %}success{% elif facture.statut == 'ANNULEE' %}secondary{% elif facture.statut == 'PARTIELLE' %}info{% elif facture.statut == 'BROUILLON' %}light{% else %}primary{% endif %}">{{ facture.get_statut_display }}</span>
+      {% if facture.en_retard %}<span class="badge text-bg-danger">{% translate "En retard" %}</span>{% endif %}
+    </h1>
+    <div class="text-body-secondary">
+      {% translate "Émise le" %} {{ facture.date_emission|date:"d/m/Y" }} ·
+      {% translate "échéance" %} {{ facture.date_echeance|date:"d/m/Y" }}
+      {% if facture.patient_assure %} · {{ facture.patient_assure.assurance.nom }} ({{ facture.taux_couverture_applique }} %){% endif %}
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    {% if facture.statut == 'BROUILLON' and peut_gerer %}
+      <form method="post" action="{% url 'facturation:emettre' facture.pk %}">{% csrf_token %}
+        <button class="btn btn-primary">{% translate "Émettre" %}</button></form>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-7">
+    <div class="card shadow-sm mb-3">
+      <div class="card-header">{% translate "Détail" %}</div>
+      <div class="table-responsive"><table class="table mb-0">
+        <thead><tr><th>{% translate "Libellé" %}</th><th class="text-end">{% translate "Qté" %}</th>
+          <th class="text-end">{% translate "P.U." %}</th><th class="text-end">{% translate "Montant" %}</th><th></th></tr></thead>
+        <tbody>
+          {% for l in facture.lignes.all %}
+            <tr>
+              <td>{{ l.libelle }}<br><span class="small text-body-secondary">{{ l.get_type_source_display }}</span></td>
+              <td class="text-end">{{ l.quantite|floatformat:"-2" }}</td>
+              <td class="text-end">{{ l.prix_unitaire|floatformat:0 }}</td>
+              <td class="text-end">{{ l.montant|floatformat:0 }}</td>
+              <td class="text-end">
+                {% if facture.statut == 'BROUILLON' and peut_gerer %}
+                  <form method="post" action="{% url 'facturation:ligne_supprimer' facture.pk l.pk %}">{% csrf_token %}
+                    <button class="btn btn-sm btn-outline-danger">&times;</button></form>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr><th colspan="3" class="text-end">{% translate "Total" %}</th><th class="text-end">{{ facture.montant_total|floatformat:0 }}</th><th></th></tr>
+          <tr><td colspan="3" class="text-end">{% translate "Part assurance" %}</td><td class="text-end">{{ facture.part_assurance|floatformat:0 }}</td><td></td></tr>
+          <tr><th colspan="3" class="text-end">{% translate "Part patient" %}</th><th class="text-end">{{ facture.part_patient|floatformat:0 }}</th><th></th></tr>
+          <tr><td colspan="3" class="text-end text-body-secondary">{% translate "Reste à payer" %}</td><td class="text-end">{{ facture.reste_a_payer|floatformat:0 }}</td><td></td></tr>
+        </tfoot>
+      </table></div>
+      {% if facture.statut == 'BROUILLON' and peut_gerer %}
+        <div class="card-body border-top">
+          <form method="post" action="{% url 'facturation:ligne_ajouter' facture.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-md-3">{{ form_ligne.type_source }}</div>
+            <div class="col-md-4">{{ form_ligne.libelle }}</div>
+            <div class="col-md-2">{{ form_ligne.quantite }}</div>
+            <div class="col-md-2">{{ form_ligne.prix_unitaire }}</div>
+            <div class="col-md-1"><button class="btn btn-primary w-100">+</button></div>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if facture.statut != 'BROUILLON' and facture.statut != 'ANNULEE' and peut_gerer %}
+      <div class="card shadow-sm">
+        <div class="card-header">{% translate "Annuler la facture" %}</div>
+        <div class="card-body">
+          <form method="post" action="{% url 'facturation:annuler' facture.pk %}" class="d-flex gap-2">
+            {% csrf_token %}
+            {{ form_annulation.motif }}
+            <button class="btn btn-outline-danger">{% translate "Annuler" %}</button>
+          </form>
+          <div class="form-text">{% translate "Impossible si des paiements existent (enregistrer d'abord les remboursements)." %}</div>
+        </div>
+      </div>
+    {% endif %}
+    {% if facture.motif_annulation %}
+      <div class="alert alert-secondary">{% translate "Annulée" %} : {{ facture.motif_annulation }}</div>
+    {% endif %}
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card shadow-sm mb-3">
+      <div class="card-header">{% translate "Paiements" %}</div>
+      <ul class="list-group list-group-flush">
+        {% for p in facture.paiements.all %}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>{{ p.date_paiement|date:"d/m/Y" }} — {{ p.get_mode_display }} ({{ p.get_payeur_display }}){% if p.est_remboursement %} <span class="badge text-bg-warning">{% translate "remb." %}</span>{% endif %}</span>
+            <strong>{% if p.est_remboursement %}-{% endif %}{{ p.montant|floatformat:0 }}</strong>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary">{% translate "Aucun paiement." %}</li>
+        {% endfor %}
+      </ul>
+      {% if peut_encaisser and facture.statut != 'BROUILLON' and facture.statut != 'ANNULEE' %}
+        <div class="card-body border-top">
+          <form method="post" action="{% url 'facturation:paiement_ajouter' facture.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-6">{{ form_paiement.montant.label_tag }} {{ form_paiement.montant }}</div>
+            <div class="col-6">{{ form_paiement.mode.label_tag }} {{ form_paiement.mode }}</div>
+            <div class="col-6">{{ form_paiement.payeur.label_tag }} {{ form_paiement.payeur }}</div>
+            <div class="col-6">{{ form_paiement.reference_transaction.label_tag }} {{ form_paiement.reference_transaction }}</div>
+            <div class="col-12 form-check">{{ form_paiement.est_remboursement }} <label class="form-check-label small" for="{{ form_paiement.est_remboursement.id_for_label }}">{{ form_paiement.est_remboursement.label }}</label></div>
+            <div class="col-12"><button class="btn btn-primary">{% translate "Enregistrer le paiement" %}</button></div>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header">{% translate "Relances" %}</div>
+      <ul class="list-group list-group-flush">
+        {% for r in facture.relances.all %}
+          <li class="list-group-item small">{{ r.date_relance|date:"d/m/Y" }} — {{ r.get_canal_display }}{% if r.commentaire %} : {{ r.commentaire }}{% endif %}</li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary">{% translate "Aucune relance." %}</li>
+        {% endfor %}
+      </ul>
+      {% if peut_relancer and facture.en_retard %}
+        <div class="card-body border-top">
+          <form method="post" action="{% url 'facturation:relance_ajouter' facture.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-4">{{ form_relance.canal }}</div>
+            <div class="col-6">{{ form_relance.commentaire }}</div>
+            <div class="col-2"><button class="btn btn-outline-primary w-100">+</button></div>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

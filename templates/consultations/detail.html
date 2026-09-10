@@ -26,6 +26,11 @@
         <button class="btn btn-outline-success">{% translate "Clôturer" %}</button>
       </form>
     {% endif %}
+    {% if perms.facturation.add_facture %}
+      <form method="post" action="{% url 'facturation:generer' 'consultation' consultation.pk %}">{% csrf_token %}
+        <button class="btn btn-outline-secondary">{% translate "Facturer" %}</button>
+      </form>
+    {% endif %}
   </div>
 </div>
 

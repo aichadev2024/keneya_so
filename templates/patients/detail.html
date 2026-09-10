@@ -32,6 +32,9 @@
     {% if perms.bloc_operatoire.add_intervention %}
       <a class="btn btn-outline-primary" href="{% url 'bloc_operatoire:demander' patient.pk %}">{% translate "Demander une intervention" %}</a>
     {% endif %}
+    {% if perms.assurances.add_patientassure %}
+      <a class="btn btn-outline-primary" href="{% url 'assurances:patient_adhesion' patient.pk %}">{% translate "Ajouter une assurance" %}</a>
+    {% endif %}
     {% if perms.patients.change_patient %}
       <a class="btn btn-outline-primary" href="{% url 'patients:modifier' patient.pk %}">{% translate "Modifier" %}</a>
     {% endif %}
@@ -106,6 +109,25 @@
       </div>
     </div>
   </div>
+
+  {% if perms.assurances.view_patientassure %}
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header">{% translate "Couvertures d'assurance" %}</div>
+      <ul class="list-group list-group-flush">
+        {% for pa in patient.assurances.all %}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>{{ pa.contrat.assurance.nom }} — {{ pa.contrat.libelle }}
+              {% if pa.numero_adherent %}<span class="small text-body-secondary">n° {{ pa.numero_adherent }}</span>{% endif %}</span>
+            <span>{{ pa.taux_effectif }} %{% if not pa.actif %} <span class="badge text-bg-light">{% translate "inactif" %}</span>{% endif %}</span>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary">{% translate "Aucune couverture enregistrée." %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
 
   {% if perms.consultations.view_consultation %}
   <div class="col-12">

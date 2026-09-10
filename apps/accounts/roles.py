@@ -144,6 +144,37 @@ _PHARMACIE = [
     "pharmacie.view_interactionmedicamenteuse",
 ]
 
+# Facturation & assurances (phase 6, CDC 4.8 / 4.9)
+_ASSURANCE_LECTURE = [
+    "assurances.view_assurance",
+    "assurances.view_contratassurance",
+    "assurances.view_patientassure",
+]
+_ASSURANCE_ADHESION = _ASSURANCE_LECTURE + [
+    "assurances.add_patientassure",
+    "assurances.change_patientassure",
+]
+_FACTURATION_COMPTABLE = _ASSURANCE_LECTURE + [
+    "facturation.view_tarif",
+    "facturation.add_facture",
+    "facturation.change_facture",
+    "facturation.view_facture",
+    "facturation.add_lignefacture",
+    "facturation.change_lignefacture",
+    "facturation.delete_lignefacture",
+    "facturation.view_lignefacture",
+    "facturation.add_paiement",
+    "facturation.view_paiement",
+    "facturation.add_relance",
+    "facturation.view_relance",
+    "assurances.add_bordereauassurance",
+    "assurances.change_bordereauassurance",
+    "assurances.view_bordereauassurance",
+    "assurances.view_lignebordereau",
+    "assurances.add_patientassure",
+    "assurances.change_patientassure",
+]
+
 PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     Role.ADMIN: ["*"],
     Role.AGENT_ACCUEIL: [
@@ -151,7 +182,8 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.change_patient",
         "patients.view_patient",
         "patients.view_dossiermedical",
-    ] + _HOSPIT_ADMISSION,
+        "facturation.view_facture",
+    ] + _HOSPIT_ADMISSION + _ASSURANCE_ADHESION,
     Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + [
         "bloc_operatoire.view_intervention",
         "bloc_operatoire.view_compterenduoperatoire",
@@ -170,7 +202,10 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,
     Role.LABORANTIN: ["patients.view_patient"],
     Role.RADIOLOGUE: ["patients.view_patient"],
-    Role.COMPTABLE: ["patients.view_patient"],
+    Role.COMPTABLE: ["patients.view_patient", "consultations.view_consultation",
+                     "hospitalisation.view_hospitalisation",
+                     "bloc_operatoire.view_intervention",
+                     "pharmacie.view_dispensation"] + _FACTURATION_COMPTABLE,
     Role.CADRE_BLOC: ["patients.view_patient", "patients.view_dossiermedical"]
     + _BLOC_PROGRAMMATION,
     Role.AGENT_STERILISATION: [

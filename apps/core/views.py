@@ -40,6 +40,10 @@ def _raccourcis_pour(utilisateur):
         raccourcis.append((_("Hospitalisation"), "hospitalisation:occupation"))
     if utilisateur.has_perm("bloc_operatoire.view_intervention"):
         raccourcis.append((_("Bloc opératoire"), "bloc_operatoire:planning"))
+    if utilisateur.has_perm("facturation.view_facture"):
+        raccourcis.append((_("Facturation"), "facturation:liste"))
+    if utilisateur.has_perm("assurances.view_bordereauassurance"):
+        raccourcis.append((_("Bordereaux assurance"), "assurances:bordereaux"))
     if utilisateur.has_perm("pharmacie.view_dispensation"):
         raccourcis.append((_("Dispensations"), "pharmacie:dispensations"))
     if utilisateur.has_perm("pharmacie.view_medicament"):

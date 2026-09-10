@@ -16,6 +16,7 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from apps.assurances.models import Assurance, ContratAssurance, PatientAssure
 from apps.bloc_operatoire.models import (
     Intervention,
     MaterielBloc,
@@ -23,6 +24,7 @@ from apps.bloc_operatoire.models import (
     TypeIntervention,
 )
 from apps.core.models import ParametresSysteme
+from apps.facturation.models import Tarif
 from apps.hospitalisation.models import Chambre, Hospitalisation, Lit, Service
 from apps.hospitalisation.services import admettre
 from apps.patients.models import Patient
@@ -137,6 +139,7 @@ class Command(BaseCommand):
 
         self._seed_hospitalisation()
         self._seed_bloc()
+        self._seed_facturation()
 
         self.stdout.write(self.style.SUCCESS(
             f"\nTerminé. Comptes de démonstration : mot de passe « {MOT_DE_PASSE_DEMO} »."
@@ -189,6 +192,48 @@ class Command(BaseCommand):
             )
             self.stdout.write(self.style.SUCCESS(
                 f"  + intervention {interv.reference} ({patient.nom_complet}) à planifier"))
+
+    def _seed_facturation(self):
+        tarifs = [
+            ("CONS-STD", "Consultation standard", "CONSULTATION", 5000, ""),
+            ("HOSP-JOUR", "Journée d'hospitalisation", "HOSPIT_JOUR", 15000, ""),
+            ("BLOC-STD", "Acte de bloc (forfait)", "ACTE_BLOC", 150000, ""),
+        ]
+        for code, libelle, cat, montant, ref in tarifs:
+            _t, cree = Tarif.objects.get_or_create(
+                code=code, defaults={"libelle": libelle, "categorie": cat,
+                                     "montant": montant, "reference_externe": ref},
+            )
+            if cree:
+                self.stdout.write(self.style.SUCCESS(f"  + tarif {libelle}"))
+
+        # Prix unitaires de démonstration pour la facturation des dispensations.
+        from apps.pharmacie.models import Medicament
+        prix = {"Paracétamol": 50, "Amoxicilline": 120, "Ibuprofène": 75,
+                "Métronidazole": 90, "Oméprazole": 150, "Ceftriaxone": 2500,
+                "Sérum glucosé 5%": 800, "Artéméther + Luméfantrine": 600}
+        for deno, p in prix.items():
+            Medicament.objects.filter(denomination=deno, prix_unitaire=0).update(
+                prix_unitaire=p)
+
+        assurance, cree = Assurance.objects.get_or_create(
+            nom="INPS (démo)",
+            defaults={"code": "INPS", "type": Assurance.Type.ETAT,
+                      "contact_telephone": "20 22 00 00"},
+        )
+        contrat, _c = ContratAssurance.objects.get_or_create(
+            assurance=assurance, libelle="Régime général",
+            defaults={"taux_prise_en_charge": 70, "plafond_annuel": 500000},
+        )
+        if cree:
+            self.stdout.write(self.style.SUCCESS("  + assurance INPS + contrat"))
+
+        patient = Patient.objects.filter(nom="Coulibaly", prenom="Aminata").first()
+        if patient and not PatientAssure.objects.filter(patient=patient).exists():
+            PatientAssure.objects.create(patient=patient, contrat=contrat,
+                                         numero_adherent="INPS-000123")
+            self.stdout.write(self.style.SUCCESS(
+                f"  + couverture assurance pour {patient.nom_complet}"))
 
     def _seed_hospitalisation(self):
         plan = {

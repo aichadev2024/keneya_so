@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Grille tarifaire" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Grille tarifaire" %}</h1>
+<p class="text-body-secondary">{% translate "Modifiable via l'interface d'administration." %}</p>
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table mb-0">
+    <thead><tr><th>{% translate "Code" %}</th><th>{% translate "Libellé" %}</th>
+      <th>{% translate "Catégorie" %}</th><th>{% translate "Réf. externe" %}</th>
+      <th class="text-end">{% translate "Montant" %}</th><th>{% translate "Actif" %}</th></tr></thead>
+    <tbody>
+      {% for t in tarifs %}
+        <tr>
+          <td><code>{{ t.code }}</code></td><td>{{ t.libelle }}</td>
+          <td>{{ t.get_categorie_display }}</td><td>{{ t.reference_externe|default:"—" }}</td>
+          <td class="text-end">{{ t.montant|floatformat:0 }} FCFA</td>
+          <td>{% if t.actif %}✓{% else %}—{% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Grille vide." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}

@@ -20,6 +20,11 @@
       {% if intervention.date_heure_debut_prevue %} · {{ intervention.date_heure_debut_prevue|date:"d/m/Y H:i" }} → {{ intervention.fin_prevue|date:"H:i" }} · {{ intervention.salle.nom }}{% endif %}
     </div>
   </div>
+  {% if perms.facturation.add_facture and intervention.statut == 'TERMINEE' %}
+    <form method="post" action="{% url 'facturation:generer' 'intervention' intervention.pk %}">{% csrf_token %}
+      <button class="btn btn-outline-secondary">{% translate "Facturer l'acte" %}</button>
+    </form>
+  {% endif %}
 </div>
 
 {% if alertes %}

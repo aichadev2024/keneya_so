@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Bordereaux d'assurance" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Bordereaux d'assurance" %}</h1>
+
+{% if perms.assurances.add_bordereauassurance %}
+  <div class="card shadow-sm mb-3">
+    <div class="card-header">{% translate "Générer un bordereau" %}</div>
+    <div class="card-body">
+      <div class="row g-2">
+        {% for a in assurances %}
+          <div class="col-lg-6">
+            <form method="post" action="{% url 'assurances:bordereau_generer' a.pk %}" class="border rounded p-2">
+              {% csrf_token %}
+              <strong>{{ a.nom }}</strong>
+              <div class="row g-2 mt-1">
+                <div class="col-5">{{ form.periode_debut }}</div>
+                <div class="col-5">{{ form.periode_fin }}</div>
+                <div class="col-2"><button class="btn btn-primary w-100">OK</button></div>
+              </div>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="form-text mt-2">{% translate "Regroupe les parts assurance des factures émises sur la période, non déjà portées à un bordereau." %}</div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr><th>{% translate "Référence" %}</th><th>{% translate "Assurance" %}</th>
+      <th>{% translate "Période" %}</th><th class="text-end">{% translate "Montant" %}</th>
+      <th>{% translate "Statut" %}</th><th></th></tr></thead>
+    <tbody>
+      {% for b in bordereaux %}
+        <tr>
+          <td><code>{{ b.reference }}</code></td>
+          <td>{{ b.assurance.nom }}</td>
+          <td>{{ b.periode_debut|date:"d/m/Y" }} – {{ b.periode_fin|date:"d/m/Y" }}</td>
+          <td class="text-end">{{ b.montant_total|floatformat:0 }}</td>
+          <td><span class="badge text-bg-secondary">{{ b.get_statut_display }}</span></td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'assurances:bordereau' b.pk %}">{% translate "Ouvrir" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucun bordereau." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}

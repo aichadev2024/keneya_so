@@ -183,6 +183,9 @@ STORAGES = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Génération automatique des factures en brouillon à la clôture d'un acte (CDC 4.8).
+FACTURATION_AUTO = env.bool("DJANGO_FACTURATION_AUTO", default=True)
+
 # --------------------------------------------------------------------------- #
 # Django REST Framework + documentation d'API (CDC 8 — API REST / DRF)
 # --------------------------------------------------------------------------- #

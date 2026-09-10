@@ -31,8 +31,8 @@ Une application Django par module métier (CDC 7.5) :
 | `apps.hospitalisation` | Services, **chambres/lits**, admission, **suivi quotidien**, sortie, vue d'occupation | 4 | ✅ |
 | `apps.bloc_operatoire` | Salles, types d'actes, **planification + conflits**, équipes, **checklist OMS**, per-opératoire, CR, **indicateurs** (CDC section 5) | 5-6 | ✅ |
 | `apps.laboratoire` | Analyses biologiques et imagerie | 7 | 🔜 |
-| `apps.facturation` | Factures, paiements, part patient/assurance | 6 | 🔜 |
-| `apps.assurances` | Compagnies, contrats, bordereaux | 6 | 🔜 |
+| `apps.facturation` | Grille tarifaire, **factures auto depuis les actes**, part patient/assurance, paiements, relances, impayés | 6 | ✅ |
+| `apps.assurances` | Compagnies, contrats, adhésions patient (taux + plafond), **bordereaux** | 6 | ✅ |
 
 Les modules 🔜 sont pour l'instant des applications déclarées sans modèle : elles
 fixent l'architecture et seront développées à leur phase.
@@ -88,6 +88,25 @@ fixent l'architecture et seront développées à leur phase.
 - **Indicateurs** (`stats.py`) : taux d'occupation des salles, durée moyenne par
   acte et par praticien, taux de déprogrammation + motifs, temps de rotation
   moyen. Export PDF/Excel prévu en phase 9.
+
+### Facturation & assurances (phase 6)
+
+- **Grille tarifaire** (`Tarif`) par catégorie (consultation, journée
+  d'hospitalisation, acte de bloc, médicament, analyse).
+- **Génération automatique** : à la clôture d'un acte (consultation clôturée,
+  séjour terminé, intervention terminée, dispensation complète), un signal crée
+  une **facture en brouillon** que le comptable émet ensuite. Désactivable par
+  `FACTURATION_AUTO = False` ; génération manuelle possible depuis chaque fiche
+  d'acte. Pas de double facturation d'une même source.
+- **Répartition part patient / part assurance** : d'après la couverture active du
+  patient (`PatientAssure` → taux du contrat ou surcharge), **plafond annuel**
+  respecté (la consommation déjà facturée est décomptée).
+- **Paiements** (espèces, mobile money, virement, chèque, carte) et
+  **remboursements** ; le statut de la facture suit (émise → partielle → réglée).
+- **Impayés** : liste des factures échues non soldées, **relances** tracées.
+- **Assurances** : compagnies, contrats (taux, plafond), adhésions patient.
+  **Bordereaux** regroupant les parts assurance d'une période pour un organisme
+  (une facture ne figure que sur un seul bordereau).
 
 ### Contrôle d'accès (RBAC)
 

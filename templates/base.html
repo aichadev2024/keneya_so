@@ -31,6 +31,9 @@
         {% if perms.bloc_operatoire.view_intervention %}
           <li class="nav-item"><a class="nav-link" href="{% url 'bloc_operatoire:planning' %}">{% translate "Bloc opératoire" %}</a></li>
         {% endif %}
+        {% if perms.facturation.view_facture %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'facturation:liste' %}">{% translate "Facturation" %}</a></li>
+        {% endif %}
         {% if perms.pharmacie.view_dispensation %}
           <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:dispensations' %}">{% translate "Dispensations" %}</a></li>
         {% endif %}

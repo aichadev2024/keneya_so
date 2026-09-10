@@ -15,6 +15,7 @@ Référence : docs/Kenya_So_Cahier_des_charges_enrichi.docx, sections 4.3 et 4.5
 from __future__ import annotations
 
 from datetime import date
+from decimal import Decimal
 
 from django.conf import settings
 from django.db import models
@@ -53,6 +54,11 @@ class Medicament(TimeStampedModel):
     seuil_alerte = models.PositiveIntegerField(
         _("seuil d'alerte"), default=10,
         help_text=_("En dessous de ce stock utilisable, le médicament est signalé."),
+    )
+    prix_unitaire = models.DecimalField(
+        _("prix unitaire de vente (FCFA)"), max_digits=10, decimal_places=2,
+        default=Decimal("0"),
+        help_text=_("Utilisé pour la facturation des dispensations (CDC 4.8)."),
     )
     actif = models.BooleanField(_("actif"), default=True)
 

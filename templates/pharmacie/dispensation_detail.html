@@ -18,6 +18,12 @@
   <div class="alert alert-info py-2">{% translate "Note du prescripteur" %} : {{ dispensation.ordonnance.notes }}</div>
 {% endif %}
 
+{% if perms.facturation.add_facture and dispensation.statut == 'COMPLETE' or perms.facturation.add_facture and dispensation.statut == 'PARTIELLE' %}
+  <form method="post" action="{% url 'facturation:generer' 'dispensation' dispensation.pk %}" class="mb-3">{% csrf_token %}
+    <button class="btn btn-outline-secondary btn-sm">{% translate "Facturer la dispensation" %}</button>
+  </form>
+{% endif %}
+
 <form method="post" action="{% url 'pharmacie:dispensation_delivrer' dispensation.pk %}"
       class="card card-body shadow-sm">
   {% csrf_token %}

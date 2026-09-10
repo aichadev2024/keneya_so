@@ -19,6 +19,11 @@
       · {% translate "admis le" %} {{ sejour.date_admission|date:"d/m/Y H:i" }} · {{ sejour.duree_jours }} j
     </div>
   </div>
+  {% if perms.facturation.add_facture and sejour.statut == 'SORTIE' %}
+    <form method="post" action="{% url 'facturation:generer' 'hospitalisation' sejour.pk %}">{% csrf_token %}
+      <button class="btn btn-outline-secondary">{% translate "Facturer le séjour" %}</button>
+    </form>
+  {% endif %}
 </div>
 
 <div class="row g-3">

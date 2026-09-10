@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ bordereau.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'assurances:bordereaux' %}">{% translate "Bordereaux" %}</a></li>
+  <li class="breadcrumb-item active">{{ bordereau.reference }}</li>
+</ol></nav>
+
+<h1 class="h3 mb-1">{{ bordereau.reference }}
+  <span class="badge text-bg-secondary">{{ bordereau.get_statut_display }}</span></h1>
+<p class="text-body-secondary">
+  {{ bordereau.assurance.nom }} · {{ bordereau.periode_debut|date:"d/m/Y" }} – {{ bordereau.periode_fin|date:"d/m/Y" }} ·
+  {% translate "généré le" %} {{ bordereau.date_generation|date:"d/m/Y H:i" }}
+</p>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table mb-0">
+    <thead><tr><th>{% translate "Facture" %}</th><th>{% translate "Patient" %}</th>
+      <th class="text-end">{% translate "Part assurance" %}</th></tr></thead>
+    <tbody>
+      {% for l in bordereau.lignes.all %}
+        <tr>
+          <td><a href="{% url 'facturation:detail' l.facture.pk %}"><code>{{ l.facture.reference }}</code></a></td>
+          <td>{{ l.facture.patient.nom_complet }}</td>
+          <td class="text-end">{{ l.montant_assurance|floatformat:0 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot><tr><th colspan="2" class="text-end">{% translate "Total" %}</th>
+      <th class="text-end">{{ bordereau.montant_total|floatformat:0 }} FCFA</th></tr></tfoot>
+  </table>
+</div></div>
+{% endblock %}

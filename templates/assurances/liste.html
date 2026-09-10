@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Assurances" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Assurances partenaires" %}</h1>
+  {% if perms.assurances.view_bordereauassurance %}
+    <a class="btn btn-outline-secondary" href="{% url 'assurances:bordereaux' %}">{% translate "Bordereaux" %}</a>
+  {% endif %}
+</div>
+
+<div class="row g-3">
+  {% for a in assurances %}
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header d-flex justify-content-between">
+          <strong>{{ a.nom }}</strong>
+          <span class="badge text-bg-secondary">{{ a.get_type_display }}</span>
+        </div>
+        <div class="card-body">
+          <p class="small text-body-secondary mb-2">
+            {{ a.contact_nom|default:"" }}
+            {% if a.contact_telephone %} · {{ a.contact_telephone }}{% endif %}
+          </p>
+          <ul class="mb-0">
+            {% for c in a.contrats.all %}
+              <li>{{ c.libelle }} — {{ c.taux_prise_en_charge }} %
+                {% if c.plafond_annuel %}({% translate "plafond" %} {{ c.plafond_annuel|floatformat:0 }}){% endif %}
+                {% if not c.actif %}<span class="badge text-bg-light">{% translate "inactif" %}</span>{% endif %}</li>
+            {% empty %}<li class="text-body-secondary">{% translate "Aucun contrat." %}</li>{% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12"><div class="alert alert-info">{% translate "Aucune assurance. L'administrateur peut en ajouter via l'administration." %}</div></div>
+  {% endfor %}
+</div>
+{% endblock %}
