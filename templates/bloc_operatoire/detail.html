@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ intervention.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'bloc_operatoire:planning' %}">{% translate "Bloc opératoire" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'patients:detail' intervention.patient.pk %}">{{ intervention.patient.nom_complet }}</a></li>
+  <li class="breadcrumb-item active">{{ intervention.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ intervention.reference }}
+      <span class="badge text-bg-secondary">{{ intervention.get_statut_display }}</span>
+      {% if intervention.niveau_urgence != 'PROGRAMMEE' %}<span class="badge text-bg-danger">{{ intervention.get_niveau_urgence_display }}</span>{% endif %}
+    </h1>
+    <div class="text-body-secondary">
+      {{ intervention.type_intervention.libelle }} · {{ intervention.chirurgien_principal.get_full_name }}
+      {% if intervention.date_heure_debut_prevue %} · {{ intervention.date_heure_debut_prevue|date:"d/m/Y H:i" }} → {{ intervention.fin_prevue|date:"H:i" }} · {{ intervention.salle.nom }}{% endif %}
+    </div>
+  </div>
+</div>
+
+{% if alertes %}
+  <div class="mb-3">
+    {% for a in alertes %}<div class="alert alert-{{ a.niveau }} py-2 mb-1">{% translate "Alerte" %} — {{ a.message }}</div>{% endfor %}
+  </div>
+{% endif %}
+
+<div class="row g-3">
+  <div class="col-lg-6">
+    <div class="card shadow-sm mb-3"><div class="card-body">
+      <dl class="row mb-0">
+        <dt class="col-4">{% translate "Motif" %}</dt><dd class="col-8">{{ intervention.motif_operation|linebreaksbr }}</dd>
+        <dt class="col-4">{% translate "Diagnostic préop." %}</dt><dd class="col-8">{{ intervention.diagnostic_preop|default:"—"|linebreaksbr }}</dd>
+        <dt class="col-4">{% translate "Durée estimée" %}</dt><dd class="col-8">{{ intervention.duree_estimee_min }} min{% if intervention.duree_reelle_min %} ({% translate "réelle" %} {{ intervention.duree_reelle_min }} min){% endif %}</dd>
+        <dt class="col-4">{% translate "Matériel spécifique" %}</dt><dd class="col-8">{{ intervention.materiel_specifique|default:"—" }}</dd>
+        {% if intervention.motif_annulation %}
+          <dt class="col-4 text-danger">{% translate "Motif annulation/report" %}</dt><dd class="col-8">{{ intervention.motif_annulation }}</dd>
+        {% endif %}
+      </dl>
+    </div></div>
+
+    {% if peut_planifier and intervention.statut == 'DEMANDEE' or peut_planifier and intervention.statut == 'REPORTEE' %}
+      <div class="card shadow-sm mb-3">
+        <div class="card-header">{% translate "Planifier l'intervention" %}</div>
+        <div class="card-body">
+          <form method="post" action="{% url 'bloc_operatoire:planifier' intervention.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-12">{{ form_planif.salle.label_tag }} {{ form_planif.salle }}</div>
+            <div class="col-6">{{ form_planif.date.label_tag }} {{ form_planif.date }}</div>
+            <div class="col-6">{{ form_planif.heure.label_tag }} {{ form_planif.heure }}</div>
+            <div class="col-6">{{ form_planif.duree_estimee_min.label_tag }} {{ form_planif.duree_estimee_min }}</div>
+            {% if intervention.niveau_urgence == 'EXTREME_URGENCE' %}
+              <div class="col-12 form-check">{{ form_planif.forcer }} <label class="form-check-label small" for="{{ form_planif.forcer.id_for_label }}">{{ form_planif.forcer.label }}</label></div>
+            {% endif %}
+            <div class="col-12"><button class="btn btn-primary">{% translate "Planifier" %}</button></div>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-header">{% translate "Faisabilité anesthésique" %}</div>
+      <div class="card-body">
+        {% if intervention.faisabilite_anesthesique_validee %}
+          <p class="text-success mb-1">✓ {% translate "Validée par" %} {{ intervention.anesthesiste_validateur.get_full_name }}</p>
+          <p class="small mb-0" style="white-space:pre-wrap">{{ intervention.protocole_anesthesie }}</p>
+        {% elif peut_planifier %}
+          <form method="post" action="{% url 'bloc_operatoire:faisabilite' intervention.pk %}">
+            {% csrf_token %}
+            <div class="mb-2">{{ form_anesth.protocole_anesthesie }}</div>
+            <div class="form-check mb-2">{{ form_anesth.valide }} <label class="form-check-label" for="{{ form_anesth.valide.id_for_label }}">{{ form_anesth.valide.label }}</label></div>
+            <button class="btn btn-outline-primary">{% translate "Valider" %}</button>
+          </form>
+        {% else %}
+          <p class="text-body-secondary mb-0">{% translate "En attente de validation par l'anesthésiste." %}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if peut_planifier and intervention.statut != 'TERMINEE' and intervention.statut != 'ANNULEE' %}
+      <div class="card shadow-sm">
+        <div class="card-header">{% translate "Annuler / reporter" %}</div>
+        <div class="card-body">
+          <form method="post" action="{% url 'bloc_operatoire:annuler' intervention.pk %}">
+            {% csrf_token %}
+            <div class="mb-2">{{ form_annulation.motif }}</div>
+            <div class="form-check mb-2">{{ form_annulation.reporter }} <label class="form-check-label small" for="{{ form_annulation.reporter.id_for_label }}">{{ form_annulation.reporter.label }}</label></div>
+            <button class="btn btn-outline-danger">{% translate "Confirmer" %}</button>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card shadow-sm mb-3">
+      <div class="card-header">{% translate "Équipe chirurgicale" %}</div>
+      <ul class="list-group list-group-flush">
+        {% for m in intervention.equipe.all %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ m.utilisateur.get_full_name|default:m.utilisateur.username }} — <span class="text-body-secondary">{{ m.get_role_display }}</span></span>
+            {% if peut_equipe %}
+              <form method="post" action="{% url 'bloc_operatoire:membre_retirer' intervention.pk m.pk %}">{% csrf_token %}
+                <button class="btn btn-sm btn-outline-danger">&times;</button>
+              </form>
+            {% endif %}
+          </li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary">{% translate "Équipe non constituée." %}</li>
+        {% endfor %}
+      </ul>
+      {% if peut_equipe %}
+        <div class="card-body border-top">
+          <form method="post" action="{% url 'bloc_operatoire:membre_ajouter' intervention.pk %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-6">{{ form_membre.utilisateur }}</div>
+            <div class="col-4">{{ form_membre.role }}</div>
+            <div class="col-2"><button class="btn btn-primary w-100">+</button></div>
+            <div class="col-12 form-check">{{ form_membre.forcer }} <label class="form-check-label small" for="{{ form_membre.forcer.id_for_label }}">{{ form_membre.forcer.label }}</label></div>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-header">{% translate "Checklist sécurité (type OMS)" %}</div>
+      <ul class="list-group list-group-flush">
+        {% for etape in checklist %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <strong>{{ etape.get_temps_display }}</strong>
+              {% if etape.valide %}
+                <span class="badge text-bg-success">✓ {{ etape.valide_le|date:"d/m H:i" }}</span>
+              {% else %}
+                <span class="badge text-bg-secondary">{% translate "à valider" %}</span>
+              {% endif %}
+            </div>
+            {% if etape.valide %}
+              <div class="small text-body-secondary">{% translate "par" %} {{ etape.valide_par.get_full_name }}{% if etape.commentaire %} — {{ etape.commentaire }}{% endif %}</div>
+            {% elif peut_checklist %}
+              <form method="post" action="{% url 'bloc_operatoire:checklist_valider' intervention.pk etape.temps %}" class="mt-1 d-flex gap-2">
+                {% csrf_token %}
+                <input type="text" name="commentaire" class="form-control form-control-sm" placeholder="{% translate 'réserves éventuelles' %}">
+                <button class="btn btn-sm btn-outline-success">{% translate "Valider" %}</button>
+              </form>
+            {% endif %}
+          </li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary small">{% translate "La checklist est créée à la planification de l'intervention." %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% if intervention.statut == 'PLANIFIEE' or intervention.statut == 'EN_COURS' %}
+      <div class="card shadow-sm mb-3">
+        <div class="card-header">{% translate "Déroulé per-opératoire" %}</div>
+        <div class="card-body">
+          <ul class="list-unstyled small mb-3">
+            <li>{% translate "Entrée en salle" %} : {{ intervention.heure_entree_salle|date:"d/m H:i"|default:"—" }}</li>
+            <li>{% translate "Incision" %} : {{ intervention.heure_debut_intervention|date:"d/m H:i"|default:"—" }}</li>
+            <li>{% translate "Fin / sortie" %} : {{ intervention.heure_sortie_salle|date:"d/m H:i"|default:"—" }}</li>
+          </ul>
+          {% if peut_planifier %}
+            <div class="d-flex flex-wrap gap-2">
+              {% if intervention.statut == 'PLANIFIEE' %}
+                <form method="post" action="{% url 'bloc_operatoire:peroperatoire' intervention.pk 'entree' %}">{% csrf_token %}
+                  <button class="btn btn-sm btn-primary">{% translate "Entrée en salle" %}</button></form>
+              {% elif intervention.statut == 'EN_COURS' %}
+                {% if not intervention.heure_debut_intervention %}
+                  <form method="post" action="{% url 'bloc_operatoire:peroperatoire' intervention.pk 'incision' %}">{% csrf_token %}
+                    <button class="btn btn-sm btn-primary">{% translate "Pointer l'incision" %}</button></form>
+                {% endif %}
+                <form method="post" action="{% url 'bloc_operatoire:peroperatoire' intervention.pk 'terminer' %}" class="d-flex gap-2">{% csrf_token %}
+                  <input type="text" name="incidents" class="form-control form-control-sm" placeholder="{% translate 'incidents éventuels' %}">
+                  <button class="btn btn-sm btn-success">{% translate "Terminer" %}</button></form>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if intervention.statut == 'EN_COURS' or intervention.statut == 'TERMINEE' %}
+      <div class="card shadow-sm">
+        <div class="card-header">{% translate "Compte-rendu opératoire" %}</div>
+        <div class="card-body">
+          {% if peut_cr %}
+            <form method="post" action="{% url 'bloc_operatoire:compte_rendu' intervention.pk %}">
+              {% csrf_token %}
+              {% for field in form_cr %}
+                <div class="mb-2">
+                  <label class="form-label small" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                  {{ field }}
+                  {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+                </div>
+              {% endfor %}
+              <button class="btn btn-primary">{% translate "Enregistrer le compte-rendu" %}</button>
+            </form>
+          {% elif cr %}
+            <dl class="row mb-0 small">
+              <dt class="col-4">{% translate "Technique" %}</dt><dd class="col-8">{{ cr.technique_operatoire|linebreaksbr }}</dd>
+              <dt class="col-4">{% translate "Constatations" %}</dt><dd class="col-8">{{ cr.constatations|default:"—" }}</dd>
+              <dt class="col-4">{% translate "Complications" %}</dt><dd class="col-8">{{ cr.complications|default:"—" }}</dd>
+              <dt class="col-4">{% translate "Suites à prévoir" %}</dt><dd class="col-8">{{ cr.suites_a_prevoir|default:"—" }}</dd>
+            </dl>
+          {% else %}
+            <p class="text-body-secondary mb-0">{% translate "Compte-rendu non rédigé." %}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Planning du bloc" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Planning du bloc opératoire" %}</h1>
+  <div class="d-flex gap-2">
+    <a class="btn btn-outline-secondary" href="{% url 'bloc_operatoire:liste' %}">{% translate "Toutes les interventions" %}</a>
+    <a class="btn btn-outline-secondary" href="{% url 'bloc_operatoire:indicateurs' %}">{% translate "Indicateurs" %}</a>
+  </div>
+</div>
+
+<div class="d-flex align-items-center gap-2 mb-3">
+  <a class="btn btn-sm btn-outline-primary" href="?date={{ jour_prec|date:'Y-m-d' }}">&laquo; {% translate "Jour précédent" %}</a>
+  <strong>{{ jour|date:"l d F Y" }}</strong>
+  <a class="btn btn-sm btn-outline-primary" href="?date={{ jour_suiv|date:'Y-m-d' }}">{% translate "Jour suivant" %} &raquo;</a>
+</div>
+
+{% if a_planifier %}
+  <div class="card shadow-sm mb-3 border-warning">
+    <div class="card-header bg-warning-subtle">{% translate "Demandes à planifier" %} ({{ a_planifier|length }})</div>
+    <ul class="list-group list-group-flush">
+      {% for i in a_planifier %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            {% if i.niveau_urgence != 'PROGRAMMEE' %}<span class="badge text-bg-danger">{{ i.get_niveau_urgence_display }}</span>{% endif %}
+            <code>{{ i.reference }}</code> — {{ i.patient.nom_complet }} — {{ i.type_intervention.libelle }}
+          </span>
+          <a class="btn btn-sm btn-primary" href="{% url 'bloc_operatoire:detail' i.pk %}">{% translate "Planifier" %}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+<div class="row g-3">
+  {% for ligne in planning %}
+    <div class="col-lg-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <strong>{{ ligne.salle.nom }}</strong>
+          <span class="badge text-bg-{% if ligne.salle.statut_effectif == 'DISPONIBLE' %}success{% elif ligne.salle.statut_effectif == 'OCCUPEE' %}danger{% else %}secondary{% endif %}">
+            {{ ligne.salle.get_statut_effectif_display }}
+          </span>
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for i in ligne.interventions %}
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <span><strong>{{ i.date_heure_debut_prevue|date:"H:i" }}</strong> → {{ i.fin_prevue|date:"H:i" }}</span>
+                <span class="badge text-bg-{% if i.statut == 'EN_COURS' %}danger{% elif i.statut == 'TERMINEE' %}success{% else %}primary{% endif %}">{{ i.get_statut_display }}</span>
+              </div>
+              <a href="{% url 'bloc_operatoire:detail' i.pk %}" class="d-block">{{ i.type_intervention.libelle }} — {{ i.patient.nom_complet }}</a>
+              <span class="small text-body-secondary">{{ i.chirurgien_principal.get_full_name }}</span>
+            </li>
+          {% empty %}
+            <li class="list-group-item text-body-secondary text-center py-3">{% translate "Aucune intervention programmée." %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12"><div class="alert alert-info">{% translate "Aucune salle configurée. L'administrateur peut en créer via l'administration." %}</div></div>
+  {% endfor %}
+</div>
+{% endblock %}

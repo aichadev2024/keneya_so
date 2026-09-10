@@ -29,6 +29,9 @@
     {% if perms.hospitalisation.add_hospitalisation %}
       <a class="btn btn-outline-primary" href="{% url 'hospitalisation:admettre' patient.pk %}">{% translate "Admettre" %}</a>
     {% endif %}
+    {% if perms.bloc_operatoire.add_intervention %}
+      <a class="btn btn-outline-primary" href="{% url 'bloc_operatoire:demander' patient.pk %}">{% translate "Demander une intervention" %}</a>
+    {% endif %}
     {% if perms.patients.change_patient %}
       <a class="btn btn-outline-primary" href="{% url 'patients:modifier' patient.pk %}">{% translate "Modifier" %}</a>
     {% endif %}

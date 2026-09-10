@@ -85,6 +85,44 @@ _HOSPIT_ADMISSION = _HOSPIT_LECTURE + [
     "hospitalisation.change_hospitalisation",
 ]
 
+# Bloc opératoire (phases 5-6, CDC section 5)
+_BLOC_REFERENTIEL = [
+    "bloc_operatoire.view_salleoperatoire",
+    "bloc_operatoire.view_typeintervention",
+    "bloc_operatoire.view_materielbloc",
+]
+_BLOC_CHECKLIST = [
+    "bloc_operatoire.add_etapechecklist",
+    "bloc_operatoire.change_etapechecklist",
+    "bloc_operatoire.view_etapechecklist",
+]
+_BLOC_LECTURE = _BLOC_REFERENTIEL + [
+    "bloc_operatoire.view_intervention",
+    "bloc_operatoire.view_membreequipe",
+    "bloc_operatoire.view_etapechecklist",
+    "bloc_operatoire.view_compterenduoperatoire",
+]
+_BLOC_EQUIPE = [
+    "bloc_operatoire.add_membreequipe",
+    "bloc_operatoire.change_membreequipe",
+    "bloc_operatoire.delete_membreequipe",
+    "bloc_operatoire.view_membreequipe",
+]
+_BLOC_CHIRURGIEN = _BLOC_LECTURE + _BLOC_CHECKLIST + _BLOC_EQUIPE + [
+    "bloc_operatoire.add_intervention",
+    "bloc_operatoire.change_intervention",
+    "bloc_operatoire.add_compterenduoperatoire",
+    "bloc_operatoire.change_compterenduoperatoire",
+]
+_BLOC_PROGRAMMATION = _BLOC_LECTURE + _BLOC_EQUIPE + [
+    "bloc_operatoire.add_intervention",
+    "bloc_operatoire.change_intervention",
+    "bloc_operatoire.change_salleoperatoire",
+    "bloc_operatoire.add_indisponibilitesalle",
+    "bloc_operatoire.change_indisponibilitesalle",
+    "bloc_operatoire.view_indisponibilitesalle",
+]
+
 # Officine : catalogue, stock, dispensation (phase 3, CDC 4.5)
 _PHARMACIE = [
     "consultations.view_consultation",
@@ -114,21 +152,32 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.view_patient",
         "patients.view_dossiermedical",
     ] + _HOSPIT_ADMISSION,
-    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN,
-    Role.CHIRURGIEN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN,
+    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + [
+        "bloc_operatoire.view_intervention",
+        "bloc_operatoire.view_compterenduoperatoire",
+    ],
+    Role.CHIRURGIEN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _BLOC_CHIRURGIEN,
     Role.ANESTHESISTE: _LECTURE_PATIENT + [
         "consultations.view_consultation",
         "consultations.view_constantes",
         "consultations.view_ordonnance",
-    ] + _HOSPIT_LECTURE,
+    ] + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST + [
+        "bloc_operatoire.change_intervention",  # validation de la faisabilité anesthésique
+    ],
     Role.INFIRMIER: _LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT,
-    Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"] + _HOSPIT_LECTURE,
+    Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"]
+    + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST,
     Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,
     Role.LABORANTIN: ["patients.view_patient"],
     Role.RADIOLOGUE: ["patients.view_patient"],
     Role.COMPTABLE: ["patients.view_patient"],
-    Role.CADRE_BLOC: ["patients.view_patient"],
-    Role.AGENT_STERILISATION: [],
+    Role.CADRE_BLOC: ["patients.view_patient", "patients.view_dossiermedical"]
+    + _BLOC_PROGRAMMATION,
+    Role.AGENT_STERILISATION: [
+        "bloc_operatoire.view_intervention",
+        "bloc_operatoire.view_materielbloc",
+        "bloc_operatoire.change_materielbloc",
+    ],
 }
 
 

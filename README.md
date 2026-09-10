@@ -29,7 +29,7 @@ Une application Django par module métier (CDC 7.5) :
 | `apps.consultations` | Consultations, constantes, **ordonnances** + alertes de prescription | 3 | ✅ |
 | `apps.pharmacie` | Catalogue, **stock par lots (FEFO)**, mouvements, **dispensation** | 3 | ✅ |
 | `apps.hospitalisation` | Services, **chambres/lits**, admission, **suivi quotidien**, sortie, vue d'occupation | 4 | ✅ |
-| `apps.bloc_operatoire` | Planning salles, équipes, checklist, CR opératoire (CDC section 5) | 5-6 | 🔜 |
+| `apps.bloc_operatoire` | Salles, types d'actes, **planification + conflits**, équipes, **checklist OMS**, per-opératoire, CR, **indicateurs** (CDC section 5) | 5-6 | ✅ |
 | `apps.laboratoire` | Analyses biologiques et imagerie | 7 | 🔜 |
 | `apps.facturation` | Factures, paiements, part patient/assurance | 6 | 🔜 |
 | `apps.assurances` | Compagnies, contrats, bordereaux | 6 | 🔜 |
@@ -65,6 +65,29 @@ fixent l'architecture et seront développées à leur phase.
   (domicile / transfert / contre avis / décès), compte-rendu et consignes — le
   lit redevient disponible automatiquement.
 - **Vue d'occupation en temps réel** par service (taux, lits libres/occupés).
+
+### Bloc opératoire (phases 5-6, module détaillé CDC section 5)
+
+- **Salles** (statut temps réel déduit : libre / occupée / en nettoyage / maintenance),
+  **types d'acte** avec durée standard et matériel requis, **matériel** et statut
+  de stérilisation, historique d'indisponibilité.
+- **Cycle d'une intervention** : demande (depuis la fiche patient) → planification
+  → validation anesthésique → per-opératoire → clôture → compte-rendu.
+- **Règles de gestion CDC 5.4 appliquées dans `services.py`** :
+  - une salle ne porte qu'une intervention par créneau — **double réservation
+    bloquée**, temps de nettoyage paramétrable inséré dans le calcul de chevauchement ;
+  - un membre d'équipe ne peut pas être affecté à deux interventions qui se
+    chevauchent ;
+  - une **extrême urgence** peut forcer le report des interventions *programmées*
+    en conflit, avec motif et auteur tracés ;
+  - **checklist sécurité type OMS à 3 temps** : validation nominative et horodatée,
+    ordre imposé, entrée en salle / clôture bloquées tant que le temps requis
+    n'est pas validé ;
+  - toute annulation / déprogrammation exige un motif et est historisée.
+- **Planning** par salle (vue jour) + file des demandes à planifier.
+- **Indicateurs** (`stats.py`) : taux d'occupation des salles, durée moyenne par
+  acte et par praticien, taux de déprogrammation + motifs, temps de rotation
+  moyen. Export PDF/Excel prévu en phase 9.
 
 ### Contrôle d'accès (RBAC)
 

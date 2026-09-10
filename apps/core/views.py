@@ -38,6 +38,8 @@ def _raccourcis_pour(utilisateur):
         raccourcis.append((_("Consultations"), "consultations:liste"))
     if utilisateur.has_perm("hospitalisation.view_hospitalisation"):
         raccourcis.append((_("Hospitalisation"), "hospitalisation:occupation"))
+    if utilisateur.has_perm("bloc_operatoire.view_intervention"):
+        raccourcis.append((_("Bloc opératoire"), "bloc_operatoire:planning"))
     if utilisateur.has_perm("pharmacie.view_dispensation"):
         raccourcis.append((_("Dispensations"), "pharmacie:dispensations"))
     if utilisateur.has_perm("pharmacie.view_medicament"):

@@ -16,6 +16,12 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from apps.bloc_operatoire.models import (
+    Intervention,
+    MaterielBloc,
+    SalleOperatoire,
+    TypeIntervention,
+)
 from apps.core.models import ParametresSysteme
 from apps.hospitalisation.models import Chambre, Hospitalisation, Lit, Service
 from apps.hospitalisation.services import admettre
@@ -130,10 +136,59 @@ class Command(BaseCommand):
             pass
 
         self._seed_hospitalisation()
+        self._seed_bloc()
 
         self.stdout.write(self.style.SUCCESS(
             f"\nTerminé. Comptes de démonstration : mot de passe « {MOT_DE_PASSE_DEMO} »."
         ))
+
+    def _seed_bloc(self):
+        for nom, code, nettoyage in [("Salle A", "SOP-A", 30), ("Salle B", "SOP-B", 45)]:
+            salle, cree = SalleOperatoire.objects.get_or_create(
+                nom=nom, defaults={"code": code, "duree_nettoyage_min": nettoyage,
+                                   "equipement": "Table opératoire, scialytique, respirateur"})
+            if cree:
+                self.stdout.write(self.style.SUCCESS(f"  + salle opératoire {nom}"))
+
+        for mat, statut in [("Kit de laparotomie", "STERILISE"),
+                            ("Kit d'appendicectomie", "STERILISE"),
+                            ("Boîte de césarienne", "STERILISE"),
+                            ("Set de coelioscopie", "EN_STERILISATION")]:
+            MaterielBloc.objects.get_or_create(
+                designation=mat,
+                defaults={"quantite_disponible": 3, "quantite_totale": 3,
+                          "statut_sterilisation": statut},
+            )
+
+        types = [
+            ("Appendicectomie", "Chirurgie viscérale", 60),
+            ("Césarienne", "Gynéco-obstétrique", 45),
+            ("Herniorraphie inguinale", "Chirurgie viscérale", 75),
+            ("Cholécystectomie", "Chirurgie viscérale", 90),
+        ]
+        for libelle, spec, duree in types:
+            _t, cree = TypeIntervention.objects.get_or_create(
+                libelle=libelle,
+                defaults={"specialite": spec, "duree_standard_min": duree},
+            )
+            if cree:
+                self.stdout.write(self.style.SUCCESS(f"  + type d'acte {libelle}"))
+
+        patient = Patient.objects.filter(nom="Maïga", prenom="Hawa").first()
+        chirurgien = Utilisateur.objects.filter(username="chirurgien").first()
+        type_appendice = TypeIntervention.objects.filter(
+            libelle="Appendicectomie").first()
+        if patient and chirurgien and type_appendice and not Intervention.objects.filter(
+                patient=patient).exists():
+            interv = Intervention.objects.create(
+                patient=patient, type_intervention=type_appendice,
+                chirurgien_principal=chirurgien, demandeur=chirurgien,
+                motif_operation="Appendicite aiguë non compliquée",
+                niveau_urgence=Intervention.Urgence.URGENTE,
+                duree_estimee_min=60, cree_par=chirurgien, modifie_par=chirurgien,
+            )
+            self.stdout.write(self.style.SUCCESS(
+                f"  + intervention {interv.reference} ({patient.nom_complet}) à planifier"))
 
     def _seed_hospitalisation(self):
         plan = {

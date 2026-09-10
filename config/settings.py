@@ -203,6 +203,12 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "API de la plateforme de gestion hospitalière Kènèya Sô.",
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    # Le champ « role » existe sur l'utilisateur et sur un membre d'équipe de bloc :
+    # on nomme explicitement les énumérations pour éviter une collision de composant.
+    "ENUM_NAME_OVERRIDES": {
+        "RoleUtilisateurEnum": "apps.accounts.models.Utilisateur.Role",
+        "RoleMembreEquipeEnum": "apps.bloc_operatoire.models.MembreEquipe.Role",
+    },
 }
 
 # --------------------------------------------------------------------------- #

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Indicateurs du bloc" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-1">{% translate "Indicateurs du bloc opératoire" %}</h1>
+<p class="text-body-secondary">
+  {% translate "Période" %} : {{ tb.periode.depuis|date:"d/m/Y" }} – {{ tb.periode.jusqu|date:"d/m/Y" }}.
+  {% translate "L'export PDF/Excel sera ajouté en phase 9." %}
+</p>
+
+<div class="row g-3">
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Taux d'occupation des salles" %}</div>
+      <table class="table mb-0">
+        <thead><tr><th>{% translate "Salle" %}</th><th class="text-end">{% translate "Interv." %}</th>
+          <th class="text-end">{% translate "Heures" %}</th><th class="text-end">{% translate "Taux" %}</th></tr></thead>
+        <tbody>
+          {% for r in tb.occupation_salles %}
+            <tr><td>{{ r.salle }}</td><td class="text-end">{{ r.interventions }}</td>
+              <td class="text-end">{{ r.heures_intervention }}</td>
+              <td class="text-end">{{ r.taux_occupation_pct }} %</td></tr>
+          {% empty %}<tr><td colspan="4" class="text-body-secondary text-center py-3">—</td></tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Déprogrammation / annulation" %}</div>
+      <div class="card-body">
+        <p class="mb-1">{{ tb.deprogrammation.annulees_reportees }} / {{ tb.deprogrammation.total }}
+          ({{ tb.deprogrammation.taux_pct }} %)</p>
+        <ul class="small mb-0">
+          {% for m in tb.deprogrammation.motifs %}<li><code>{{ m.reference }}</code> — {{ m.motif }}</li>{% empty %}<li class="text-body-secondary">{% translate "Aucun motif enregistré." %}</li>{% endfor %}
+        </ul>
+        <hr>
+        <p class="mb-0">{% translate "Temps de rotation moyen entre deux interventions" %} :
+          {% if tb.rotation.rotation_moyenne_min %}<strong>{{ tb.rotation.rotation_moyenne_min }} min</strong>
+          ({{ tb.rotation.echantillon }} {% translate "mesures" %}){% else %}—{% endif %}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Durée moyenne par type d'acte" %}</div>
+      <table class="table mb-0">
+        <thead><tr><th>{% translate "Acte" %}</th><th class="text-end">{% translate "N" %}</th><th class="text-end">{% translate "Durée moy." %}</th></tr></thead>
+        <tbody>
+          {% for r in tb.duree_par_type %}<tr><td>{{ r.type }}</td><td class="text-end">{{ r.interventions }}</td><td class="text-end">{{ r.duree_moyenne_min }} min</td></tr>
+          {% empty %}<tr><td colspan="3" class="text-body-secondary text-center py-3">—</td></tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Durée moyenne par praticien" %}</div>
+      <table class="table mb-0">
+        <thead><tr><th>{% translate "Praticien" %}</th><th class="text-end">{% translate "N" %}</th><th class="text-end">{% translate "Durée moy." %}</th></tr></thead>
+        <tbody>
+          {% for r in tb.duree_par_praticien %}<tr><td>{{ r.praticien }}</td><td class="text-end">{{ r.interventions }}</td><td class="text-end">{{ r.duree_moyenne_min }} min</td></tr>
+          {% empty %}<tr><td colspan="3" class="text-body-secondary text-center py-3">—</td></tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
