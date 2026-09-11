@@ -40,6 +40,7 @@ class TypeSource(models.TextChoices):
     HOSPITALISATION = "HOSPITALISATION", _("Hospitalisation")
     INTERVENTION = "INTERVENTION", _("Intervention chirurgicale")
     DISPENSATION = "DISPENSATION", _("Dispensation pharmacie")
+    EXAMEN = "EXAMEN", _("Analyse / imagerie")
     AUTRE = "AUTRE", _("Autre")
 
 

@@ -137,3 +137,33 @@ class HistoriqueAction(models.Model):
             adresse_ip=adresse_ip,
             donnees=donnees or {},
         )
+
+
+class Notification(models.Model):
+    """Notification interne à un utilisateur (résultats disponibles, affectations…)."""
+
+    destinataire = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        related_name="notifications", verbose_name=_("destinataire"),
+    )
+    titre = models.CharField(_("titre"), max_length=150)
+    message = models.CharField(_("message"), max_length=500, blank=True)
+    url = models.CharField(_("lien"), max_length=300, blank=True)
+    lu = models.BooleanField(_("lu"), default=False)
+    cree_le = models.DateTimeField(_("créée le"), default=timezone.now, db_index=True)
+
+    class Meta:
+        verbose_name = _("notification")
+        verbose_name_plural = _("notifications")
+        ordering = ["-cree_le"]
+        indexes = [models.Index(fields=["destinataire", "lu", "-cree_le"])]
+
+    def __str__(self) -> str:
+        return f"{self.destinataire} — {self.titre}"
+
+    @classmethod
+    def notifier(cls, *, destinataire, titre, message="", url=""):
+        if destinataire is None:
+            return None
+        return cls.objects.create(destinataire=destinataire, titre=titre,
+                                  message=message, url=url)

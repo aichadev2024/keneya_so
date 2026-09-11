@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ demande.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'laboratoire:liste' %}">{% translate "Analyses & imagerie" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'patients:detail' demande.patient.pk %}">{{ demande.patient.nom_complet }}</a></li>
+  <li class="breadcrumb-item active">{{ demande.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ demande.reference }}
+      <span class="badge text-bg-{% if demande.statut == 'VALIDEE' %}success{% elif demande.statut == 'ANNULEE' %}secondary{% elif demande.statut == 'RESULTATS' %}info{% else %}primary{% endif %}">{{ demande.get_statut_display }}</span>
+      {% if demande.priorite == 'URGENT' %}<span class="badge text-bg-danger">{% translate "Urgent" %}</span>{% endif %}
+    </h1>
+    <div class="text-body-secondary">
+      {{ demande.get_categorie_display }} · {% translate "prescrite par" %} {{ demande.prescripteur.get_full_name|default:"—" }} ·
+      {{ demande.date_demande|date:"d/m/Y H:i" }}
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    {% if peut_valider and demande.statut == 'RESULTATS' %}
+      <form method="post" action="{% url 'laboratoire:valider' demande.pk %}">{% csrf_token %}
+        <button class="btn btn-success">{% translate "Valider et notifier" %}</button></form>
+    {% endif %}
+    {% if perms.facturation.add_facture and demande.statut == 'VALIDEE' %}
+      <form method="post" action="{% url 'facturation:generer' 'examen' demande.pk %}">{% csrf_token %}
+        <button class="btn btn-outline-secondary">{% translate "Facturer" %}</button></form>
+    {% endif %}
+  </div>
+</div>
+
+{% if demande.renseignements_cliniques %}
+  <div class="alert alert-info py-2">{% translate "Renseignements cliniques" %} : {{ demande.renseignements_cliniques }}</div>
+{% endif %}
+{% if demande.motif_annulation %}
+  <div class="alert alert-secondary">{% translate "Annulée" %} : {{ demande.motif_annulation }}</div>
+{% endif %}
+
+{% for ligne in demande.lignes.all %}
+  <div class="card shadow-sm mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <strong>{{ ligne.type_examen.libelle }}</strong>
+      {% if ligne.resultat %}
+        {% if ligne.resultat.valide %}<span class="badge text-bg-success">✓ {% translate "validé" %}</span>
+        {% else %}<span class="badge text-bg-warning">{% translate "saisi, non validé" %}</span>{% endif %}
+      {% else %}<span class="badge text-bg-secondary">{% translate "en attente" %}</span>{% endif %}
+    </div>
+    <div class="card-body">
+      {% with r=ligne.resultat %}
+      {% if r %}
+        {% if demande.categorie == 'BIOLOGIE' %}
+          <p class="mb-1"><strong>{{ r.valeur }}</strong> {{ ligne.unite }}
+            {% if ligne.valeurs_reference %}<span class="text-body-secondary">({% translate "réf." %} {{ ligne.valeurs_reference }})</span>{% endif %}
+            {% if r.interpretation %}
+              <span class="badge text-bg-{% if r.est_anormal %}danger{% elif r.interpretation == 'NORMAL' %}success{% else %}secondary{% endif %}">{{ r.get_interpretation_display }}</span>
+            {% endif %}
+          </p>
+        {% else %}
+          <p style="white-space:pre-wrap">{{ r.compte_rendu }}</p>
+          {% if r.conclusion %}<p><strong>{% translate "Conclusion" %} :</strong> {{ r.conclusion }}</p>{% endif %}
+          {% if r.fichier %}<a href="{{ r.fichier.url }}" target="_blank" class="btn btn-sm btn-outline-secondary">{% translate "Pièce jointe" %}</a>{% endif %}
+        {% endif %}
+        {% if r.commentaire %}<p class="small text-body-secondary mb-0">{{ r.commentaire }}</p>{% endif %}
+        <p class="small text-body-secondary mb-0">{% translate "saisi par" %} {{ r.saisi_par.get_full_name }} — {{ r.saisi_le|date:"d/m/Y H:i" }}</p>
+      {% endif %}
+
+      {% if peut_saisir and demande.statut != 'VALIDEE' and demande.statut != 'ANNULEE' and not r.valide %}
+        <form method="post" action="{% url 'laboratoire:saisir_resultat' demande.pk ligne.pk %}"
+              enctype="multipart/form-data" class="mt-2 border-top pt-2">
+          {% csrf_token %}
+          {% if demande.categorie == 'BIOLOGIE' %}
+            <div class="row g-2">
+              <div class="col-md-4"><input type="text" name="valeur" class="form-control form-control-sm"
+                     placeholder="{% translate 'valeur' %}" value="{{ r.valeur }}" required></div>
+              <div class="col-md-4">
+                <select name="interpretation" class="form-select form-select-sm">
+                  <option value="">{% translate "— auto —" %}</option>
+                  <option value="NORMAL">{% translate "Normal" %}</option>
+                  <option value="BAS">{% translate "Anormal — bas" %}</option>
+                  <option value="HAUT">{% translate "Anormal — haut" %}</option>
+                  <option value="ANORMAL">{% translate "Anormal" %}</option>
+                </select>
+              </div>
+              <div class="col-md-3"><input type="text" name="commentaire" class="form-control form-control-sm" placeholder="{% translate 'commentaire' %}"></div>
+              <div class="col-md-1"><button class="btn btn-sm btn-primary w-100">OK</button></div>
+            </div>
+          {% else %}
+            <textarea name="compte_rendu" class="form-control form-control-sm mb-2" rows="3"
+                      placeholder="{% translate 'compte-rendu' %}" required>{{ r.compte_rendu }}</textarea>
+            <div class="row g-2">
+              <div class="col-md-6"><input type="text" name="conclusion" class="form-control form-control-sm" placeholder="{% translate 'conclusion' %}"></div>
+              <div class="col-md-4"><input type="file" name="fichier" class="form-control form-control-sm"></div>
+              <div class="col-md-2"><button class="btn btn-sm btn-primary w-100">{% translate "Enregistrer" %}</button></div>
+            </div>
+          {% endif %}
+        </form>
+      {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+{% endfor %}
+
+{% if peut_valider and demande.statut != 'VALIDEE' and demande.statut != 'ANNULEE' %}
+  <form method="post" action="{% url 'laboratoire:annuler' demande.pk %}" class="d-flex gap-2 mt-3">
+    {% csrf_token %}
+    {{ form_annulation.motif }}
+    <button class="btn btn-outline-danger">{% translate "Annuler la demande" %}</button>
+  </form>
+{% endif %}
+{% endblock %}

@@ -31,6 +31,9 @@
         {% if perms.bloc_operatoire.view_intervention %}
           <li class="nav-item"><a class="nav-link" href="{% url 'bloc_operatoire:planning' %}">{% translate "Bloc opératoire" %}</a></li>
         {% endif %}
+        {% if perms.laboratoire.view_demandeexamen %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'laboratoire:liste' %}">{% translate "Analyses & imagerie" %}</a></li>
+        {% endif %}
         {% if perms.facturation.view_facture %}
           <li class="nav-item"><a class="nav-link" href="{% url 'facturation:liste' %}">{% translate "Facturation" %}</a></li>
         {% endif %}
@@ -45,6 +48,12 @@
         {% endif %}
       </ul>
       <div class="d-flex align-items-center gap-3">
+        <a class="nav-link position-relative" href="{% url 'core:notifications' %}" title="{% translate 'Notifications' %}">
+          &#128276;
+          {% if notifications_non_lues %}
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">{{ notifications_non_lues }}</span>
+          {% endif %}
+        </a>
         <form action="{% url 'set_language' %}" method="post" class="d-flex">
           {% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}">

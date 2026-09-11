@@ -55,3 +55,9 @@ def facturer_dispensation(sender, instance, **kwargs):
     etats = {instance.Statut.COMPLETE, instance.Statut.PARTIELLE}
     if _auto() and instance.statut in etats:
         _tenter(lambda a: services.facturer_dispensation(a), instance)
+
+
+@receiver(post_save, sender="laboratoire.DemandeExamen")
+def facturer_demande_examen(sender, instance, **kwargs):
+    if _auto() and instance.statut == instance.Statut.VALIDEE:
+        _tenter(lambda a: services.facturer_demande_examen(a), instance)

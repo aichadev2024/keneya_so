@@ -30,7 +30,7 @@ Une application Django par module métier (CDC 7.5) :
 | `apps.pharmacie` | Catalogue, **stock par lots (FEFO)**, mouvements, **dispensation** | 3 | ✅ |
 | `apps.hospitalisation` | Services, **chambres/lits**, admission, **suivi quotidien**, sortie, vue d'occupation | 4 | ✅ |
 | `apps.bloc_operatoire` | Salles, types d'actes, **planification + conflits**, équipes, **checklist OMS**, per-opératoire, CR, **indicateurs** (CDC section 5) | 5-6 | ✅ |
-| `apps.laboratoire` | Analyses biologiques et imagerie | 7 | 🔜 |
+| `apps.laboratoire` | **Demandes d'examen**, saisie/validation des résultats, **notifications**, archivage (texte + pièce jointe) | 7 | ✅ |
 | `apps.facturation` | Grille tarifaire, **factures auto depuis les actes**, part patient/assurance, paiements, relances, impayés | 6 | ✅ |
 | `apps.assurances` | Compagnies, contrats, adhésions patient (taux + plafond), **bordereaux** | 6 | ✅ |
 
@@ -107,6 +107,22 @@ fixent l'architecture et seront développées à leur phase.
 - **Assurances** : compagnies, contrats (taux, plafond), adhésions patient.
   **Bordereaux** regroupant les parts assurance d'une période pour un organisme
   (une facture ne figure que sur un seul bordereau).
+
+### Analyses biologiques et imagerie (phase 7)
+
+- **Demande** depuis la fiche patient ou une consultation : catégorie
+  (biologie / imagerie), priorité, renseignements cliniques, sélection multiple
+  d'examens (référentiel `TypeExamen` avec unité / valeurs de référence).
+- **Saisie des résultats** par le laborantin (biologie) ou le radiologue
+  (imagerie, avec **upload d'image/PDF**) ; interprétation **NORMAL/BAS/HAUT**
+  déduite automatiquement d'une plage de référence numérique. Sans
+  interfaçage avec les automates (CDC 3.1) — saisie manuelle.
+- **Validation** : verrouille les résultats et **notifie automatiquement le
+  médecin prescripteur** (cloche de notifications dans la barre de navigation).
+- Facturation : génération automatique d'une facture à la validation, comme
+  les autres actes.
+- RBAC : le laborantin ne voit que les demandes de biologie, le radiologue que
+  l'imagerie ; seul le prescripteur (médecin/chirurgien) crée une demande.
 
 ### Contrôle d'accès (RBAC)
 

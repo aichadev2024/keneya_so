@@ -110,6 +110,26 @@ def facturer_intervention(intervention, *, par=None, forcer=False) -> Facture | 
     )
 
 
+def facturer_demande_examen(demande, *, par=None, forcer=False) -> Facture | None:
+    if not forcer and source_deja_facturee(TypeSource.EXAMEN, demande.pk):
+        return None
+    lignes = []
+    for ligne in demande.lignes.select_related("type_examen"):
+        montant = Tarif.montant_pour("ANALYSE", str(ligne.type_examen_id))
+        if montant is None:
+            montant = Tarif.montant_pour("ANALYSE")
+        if montant is None:
+            continue
+        lignes.append({
+            "type_source": TypeSource.EXAMEN, "source_id": demande.pk,
+            "libelle": f"{demande.reference} — {ligne.type_examen.libelle}"[:200],
+            "quantite": 1, "prix_unitaire": montant,
+        })
+    if not lignes:
+        raise ErreurFacturation("Aucun tarif « analyse » défini.")
+    return _creer_facture(patient=demande.patient, par=par, lignes=lignes)
+
+
 def facturer_dispensation(dispensation, *, par=None, forcer=False) -> Facture | None:
     if not forcer and source_deja_facturee(TypeSource.DISPENSATION, dispensation.pk):
         return None

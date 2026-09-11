@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Mes résultats" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Résultats validés — mes prescriptions" %}</h1>
+<div class="list-group shadow-sm">
+  {% for d in demandes %}
+    <a class="list-group-item list-group-item-action" href="{% url 'laboratoire:detail' d.pk %}">
+      <div class="d-flex justify-content-between">
+        <strong>{{ d.reference }} — {{ d.patient.nom_complet }}</strong>
+        <span class="small text-body-secondary">{{ d.modifie_le|date:"d/m/Y H:i" }}</span>
+      </div>
+      <span class="small">{{ d.get_categorie_display }} — {{ d.lignes.count }} {% translate "examen(s)" %}</span>
+    </a>
+  {% empty %}
+    <div class="list-group-item text-body-secondary text-center py-4">{% translate "Aucun résultat validé." %}</div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -100,6 +100,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.i18n",
                 "django.contrib.messages.context_processors.messages",
+                "apps.core.context_processors.notifications",
             ],
         },
     },
@@ -211,6 +212,8 @@ SPECTACULAR_SETTINGS = {
     "ENUM_NAME_OVERRIDES": {
         "RoleUtilisateurEnum": "apps.accounts.models.Utilisateur.Role",
         "RoleMembreEquipeEnum": "apps.bloc_operatoire.models.MembreEquipe.Role",
+        "CategorieTarifEnum": "apps.facturation.models.CategorieTarif",
+        "CategorieExamenEnum": "apps.laboratoire.models.Categorie",
     },
 }
 

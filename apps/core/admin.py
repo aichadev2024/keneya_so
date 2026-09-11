@@ -1,7 +1,14 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import HistoriqueAction, ParametresSysteme
+from .models import HistoriqueAction, Notification, ParametresSysteme
+
+
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ("destinataire", "titre", "lu", "cree_le")
+    list_filter = ("lu", "cree_le")
+    search_fields = ("destinataire__username", "titre", "message")
 
 
 @admin.register(ParametresSysteme)

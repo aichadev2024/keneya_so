@@ -1,8 +1,11 @@
 """Vues transverses : page d'accueil et tableau de bord par profil (CDC 2.2)."""
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.http import require_POST
+
+from .models import Notification
 
 
 @login_required
@@ -29,6 +32,28 @@ def accueil(request):
     return redirect("accounts:login")
 
 
+@login_required
+def notifications(request):
+    liste = request.user.notifications.all()[:100]
+    return render(request, "core/notifications.html", {"notifications": liste})
+
+
+@require_POST
+@login_required
+def notification_lire(request, pk):
+    notif = get_object_or_404(Notification, pk=pk, destinataire=request.user)
+    notif.lu = True
+    notif.save(update_fields=["lu"])
+    return redirect(notif.url or "core:notifications")
+
+
+@require_POST
+@login_required
+def notifications_tout_lire(request):
+    request.user.notifications.filter(lu=False).update(lu=True)
+    return redirect("core:notifications")
+
+
 def _raccourcis_pour(utilisateur):
     """Liste de raccourcis (libellé, url_name) selon les permissions réelles."""
     raccourcis = []
@@ -40,6 +65,8 @@ def _raccourcis_pour(utilisateur):
         raccourcis.append((_("Hospitalisation"), "hospitalisation:occupation"))
     if utilisateur.has_perm("bloc_operatoire.view_intervention"):
         raccourcis.append((_("Bloc opératoire"), "bloc_operatoire:planning"))
+    if utilisateur.has_perm("laboratoire.view_demandeexamen"):
+        raccourcis.append((_("Analyses & imagerie"), "laboratoire:liste"))
     if utilisateur.has_perm("facturation.view_facture"):
         raccourcis.append((_("Facturation"), "facturation:liste"))
     if utilisateur.has_perm("assurances.view_bordereauassurance"):

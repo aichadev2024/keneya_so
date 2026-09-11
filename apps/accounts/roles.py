@@ -144,6 +144,26 @@ _PHARMACIE = [
     "pharmacie.view_interactionmedicamenteuse",
 ]
 
+# Laboratoire / imagerie (phase 7, CDC 4.6)
+_LABO_PRESCRIRE = [
+    "laboratoire.view_typeexamen",
+    "laboratoire.add_demandeexamen",
+    "laboratoire.change_demandeexamen",
+    "laboratoire.view_demandeexamen",
+    "laboratoire.add_ligneexamen",
+    "laboratoire.view_ligneexamen",
+    "laboratoire.view_resultat",
+]
+_LABO_EXECUTANT = [
+    "laboratoire.view_typeexamen",
+    "laboratoire.view_demandeexamen",
+    "laboratoire.change_demandeexamen",
+    "laboratoire.view_ligneexamen",
+    "laboratoire.add_resultat",
+    "laboratoire.change_resultat",
+    "laboratoire.view_resultat",
+]
+
 # Facturation & assurances (phase 6, CDC 4.8 / 4.9)
 _ASSURANCE_LECTURE = [
     "assurances.view_assurance",
@@ -184,11 +204,12 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.view_dossiermedical",
         "facturation.view_facture",
     ] + _HOSPIT_ADMISSION + _ASSURANCE_ADHESION,
-    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + [
+    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _LABO_PRESCRIRE + [
         "bloc_operatoire.view_intervention",
         "bloc_operatoire.view_compterenduoperatoire",
     ],
-    Role.CHIRURGIEN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _BLOC_CHIRURGIEN,
+    Role.CHIRURGIEN: (_SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _BLOC_CHIRURGIEN
+                      + _LABO_PRESCRIRE),
     Role.ANESTHESISTE: _LECTURE_PATIENT + [
         "consultations.view_consultation",
         "consultations.view_constantes",
@@ -196,12 +217,15 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     ] + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST + [
         "bloc_operatoire.change_intervention",  # validation de la faisabilité anesthésique
     ],
-    Role.INFIRMIER: _LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT,
+    Role.INFIRMIER: (_LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT
+                     + ["laboratoire.view_demandeexamen", "laboratoire.view_resultat"]),
     Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"]
     + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST,
     Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,
-    Role.LABORANTIN: ["patients.view_patient"],
-    Role.RADIOLOGUE: ["patients.view_patient"],
+    Role.LABORANTIN: ["patients.view_patient", "patients.view_dossiermedical"]
+    + _LABO_EXECUTANT,
+    Role.RADIOLOGUE: ["patients.view_patient", "patients.view_dossiermedical"]
+    + _LABO_EXECUTANT,
     Role.COMPTABLE: ["patients.view_patient", "consultations.view_consultation",
                      "hospitalisation.view_hospitalisation",
                      "bloc_operatoire.view_intervention",

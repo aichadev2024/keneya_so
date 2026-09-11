@@ -25,6 +25,7 @@ from apps.bloc_operatoire.models import (
 )
 from apps.core.models import ParametresSysteme
 from apps.facturation.models import Tarif
+from apps.laboratoire.models import Categorie, TypeExamen
 from apps.hospitalisation.models import Chambre, Hospitalisation, Lit, Service
 from apps.hospitalisation.services import admettre
 from apps.patients.models import Patient
@@ -42,6 +43,11 @@ COMPTES = [
     ("pharmacien", "Kadiatou", "CISSÉ", Utilisateur.Role.PHARMACIEN, False),
     ("chirurgien", "Moussa", "DEMBÉLÉ", Utilisateur.Role.CHIRURGIEN, False),
     ("comptable", "Rokia", "TOURÉ", Utilisateur.Role.COMPTABLE, False),
+    ("anesthesiste", "Oumar", "COULIBALY", Utilisateur.Role.ANESTHESISTE, False),
+    ("ibode", "Mariam", "SIDIBÉ", Utilisateur.Role.IBODE, False),
+    ("cadre_bloc", "Youssouf", "SANOGO", Utilisateur.Role.CADRE_BLOC, False),
+    ("laborantin", "Bintou", "DOUMBIA", Utilisateur.Role.LABORANTIN, False),
+    ("radiologue", "Seydou", "MAIGA", Utilisateur.Role.RADIOLOGUE, False),
 ]
 
 PATIENTS = [
@@ -140,6 +146,7 @@ class Command(BaseCommand):
         self._seed_hospitalisation()
         self._seed_bloc()
         self._seed_facturation()
+        self._seed_laboratoire()
 
         self.stdout.write(self.style.SUCCESS(
             f"\nTerminé. Comptes de démonstration : mot de passe « {MOT_DE_PASSE_DEMO} »."
@@ -234,6 +241,25 @@ class Command(BaseCommand):
                                          numero_adherent="INPS-000123")
             self.stdout.write(self.style.SUCCESS(
                 f"  + couverture assurance pour {patient.nom_complet}"))
+
+    def _seed_laboratoire(self):
+        Tarif.objects.get_or_create(
+            code="ANALYSE-STD", defaults={"libelle": "Analyse / examen (forfait)",
+                                          "categorie": "ANALYSE", "montant": 3000})
+        examens = [
+            ("NFS", "Numération formule sanguine", Categorie.BIOLOGIE, "", ""),
+            ("GLY", "Glycémie à jeun", Categorie.BIOLOGIE, "g/L", "0.70 - 1.10"),
+            ("CREAT", "Créatininémie", Categorie.BIOLOGIE, "mg/L", "7 - 13"),
+            ("GE", "Goutte épaisse (paludisme)", Categorie.BIOLOGIE, "", ""),
+            ("RXTHORAX", "Radiographie du thorax", Categorie.IMAGERIE, "", ""),
+            ("ECHOABDO", "Échographie abdominale", Categorie.IMAGERIE, "", ""),
+        ]
+        for code, libelle, cat, unite, ref in examens:
+            _e, cree = TypeExamen.objects.get_or_create(
+                code=code, defaults={"libelle": libelle, "categorie": cat,
+                                     "unite": unite, "valeurs_reference": ref})
+            if cree:
+                self.stdout.write(self.style.SUCCESS(f"  + type d'examen {libelle}"))
 
     def _seed_hospitalisation(self):
         plan = {

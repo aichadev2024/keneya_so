@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Notifications" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Notifications" %}</h1>
+  {% if notifications_non_lues %}
+    <form method="post" action="{% url 'core:notifications_tout_lire' %}">{% csrf_token %}
+      <button class="btn btn-sm btn-outline-primary">{% translate "Tout marquer comme lu" %}</button>
+    </form>
+  {% endif %}
+</div>
+
+<div class="list-group shadow-sm">
+  {% for n in notifications %}
+    <div class="list-group-item {% if not n.lu %}list-group-item-warning{% endif %}">
+      <div class="d-flex justify-content-between">
+        <strong>{{ n.titre }}</strong>
+        <span class="small text-body-secondary">{{ n.cree_le|date:"d/m/Y H:i" }}</span>
+      </div>
+      <div>{{ n.message }}</div>
+      <div class="mt-1 d-flex gap-2">
+        {% if n.url %}<a class="btn btn-sm btn-outline-secondary" href="{{ n.url }}">{% translate "Ouvrir" %}</a>{% endif %}
+        {% if not n.lu %}
+          <form method="post" action="{% url 'core:notification_lire' n.pk %}">{% csrf_token %}
+            <button class="btn btn-sm btn-outline-primary">{% translate "Marquer comme lu" %}</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <div class="list-group-item text-body-secondary text-center py-4">{% translate "Aucune notification." %}</div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -21,6 +21,7 @@ _GENERATEURS = {
                         services.facturer_hospitalisation),
     "intervention": ("bloc_operatoire", "Intervention", services.facturer_intervention),
     "dispensation": ("pharmacie", "Dispensation", services.facturer_dispensation),
+    "examen": ("laboratoire", "DemandeExamen", services.facturer_demande_examen),
 }
 
 

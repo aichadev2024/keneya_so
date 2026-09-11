@@ -26,6 +26,9 @@
         <button class="btn btn-outline-success">{% translate "Clôturer" %}</button>
       </form>
     {% endif %}
+    {% if perms.laboratoire.add_demandeexamen %}
+      <a class="btn btn-outline-primary" href="{% url 'laboratoire:demander' consultation.patient.pk %}?consultation={{ consultation.pk }}">{% translate "Demander un examen" %}</a>
+    {% endif %}
     {% if perms.facturation.add_facture %}
       <form method="post" action="{% url 'facturation:generer' 'consultation' consultation.pk %}">{% csrf_token %}
         <button class="btn btn-outline-secondary">{% translate "Facturer" %}</button>
