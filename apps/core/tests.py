@@ -1,10 +1,13 @@
-"""Tests transverses : multilinguisme (CDC 4.11) et notifications."""
+"""Tests transverses : multilinguisme (CDC 4.11), notifications, exports (CDC 9)."""
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.translation import get_language_info, override
 
+from django.utils.translation import gettext_lazy as _lazy
+
+from .exports import exporter, exporter_excel, exporter_excel_multi, exporter_pdf, exporter_pdf_multi
 from .models import Notification
 
 Utilisateur = get_user_model()
@@ -83,3 +86,97 @@ class NotificationsTests(TestCase):
         self.client.login(username="u4", password="x")
         response = self.client.get(reverse("core:notifications"))
         self.assertNotContains(response, "Pour u3 seulement")
+
+
+class ExportsTests(TestCase):
+    """CDC 9 — « Export PDF/Excel possible sur tous les modules »."""
+
+    def test_pdf_generique_produit_un_pdf_valide(self):
+        reponse = exporter_pdf(titre="Titre", colonnes=["A", "B"],
+                               lignes=[["1", "2"], ["3", "4"]], nom_fichier="t")
+        self.assertEqual(reponse["Content-Type"], "application/pdf")
+        self.assertTrue(reponse.content.startswith(b"%PDF"))
+
+    def test_pdf_avec_texte_arabe_ne_leve_pas_d_erreur(self):
+        reponse = exporter_pdf(titre="عنوان", colonnes=["عمود"],
+                               lignes=[["قيمة"]], nom_fichier="t")
+        self.assertTrue(reponse.content.startswith(b"%PDF"))
+
+    def test_excel_generique_produit_un_classeur_valide(self):
+        reponse = exporter_excel(titre="Titre", colonnes=["A", "B"],
+                                 lignes=[["1", "2"]], nom_fichier="t")
+        self.assertEqual(
+            reponse["Content-Type"],
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
+        self.assertTrue(reponse.content.startswith(b"PK"))  # signature ZIP/XLSX
+
+    def test_dispatcher_sans_parametre_format_renvoie_none(self):
+        from django.test import RequestFactory
+        request = RequestFactory().get("/quelconque/")
+        self.assertIsNone(exporter(request, titre="T", colonnes=[], lignes=[]))
+
+    def test_excel_accepte_les_chaines_de_traduction_paresseuses(self):
+        # Régression : gettext_lazy("...") n'est pas un str pour openpyxl et
+        # levait ValueError("Cannot convert ... to Excel") avant coercion.
+        reponse = exporter_excel(titre="Titre", colonnes=[_lazy("Colonne")],
+                                 lignes=[[_lazy("Valeur")], [42]], nom_fichier="t")
+        self.assertTrue(reponse.content.startswith(b"PK"))
+
+    def test_pdf_multi_sections_produit_un_pdf_valide(self):
+        reponse = exporter_pdf_multi(
+            titre="Rapport", sections=[("Section A", ["X"], [[_lazy("y")]]),
+                                       ("Section B", ["Z"], [])],
+            nom_fichier="t")
+        self.assertTrue(reponse.content.startswith(b"%PDF"))
+
+    def test_excel_multi_sections_avec_traductions_paresseuses(self):
+        reponse = exporter_excel_multi(
+            sections=[("Section A", [_lazy("Col")], [[_lazy("Val"), 1]]),
+                     ("Section A", ["Col2"], [["dup-title"]])],  # titres dupliqués
+            nom_fichier="t")
+        self.assertTrue(reponse.content.startswith(b"PK"))
+
+    def test_liste_patients_exporte_le_meme_jeu_filtre_que_l_affichage(self):
+        from apps.patients.models import Patient
+        Patient.objects.create(nom="Exportable", prenom="Un", sexe="M")
+        Patient.objects.create(nom="AutreCasFiltre", prenom="Deux", sexe="F")
+        u = Utilisateur.objects.create_user("expu", password="x",
+                                            role=Utilisateur.Role.AGENT_ACCUEIL)
+        self.client.login(username="expu", password="x")
+
+        html = self.client.get("/fr/patients/?q=Exportable")
+        self.assertEqual(html.status_code, 200)
+        self.assertContains(html, "Exportable")
+        self.assertNotContains(html, "AutreCasFiltre")
+
+        pdf = self.client.get("/fr/patients/?q=Exportable&format=pdf")
+        self.assertEqual(pdf["Content-Type"], "application/pdf")
+
+        xlsx = self.client.get("/fr/patients/?q=Exportable&format=xlsx")
+        self.assertEqual(
+            xlsx["Content-Type"],
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
+
+
+class StatistiquesTests(TestCase):
+    def test_reserve_a_l_administration_et_au_comptable(self):
+        Utilisateur.objects.create_user("med_stat", password="x",
+                                        role=Utilisateur.Role.MEDECIN)
+        self.client.login(username="med_stat", password="x")
+        self.assertEqual(self.client.get(reverse("core:statistiques")).status_code, 403)
+
+    def test_accessible_au_comptable(self):
+        Utilisateur.objects.create_user("cpt_stat", password="x",
+                                        role=Utilisateur.Role.COMPTABLE)
+        self.client.login(username="cpt_stat", password="x")
+        self.assertEqual(self.client.get(reverse("core:statistiques")).status_code, 200)
+
+    def test_export_pdf_des_statistiques(self):
+        Utilisateur.objects.create_user("adm_stat", password="x",
+                                        role=Utilisateur.Role.ADMIN)
+        self.client.login(username="adm_stat", password="x")
+        reponse = self.client.get(reverse("core:statistiques") + "?format=pdf")
+        self.assertEqual(reponse["Content-Type"], "application/pdf")
+        self.assertTrue(reponse.content.startswith(b"%PDF"))

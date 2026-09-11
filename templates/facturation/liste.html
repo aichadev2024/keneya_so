@@ -6,6 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h1 class="h3 mb-0">{% translate "Factures" %}</h1>
   <div class="d-flex gap-2">
+    {% include "core/_export_boutons.html" %}
     <a class="btn btn-outline-warning" href="{% url 'facturation:impayes' %}">
       {% blocktranslate count n=nb_retard %}{{ n }} impayé{% plural %}{{ n }} impayés{% endblocktranslate %}
     </a>

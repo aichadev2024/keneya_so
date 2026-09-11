@@ -7,6 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
+from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 
 from .forms import DossierMedicalForm, PatientForm
@@ -34,12 +35,23 @@ class _AuteurMixin:
         return response
 
 
-class PatientListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class PatientListView(LoginRequiredMixin, PermissionRequiredMixin,
+                      ExportableListMixin, ListView):
     permission_required = "patients.view_patient"
     model = Patient
     template_name = "patients/liste.html"
     context_object_name = "patients"
     paginate_by = 25
+    export_titre = _("Patients")
+    export_nom_fichier = "patients"
+
+    def export_colonnes(self):
+        return [str(_("N° dossier")), str(_("Nom")), str(_("Prénom")), str(_("Sexe")),
+                str(_("Âge")), str(_("Téléphone")), str(_("Ville"))]
+
+    def export_ligne(self, p):
+        return [p.numero_dossier, p.nom, p.prenom, p.get_sexe_display(),
+                p.age, p.telephone, p.ville]
 
     def get_queryset(self):
         qs = Patient.objects.all()

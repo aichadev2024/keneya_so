@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, FormView, ListView, UpdateView
 
+from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 
 from .forms import EntreeStockForm, MedicamentForm
@@ -16,11 +17,22 @@ from .models import Dispensation, Medicament, MouvementStock
 from .services import ErreurStock, dispenser_ordonnance, enregistrer_entree, retirer_perimes
 
 
-class MedicamentListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class MedicamentListView(LoginRequiredMixin, PermissionRequiredMixin,
+                         ExportableListMixin, ListView):
     permission_required = "pharmacie.view_medicament"
     template_name = "pharmacie/medicaments.html"
     context_object_name = "medicaments"
     paginate_by = 30
+    export_titre = _("Catalogue et stock")
+    export_nom_fichier = "stock-medicaments"
+
+    def export_colonnes(self):
+        return [str(_("Médicament")), str(_("Forme")), str(_("Stock utilisable")),
+                str(_("Seuil")), str(_("Sous le seuil")), str(_("Lots périmés"))]
+
+    def export_ligne(self, m):
+        return [f"{m.denomination} {m.dosage}".strip(), m.get_forme_display(),
+                m.quantite_utilisable, m.seuil_alerte, m.en_alerte, m.a_des_lots_perimes]
 
     def get_queryset(self):
         qs = Medicament.objects.prefetch_related("lots")
@@ -192,11 +204,23 @@ def dispensation_delivrer(request, pk):
     return redirect("pharmacie:dispensation", pk=pk)
 
 
-class MouvementStockListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class MouvementStockListView(LoginRequiredMixin, PermissionRequiredMixin,
+                             ExportableListMixin, ListView):
     permission_required = "pharmacie.view_mouvementstock"
     template_name = "pharmacie/mouvements.html"
     context_object_name = "mouvements"
     paginate_by = 50
+    export_titre = _("Mouvements de stock")
+    export_nom_fichier = "mouvements-stock"
+
+    def export_colonnes(self):
+        return [str(_("Date")), str(_("Médicament")), str(_("Type")),
+                str(_("Quantité")), str(_("Opérateur")), str(_("Motif"))]
+
+    def export_ligne(self, m):
+        return [m.cree_le, m.medicament.denomination, m.get_type_display(),
+                m.quantite_signee, m.utilisateur.get_full_name() if m.utilisateur else "",
+                m.motif]
 
     def get_queryset(self):
         qs = MouvementStock.objects.select_related("medicament", "utilisateur")

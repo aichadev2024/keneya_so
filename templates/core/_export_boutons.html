@@ -1,0 +1,11 @@
+{% load i18n %}
+<div class="btn-group btn-group-sm" role="group" aria-label="{% translate 'Exporter' %}">
+  <a class="btn btn-outline-secondary" target="_blank"
+     href="?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}format=pdf">
+    {% translate "Export PDF" %}
+  </a>
+  <a class="btn btn-outline-secondary"
+     href="?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}format=xlsx">
+    {% translate "Export Excel" %}
+  </a>
+</div>

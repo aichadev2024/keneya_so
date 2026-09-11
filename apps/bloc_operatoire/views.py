@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
+from apps.core.exports import ExportableListMixin, exporter_multi
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
@@ -79,11 +80,23 @@ class PlanningView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         return ctx
 
 
-class InterventionListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class InterventionListView(LoginRequiredMixin, PermissionRequiredMixin,
+                           ExportableListMixin, ListView):
     permission_required = "bloc_operatoire.view_intervention"
     template_name = "bloc_operatoire/liste.html"
     context_object_name = "interventions"
     paginate_by = 25
+    export_titre = _("Interventions chirurgicales")
+    export_nom_fichier = "interventions"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Patient")), str(_("Acte")), str(_("Salle")),
+                str(_("Début prévu")), str(_("Urgence")), str(_("Statut"))]
+
+    def export_ligne(self, i):
+        return [i.reference, i.patient.nom_complet, i.type_intervention.libelle,
+                i.salle.nom if i.salle else "", i.date_heure_debut_prevue,
+                i.get_niveau_urgence_display(), i.get_statut_display()]
 
     def get_queryset(self):
         qs = Intervention.objects.select_related("patient", "type_intervention", "salle",
@@ -180,8 +193,43 @@ class InterventionDetailView(LoginRequiredMixin, PermissionRequiredMixin, Detail
 
 
 class IndicateursView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
+    """Indicateurs de pilotage du bloc, avec export PDF/Excel (CDC 5.3.7)."""
+
     permission_required = "bloc_operatoire.view_intervention"
     template_name = "bloc_operatoire/indicateurs.html"
+
+    def _sections(self, tb):
+        return [
+            (str(_("Taux d'occupation des salles")),
+             [str(_("Salle")), str(_("Interv.")), str(_("Heures")), str(_("Taux"))],
+             [[r["salle"], r["interventions"], r["heures_intervention"],
+               f"{r['taux_occupation_pct']} %"] for r in tb["occupation_salles"]]),
+            (str(_("Durée moyenne par type d'acte")),
+             [str(_("Acte")), str(_("N")), str(_("Durée moy."))],
+             [[r["type"], r["interventions"], r["duree_moyenne_min"]]
+              for r in tb["duree_par_type"]]),
+            (str(_("Durée moyenne par praticien")),
+             [str(_("Praticien")), str(_("N")), str(_("Durée moy."))],
+             [[r["praticien"], r["interventions"], r["duree_moyenne_min"]]
+              for r in tb["duree_par_praticien"]]),
+            (str(_("Déprogrammation / annulation")),
+             [str(_("Référence")), str(_("Motif"))],
+             [[m["reference"], m["motif"]] for m in tb["deprogrammation"]["motifs"]]),
+        ]
+
+    def get(self, request, *args, **kwargs):
+        if request.GET.get("format") in {"pdf", "xlsx", "excel"}:
+            tb = stats.tableau_de_bord()
+            reponse = exporter_multi(
+                request, titre=str(_("Indicateurs du bloc opératoire")),
+                sections=self._sections(tb), nom_fichier="indicateurs-bloc",
+                sous_titre=str(_("Déprogrammation : %(n)d %% — Rotation moyenne : %(r)s min")
+                              % {"n": tb["deprogrammation"]["taux_pct"],
+                                 "r": tb["rotation"]["rotation_moyenne_min"] or "—"}),
+            )
+            if reponse is not None:
+                return reponse
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

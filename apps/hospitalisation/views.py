@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView, TemplateView
 
+from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
@@ -42,11 +43,23 @@ class OccupationView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         return ctx
 
 
-class HospitalisationListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class HospitalisationListView(LoginRequiredMixin, PermissionRequiredMixin,
+                              ExportableListMixin, ListView):
     permission_required = "hospitalisation.view_hospitalisation"
     template_name = "hospitalisation/liste.html"
     context_object_name = "sejours"
     paginate_by = 25
+    export_titre = _("Séjours hospitaliers")
+    export_nom_fichier = "sejours"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Patient")), str(_("Service")),
+                str(_("Lit")), str(_("Admission")), str(_("Durée")), str(_("Statut"))]
+
+    def export_ligne(self, h):
+        return [h.reference, h.patient.nom_complet, h.service.nom,
+                h.lit.numero if h.lit else "", h.date_admission, h.duree_jours,
+                h.get_statut_display()]
 
     def get_queryset(self):
         qs = Hospitalisation.objects.select_related("patient", "service", "lit__chambre",

@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DetailView, ListView
 
+from apps.core.exports import ExportableListMixin, exporter
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
@@ -50,12 +51,24 @@ class PatientAssureCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
         return reverse("patients:detail", args=[self.patient.pk])
 
 
-class BordereauListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class BordereauListView(LoginRequiredMixin, PermissionRequiredMixin,
+                        ExportableListMixin, ListView):
     permission_required = "assurances.view_bordereauassurance"
     template_name = "assurances/bordereaux.html"
     context_object_name = "bordereaux"
     paginate_by = 25
     queryset = BordereauAssurance.objects.select_related("assurance")
+    export_titre = _("Bordereaux d'assurance")
+    export_nom_fichier = "bordereaux"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Assurance")), str(_("Période")),
+                str(_("Montant")), str(_("Statut"))]
+
+    def export_ligne(self, b):
+        return [b.reference, b.assurance.nom,
+                f"{b.periode_debut:%d/%m/%Y} – {b.periode_fin:%d/%m/%Y}",
+                b.montant_total, b.get_statut_display()]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -65,10 +78,29 @@ class BordereauListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
 
 class BordereauDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    """Fiche d'un bordereau — export PDF/Excel = le document destiné à l'assureur (CDC 4.9)."""
+
     permission_required = "assurances.view_bordereauassurance"
     model = BordereauAssurance
     template_name = "assurances/bordereau_detail.html"
     context_object_name = "bordereau"
+
+    def get(self, request, *args, **kwargs):
+        if request.GET.get("format") in {"pdf", "xlsx", "excel"}:
+            bordereau = self.get_object()
+            lignes = bordereau.lignes.select_related("facture__patient")
+            reponse = exporter(
+                request, titre=f"{_('Bordereau')} {bordereau.reference}",
+                sous_titre=f"{bordereau.assurance.nom} — "
+                          f"{bordereau.periode_debut:%d/%m/%Y} – {bordereau.periode_fin:%d/%m/%Y}",
+                colonnes=[str(_("Facture")), str(_("Patient")), str(_("Part assurance"))],
+                lignes=[[l.facture.reference, l.facture.patient.nom_complet,
+                        l.montant_assurance] for l in lignes],
+                nom_fichier=f"bordereau-{bordereau.reference}",
+            )
+            if reponse is not None:
+                return reponse
+        return super().get(request, *args, **kwargs)
 
 
 def generer_bordereau(request, assurance_pk):

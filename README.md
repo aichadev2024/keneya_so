@@ -210,3 +210,35 @@ seule l'étape de *génération* des `.po`/`.mo` diffère.
 `locale/<bm|ff|snk>/LC_MESSAGES/django.po` (un champ `msgstr ""` par chaîne à
 traduire, avec son contexte en commentaire `#:`), puis lancer
 `python scripts/i18n_compile.py`.
+
+## Statistiques et exports PDF/Excel (phase 9)
+
+- **Tableau de bord général** (`/statistiques/`, réservé à l'administrateur et
+  au comptable) : fréquentation (patients, consultations, admissions,
+  occupation des lits, examens), chiffre d'affaires (facturé, encaissé,
+  impayés, répartition patient/assurance), activité par module (CDC 4.10).
+- **Export PDF/Excel sur tous les modules** (CDC 2.2 / 9) : un bouton « Export
+  PDF » / « Export Excel » sur chaque écran de liste (patients, consultations,
+  séjours, interventions, demandes d'examen, factures, impayés, stock,
+  mouvements de stock, bordereaux…), sur les **indicateurs du bloc opératoire**
+  (CDC 5.3.7) et sur les **statistiques générales** — export du même jeu de
+  données filtré/recherché que celui affiché à l'écran. Un bordereau
+  d'assurance s'exporte aussi individuellement (le document destiné à
+  l'organisme, CDC 4.9).
+- **Choix technique** (`apps/core/exports.py`) : **ReportLab** pour le PDF —
+  pur Python, sans bibliothèque système — plutôt que WeasyPrint, qui nécessite
+  Pango/Cairo/GDK-Pixbuf indisponibles sans droits d'administration sur cette
+  machine (même contrainte que pour GNU gettext). **openpyxl** pour Excel,
+  également pur Python. Les deux figurent parmi les choix cités par le CDC
+  (section 8).
+- **Arabe en PDF** : `arabic_reshaper` + `python-bidi` corrigent la liaison des
+  lettres et le sens de lecture ; une police Unicode disponible sur la machine
+  (Tahoma/Segoe UI sous Windows, DejaVu/Noto sous Linux) est enregistrée
+  automatiquement. **En production, installer une police libre couvrant
+  l'arabe** (ex. paquet Debian/Ubuntu `fonts-noto-core`) pour un rendu PDF
+  correct ; les exports Excel n'ont pas cette contrainte (texte Unicode brut,
+  rendu par la police du poste qui ouvre le fichier).
+- Réutilisable pour tout nouvel écran : `ExportableListMixin` (une ``ListView``
+  définit `export_titre`, `export_colonnes()`, `export_ligne(objet)`) ou, pour
+  un rapport à plusieurs tableaux, `exporter_multi()` /
+  `exporter_pdf_multi()` / `exporter_excel_multi()`.

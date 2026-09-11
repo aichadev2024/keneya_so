@@ -11,6 +11,10 @@ Pillow==12.3.0              # ImageField (logo établissement, pièces jointes i
 whitenoise==6.12.0          # service des fichiers statiques en production
 gunicorn==26.2.0            # serveur WSGI (déploiement Render/Railway, CDC 8)
 
-# --- Ajoutés dans les phases ultérieures du planning (CDC 11.2) ---
-# weasyprint            # phase 9 : export PDF des rapports (HTML -> PDF)
-# django-import-export  # phase 9 : export Excel des rapports
+# --- Statistiques et exports PDF/Excel (phase 9, CDC 2.2 / 9) ---
+# ReportLab plutôt que WeasyPrint : pur Python, aucune bibliothèque système
+# (Pango/Cairo/GDK-Pixbuf) — voir apps/core/exports.py pour le détail.
+reportlab==5.0.1
+openpyxl==3.1.5
+arabic-reshaper==3.0.1      # liaison des lettres arabes pour les exports PDF
+python-bidi==0.6.11         # inversion visuelle droite-à-gauche (arabe) en PDF

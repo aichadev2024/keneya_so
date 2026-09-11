@@ -938,6 +938,41 @@ TRADUCTIONS = {
     "Mot de passe modifié": "تم تغيير كلمة المرور",
     "Votre mot de passe a été mis à jour.": "تم تحديث كلمة مرورك.",
     "Retour au tableau de bord": "العودة إلى لوحة التحكم",
+
+    # --- المرحلة 9: الإحصائيات والتصدير ---
+    "Bordereau": "الكشف",
+    "Déprogrammation : %(n)d %% — Rotation moyenne : %(r)s min":
+        "إلغاء البرمجة: %(n)d %% — متوسط التبديل: %(r)s د",
+    "Fréquentation": "الإقبال",
+    "Indicateur": "المؤشر",
+    "Valeur": "القيمة",
+    "Patients actifs": "المرضى النشطون",
+    "Nouveaux patients": "المرضى الجدد",
+    "Admissions": "الإدخالات",
+    "Sorties": "الخروجات",
+    "Taux d'occupation des lits": "نسبة إشغال الأسرّة",
+    "Examens demandés": "الفحوصات المطلوبة",
+    "Examens validés": "الفحوصات المؤكَّدة",
+    "Chiffre d'affaires": "رقم الأعمال",
+    "Montant (FCFA)": "المبلغ (فرنك أفريقي)",
+    "Factures émises": "الفواتير الصادرة",
+    "Montant facturé": "المبلغ المفوتر",
+    "Encaissé sur la période": "المحصَّل خلال الفترة",
+    "Total des impayés (en cours)": "إجمالي غير المسدد (جاري)",
+    "Activité par module": "النشاط حسب الوحدة",
+    "Interventions demandées": "العمليات المطلوبة",
+    "Interventions terminées": "العمليات المنتهية",
+    "Médicaments sous le seuil": "الأدوية دون العتبة",
+    "Statistiques générales": "الإحصائيات العامة",
+    "Statistiques": "الإحصائيات",
+    "Service": "القسم",
+    "Prénom": "الاسم الأول",
+    "Exporter": "تصدير",
+    "Export PDF": "تصدير PDF",
+    "Export Excel": "تصدير Excel",
+    "30 derniers jours": "آخر 30 يومًا",
+    "Voir aussi les indicateurs détaillés du bloc opératoire.":
+        "انظر أيضًا المؤشرات التفصيلية لغرفة العمليات.",
 }
 
 # Entrées avec pluriel arabe (6 formes CLDR : zero, one, two, few, many, other).

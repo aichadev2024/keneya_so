@@ -3,10 +3,12 @@
 {% block title %}{% translate "Indicateurs du bloc" %} — Kènèya Sô{% endblock %}
 
 {% block content %}
-<h1 class="h3 mb-1">{% translate "Indicateurs du bloc opératoire" %}</h1>
+<div class="d-flex justify-content-between align-items-center mb-1">
+  <h1 class="h3 mb-0">{% translate "Indicateurs du bloc opératoire" %}</h1>
+  {% include "core/_export_boutons.html" %}
+</div>
 <p class="text-body-secondary">
   {% translate "Période" %} : {{ tb.periode.depuis|date:"d/m/Y" }} – {{ tb.periode.jusqu|date:"d/m/Y" }}.
-  {% translate "L'export PDF/Excel sera ajouté en phase 9." %}
 </p>
 
 <div class="row g-3">

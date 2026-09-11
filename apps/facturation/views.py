@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView
 
+from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 
 from . import services
@@ -30,11 +31,22 @@ def _audit(request, action, objet, description):
                                  description=description)
 
 
-class FactureListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class FactureListView(LoginRequiredMixin, PermissionRequiredMixin,
+                      ExportableListMixin, ListView):
     permission_required = "facturation.view_facture"
     template_name = "facturation/liste.html"
     context_object_name = "factures"
     paginate_by = 25
+    export_titre = _("Factures")
+    export_nom_fichier = "factures"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Patient")), str(_("Émission")),
+                str(_("Total")), str(_("Part patient")), str(_("Reste")), str(_("Statut"))]
+
+    def export_ligne(self, f):
+        return [f.reference, f.patient.nom_complet, f.date_emission, f.montant_total,
+                f.part_patient, f.reste_a_payer, f.get_statut_display()]
 
     def get_queryset(self):
         qs = Facture.objects.select_related("patient", "patient_assure__contrat__assurance")
@@ -82,10 +94,21 @@ class FactureDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView)
         return ctx
 
 
-class ImpayesView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class ImpayesView(LoginRequiredMixin, PermissionRequiredMixin,
+                  ExportableListMixin, ListView):
     permission_required = "facturation.view_facture"
     template_name = "facturation/impayes.html"
     context_object_name = "factures"
+    export_titre = _("Factures impayées échues")
+    export_nom_fichier = "impayes"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Patient")), str(_("Échéance")),
+                str(_("Reste à payer")), str(_("Relances"))]
+
+    def export_ligne(self, f):
+        return [f.reference, f.patient.nom_complet, f.date_echeance, f.reste_a_payer,
+                f.relances.count()]
 
     def get_queryset(self):
         return services.factures_en_retard()

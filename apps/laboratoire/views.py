@@ -10,6 +10,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView, TemplateView
 
 from apps.consultations.models import Consultation
+from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
@@ -30,11 +31,22 @@ def _audit(request, action, objet, description):
                                  description=description)
 
 
-class DemandeListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class DemandeListView(LoginRequiredMixin, PermissionRequiredMixin,
+                      ExportableListMixin, ListView):
     permission_required = "laboratoire.view_demandeexamen"
     template_name = "laboratoire/liste.html"
     context_object_name = "demandes"
     paginate_by = 25
+    export_titre = _("Demandes d'examen")
+    export_nom_fichier = "examens"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Patient")), str(_("Catégorie")),
+                str(_("Priorité")), str(_("Demandée le")), str(_("Statut"))]
+
+    def export_ligne(self, d):
+        return [d.reference, d.patient.nom_complet, d.get_categorie_display(),
+                d.get_priorite_display(), d.date_demande, d.get_statut_display()]
 
     def get_queryset(self):
         qs = DemandeExamen.objects.select_related("patient", "prescripteur")

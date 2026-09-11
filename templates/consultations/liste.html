@@ -3,7 +3,10 @@
 {% block title %}{% translate "Consultations" %} — Kènèya Sô{% endblock %}
 
 {% block content %}
-<h1 class="h3 mb-3">{% translate "Consultations" %}</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Consultations" %}</h1>
+  {% include "core/_export_boutons.html" %}
+</div>
 
 <form method="get" class="row g-2 mb-3">
   <div class="col-sm-7 col-md-5">

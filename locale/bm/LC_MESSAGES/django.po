@@ -21,7 +21,8 @@ msgstr ""
 msgid "Identifiant"
 msgstr ""
 
-#: apps/accounts/forms.py:18 templates/registration/login.html:24
+#: apps/accounts/forms.py:18 apps/core/tests.py:28
+#: templates/registration/login.html:24
 msgid "Mot de passe"
 msgstr ""
 
@@ -299,7 +300,7 @@ msgstr ""
 msgid "référence"
 msgstr ""
 
-#: apps/assurances/models.py:168 templates/assurances/bordereau_detail.html:15
+#: apps/assurances/models.py:168 templates/assurances/bordereau_detail.html:18
 msgid "généré le"
 msgstr ""
 
@@ -335,32 +336,105 @@ msgstr ""
 msgid "lignes de bordereau"
 msgstr ""
 
-#: apps/assurances/views.py:41
+#: apps/assurances/views.py:42
 msgid "Couverture d'assurance enregistrée."
 msgstr ""
 
-#: apps/assurances/views.py:78 apps/bloc_operatoire/views.py:203
-#: apps/bloc_operatoire/views.py:230 apps/bloc_operatoire/views.py:252
-#: apps/bloc_operatoire/views.py:273 apps/bloc_operatoire/views.py:283
-#: apps/bloc_operatoire/views.py:301 apps/bloc_operatoire/views.py:326
-#: apps/bloc_operatoire/views.py:347 apps/consultations/views.py:191
-#: apps/consultations/views.py:212 apps/consultations/views.py:223
-#: apps/consultations/views.py:244 apps/facturation/views.py:107
-#: apps/facturation/views.py:136 apps/facturation/views.py:151
-#: apps/facturation/views.py:171 apps/facturation/views.py:189
-#: apps/facturation/views.py:200 apps/facturation/views.py:224
-#: apps/hospitalisation/views.py:140 apps/hospitalisation/views.py:158
-#: apps/hospitalisation/views.py:182 apps/laboratoire/views.py:154
-#: apps/laboratoire/views.py:185 apps/laboratoire/views.py:200
-#: apps/pharmacie/views.py:162 apps/pharmacie/views.py:216
+#: apps/assurances/views.py:61 templates/assurances/bordereaux.html:3
+#: templates/assurances/bordereaux.html:7
+msgid "Bordereaux d'assurance"
+msgstr ""
+
+#: apps/assurances/views.py:65 apps/bloc_operatoire/views.py:93
+#: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:31
+#: apps/facturation/views.py:44 apps/facturation/views.py:106
+#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:44
+#: templates/assurances/bordereaux.html:37
+#: templates/bloc_operatoire/liste.html:30
+#: templates/consultations/liste.html:29 templates/facturation/impayes.html:13
+#: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
+#: templates/laboratoire/liste.html:37 templates/patients/detail.html:138
+msgid "Référence"
+msgstr ""
+
+#: apps/assurances/views.py:65 apps/facturation/models.py:237
+#: templates/assurances/bordereaux.html:37
+msgid "Assurance"
+msgstr ""
+
+#: apps/assurances/views.py:65 apps/core/views.py:105
+#: templates/assurances/bordereaux.html:38
+#: templates/bloc_operatoire/indicateurs.html:11
+#: templates/core/statistiques.html:11
+msgid "Période"
+msgstr ""
+
+#: apps/assurances/views.py:66 templates/assurances/bordereaux.html:38
+#: templates/facturation/detail.html:38 templates/facturation/tarifs.html:12
+msgid "Montant"
+msgstr ""
+
+#: apps/assurances/views.py:66 apps/bloc_operatoire/views.py:94
+#: apps/consultations/views.py:32 apps/facturation/views.py:45
+#: apps/hospitalisation/views.py:57 apps/laboratoire/views.py:45
+#: templates/assurances/bordereaux.html:39
+#: templates/bloc_operatoire/liste.html:33
+#: templates/consultations/liste.html:31 templates/facturation/liste.html:38
+#: templates/hospitalisation/liste.html:34 templates/laboratoire/liste.html:39
+#: templates/patients/detail.html:140
+#: templates/pharmacie/dispensations.html:21
+msgid "Statut"
+msgstr ""
+
+#: apps/assurances/views.py:93
+msgid "Bordereau"
+msgstr ""
+
+#: apps/assurances/views.py:96 templates/assurances/bordereau_detail.html:23
+msgid "Facture"
+msgstr ""
+
+#: apps/assurances/views.py:96 apps/bloc_operatoire/views.py:93
+#: apps/consultations/views.py:31 apps/facturation/models.py:236
+#: apps/facturation/views.py:44 apps/facturation/views.py:106
+#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:44
+#: templates/assurances/bordereau_detail.html:23
+#: templates/bloc_operatoire/liste.html:30
+#: templates/consultations/liste.html:30 templates/facturation/impayes.html:13
+#: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
+#: templates/laboratoire/liste.html:37
+#: templates/pharmacie/dispensations.html:20
+msgid "Patient"
+msgstr ""
+
+#: apps/assurances/views.py:96 apps/core/views.py:86
+#: templates/assurances/bordereau_detail.html:24
+#: templates/core/statistiques.html:41 templates/facturation/detail.html:57
+msgid "Part assurance"
+msgstr ""
+
+#: apps/assurances/views.py:110 apps/bloc_operatoire/views.py:251
+#: apps/bloc_operatoire/views.py:278 apps/bloc_operatoire/views.py:300
+#: apps/bloc_operatoire/views.py:321 apps/bloc_operatoire/views.py:331
+#: apps/bloc_operatoire/views.py:349 apps/bloc_operatoire/views.py:374
+#: apps/bloc_operatoire/views.py:395 apps/consultations/views.py:203
+#: apps/consultations/views.py:224 apps/consultations/views.py:235
+#: apps/consultations/views.py:256 apps/facturation/views.py:130
+#: apps/facturation/views.py:159 apps/facturation/views.py:174
+#: apps/facturation/views.py:194 apps/facturation/views.py:212
+#: apps/facturation/views.py:223 apps/facturation/views.py:247
+#: apps/hospitalisation/views.py:153 apps/hospitalisation/views.py:171
+#: apps/hospitalisation/views.py:195 apps/laboratoire/views.py:166
+#: apps/laboratoire/views.py:197 apps/laboratoire/views.py:212
+#: apps/pharmacie/views.py:174 apps/pharmacie/views.py:240
 msgid "Action non autorisée."
 msgstr ""
 
-#: apps/assurances/views.py:83
+#: apps/assurances/views.py:115
 msgid "Période invalide."
 msgstr ""
 
-#: apps/assurances/views.py:97
+#: apps/assurances/views.py:129
 msgid "Bordereau %(r)s généré (%(n)d factures, %(m)s FCFA)."
 msgstr ""
 
@@ -830,64 +904,160 @@ msgstr ""
 msgid "indisponibilités de salle"
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:134
+#: apps/bloc_operatoire/views.py:89 templates/bloc_operatoire/liste.html:7
+msgid "Interventions chirurgicales"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:93 apps/bloc_operatoire/views.py:208
+#: templates/bloc_operatoire/indicateurs.html:53
+#: templates/bloc_operatoire/liste.html:31
+msgid "Acte"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:93 apps/bloc_operatoire/views.py:204
+#: templates/bloc_operatoire/indicateurs.html:19
+#: templates/bloc_operatoire/liste.html:31
+msgid "Salle"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:94 templates/bloc_operatoire/liste.html:32
+msgid "Début prévu"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:94 templates/bloc_operatoire/liste.html:32
+msgid "Urgence"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:147
 msgid "Demande d'intervention enregistrée."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:206
+#: apps/bloc_operatoire/views.py:203
+#: templates/bloc_operatoire/indicateurs.html:17
+msgid "Taux d'occupation des salles"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:204
+#: templates/bloc_operatoire/indicateurs.html:19
+msgid "Interv."
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:204
+#: templates/bloc_operatoire/indicateurs.html:20
+msgid "Heures"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:204
+#: templates/bloc_operatoire/indicateurs.html:20
+msgid "Taux"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:207
+#: templates/bloc_operatoire/indicateurs.html:51
+msgid "Durée moyenne par type d'acte"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:208 apps/bloc_operatoire/views.py:212
+#: templates/bloc_operatoire/indicateurs.html:53
+#: templates/bloc_operatoire/indicateurs.html:66
+msgid "N"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:208 apps/bloc_operatoire/views.py:212
+#: templates/bloc_operatoire/indicateurs.html:53
+#: templates/bloc_operatoire/indicateurs.html:66
+msgid "Durée moy."
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:211
+#: templates/bloc_operatoire/indicateurs.html:64
+msgid "Durée moyenne par praticien"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:212 apps/consultations/views.py:32
+#: templates/bloc_operatoire/indicateurs.html:66
+#: templates/consultations/liste.html:31 templates/patients/detail.html:139
+msgid "Praticien"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:215
+#: templates/bloc_operatoire/indicateurs.html:34
+msgid "Déprogrammation / annulation"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:32
+#: apps/pharmacie/views.py:218 templates/bloc_operatoire/detail.html:40
+#: templates/consultations/detail.html:44
+#: templates/consultations/liste.html:30
+#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:139
+#: templates/pharmacie/medicament_detail.html:58
+#: templates/pharmacie/mouvements.html:25
+msgid "Motif"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:224
+#: templates/bloc_operatoire/indicateurs.html:7
+msgid "Indicateurs du bloc opératoire"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:226
+msgid "Déprogrammation : %(n)d %% — Rotation moyenne : %(r)s min"
+msgstr ""
+
+#: apps/bloc_operatoire/views.py:254
 msgid "Formulaire de planification invalide."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:222
+#: apps/bloc_operatoire/views.py:270
 msgid "Intervention planifiée."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:233
+#: apps/bloc_operatoire/views.py:281
 msgid "Renseignez le protocole d'anesthésie."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:244
+#: apps/bloc_operatoire/views.py:292
 msgid "Faisabilité anesthésique validée."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:255
+#: apps/bloc_operatoire/views.py:303
 msgid "Sélection invalide."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:265
+#: apps/bloc_operatoire/views.py:313
 msgid "Membre ajouté à l'équipe (notification envoyée)."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:275
+#: apps/bloc_operatoire/views.py:323
 msgid "Membre retiré."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:293
+#: apps/bloc_operatoire/views.py:341
 msgid "Étape de checklist validée."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:313
+#: apps/bloc_operatoire/views.py:361
 msgid "Étape inconnue."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:318
+#: apps/bloc_operatoire/views.py:366
 msgid "Étape enregistrée."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:329 apps/facturation/views.py:154
-#: apps/laboratoire/views.py:203
+#: apps/bloc_operatoire/views.py:377 apps/facturation/views.py:177
+#: apps/laboratoire/views.py:215
 msgid "Le motif est obligatoire."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:339
+#: apps/bloc_operatoire/views.py:387
 msgid "Intervention mise à jour."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:351
+#: apps/bloc_operatoire/views.py:399
 msgid "La technique opératoire est obligatoire."
 msgstr ""
 
-#: apps/bloc_operatoire/views.py:362
+#: apps/bloc_operatoire/views.py:410
 msgid "Compte-rendu opératoire enregistré."
 msgstr ""
 
@@ -1067,47 +1237,62 @@ msgstr ""
 msgid "lignes d'ordonnance"
 msgstr ""
 
-#: apps/consultations/views.py:69
+#: apps/consultations/views.py:27 apps/core/views.py:76 apps/core/views.py:124
+#: templates/base.html:26 templates/consultations/detail.html:7
+#: templates/consultations/liste.html:3 templates/consultations/liste.html:7
+#: templates/core/statistiques.html:23
+msgid "Consultations"
+msgstr ""
+
+#: apps/consultations/views.py:31 apps/pharmacie/views.py:217
+#: templates/consultations/liste.html:29 templates/patients/detail.html:138
+#: templates/pharmacie/dispensation_detail.html:79
+#: templates/pharmacie/medicament_detail.html:57
+#: templates/pharmacie/mouvements.html:23
+msgid "Date"
+msgstr ""
+
+#: apps/consultations/views.py:81
 msgid "Consultation créée."
 msgstr ""
 
-#: apps/consultations/views.py:89
+#: apps/consultations/views.py:101
 msgid "Consultation mise à jour."
 msgstr ""
 
-#: apps/consultations/views.py:129
+#: apps/consultations/views.py:141
 msgid "Constantes enregistrées."
 msgstr ""
 
-#: apps/consultations/views.py:158
+#: apps/consultations/views.py:170
 msgid "Ordonnance créée. Ajoutez les médicaments."
 msgstr ""
 
-#: apps/consultations/views.py:194
+#: apps/consultations/views.py:206
 msgid "Cette ordonnance n'est plus modifiable."
 msgstr ""
 
-#: apps/consultations/views.py:201
+#: apps/consultations/views.py:213
 msgid "Médicament ajouté à l'ordonnance."
 msgstr ""
 
-#: apps/consultations/views.py:203
+#: apps/consultations/views.py:215
 msgid "Formulaire invalide : %(err)s"
 msgstr ""
 
-#: apps/consultations/views.py:215 apps/facturation/views.py:192
+#: apps/consultations/views.py:227 apps/facturation/views.py:215
 msgid "Ligne retirée."
 msgstr ""
 
-#: apps/consultations/views.py:226
+#: apps/consultations/views.py:238
 msgid "Ajoutez au moins un médicament avant de transmettre."
 msgstr ""
 
-#: apps/consultations/views.py:236
+#: apps/consultations/views.py:248
 msgid "Ordonnance transmise à la pharmacie."
 msgstr ""
 
-#: apps/consultations/views.py:249
+#: apps/consultations/views.py:261
 msgid "Consultation clôturée."
 msgstr ""
 
@@ -1177,7 +1362,7 @@ msgstr ""
 msgid "Connexion"
 msgstr ""
 
-#: apps/core/models.py:90 templates/base.html:72
+#: apps/core/models.py:90 templates/base.html:75
 msgid "Déconnexion"
 msgstr ""
 
@@ -1245,51 +1430,146 @@ msgstr ""
 msgid "notifications"
 msgstr ""
 
-#: apps/core/views.py:61 templates/base.html:23
-#: templates/patients/detail.html:8 templates/patients/liste.html:3
-#: templates/patients/liste.html:7
-msgid "Patients"
+#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:21
+#: templates/core/dashboard.html:3
+msgid "Tableau de bord"
 msgstr ""
 
-#: apps/core/views.py:63 templates/base.html:26
-#: templates/consultations/detail.html:7 templates/consultations/liste.html:3
-#: templates/consultations/liste.html:6
-msgid "Consultations"
+#: apps/core/views.py:73 templates/core/statistiques.html:18
+msgid "Fréquentation"
 msgstr ""
 
-#: apps/core/views.py:65 apps/facturation/models.py:40 templates/base.html:29
-msgid "Hospitalisation"
+#: apps/core/views.py:73 apps/core/views.py:83 apps/core/views.py:91
+msgid "Indicateur"
 msgstr ""
 
-#: apps/core/views.py:67 templates/base.html:32
-#: templates/bloc_operatoire/detail.html:7
-msgid "Bloc opératoire"
+#: apps/core/views.py:73 apps/core/views.py:91
+msgid "Valeur"
 msgstr ""
 
-#: apps/core/views.py:69 templates/base.html:35
-#: templates/laboratoire/detail.html:7 templates/laboratoire/liste.html:3
-msgid "Analyses & imagerie"
+#: apps/core/views.py:74 templates/core/statistiques.html:21
+msgid "Patients actifs"
 msgstr ""
 
-#: apps/core/views.py:71 templates/base.html:38
-msgid "Facturation"
+#: apps/core/views.py:75 templates/core/statistiques.html:22
+msgid "Nouveaux patients"
 msgstr ""
 
-#: apps/core/views.py:73
-msgid "Bordereaux assurance"
+#: apps/core/views.py:77 templates/core/statistiques.html:24
+msgid "Admissions"
 msgstr ""
 
-#: apps/core/views.py:75 templates/base.html:41
+#: apps/core/views.py:78 templates/core/statistiques.html:25
+msgid "Sorties"
+msgstr ""
+
+#: apps/core/views.py:79 templates/core/statistiques.html:26
+msgid "Taux d'occupation des lits"
+msgstr ""
+
+#: apps/core/views.py:80 templates/core/statistiques.html:27
+msgid "Examens demandés"
+msgstr ""
+
+#: apps/core/views.py:81 templates/core/statistiques.html:28
+msgid "Examens validés"
+msgstr ""
+
+#: apps/core/views.py:83 templates/core/statistiques.html:36
+msgid "Chiffre d'affaires"
+msgstr ""
+
+#: apps/core/views.py:83
+msgid "Montant (FCFA)"
+msgstr ""
+
+#: apps/core/views.py:84 templates/core/statistiques.html:39
+msgid "Factures émises"
+msgstr ""
+
+#: apps/core/views.py:85 templates/core/statistiques.html:40
+msgid "Montant facturé"
+msgstr ""
+
+#: apps/core/views.py:87 apps/facturation/views.py:45
+#: templates/core/statistiques.html:42 templates/facturation/detail.html:58
+#: templates/facturation/liste.html:37
+msgid "Part patient"
+msgstr ""
+
+#: apps/core/views.py:88 templates/core/statistiques.html:43
+msgid "Encaissé sur la période"
+msgstr ""
+
+#: apps/core/views.py:89 templates/core/statistiques.html:44
+msgid "Total des impayés (en cours)"
+msgstr ""
+
+#: apps/core/views.py:91 templates/core/statistiques.html:52
+msgid "Activité par module"
+msgstr ""
+
+#: apps/core/views.py:92 templates/core/statistiques.html:55
+msgid "Interventions demandées"
+msgstr ""
+
+#: apps/core/views.py:93 templates/core/statistiques.html:56
+msgid "Interventions terminées"
+msgstr ""
+
+#: apps/core/views.py:94 apps/core/views.py:136 templates/base.html:41
+#: templates/core/statistiques.html:57
 #: templates/pharmacie/dispensations.html:3
 #: templates/pharmacie/dispensation_detail.html:7
 msgid "Dispensations"
 msgstr ""
 
-#: apps/core/views.py:77
+#: apps/core/views.py:95 templates/core/statistiques.html:58
+msgid "Médicaments sous le seuil"
+msgstr ""
+
+#: apps/core/views.py:103 templates/core/statistiques.html:3
+#: templates/core/statistiques.html:7
+msgid "Statistiques générales"
+msgstr ""
+
+#: apps/core/views.py:122 apps/patients/views.py:45 templates/base.html:23
+#: templates/patients/detail.html:8 templates/patients/liste.html:3
+#: templates/patients/liste.html:7
+msgid "Patients"
+msgstr ""
+
+#: apps/core/views.py:126 apps/facturation/models.py:40 templates/base.html:29
+msgid "Hospitalisation"
+msgstr ""
+
+#: apps/core/views.py:128 templates/base.html:32
+#: templates/bloc_operatoire/detail.html:7
+msgid "Bloc opératoire"
+msgstr ""
+
+#: apps/core/views.py:130 templates/base.html:35
+#: templates/laboratoire/detail.html:7 templates/laboratoire/liste.html:3
+msgid "Analyses & imagerie"
+msgstr ""
+
+#: apps/core/views.py:132 templates/base.html:38
+msgid "Facturation"
+msgstr ""
+
+#: apps/core/views.py:134
+msgid "Bordereaux assurance"
+msgstr ""
+
+#: apps/core/views.py:138
 msgid "Pharmacie — stock"
 msgstr ""
 
-#: apps/core/views.py:79 templates/base.html:47
+#: apps/core/views.py:140 templates/base.html:47
+msgid "Statistiques"
+msgstr ""
+
+#: apps/core/views.py:142 templates/base.html:50
 msgid "Administration"
 msgstr ""
 
@@ -1337,13 +1617,14 @@ msgstr ""
 msgid "Acte de bloc opératoire"
 msgstr ""
 
-#: apps/facturation/models.py:33
+#: apps/facturation/models.py:33 apps/pharmacie/views.py:30
+#: apps/pharmacie/views.py:217
 #: templates/consultations/ordonnance_detail.html:38
 #: templates/pharmacie/dispensation_detail.html:32
 #: templates/pharmacie/dispensation_detail.html:79
-#: templates/pharmacie/medicaments.html:38
+#: templates/pharmacie/medicaments.html:39
 #: templates/pharmacie/medicament_formulaire.html:3
-#: templates/pharmacie/mouvements.html:20
+#: templates/pharmacie/mouvements.html:23
 msgid "Médicament"
 msgstr ""
 
@@ -1474,20 +1755,6 @@ msgstr ""
 msgid "Carte bancaire"
 msgstr ""
 
-#: apps/facturation/models.py:236
-#: templates/assurances/bordereau_detail.html:20
-#: templates/bloc_operatoire/liste.html:27
-#: templates/consultations/liste.html:27 templates/facturation/impayes.html:10
-#: templates/facturation/liste.html:34 templates/hospitalisation/liste.html:29
-#: templates/laboratoire/liste.html:34
-#: templates/pharmacie/dispensations.html:20
-msgid "Patient"
-msgstr ""
-
-#: apps/facturation/models.py:237 templates/assurances/bordereaux.html:34
-msgid "Assurance"
-msgstr ""
-
 #: apps/facturation/models.py:248
 msgid "remboursement"
 msgstr ""
@@ -1504,8 +1771,9 @@ msgstr ""
 msgid "paiements"
 msgstr ""
 
-#: apps/facturation/models.py:278 templates/patients/detail.html:60
-#: templates/patients/detail.html:78 templates/patients/liste.html:39
+#: apps/facturation/models.py:278 apps/patients/views.py:50
+#: templates/patients/detail.html:60 templates/patients/detail.html:78
+#: templates/patients/liste.html:42
 msgid "Téléphone"
 msgstr ""
 
@@ -1537,44 +1805,80 @@ msgstr ""
 msgid "relances"
 msgstr ""
 
-#: apps/facturation/views.py:111
+#: apps/facturation/views.py:40 templates/facturation/detail.html:7
+#: templates/facturation/liste.html:3 templates/facturation/liste.html:7
+msgid "Factures"
+msgstr ""
+
+#: apps/facturation/views.py:44 templates/facturation/liste.html:36
+msgid "Émission"
+msgstr ""
+
+#: apps/facturation/views.py:45 templates/assurances/bordereau_detail.html:34
+#: templates/facturation/detail.html:56 templates/facturation/liste.html:36
+msgid "Total"
+msgstr ""
+
+#: apps/facturation/views.py:45 templates/facturation/liste.html:38
+msgid "Reste"
+msgstr ""
+
+#: apps/facturation/views.py:102 templates/facturation/impayes.html:7
+msgid "Factures impayées échues"
+msgstr ""
+
+#: apps/facturation/views.py:106 templates/facturation/impayes.html:14
+msgid "Échéance"
+msgstr ""
+
+#: apps/facturation/views.py:107 templates/facturation/detail.html:59
+#: templates/facturation/impayes.html:14
+msgid "Reste à payer"
+msgstr ""
+
+#: apps/facturation/views.py:107 templates/facturation/detail.html:123
+#: templates/facturation/impayes.html:15
+msgid "Relances"
+msgstr ""
+
+#: apps/facturation/views.py:134
 msgid "Type d'acte inconnu."
 msgstr ""
 
-#: apps/facturation/views.py:123
+#: apps/facturation/views.py:146
 msgid "Cet acte est déjà facturé."
 msgstr ""
 
-#: apps/facturation/views.py:127
+#: apps/facturation/views.py:150
 msgid "Facture %(r)s générée (brouillon)."
 msgstr ""
 
-#: apps/facturation/views.py:143
+#: apps/facturation/views.py:166
 msgid "Facture émise."
 msgstr ""
 
-#: apps/facturation/views.py:162
+#: apps/facturation/views.py:185
 msgid "Facture annulée."
 msgstr ""
 
-#: apps/facturation/views.py:178
+#: apps/facturation/views.py:201
 msgid "Ligne ajoutée."
 msgstr ""
 
-#: apps/facturation/views.py:180 apps/facturation/views.py:233
-#: apps/hospitalisation/views.py:150
+#: apps/facturation/views.py:203 apps/facturation/views.py:256
+#: apps/hospitalisation/views.py:163
 msgid "Formulaire invalide."
 msgstr ""
 
-#: apps/facturation/views.py:203
+#: apps/facturation/views.py:226
 msgid "Formulaire de paiement invalide."
 msgstr ""
 
-#: apps/facturation/views.py:216
+#: apps/facturation/views.py:239
 msgid "Paiement enregistré."
 msgstr ""
 
-#: apps/facturation/views.py:231
+#: apps/facturation/views.py:254
 msgid "Relance enregistrée."
 msgstr ""
 
@@ -1594,7 +1898,7 @@ msgstr ""
 #: apps/hospitalisation/forms.py:24 apps/hospitalisation/models.py:110
 #: apps/hospitalisation/models.py:119 apps/hospitalisation/models.py:160
 #: templates/hospitalisation/detail.html:18
-#: templates/hospitalisation/liste.html:38 templates/patients/detail.html:48
+#: templates/hospitalisation/liste.html:41 templates/patients/detail.html:48
 msgid "lit"
 msgstr ""
 
@@ -1772,31 +2076,55 @@ msgstr ""
 msgid "notes de suivi"
 msgstr ""
 
-#: apps/hospitalisation/views.py:111
+#: apps/hospitalisation/views.py:52 templates/hospitalisation/liste.html:7
+msgid "Séjours hospitaliers"
+msgstr ""
+
+#: apps/hospitalisation/views.py:56
+msgid "Service"
+msgstr ""
+
+#: apps/hospitalisation/views.py:57
+#: templates/hospitalisation/occupation.html:28
+msgid "Lit"
+msgstr ""
+
+#: apps/hospitalisation/views.py:57 templates/hospitalisation/admission.html:3
+#: templates/hospitalisation/liste.html:33
+msgid "Admission"
+msgstr ""
+
+#: apps/hospitalisation/views.py:57
+#: templates/consultations/ordonnance_detail.html:39
+#: templates/hospitalisation/liste.html:34
+msgid "Durée"
+msgstr ""
+
+#: apps/hospitalisation/views.py:124
 msgid "Ce patient est déjà hospitalisé."
 msgstr ""
 
-#: apps/hospitalisation/views.py:132
+#: apps/hospitalisation/views.py:145
 msgid "Patient admis. Séjour %(r)s."
 msgstr ""
 
-#: apps/hospitalisation/views.py:148
+#: apps/hospitalisation/views.py:161
 msgid "Note de suivi ajoutée."
 msgstr ""
 
-#: apps/hospitalisation/views.py:162
+#: apps/hospitalisation/views.py:175
 msgid "Sélection de lit invalide."
 msgstr ""
 
-#: apps/hospitalisation/views.py:174
+#: apps/hospitalisation/views.py:187
 msgid "Patient transféré."
 msgstr ""
 
-#: apps/hospitalisation/views.py:186
+#: apps/hospitalisation/views.py:199
 msgid "Renseignez le mode de sortie et le compte-rendu."
 msgstr ""
 
-#: apps/hospitalisation/views.py:202
+#: apps/hospitalisation/views.py:215
 msgid "Sortie enregistrée."
 msgstr ""
 
@@ -1963,23 +2291,40 @@ msgstr ""
 msgid "CR imagerie"
 msgstr ""
 
-#: apps/laboratoire/views.py:105
+#: apps/laboratoire/views.py:40 templates/laboratoire/liste.html:7
+msgid "Demandes d'examen"
+msgstr ""
+
+#: apps/laboratoire/views.py:44 templates/facturation/tarifs.html:11
+#: templates/laboratoire/liste.html:38
+msgid "Catégorie"
+msgstr ""
+
+#: apps/laboratoire/views.py:45 templates/laboratoire/liste.html:38
+msgid "Priorité"
+msgstr ""
+
+#: apps/laboratoire/views.py:45 templates/laboratoire/liste.html:39
+msgid "Demandée le"
+msgstr ""
+
+#: apps/laboratoire/views.py:117
 msgid "Demande d'examen enregistrée."
 msgstr ""
 
-#: apps/laboratoire/views.py:160
+#: apps/laboratoire/views.py:172
 msgid "Formulaire de résultat invalide."
 msgstr ""
 
-#: apps/laboratoire/views.py:177
+#: apps/laboratoire/views.py:189
 msgid "Résultat enregistré."
 msgstr ""
 
-#: apps/laboratoire/views.py:192
+#: apps/laboratoire/views.py:204
 msgid "Résultats validés. Le prescripteur a été notifié."
 msgstr ""
 
-#: apps/laboratoire/views.py:209
+#: apps/laboratoire/views.py:221
 msgid "Demande annulée."
 msgstr ""
 
@@ -2199,23 +2544,49 @@ msgstr ""
 msgid "allergies"
 msgstr ""
 
-#: apps/patients/views.py:73
+#: apps/patients/views.py:49 templates/patients/liste.html:38
+msgid "N° dossier"
+msgstr ""
+
+#: apps/patients/views.py:49 templates/patients/detail.html:76
+#: templates/patients/liste.html:39
+msgid "Nom"
+msgstr ""
+
+#: apps/patients/views.py:49
+msgid "Prénom"
+msgstr ""
+
+#: apps/patients/views.py:49 templates/patients/liste.html:40
+msgid "Sexe"
+msgstr ""
+
+#: apps/patients/views.py:50 templates/patients/liste.html:41
+msgid "Âge"
+msgstr ""
+
+#: apps/patients/views.py:50 templates/patients/detail.html:62
+#: templates/patients/liste.html:43
+msgid "Ville"
+msgstr ""
+
+#: apps/patients/views.py:85
 msgid "Consultation de la fiche patient"
 msgstr ""
 
-#: apps/patients/views.py:84
+#: apps/patients/views.py:96
 msgid "Patient créé. Numéro de dossier : %(numero_dossier)s"
 msgstr ""
 
-#: apps/patients/views.py:96
+#: apps/patients/views.py:108
 msgid "Fiche patient mise à jour."
 msgstr ""
 
-#: apps/patients/views.py:107
+#: apps/patients/views.py:119
 msgid "Dossier médical mis à jour."
 msgstr ""
 
-#: apps/patients/views.py:121
+#: apps/patients/views.py:133
 msgid "Modification du dossier médical"
 msgstr ""
 
@@ -2459,31 +2830,74 @@ msgstr ""
 msgid "lignes de dispensation"
 msgstr ""
 
-#: apps/pharmacie/views.py:53
-msgid "Médicament ajouté au catalogue."
+#: apps/pharmacie/views.py:26 templates/pharmacie/medicaments.html:3
+#: templates/pharmacie/medicaments.html:7
+msgid "Catalogue et stock"
+msgstr ""
+
+#: apps/pharmacie/views.py:30 templates/pharmacie/medicaments.html:39
+msgid "Forme"
+msgstr ""
+
+#: apps/pharmacie/views.py:30 templates/pharmacie/medicaments.html:40
+msgid "Stock utilisable"
+msgstr ""
+
+#: apps/pharmacie/views.py:31 templates/pharmacie/medicaments.html:41
+msgid "Seuil"
+msgstr ""
+
+#: apps/pharmacie/views.py:31 templates/pharmacie/medicaments.html:51
+#: templates/pharmacie/medicament_detail.html:18
+msgid "Sous le seuil"
+msgstr ""
+
+#: apps/pharmacie/views.py:31 templates/pharmacie/medicaments.html:52
+msgid "Lots périmés"
 msgstr ""
 
 #: apps/pharmacie/views.py:65
+msgid "Médicament ajouté au catalogue."
+msgstr ""
+
+#: apps/pharmacie/views.py:77
 msgid "Médicament mis à jour."
 msgstr ""
 
-#: apps/pharmacie/views.py:108
+#: apps/pharmacie/views.py:120
 msgid "Entrée de stock enregistrée."
 msgstr ""
 
-#: apps/pharmacie/views.py:172
+#: apps/pharmacie/views.py:184
 msgid "Aucune quantité à délivrer saisie."
 msgstr ""
 
-#: apps/pharmacie/views.py:191
+#: apps/pharmacie/views.py:203
 msgid "Délivrance enregistrée."
 msgstr ""
 
-#: apps/pharmacie/views.py:220
+#: apps/pharmacie/views.py:213 templates/pharmacie/mouvements.html:3
+msgid "Mouvements de stock"
+msgstr ""
+
+#: apps/pharmacie/views.py:217 templates/pharmacie/medicament_detail.html:57
+#: templates/pharmacie/mouvements.html:24
+msgid "Type"
+msgstr ""
+
+#: apps/pharmacie/views.py:218 templates/pharmacie/mouvements.html:24
+msgid "Quantité"
+msgstr ""
+
+#: apps/pharmacie/views.py:218 templates/pharmacie/mouvements.html:25
+msgid "Opérateur"
+msgstr ""
+
+#: apps/pharmacie/views.py:244
 msgid "%(n)d unité(s) périmée(s) retirée(s) du stock."
 msgstr ""
 
-#: apps/pharmacie/views.py:223
+#: apps/pharmacie/views.py:247
 msgid "Aucun lot périmé à retirer."
 msgstr ""
 
@@ -2520,73 +2934,27 @@ msgstr ""
 msgid "Bordereaux"
 msgstr ""
 
-#: templates/assurances/bordereau_detail.html:20
-msgid "Facture"
-msgstr ""
-
-#: templates/assurances/bordereau_detail.html:21
-#: templates/facturation/detail.html:57
-msgid "Part assurance"
-msgstr ""
-
-#: templates/assurances/bordereau_detail.html:31
-#: templates/facturation/detail.html:56 templates/facturation/liste.html:35
-msgid "Total"
-msgstr ""
-
-#: templates/assurances/bordereaux.html:3
-#: templates/assurances/bordereaux.html:6
-msgid "Bordereaux d'assurance"
-msgstr ""
-
-#: templates/assurances/bordereaux.html:10
+#: templates/assurances/bordereaux.html:13
 msgid "Générer un bordereau"
 msgstr ""
 
-#: templates/assurances/bordereaux.html:27
+#: templates/assurances/bordereaux.html:30
 msgid ""
 "Regroupe les parts assurance des factures émises sur la période, non déjà "
 "portées à un bordereau."
 msgstr ""
 
-#: templates/assurances/bordereaux.html:34
-#: templates/bloc_operatoire/liste.html:27
-#: templates/consultations/liste.html:26 templates/facturation/impayes.html:10
-#: templates/facturation/liste.html:34 templates/hospitalisation/liste.html:29
-#: templates/laboratoire/liste.html:34 templates/patients/detail.html:138
-msgid "Référence"
-msgstr ""
-
-#: templates/assurances/bordereaux.html:35
-#: templates/bloc_operatoire/indicateurs.html:8
-msgid "Période"
-msgstr ""
-
-#: templates/assurances/bordereaux.html:35
-#: templates/facturation/detail.html:38 templates/facturation/tarifs.html:12
-msgid "Montant"
-msgstr ""
-
-#: templates/assurances/bordereaux.html:36
-#: templates/bloc_operatoire/liste.html:30
-#: templates/consultations/liste.html:28 templates/facturation/liste.html:37
-#: templates/hospitalisation/liste.html:31 templates/laboratoire/liste.html:36
-#: templates/patients/detail.html:140
-#: templates/pharmacie/dispensations.html:21
-msgid "Statut"
-msgstr ""
-
-#: templates/assurances/bordereaux.html:45
-#: templates/bloc_operatoire/liste.html:42
-#: templates/consultations/liste.html:39 templates/core/notifications.html:24
-#: templates/facturation/impayes.html:22 templates/facturation/liste.html:49
-#: templates/hospitalisation/liste.html:42 templates/laboratoire/liste.html:47
-#: templates/patients/detail.html:150 templates/patients/liste.html:55
-#: templates/pharmacie/medicaments.html:54
+#: templates/assurances/bordereaux.html:48
+#: templates/bloc_operatoire/liste.html:45
+#: templates/consultations/liste.html:42 templates/core/notifications.html:24
+#: templates/facturation/impayes.html:25 templates/facturation/liste.html:50
+#: templates/hospitalisation/liste.html:45 templates/laboratoire/liste.html:50
+#: templates/patients/detail.html:150 templates/patients/liste.html:58
+#: templates/pharmacie/medicaments.html:55
 msgid "Ouvrir"
 msgstr ""
 
-#: templates/assurances/bordereaux.html:48
+#: templates/assurances/bordereaux.html:51
 msgid "Aucun bordereau."
 msgstr ""
 
@@ -2648,24 +3016,20 @@ msgstr ""
 msgid "Annuler"
 msgstr ""
 
-#: templates/base.html:21 templates/core/dashboard.html:3
-msgid "Tableau de bord"
-msgstr ""
-
 #: templates/base.html:44 templates/pharmacie/dispensation_detail.html:35
 msgid "Stock"
 msgstr ""
 
-#: templates/base.html:51 templates/core/notifications.html:3
+#: templates/base.html:54 templates/core/notifications.html:3
 #: templates/core/notifications.html:7
 msgid "Notifications"
 msgstr ""
 
-#: templates/base.html:61
+#: templates/base.html:64
 msgid "Changer de langue"
 msgstr ""
 
-#: templates/base.html:93 templates/registration/login.html:11
+#: templates/base.html:96 templates/registration/login.html:11
 msgid "Gestion hospitalière"
 msgstr ""
 
@@ -2689,15 +3053,6 @@ msgstr ""
 #: templates/bloc_operatoire/detail.html:32
 #: templates/consultations/ordonnance_detail.html:29
 msgid "Alerte"
-msgstr ""
-
-#: templates/bloc_operatoire/detail.html:40
-#: templates/consultations/detail.html:44
-#: templates/consultations/liste.html:27
-#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:139
-#: templates/pharmacie/medicament_detail.html:58
-#: templates/pharmacie/mouvements.html:22
-msgid "Motif"
 msgstr ""
 
 #: templates/bloc_operatoire/detail.html:41
@@ -2840,116 +3195,43 @@ msgstr ""
 msgid "Indicateurs du bloc"
 msgstr ""
 
-#: templates/bloc_operatoire/indicateurs.html:6
-msgid "Indicateurs du bloc opératoire"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:9
-msgid "L'export PDF/Excel sera ajouté en phase 9."
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:15
-msgid "Taux d'occupation des salles"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:17
-#: templates/bloc_operatoire/liste.html:28
-msgid "Salle"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:17
-msgid "Interv."
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:18
-msgid "Heures"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:18
-msgid "Taux"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:32
-msgid "Déprogrammation / annulation"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:37
+#: templates/bloc_operatoire/indicateurs.html:39
 msgid "Aucun motif enregistré."
 msgstr ""
 
-#: templates/bloc_operatoire/indicateurs.html:40
+#: templates/bloc_operatoire/indicateurs.html:42
 msgid "Temps de rotation moyen entre deux interventions"
 msgstr ""
 
-#: templates/bloc_operatoire/indicateurs.html:42
+#: templates/bloc_operatoire/indicateurs.html:44
 msgid "mesures"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:49
-msgid "Durée moyenne par type d'acte"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:51
-#: templates/bloc_operatoire/liste.html:28
-msgid "Acte"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:51
-#: templates/bloc_operatoire/indicateurs.html:64
-msgid "N"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:51
-#: templates/bloc_operatoire/indicateurs.html:64
-msgid "Durée moy."
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:62
-msgid "Durée moyenne par praticien"
-msgstr ""
-
-#: templates/bloc_operatoire/indicateurs.html:64
-#: templates/consultations/liste.html:28 templates/patients/detail.html:139
-msgid "Praticien"
 msgstr ""
 
 #: templates/bloc_operatoire/liste.html:3
 msgid "Interventions"
 msgstr ""
 
-#: templates/bloc_operatoire/liste.html:7
-msgid "Interventions chirurgicales"
-msgstr ""
-
-#: templates/bloc_operatoire/liste.html:8
+#: templates/bloc_operatoire/liste.html:10
 msgid "Planning"
 msgstr ""
 
-#: templates/bloc_operatoire/liste.html:13
+#: templates/bloc_operatoire/liste.html:16
 msgid "Référence, patient, acte…"
 msgstr ""
 
-#: templates/bloc_operatoire/liste.html:17 templates/facturation/liste.html:24
-#: templates/hospitalisation/liste.html:17
+#: templates/bloc_operatoire/liste.html:20 templates/facturation/liste.html:25
+#: templates/hospitalisation/liste.html:20
 msgid "Tous les statuts"
 msgstr ""
 
-#: templates/bloc_operatoire/liste.html:21
-#: templates/consultations/liste.html:13 templates/facturation/liste.html:28
-#: templates/hospitalisation/liste.html:23 templates/laboratoire/liste.html:28
-#: templates/patients/liste.html:19 templates/pharmacie/medicaments.html:21
+#: templates/bloc_operatoire/liste.html:24
+#: templates/consultations/liste.html:16 templates/facturation/liste.html:29
+#: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:31
+#: templates/patients/liste.html:22 templates/pharmacie/medicaments.html:22
 msgid "Rechercher"
 msgstr ""
 
-#: templates/bloc_operatoire/liste.html:29
-msgid "Début prévu"
-msgstr ""
-
-#: templates/bloc_operatoire/liste.html:29
-msgid "Urgence"
-msgstr ""
-
-#: templates/bloc_operatoire/liste.html:45
+#: templates/bloc_operatoire/liste.html:48
 msgid "Aucune intervention."
 msgstr ""
 
@@ -2966,6 +3248,7 @@ msgid "Toutes les interventions"
 msgstr ""
 
 #: templates/bloc_operatoire/planning.html:10
+#: templates/core/statistiques.html:67
 msgid "Indicateurs"
 msgstr ""
 
@@ -3090,22 +3373,15 @@ msgstr ""
 msgid "Nouvelle consultation"
 msgstr ""
 
-#: templates/consultations/liste.html:11
+#: templates/consultations/liste.html:14
 msgid "Référence, patient, motif…"
 msgstr ""
 
-#: templates/consultations/liste.html:18
+#: templates/consultations/liste.html:21
 msgid "Mes consultations"
 msgstr ""
 
-#: templates/consultations/liste.html:26 templates/patients/detail.html:138
-#: templates/pharmacie/dispensation_detail.html:79
-#: templates/pharmacie/medicament_detail.html:57
-#: templates/pharmacie/mouvements.html:20
-msgid "Date"
-msgstr ""
-
-#: templates/consultations/liste.html:42
+#: templates/consultations/liste.html:45
 msgid "Aucune consultation."
 msgstr ""
 
@@ -3121,11 +3397,6 @@ msgstr ""
 #: templates/consultations/ordonnance_detail.html:38
 #: templates/pharmacie/dispensation_detail.html:32
 msgid "Posologie"
-msgstr ""
-
-#: templates/consultations/ordonnance_detail.html:39
-#: templates/hospitalisation/liste.html:31
-msgid "Durée"
 msgstr ""
 
 #: templates/consultations/ordonnance_detail.html:39
@@ -3155,6 +3426,18 @@ msgstr ""
 
 #: templates/consultations/ordonnance_formulaire.html:18
 msgid "Créer l'ordonnance"
+msgstr ""
+
+#: templates/core/_export_boutons.html:2
+msgid "Exporter"
+msgstr ""
+
+#: templates/core/_export_boutons.html:5
+msgid "Export PDF"
+msgstr ""
+
+#: templates/core/_export_boutons.html:9
+msgid "Export Excel"
 msgstr ""
 
 #: templates/core/dashboard.html:8
@@ -3190,9 +3473,12 @@ msgstr ""
 msgid "Aucune notification."
 msgstr ""
 
-#: templates/facturation/detail.html:7 templates/facturation/liste.html:3
-#: templates/facturation/liste.html:7
-msgid "Factures"
+#: templates/core/statistiques.html:12
+msgid "30 derniers jours"
+msgstr ""
+
+#: templates/core/statistiques.html:66
+msgid "Voir aussi les indicateurs détaillés du bloc opératoire."
 msgstr ""
 
 #: templates/facturation/detail.html:16
@@ -3217,14 +3503,6 @@ msgstr ""
 
 #: templates/facturation/detail.html:38
 msgid "P.U."
-msgstr ""
-
-#: templates/facturation/detail.html:58 templates/facturation/liste.html:36
-msgid "Part patient"
-msgstr ""
-
-#: templates/facturation/detail.html:59 templates/facturation/impayes.html:11
-msgid "Reste à payer"
 msgstr ""
 
 #: templates/facturation/detail.html:78
@@ -3253,10 +3531,6 @@ msgstr ""
 msgid "Enregistrer le paiement"
 msgstr ""
 
-#: templates/facturation/detail.html:123 templates/facturation/impayes.html:12
-msgid "Relances"
-msgstr ""
-
 #: templates/facturation/detail.html:128
 msgid "Aucune relance."
 msgstr ""
@@ -3265,43 +3539,27 @@ msgstr ""
 msgid "Impayés"
 msgstr ""
 
-#: templates/facturation/impayes.html:6
-msgid "Factures impayées échues"
-msgstr ""
-
-#: templates/facturation/impayes.html:11
-msgid "Échéance"
-msgstr ""
-
-#: templates/facturation/impayes.html:25
+#: templates/facturation/impayes.html:28
 msgid "Aucun impayé échu. 🎉"
 msgstr ""
 
-#: templates/facturation/liste.html:10
+#: templates/facturation/liste.html:11
 msgid "%(n)s impayé"
 msgid_plural "%(n)s impayés"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/facturation/liste.html:13 templates/facturation/tarifs.html:3
+#: templates/facturation/liste.html:14 templates/facturation/tarifs.html:3
 #: templates/facturation/tarifs.html:6
 msgid "Grille tarifaire"
 msgstr ""
 
-#: templates/facturation/liste.html:20 templates/hospitalisation/liste.html:13
-#: templates/laboratoire/liste.html:13
+#: templates/facturation/liste.html:21 templates/hospitalisation/liste.html:16
+#: templates/laboratoire/liste.html:16
 msgid "Référence, patient…"
 msgstr ""
 
-#: templates/facturation/liste.html:35
-msgid "Émission"
-msgstr ""
-
-#: templates/facturation/liste.html:37
-msgid "Reste"
-msgstr ""
-
-#: templates/facturation/liste.html:52
+#: templates/facturation/liste.html:53
 msgid "Aucune facture."
 msgstr ""
 
@@ -3311,10 +3569,6 @@ msgstr ""
 
 #: templates/facturation/tarifs.html:10
 msgid "Code"
-msgstr ""
-
-#: templates/facturation/tarifs.html:11 templates/laboratoire/liste.html:35
-msgid "Catégorie"
 msgstr ""
 
 #: templates/facturation/tarifs.html:11
@@ -3327,11 +3581,6 @@ msgstr ""
 
 #: templates/facturation/tarifs.html:22
 msgid "Grille vide."
-msgstr ""
-
-#: templates/hospitalisation/admission.html:3
-#: templates/hospitalisation/liste.html:30
-msgid "Admission"
 msgstr ""
 
 #: templates/hospitalisation/admission.html:6
@@ -3421,19 +3670,15 @@ msgstr ""
 msgid "Historique des lits"
 msgstr ""
 
-#: templates/hospitalisation/liste.html:7
-msgid "Séjours hospitaliers"
-msgstr ""
-
-#: templates/hospitalisation/liste.html:8
+#: templates/hospitalisation/liste.html:10
 msgid "Vue d'occupation"
 msgstr ""
 
-#: templates/hospitalisation/liste.html:30
+#: templates/hospitalisation/liste.html:33
 msgid "Service / Lit"
 msgstr ""
 
-#: templates/hospitalisation/liste.html:45
+#: templates/hospitalisation/liste.html:48
 msgid "Aucun séjour."
 msgstr ""
 
@@ -3448,10 +3693,6 @@ msgstr ""
 
 #: templates/hospitalisation/occupation.html:22
 msgid "Chambre"
-msgstr ""
-
-#: templates/hospitalisation/occupation.html:28
-msgid "Lit"
 msgstr ""
 
 #: templates/hospitalisation/occupation.html:31
@@ -3529,31 +3770,19 @@ msgstr ""
 msgid "Annuler la demande"
 msgstr ""
 
-#: templates/laboratoire/liste.html:7
-msgid "Demandes d'examen"
-msgstr ""
-
-#: templates/laboratoire/liste.html:8
+#: templates/laboratoire/liste.html:10
 msgid "Mes résultats validés"
 msgstr ""
 
-#: templates/laboratoire/liste.html:17
+#: templates/laboratoire/liste.html:20
 msgid "En cours (défaut)"
 msgstr ""
 
-#: templates/laboratoire/liste.html:25
+#: templates/laboratoire/liste.html:28
 msgid "Mes prescriptions"
 msgstr ""
 
-#: templates/laboratoire/liste.html:35
-msgid "Priorité"
-msgstr ""
-
-#: templates/laboratoire/liste.html:36
-msgid "Demandée le"
-msgstr ""
-
-#: templates/laboratoire/liste.html:50
+#: templates/laboratoire/liste.html:53
 msgid "Aucune demande."
 msgstr ""
 
@@ -3605,10 +3834,6 @@ msgstr ""
 msgid "Adresse"
 msgstr ""
 
-#: templates/patients/detail.html:62 templates/patients/liste.html:40
-msgid "Ville"
-msgstr ""
-
 #: templates/patients/detail.html:63
 msgid "Date de naissance"
 msgstr ""
@@ -3623,10 +3848,6 @@ msgstr ""
 
 #: templates/patients/detail.html:66
 msgid "Profession"
-msgstr ""
-
-#: templates/patients/detail.html:76 templates/patients/liste.html:36
-msgid "Nom"
 msgstr ""
 
 #: templates/patients/detail.html:77
@@ -3688,35 +3909,23 @@ msgid "Modifier le patient"
 msgstr ""
 
 #: templates/patients/formulaire.html:3 templates/patients/formulaire.html:7
-#: templates/patients/liste.html:9
+#: templates/patients/liste.html:11
 msgid "Nouveau patient"
 msgstr ""
 
-#: templates/patients/liste.html:16
+#: templates/patients/liste.html:19
 msgid "Nom, prénom, n° de dossier, téléphone…"
 msgstr ""
 
-#: templates/patients/liste.html:25
+#: templates/patients/liste.html:28
 msgid "Inclure les dossiers archivés"
 msgstr ""
 
-#: templates/patients/liste.html:35
-msgid "N° dossier"
-msgstr ""
-
-#: templates/patients/liste.html:37
-msgid "Sexe"
-msgstr ""
-
-#: templates/patients/liste.html:38
-msgid "Âge"
-msgstr ""
-
-#: templates/patients/liste.html:61
+#: templates/patients/liste.html:64
 msgid "Aucun patient trouvé."
 msgstr ""
 
-#: templates/patients/liste.html:75
+#: templates/patients/liste.html:78
 msgid "Page %(n)s / %(t)s"
 msgstr ""
 
@@ -3802,7 +4011,7 @@ msgstr ""
 
 #: templates/pharmacie/entree_stock.html:3
 #: templates/pharmacie/entree_stock.html:6
-#: templates/pharmacie/medicaments.html:10
+#: templates/pharmacie/medicaments.html:11
 #: templates/pharmacie/medicament_detail.html:23
 msgid "Entrée de stock"
 msgstr ""
@@ -3843,91 +4052,48 @@ msgstr ""
 msgid "Derniers mouvements"
 msgstr ""
 
-#: templates/pharmacie/medicament_detail.html:57
-#: templates/pharmacie/mouvements.html:21
-msgid "Type"
-msgstr ""
-
 #: templates/pharmacie/medicament_detail.html:68
-#: templates/pharmacie/mouvements.html:35
+#: templates/pharmacie/mouvements.html:38
 msgid "Aucun mouvement."
 msgstr ""
 
-#: templates/pharmacie/medicaments.html:3
-#: templates/pharmacie/medicaments.html:7
-msgid "Catalogue et stock"
-msgstr ""
-
-#: templates/pharmacie/medicaments.html:13
+#: templates/pharmacie/medicaments.html:14
 #: templates/pharmacie/medicament_formulaire.html:8
 msgid "Nouveau médicament"
 msgstr ""
 
-#: templates/pharmacie/medicaments.html:20
+#: templates/pharmacie/medicaments.html:21
 msgid "Rechercher…"
 msgstr ""
 
-#: templates/pharmacie/medicaments.html:25
+#: templates/pharmacie/medicaments.html:26
 msgid "%(n)s sous le seuil"
 msgid_plural "%(n)s sous le seuil"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/pharmacie/medicaments.html:29
+#: templates/pharmacie/medicaments.html:30
 msgid "Retirer les périmés"
 msgstr ""
 
-#: templates/pharmacie/medicaments.html:32
+#: templates/pharmacie/medicaments.html:33
 msgid "Journal des mouvements"
 msgstr ""
 
-#: templates/pharmacie/medicaments.html:38
-msgid "Forme"
-msgstr ""
-
-#: templates/pharmacie/medicaments.html:39
-msgid "Stock utilisable"
-msgstr ""
-
-#: templates/pharmacie/medicaments.html:40
-msgid "Seuil"
-msgstr ""
-
-#: templates/pharmacie/medicaments.html:50
-#: templates/pharmacie/medicament_detail.html:18
-msgid "Sous le seuil"
-msgstr ""
-
-#: templates/pharmacie/medicaments.html:51
-msgid "Lots périmés"
-msgstr ""
-
-#: templates/pharmacie/medicaments.html:52
+#: templates/pharmacie/medicaments.html:53
 msgid "Inactif"
 msgstr ""
 
-#: templates/pharmacie/medicaments.html:57
+#: templates/pharmacie/medicaments.html:58
 msgid "Catalogue vide."
 msgstr ""
 
-#: templates/pharmacie/mouvements.html:3
-msgid "Mouvements de stock"
-msgstr ""
-
-#: templates/pharmacie/mouvements.html:6
+#: templates/pharmacie/mouvements.html:7
 msgid "Journal des mouvements de stock"
 msgstr ""
 
-#: templates/pharmacie/mouvements.html:10
+#: templates/pharmacie/mouvements.html:13
 msgid "Tous les types"
-msgstr ""
-
-#: templates/pharmacie/mouvements.html:21
-msgid "Quantité"
-msgstr ""
-
-#: templates/pharmacie/mouvements.html:22
-msgid "Opérateur"
 msgstr ""
 
 #: templates/registration/login.html:28

@@ -934,6 +934,41 @@ TRADUCTIONS = {
     "Mot de passe modifié": "Password changed",
     "Votre mot de passe a été mis à jour.": "Your password has been updated.",
     "Retour au tableau de bord": "Back to dashboard",
+
+    # --- Phase 9 : statistiques et exports ---
+    "Bordereau": "Statement",
+    "Déprogrammation : %(n)d %% — Rotation moyenne : %(r)s min":
+        "Postponements: %(n)d %% — Average turnaround: %(r)s min",
+    "Fréquentation": "Patient traffic",
+    "Indicateur": "Indicator",
+    "Valeur": "Value",
+    "Patients actifs": "Active patients",
+    "Nouveaux patients": "New patients",
+    "Admissions": "Admissions",
+    "Sorties": "Discharges",
+    "Taux d'occupation des lits": "Bed occupancy rate",
+    "Examens demandés": "Tests requested",
+    "Examens validés": "Tests validated",
+    "Chiffre d'affaires": "Revenue",
+    "Montant (FCFA)": "Amount (FCFA)",
+    "Factures émises": "Invoices issued",
+    "Montant facturé": "Amount invoiced",
+    "Encaissé sur la période": "Collected over the period",
+    "Total des impayés (en cours)": "Total outstanding unpaid",
+    "Activité par module": "Activity by module",
+    "Interventions demandées": "Procedures requested",
+    "Interventions terminées": "Procedures completed",
+    "Médicaments sous le seuil": "Medicines below threshold",
+    "Statistiques générales": "General statistics",
+    "Statistiques": "Statistics",
+    "Service": "Ward",
+    "Prénom": "First name",
+    "Exporter": "Export",
+    "Export PDF": "Export PDF",
+    "Export Excel": "Export Excel",
+    "30 derniers jours": "last 30 days",
+    "Voir aussi les indicateurs détaillés du bloc opératoire.":
+        "See also the detailed operating theatre indicators.",
 }
 
 # Entrées avec pluriel : {(msgid, msgid_plural): (msgstr[0], msgstr[1])}

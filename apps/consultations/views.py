@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
+from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
@@ -17,11 +18,22 @@ from .models import Consultation, LigneOrdonnance, Ordonnance
 from .services import alertes_prescription
 
 
-class ConsultationListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class ConsultationListView(LoginRequiredMixin, PermissionRequiredMixin,
+                           ExportableListMixin, ListView):
     permission_required = "consultations.view_consultation"
     template_name = "consultations/liste.html"
     context_object_name = "consultations"
     paginate_by = 25
+    export_titre = _("Consultations")
+    export_nom_fichier = "consultations"
+
+    def export_colonnes(self):
+        return [str(_("Référence")), str(_("Date")), str(_("Patient")),
+                str(_("Motif")), str(_("Praticien")), str(_("Statut"))]
+
+    def export_ligne(self, c):
+        return [c.reference, c.date_consultation, c.patient.nom_complet, c.motif,
+                c.praticien.get_full_name() if c.praticien else "", c.get_statut_display()]
 
     def get_queryset(self):
         qs = Consultation.objects.select_related("patient", "praticien")

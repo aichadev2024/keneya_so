@@ -43,6 +43,9 @@
         {% if perms.pharmacie.view_medicament %}
           <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:medicaments' %}">{% translate "Stock" %}</a></li>
         {% endif %}
+        {% if user.is_staff or user.role == "COMPTABLE" %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'core:statistiques' %}">{% translate "Statistiques" %}</a></li>
+        {% endif %}
         {% if user.is_staff %}
           <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">{% translate "Administration" %}</a></li>
         {% endif %}

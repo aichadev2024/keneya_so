@@ -3,7 +3,10 @@
 {% block title %}{% translate "Bordereaux d'assurance" %} — Kènèya Sô{% endblock %}
 
 {% block content %}
-<h1 class="h3 mb-3">{% translate "Bordereaux d'assurance" %}</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{% translate "Bordereaux d'assurance" %}</h1>
+  {% include "core/_export_boutons.html" %}
+</div>
 
 {% if perms.assurances.add_bordereauassurance %}
   <div class="card shadow-sm mb-3">

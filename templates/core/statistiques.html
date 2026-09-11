@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Statistiques générales" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-1">
+  <h1 class="h3 mb-0">{% translate "Statistiques générales" %}</h1>
+  {% include "core/_export_boutons.html" %}
+</div>
+<p class="text-body-secondary">
+  {% translate "Période" %} : {{ tb.periode.depuis|date:"d/m/Y" }} – {{ tb.periode.jusqu|date:"d/m/Y" }}
+  ({% translate "30 derniers jours" %})
+</p>
+
+<div class="row g-3">
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Fréquentation" %}</div>
+      <table class="table mb-0">
+        <tbody>
+          <tr><td>{% translate "Patients actifs" %}</td><td class="text-end fw-semibold">{{ tb.frequentation.patients_total }}</td></tr>
+          <tr><td>{% translate "Nouveaux patients" %}</td><td class="text-end">{{ tb.frequentation.nouveaux_patients }}</td></tr>
+          <tr><td>{% translate "Consultations" %}</td><td class="text-end">{{ tb.frequentation.consultations }}</td></tr>
+          <tr><td>{% translate "Admissions" %}</td><td class="text-end">{{ tb.frequentation.admissions }}</td></tr>
+          <tr><td>{% translate "Sorties" %}</td><td class="text-end">{{ tb.frequentation.sorties }}</td></tr>
+          <tr><td>{% translate "Taux d'occupation des lits" %}</td><td class="text-end">{{ tb.frequentation.taux_occupation_lits }} %</td></tr>
+          <tr><td>{% translate "Examens demandés" %}</td><td class="text-end">{{ tb.frequentation.examens_demandes }}</td></tr>
+          <tr><td>{% translate "Examens validés" %}</td><td class="text-end">{{ tb.frequentation.examens_valides }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Chiffre d'affaires" %}</div>
+      <table class="table mb-0">
+        <tbody>
+          <tr><td>{% translate "Factures émises" %}</td><td class="text-end">{{ tb.chiffre_affaires.nb_factures }}</td></tr>
+          <tr><td>{% translate "Montant facturé" %}</td><td class="text-end fw-semibold">{{ tb.chiffre_affaires.montant_facture|floatformat:0 }}</td></tr>
+          <tr><td>{% translate "Part assurance" %}</td><td class="text-end">{{ tb.chiffre_affaires.part_assurance|floatformat:0 }}</td></tr>
+          <tr><td>{% translate "Part patient" %}</td><td class="text-end">{{ tb.chiffre_affaires.part_patient|floatformat:0 }}</td></tr>
+          <tr><td>{% translate "Encaissé sur la période" %}</td><td class="text-end text-success">{{ tb.chiffre_affaires.encaisse_periode|floatformat:0 }}</td></tr>
+          <tr><td>{% translate "Total des impayés (en cours)" %}</td><td class="text-end text-danger">{{ tb.chiffre_affaires.impayes_total|floatformat:0 }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">{% translate "Activité par module" %}</div>
+      <table class="table mb-0">
+        <tbody>
+          <tr><td>{% translate "Interventions demandées" %}</td><td class="text-end">{{ tb.activite.interventions }}</td></tr>
+          <tr><td>{% translate "Interventions terminées" %}</td><td class="text-end">{{ tb.activite.interventions_terminees }}</td></tr>
+          <tr><td>{% translate "Dispensations" %}</td><td class="text-end">{{ tb.activite.dispensations }}</td></tr>
+          <tr><td>{% translate "Médicaments sous le seuil" %}</td><td class="text-end {% if tb.activite.medicaments_en_alerte %}text-danger{% endif %}">{{ tb.activite.medicaments_en_alerte }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<p class="text-body-secondary small mt-3">
+  {% translate "Voir aussi les indicateurs détaillés du bloc opératoire." %}
+  <a href="{% url 'bloc_operatoire:indicateurs' %}">{% translate "Indicateurs" %}</a>.
+</p>
+{% endblock %}

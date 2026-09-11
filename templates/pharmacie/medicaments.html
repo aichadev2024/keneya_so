@@ -6,6 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h1 class="h3 mb-0">{% translate "Catalogue et stock" %}</h1>
   <div class="d-flex gap-2">
+    {% include "core/_export_boutons.html" %}
     {% if perms.pharmacie.add_lotmedicament %}
       <a class="btn btn-outline-primary" href="{% url 'pharmacie:entree_stock' %}">{% translate "Entrée de stock" %}</a>
     {% endif %}
