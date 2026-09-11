@@ -1,0 +1,3964 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Kenya So\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/accounts/admin.py:19 apps/accounts/admin.py:24
+msgid "Profil métier Kènèya Sô"
+msgstr "Kènèya Sô role profile"
+
+#: apps/accounts/admin.py:29
+msgid "nom complet"
+msgstr "full name"
+
+#: apps/accounts/forms.py:15 templates/registration/login.html:20
+msgid "Identifiant"
+msgstr "Username"
+
+#: apps/accounts/forms.py:18 templates/registration/login.html:24
+msgid "Mot de passe"
+msgstr "Password"
+
+#: apps/accounts/forms.py:22
+msgid "Identifiant ou mot de passe incorrect."
+msgstr "Incorrect username or password."
+
+#: apps/accounts/forms.py:23
+msgid "Ce compte est désactivé. Contactez l'administrateur."
+msgstr "This account is disabled. Contact the administrator."
+
+#: apps/accounts/models.py:21
+msgid "Administrateur"
+msgstr "Administrator"
+
+#: apps/accounts/models.py:22
+msgid "Médecin"
+msgstr "Doctor"
+
+#: apps/accounts/models.py:23
+msgid "Infirmier(ère)"
+msgstr "Nurse"
+
+#: apps/accounts/models.py:24
+msgid "Pharmacien(ne)"
+msgstr "Pharmacist"
+
+#: apps/accounts/models.py:25
+msgid "Laborantin(e)"
+msgstr "Lab technician"
+
+#: apps/accounts/models.py:26
+msgid "Radiologue / agent d'imagerie"
+msgstr "Radiologist / imaging technician"
+
+#: apps/accounts/models.py:27
+msgid "Agent d'accueil"
+msgstr "Front-desk clerk"
+
+#: apps/accounts/models.py:28
+msgid "Comptable"
+msgstr "Accountant"
+
+#: apps/accounts/models.py:30
+msgid "Chirurgien(ne)"
+msgstr "Surgeon"
+
+#: apps/accounts/models.py:31
+msgid "Médecin anesthésiste-réanimateur"
+msgstr "Anaesthesiologist"
+
+#: apps/accounts/models.py:32
+msgid "Infirmier(ère) de bloc opératoire (IBODE)"
+msgstr "Operating room nurse (IBODE)"
+
+#: apps/accounts/models.py:33
+msgid "Agent de stérilisation"
+msgstr "Sterilisation technician"
+
+#: apps/accounts/models.py:34
+msgid "Agent de programmation / cadre de bloc"
+msgstr "OR scheduling officer / theatre manager"
+
+#: apps/accounts/models.py:45 apps/bloc_operatoire/forms.py:94
+#: apps/bloc_operatoire/models.py:321
+msgid "rôle"
+msgstr "role"
+
+#: apps/accounts/models.py:46
+msgid "Détermine les fonctions et les données accessibles (RBAC)."
+msgstr "Determines accessible functions and data (RBAC)."
+
+#: apps/accounts/models.py:48
+msgid "matricule"
+msgstr "staff ID"
+
+#: apps/accounts/models.py:50 apps/assurances/models.py:40
+#: apps/core/models.py:51 apps/patients/models.py:80
+msgid "téléphone"
+msgstr "phone"
+
+#: apps/accounts/models.py:51 apps/bloc_operatoire/models.py:140
+msgid "spécialité"
+msgstr "specialty"
+
+#: apps/accounts/models.py:52
+msgid "langue préférée"
+msgstr "preferred language"
+
+#: apps/accounts/models.py:56
+msgid "adresse électronique"
+msgstr "email address"
+
+#: apps/accounts/models.py:59 apps/core/models.py:99
+msgid "utilisateur"
+msgstr "user"
+
+#: apps/accounts/models.py:60
+msgid "utilisateurs"
+msgstr "users"
+
+#: apps/assurances/admin.py:42
+msgid "taux effectif"
+msgstr "effective rate"
+
+#: apps/assurances/forms.py:31 apps/assurances/models.py:166
+msgid "début de période"
+msgstr "period start"
+
+#: apps/assurances/forms.py:33 apps/assurances/models.py:167
+msgid "fin de période"
+msgstr "period end"
+
+#: apps/assurances/models.py:28
+msgid "Compagnie privée"
+msgstr "Private company"
+
+#: apps/assurances/models.py:29
+msgid "Mutuelle"
+msgstr "Mutual insurer"
+
+#: apps/assurances/models.py:30
+msgid "Prise en charge de l'État"
+msgstr "State coverage"
+
+#: apps/assurances/models.py:31
+msgid "ONG / organisme humanitaire"
+msgstr "NGO / humanitarian organisation"
+
+#: apps/assurances/models.py:32 apps/bloc_operatoire/models.py:314
+#: apps/bloc_operatoire/models.py:405 apps/core/models.py:91
+#: apps/facturation/models.py:35 apps/facturation/models.py:44
+#: apps/hospitalisation/models.py:253 apps/patients/models.py:62
+#: apps/patients/models.py:189 apps/pharmacie/models.py:39
+msgid "Autre"
+msgstr "Other"
+
+#: apps/assurances/models.py:34 apps/bloc_operatoire/models.py:45
+#: apps/hospitalisation/models.py:30 apps/patients/models.py:68
+msgid "nom"
+msgstr "last name"
+
+#: apps/assurances/models.py:35 apps/bloc_operatoire/models.py:46
+#: apps/facturation/models.py:48 apps/hospitalisation/models.py:31
+#: apps/laboratoire/models.py:33 apps/pharmacie/models.py:45
+msgid "code"
+msgstr "code"
+
+#: apps/assurances/models.py:36 apps/hospitalisation/models.py:80
+#: apps/hospitalisation/models.py:257 apps/patients/models.py:201
+#: apps/pharmacie/models.py:148
+msgid "type"
+msgstr "type"
+
+#: apps/assurances/models.py:38 apps/core/models.py:50
+#: apps/patients/models.py:81
+msgid "adresse"
+msgstr "address"
+
+#: apps/assurances/models.py:39
+msgid "interlocuteur"
+msgstr "contact person"
+
+#: apps/assurances/models.py:41 apps/core/models.py:52
+msgid "courriel"
+msgstr "email"
+
+#: apps/assurances/models.py:42 apps/assurances/models.py:68
+#: apps/assurances/models.py:101 apps/bloc_operatoire/models.py:119
+#: apps/bloc_operatoire/models.py:146 apps/facturation/models.py:57
+#: apps/hospitalisation/models.py:36 apps/laboratoire/models.py:44
+#: apps/patients/models.py:104 apps/pharmacie/models.py:63
+msgid "actif"
+msgstr "active"
+
+#: apps/assurances/models.py:45 apps/assurances/models.py:57
+#: apps/assurances/models.py:165
+msgid "assurance"
+msgstr "insurance"
+
+#: apps/assurances/models.py:46
+msgid "assurances"
+msgstr "insurance providers"
+
+#: apps/assurances/models.py:58
+msgid "libellé du contrat"
+msgstr "plan name"
+
+#: apps/assurances/models.py:60
+msgid "taux de prise en charge (%)"
+msgstr "coverage rate (%)"
+
+#: apps/assurances/models.py:62
+msgid "Part remboursée par l'assurance, de 0 à 100."
+msgstr "Share reimbursed by the insurer, from 0 to 100."
+
+#: apps/assurances/models.py:65
+msgid "plafond annuel (FCFA)"
+msgstr "annual cap (FCFA)"
+
+#: apps/assurances/models.py:66
+msgid "Laisser vide pour un contrat sans plafond."
+msgstr "Leave blank for a plan with no cap."
+
+#: apps/assurances/models.py:71
+msgid "contrat d'assurance"
+msgstr "insurance plan"
+
+#: apps/assurances/models.py:72
+msgid "contrats d'assurance"
+msgstr "insurance plans"
+
+#: apps/assurances/models.py:87 apps/bloc_operatoire/models.py:196
+#: apps/consultations/admin.py:48 apps/consultations/models.py:47
+#: apps/facturation/models.py:89 apps/hospitalisation/models.py:156
+#: apps/laboratoire/models.py:70 apps/patients/models.py:111
+#: apps/patients/models.py:161
+msgid "patient"
+msgstr "patient"
+
+#: apps/assurances/models.py:89
+msgid "contrat"
+msgstr "plan"
+
+#: apps/assurances/models.py:90
+msgid "numéro d'adhérent"
+msgstr "member number"
+
+#: apps/assurances/models.py:92
+msgid "taux spécifique (%)"
+msgstr "specific rate (%)"
+
+#: apps/assurances/models.py:93
+msgid "Surcharge le taux du contrat pour ce patient."
+msgstr "Overrides the plan's rate for this patient."
+
+#: apps/assurances/models.py:96
+msgid "plafond spécifique (FCFA)"
+msgstr "specific cap (FCFA)"
+
+#: apps/assurances/models.py:99
+msgid "date de début"
+msgstr "start date"
+
+#: apps/assurances/models.py:100
+msgid "date de fin"
+msgstr "end date"
+
+#: apps/assurances/models.py:104
+msgid "patient assuré"
+msgstr "insured patient"
+
+#: apps/assurances/models.py:105
+msgid "patients assurés"
+msgstr "insured patients"
+
+#: apps/assurances/models.py:158 apps/consultations/models.py:133
+#: apps/facturation/models.py:80
+msgid "Brouillon"
+msgstr "Draft"
+
+#: apps/assurances/models.py:159
+msgid "Envoyé"
+msgstr "Sent"
+
+#: apps/assurances/models.py:160
+msgid "Soldé"
+msgstr "Settled"
+
+#: apps/assurances/models.py:162 apps/bloc_operatoire/models.py:111
+#: apps/bloc_operatoire/models.py:194 apps/consultations/models.py:45
+#: apps/consultations/models.py:139 apps/facturation/models.py:86
+#: apps/facturation/models.py:239 apps/hospitalisation/models.py:154
+#: apps/laboratoire/models.py:67 apps/pharmacie/models.py:151
+msgid "référence"
+msgstr "reference"
+
+#: apps/assurances/models.py:168 templates/assurances/bordereau_detail.html:15
+msgid "généré le"
+msgstr "generated on"
+
+#: apps/assurances/models.py:169 apps/bloc_operatoire/models.py:54
+#: apps/bloc_operatoire/models.py:224 apps/consultations/models.py:59
+#: apps/consultations/models.py:147 apps/facturation/models.py:96
+#: apps/hospitalisation/models.py:105 apps/hospitalisation/models.py:173
+#: apps/laboratoire/models.py:89 apps/pharmacie/models.py:230
+msgid "statut"
+msgstr "status"
+
+#: apps/assurances/models.py:171 apps/facturation/models.py:99
+msgid "montant total"
+msgstr "total amount"
+
+#: apps/assurances/models.py:177
+msgid "bordereau d'assurance"
+msgstr "insurance statement"
+
+#: apps/assurances/models.py:178
+msgid "bordereaux d'assurance"
+msgstr "insurance statements"
+
+#: apps/assurances/models.py:206 apps/facturation/models.py:103
+msgid "part assurance"
+msgstr "insurer's share"
+
+#: apps/assurances/models.py:210
+msgid "ligne de bordereau"
+msgstr "statement line"
+
+#: apps/assurances/models.py:211
+msgid "lignes de bordereau"
+msgstr "statement lines"
+
+#: apps/assurances/views.py:41
+msgid "Couverture d'assurance enregistrée."
+msgstr "Insurance coverage saved."
+
+#: apps/assurances/views.py:78 apps/bloc_operatoire/views.py:203
+#: apps/bloc_operatoire/views.py:230 apps/bloc_operatoire/views.py:252
+#: apps/bloc_operatoire/views.py:273 apps/bloc_operatoire/views.py:283
+#: apps/bloc_operatoire/views.py:301 apps/bloc_operatoire/views.py:326
+#: apps/bloc_operatoire/views.py:347 apps/consultations/views.py:191
+#: apps/consultations/views.py:212 apps/consultations/views.py:223
+#: apps/consultations/views.py:244 apps/facturation/views.py:107
+#: apps/facturation/views.py:136 apps/facturation/views.py:151
+#: apps/facturation/views.py:171 apps/facturation/views.py:189
+#: apps/facturation/views.py:200 apps/facturation/views.py:224
+#: apps/hospitalisation/views.py:140 apps/hospitalisation/views.py:158
+#: apps/hospitalisation/views.py:182 apps/laboratoire/views.py:154
+#: apps/laboratoire/views.py:185 apps/laboratoire/views.py:200
+#: apps/pharmacie/views.py:162 apps/pharmacie/views.py:216
+msgid "Action non autorisée."
+msgstr "Action not allowed."
+
+#: apps/assurances/views.py:83
+msgid "Période invalide."
+msgstr "Invalid period."
+
+#: apps/assurances/views.py:97
+msgid "Bordereau %(r)s généré (%(n)d factures, %(m)s FCFA)."
+msgstr "Statement %(r)s generated (%(n)d invoices, %(m)s FCFA)."
+
+#: apps/bloc_operatoire/admin.py:30
+msgid "statut temps réel"
+msgstr "real-time status"
+
+#: apps/bloc_operatoire/forms.py:63 apps/bloc_operatoire/models.py:205
+msgid "salle"
+msgstr "room"
+
+#: apps/bloc_operatoire/forms.py:64 apps/facturation/models.py:251
+#: apps/facturation/models.py:285 apps/hospitalisation/models.py:232
+#: apps/hospitalisation/models.py:267 apps/pharmacie/models.py:156
+#: apps/pharmacie/models.py:260
+msgid "date"
+msgstr "date"
+
+#: apps/bloc_operatoire/forms.py:66
+msgid "heure de début"
+msgstr "start time"
+
+#: apps/bloc_operatoire/forms.py:69 apps/bloc_operatoire/models.py:220
+msgid "durée estimée (minutes)"
+msgstr "estimated duration (minutes)"
+
+#: apps/bloc_operatoire/forms.py:72
+msgid ""
+"Forcer (extrême urgence) : reporte les interventions programmées en conflit"
+msgstr ""
+"Force (extreme emergency): reschedules conflicting scheduled procedures"
+
+#: apps/bloc_operatoire/forms.py:83
+msgid "protocole d'anesthésie et surveillance peropératoire"
+msgstr "anaesthesia protocol and intraoperative monitoring"
+
+#: apps/bloc_operatoire/forms.py:85
+msgid "Je valide la faisabilité anesthésique"
+msgstr "I confirm anaesthetic feasibility"
+
+#: apps/bloc_operatoire/forms.py:92 apps/bloc_operatoire/models.py:320
+msgid "membre"
+msgstr "member"
+
+#: apps/bloc_operatoire/forms.py:96
+msgid "Ignorer le conflit de planning"
+msgstr "Ignore the scheduling conflict"
+
+#: apps/bloc_operatoire/forms.py:106
+msgid "motif (obligatoire)"
+msgstr "reason (required)"
+
+#: apps/bloc_operatoire/forms.py:109
+msgid "Reporter (déprogrammer) plutôt qu'annuler définitivement"
+msgstr "Postpone (reschedule) instead of cancelling outright"
+
+#: apps/bloc_operatoire/forms.py:115
+msgid "incidents / complications peropératoires"
+msgstr "intraoperative incidents / complications"
+
+#: apps/bloc_operatoire/forms.py:130 templates/bloc_operatoire/detail.html:151
+msgid "réserves éventuelles"
+msgstr "any reservations"
+
+#: apps/bloc_operatoire/models.py:34 apps/hospitalisation/models.py:98
+#: templates/hospitalisation/occupation.html:35
+msgid "Disponible"
+msgstr "Available"
+
+#: apps/bloc_operatoire/models.py:35 apps/bloc_operatoire/models.py:42
+msgid "En maintenance"
+msgstr "Under maintenance"
+
+#: apps/bloc_operatoire/models.py:36 apps/bloc_operatoire/models.py:43
+#: apps/hospitalisation/models.py:100
+msgid "Hors service"
+msgstr "Out of service"
+
+#: apps/bloc_operatoire/models.py:39
+msgid "Libre"
+msgstr "Free"
+
+#: apps/bloc_operatoire/models.py:40
+msgid "Occupée"
+msgstr "In use"
+
+#: apps/bloc_operatoire/models.py:41 apps/hospitalisation/models.py:99
+msgid "En nettoyage"
+msgstr "Being cleaned"
+
+#: apps/bloc_operatoire/models.py:47
+msgid "équipement disponible"
+msgstr "available equipment"
+
+#: apps/bloc_operatoire/models.py:48
+msgid "capacité (interventions simultanées)"
+msgstr "capacity (simultaneous procedures)"
+
+#: apps/bloc_operatoire/models.py:51
+msgid "temps de nettoyage (minutes)"
+msgstr "cleaning time (minutes)"
+
+#: apps/bloc_operatoire/models.py:52
+msgid "Temps tampon inséré automatiquement entre deux interventions."
+msgstr "Buffer time automatically inserted between two procedures."
+
+#: apps/bloc_operatoire/models.py:56
+msgid "active"
+msgstr "active"
+
+#: apps/bloc_operatoire/models.py:59
+msgid "salle opératoire"
+msgstr "operating room"
+
+#: apps/bloc_operatoire/models.py:60
+msgid "salles opératoires"
+msgstr "operating rooms"
+
+#: apps/bloc_operatoire/models.py:105
+msgid "Stérilisé"
+msgstr "Sterilised"
+
+#: apps/bloc_operatoire/models.py:106
+msgid "En stérilisation"
+msgstr "Being sterilised"
+
+#: apps/bloc_operatoire/models.py:107
+msgid "Non stérilisé"
+msgstr "Not sterilised"
+
+#: apps/bloc_operatoire/models.py:108
+msgid "Péremption de stérilité dépassée"
+msgstr "Sterility expiry exceeded"
+
+#: apps/bloc_operatoire/models.py:110
+msgid "désignation"
+msgstr "name"
+
+#: apps/bloc_operatoire/models.py:112
+msgid "quantité disponible"
+msgstr "available quantity"
+
+#: apps/bloc_operatoire/models.py:113
+msgid "quantité totale"
+msgstr "total quantity"
+
+#: apps/bloc_operatoire/models.py:115
+msgid "statut de stérilisation"
+msgstr "sterilisation status"
+
+#: apps/bloc_operatoire/models.py:118
+msgid "date de stérilisation"
+msgstr "sterilisation date"
+
+#: apps/bloc_operatoire/models.py:122
+msgid "matériel de bloc"
+msgstr "OR equipment item"
+
+#: apps/bloc_operatoire/models.py:123
+msgid "matériels de bloc"
+msgstr "OR equipment items"
+
+#: apps/bloc_operatoire/models.py:139
+msgid "libellé de l'acte"
+msgstr "procedure name"
+
+#: apps/bloc_operatoire/models.py:141
+msgid "durée standard (minutes)"
+msgstr "standard duration (minutes)"
+
+#: apps/bloc_operatoire/models.py:143 apps/bloc_operatoire/models.py:413
+#: apps/core/models.py:104 apps/hospitalisation/models.py:32
+#: apps/hospitalisation/models.py:259
+msgid "description"
+msgstr "description"
+
+#: apps/bloc_operatoire/models.py:149
+msgid "type d'intervention"
+msgstr "procedure type"
+
+#: apps/bloc_operatoire/models.py:150
+msgid "types d'intervention"
+msgstr "procedure types"
+
+#: apps/bloc_operatoire/models.py:164 apps/facturation/models.py:207
+#: apps/pharmacie/admin.py:65 apps/pharmacie/models.py:149
+msgid "quantité"
+msgstr "quantity"
+
+#: apps/bloc_operatoire/models.py:167
+msgid "matériel requis"
+msgstr "required equipment"
+
+#: apps/bloc_operatoire/models.py:168
+msgid "matériels requis"
+msgstr "required equipment items"
+
+#: apps/bloc_operatoire/models.py:180
+msgid "Programmée"
+msgstr "Scheduled"
+
+#: apps/bloc_operatoire/models.py:181
+msgid "Urgente"
+msgstr "Urgent"
+
+#: apps/bloc_operatoire/models.py:182
+msgid "Extrême urgence"
+msgstr "Extreme emergency"
+
+#: apps/bloc_operatoire/models.py:185 apps/laboratoire/models.py:61
+msgid "Demandée"
+msgstr "Requested"
+
+#: apps/bloc_operatoire/models.py:186
+msgid "Planifiée"
+msgstr "Scheduled"
+
+#: apps/bloc_operatoire/models.py:187 apps/consultations/models.py:41
+#: apps/hospitalisation/models.py:144 apps/laboratoire/models.py:62
+#: apps/pharmacie/models.py:219
+msgid "En cours"
+msgstr "In progress"
+
+#: apps/bloc_operatoire/models.py:188 apps/hospitalisation/models.py:145
+msgid "Terminée"
+msgstr "Completed"
+
+#: apps/bloc_operatoire/models.py:189
+msgid "Reportée"
+msgstr "Postponed"
+
+#: apps/bloc_operatoire/models.py:190 apps/consultations/models.py:43
+#: apps/consultations/models.py:137 apps/facturation/models.py:84
+#: apps/hospitalisation/models.py:146 apps/laboratoire/models.py:65
+#: apps/pharmacie/models.py:222 templates/facturation/detail.html:90
+#: templates/laboratoire/detail.html:39
+msgid "Annulée"
+msgstr "Cancelled"
+
+#: apps/bloc_operatoire/models.py:199
+msgid "type d'acte"
+msgstr "procedure type"
+
+#: apps/bloc_operatoire/models.py:208
+msgid "chirurgien principal"
+msgstr "lead surgeon"
+
+#: apps/bloc_operatoire/models.py:212
+msgid "demandeur"
+msgstr "requested by"
+
+#: apps/bloc_operatoire/models.py:214
+msgid "motif de l'intervention"
+msgstr "reason for the procedure"
+
+#: apps/bloc_operatoire/models.py:215
+msgid "diagnostic préopératoire"
+msgstr "preoperative diagnosis"
+
+#: apps/bloc_operatoire/models.py:216
+msgid "matériel spécifique requis"
+msgstr "specific equipment required"
+
+#: apps/bloc_operatoire/models.py:218 apps/laboratoire/models.py:86
+msgid "date de la demande"
+msgstr "request date"
+
+#: apps/bloc_operatoire/models.py:219
+msgid "début prévu"
+msgstr "planned start"
+
+#: apps/bloc_operatoire/models.py:222
+msgid "niveau d'urgence"
+msgstr "urgency level"
+
+#: apps/bloc_operatoire/models.py:229
+msgid "faisabilité anesthésique validée"
+msgstr "anaesthetic feasibility confirmed"
+
+#: apps/bloc_operatoire/models.py:230
+msgid "protocole d'anesthésie"
+msgstr "anaesthesia protocol"
+
+#: apps/bloc_operatoire/models.py:233
+msgid "anesthésiste"
+msgstr "anaesthetist"
+
+#: apps/bloc_operatoire/models.py:237
+msgid "entrée en salle"
+msgstr "entry into the room"
+
+#: apps/bloc_operatoire/models.py:238
+msgid "début (incision)"
+msgstr "start (incision)"
+
+#: apps/bloc_operatoire/models.py:240
+msgid "fin d'intervention"
+msgstr "end of procedure"
+
+#: apps/bloc_operatoire/models.py:242
+msgid "sortie de salle"
+msgstr "exit from the room"
+
+#: apps/bloc_operatoire/models.py:243
+msgid "incidents / complications"
+msgstr "incidents / complications"
+
+#: apps/bloc_operatoire/models.py:246
+msgid "motif d'annulation / de report"
+msgstr "reason for cancellation / postponement"
+
+#: apps/bloc_operatoire/models.py:249
+msgid "annulée / reportée le"
+msgstr "cancelled / postponed on"
+
+#: apps/bloc_operatoire/models.py:252 apps/bloc_operatoire/models.py:317
+#: apps/bloc_operatoire/models.py:374
+msgid "intervention"
+msgstr "procedure"
+
+#: apps/bloc_operatoire/models.py:253
+msgid "interventions"
+msgstr "procedures"
+
+#: apps/bloc_operatoire/models.py:309
+msgid "Chirurgien"
+msgstr "Surgeon"
+
+#: apps/bloc_operatoire/models.py:310
+msgid "Chirurgien aide"
+msgstr "Assistant surgeon"
+
+#: apps/bloc_operatoire/models.py:311
+msgid "Anesthésiste"
+msgstr "Anaesthetist"
+
+#: apps/bloc_operatoire/models.py:312
+msgid "IBODE"
+msgstr "OR nurse (IBODE)"
+
+#: apps/bloc_operatoire/models.py:313
+msgid "Aide-opératoire"
+msgstr "Surgical assistant"
+
+#: apps/bloc_operatoire/models.py:322
+msgid "notifié le"
+msgstr "notified on"
+
+#: apps/bloc_operatoire/models.py:325
+msgid "membre d'équipe"
+msgstr "team member"
+
+#: apps/bloc_operatoire/models.py:326
+msgid "équipe chirurgicale"
+msgstr "surgical team"
+
+#: apps/bloc_operatoire/models.py:340
+msgid "Avant l'induction anesthésique"
+msgstr "Before anaesthetic induction"
+
+#: apps/bloc_operatoire/models.py:341
+msgid "Avant l'incision"
+msgstr "Before incision"
+
+#: apps/bloc_operatoire/models.py:342
+msgid "Avant la sortie de salle"
+msgstr "Before leaving the room"
+
+#: apps/bloc_operatoire/models.py:348
+msgid "temps"
+msgstr "step"
+
+#: apps/bloc_operatoire/models.py:349 apps/laboratoire/models.py:182
+#: templates/laboratoire/detail.html:47
+msgid "validé"
+msgstr "confirmed"
+
+#: apps/bloc_operatoire/models.py:352
+msgid "validé par"
+msgstr "confirmed by"
+
+#: apps/bloc_operatoire/models.py:353 apps/laboratoire/models.py:185
+msgid "validé le"
+msgstr "confirmed on"
+
+#: apps/bloc_operatoire/models.py:354
+msgid "réserves / commentaire"
+msgstr "reservations / comment"
+
+#: apps/bloc_operatoire/models.py:357
+msgid "étape de checklist"
+msgstr "checklist step"
+
+#: apps/bloc_operatoire/models.py:358
+msgid "checklist de sécurité"
+msgstr "safety checklist"
+
+#: apps/bloc_operatoire/models.py:375
+msgid "technique opératoire"
+msgstr "operative technique"
+
+#: apps/bloc_operatoire/models.py:376
+msgid "constatations peropératoires"
+msgstr "intraoperative findings"
+
+#: apps/bloc_operatoire/models.py:377
+msgid "complications"
+msgstr "complications"
+
+#: apps/bloc_operatoire/models.py:378
+msgid "suites à prévoir"
+msgstr "expected follow-up"
+
+#: apps/bloc_operatoire/models.py:379
+msgid "prescription postopératoire"
+msgstr "postoperative prescription"
+
+#: apps/bloc_operatoire/models.py:383
+msgid "rédigé par"
+msgstr "written by"
+
+#: apps/bloc_operatoire/models.py:384
+msgid "rédigé le"
+msgstr "written on"
+
+#: apps/bloc_operatoire/models.py:387
+msgid "compte-rendu opératoire"
+msgstr "operative report"
+
+#: apps/bloc_operatoire/models.py:388
+msgid "comptes-rendus opératoires"
+msgstr "operative reports"
+
+#: apps/bloc_operatoire/models.py:391
+msgid "CR — %(ref)s"
+msgstr "Report — %(ref)s"
+
+#: apps/bloc_operatoire/models.py:402
+msgid "Maintenance planifiée"
+msgstr "Scheduled maintenance"
+
+#: apps/bloc_operatoire/models.py:403
+msgid "Panne d'équipement"
+msgstr "Equipment failure"
+
+#: apps/bloc_operatoire/models.py:404
+msgid "Travaux"
+msgstr "Works"
+
+#: apps/bloc_operatoire/models.py:409 apps/hospitalisation/forms.py:52
+#: apps/hospitalisation/models.py:231 apps/pharmacie/models.py:150
+msgid "motif"
+msgstr "reason"
+
+#: apps/bloc_operatoire/models.py:411
+msgid "début"
+msgstr "start"
+
+#: apps/bloc_operatoire/models.py:412
+msgid "fin"
+msgstr "end"
+
+#: apps/bloc_operatoire/models.py:418
+msgid "indisponibilité de salle"
+msgstr "room unavailability"
+
+#: apps/bloc_operatoire/models.py:419
+msgid "indisponibilités de salle"
+msgstr "room unavailabilities"
+
+#: apps/bloc_operatoire/views.py:134
+msgid "Demande d'intervention enregistrée."
+msgstr "Procedure request saved."
+
+#: apps/bloc_operatoire/views.py:206
+msgid "Formulaire de planification invalide."
+msgstr "Invalid scheduling form."
+
+#: apps/bloc_operatoire/views.py:222
+msgid "Intervention planifiée."
+msgstr "Procedure scheduled."
+
+#: apps/bloc_operatoire/views.py:233
+msgid "Renseignez le protocole d'anesthésie."
+msgstr "Enter the anaesthesia protocol."
+
+#: apps/bloc_operatoire/views.py:244
+msgid "Faisabilité anesthésique validée."
+msgstr "Anaesthetic feasibility confirmed."
+
+#: apps/bloc_operatoire/views.py:255
+msgid "Sélection invalide."
+msgstr "Invalid selection."
+
+#: apps/bloc_operatoire/views.py:265
+msgid "Membre ajouté à l'équipe (notification envoyée)."
+msgstr "Member added to the team (notification sent)."
+
+#: apps/bloc_operatoire/views.py:275
+msgid "Membre retiré."
+msgstr "Member removed."
+
+#: apps/bloc_operatoire/views.py:293
+msgid "Étape de checklist validée."
+msgstr "Checklist step confirmed."
+
+#: apps/bloc_operatoire/views.py:313
+msgid "Étape inconnue."
+msgstr "Unknown step."
+
+#: apps/bloc_operatoire/views.py:318
+msgid "Étape enregistrée."
+msgstr "Step saved."
+
+#: apps/bloc_operatoire/views.py:329 apps/facturation/views.py:154
+#: apps/laboratoire/views.py:203
+msgid "Le motif est obligatoire."
+msgstr "The reason is required."
+
+#: apps/bloc_operatoire/views.py:339
+msgid "Intervention mise à jour."
+msgstr "Procedure updated."
+
+#: apps/bloc_operatoire/views.py:351
+msgid "La technique opératoire est obligatoire."
+msgstr "The operative technique is required."
+
+#: apps/bloc_operatoire/views.py:362
+msgid "Compte-rendu opératoire enregistré."
+msgstr "Operative report saved."
+
+#: apps/consultations/models.py:42
+msgid "Clôturée"
+msgstr "Closed"
+
+#: apps/consultations/models.py:50
+msgid "praticien"
+msgstr "practitioner"
+
+#: apps/consultations/models.py:51
+msgid "date de la consultation"
+msgstr "consultation date"
+
+#: apps/consultations/models.py:53
+msgid "motif de consultation"
+msgstr "reason for consultation"
+
+#: apps/consultations/models.py:54
+msgid "histoire de la maladie / symptômes"
+msgstr "history of illness / symptoms"
+
+#: apps/consultations/models.py:55
+msgid "examen clinique"
+msgstr "clinical examination"
+
+#: apps/consultations/models.py:56
+msgid "diagnostic"
+msgstr "diagnosis"
+
+#: apps/consultations/models.py:57
+msgid "conduite à tenir / traitement"
+msgstr "management plan / treatment"
+
+#: apps/consultations/models.py:63 apps/consultations/models.py:82
+#: apps/consultations/models.py:142 templates/laboratoire/demande.html:9
+msgid "consultation"
+msgstr "consultation"
+
+#: apps/consultations/models.py:64
+msgid "consultations"
+msgstr "consultations"
+
+#: apps/consultations/models.py:83
+msgid "poids (kg)"
+msgstr "weight (kg)"
+
+#: apps/consultations/models.py:85
+msgid "taille (cm)"
+msgstr "height (cm)"
+
+#: apps/consultations/models.py:87 apps/hospitalisation/models.py:260
+msgid "température (°C)"
+msgstr "temperature (°C)"
+
+#: apps/consultations/models.py:89
+msgid "TA systolique (mmHg)"
+msgstr "systolic BP (mmHg)"
+
+#: apps/consultations/models.py:91
+msgid "TA diastolique (mmHg)"
+msgstr "diastolic BP (mmHg)"
+
+#: apps/consultations/models.py:93
+msgid "fréquence cardiaque (bpm)"
+msgstr "heart rate (bpm)"
+
+#: apps/consultations/models.py:96
+msgid "fréquence respiratoire (cycles/min)"
+msgstr "respiratory rate (breaths/min)"
+
+#: apps/consultations/models.py:97
+msgid "SpO₂ (%)"
+msgstr "SpO₂ (%)"
+
+#: apps/consultations/models.py:98
+msgid "glycémie (g/L)"
+msgstr "blood glucose (g/L)"
+
+#: apps/consultations/models.py:100
+msgid "relevé le"
+msgstr "recorded on"
+
+#: apps/consultations/models.py:103
+msgid "relevé par"
+msgstr "recorded by"
+
+#: apps/consultations/models.py:106 apps/consultations/models.py:107
+msgid "constantes"
+msgstr "vital signs"
+
+#: apps/consultations/models.py:110
+msgid "Constantes de %(ref)s"
+msgstr "Vital signs for %(ref)s"
+
+#: apps/consultations/models.py:134
+msgid "Transmise à la pharmacie"
+msgstr "Sent to pharmacy"
+
+#: apps/consultations/models.py:135
+msgid "Dispensée partiellement"
+msgstr "Partially dispensed"
+
+#: apps/consultations/models.py:136
+msgid "Dispensée"
+msgstr "Dispensed"
+
+#: apps/consultations/models.py:145 apps/laboratoire/models.py:82
+msgid "prescripteur"
+msgstr "prescriber"
+
+#: apps/consultations/models.py:146
+msgid "date de prescription"
+msgstr "prescription date"
+
+#: apps/consultations/models.py:149
+msgid "date de transmission"
+msgstr "date sent"
+
+#: apps/consultations/models.py:150
+msgid "notes au pharmacien"
+msgstr "notes for the pharmacist"
+
+#: apps/consultations/models.py:153 apps/consultations/models.py:186
+#: apps/pharmacie/models.py:226
+msgid "ordonnance"
+msgstr "prescription"
+
+#: apps/consultations/models.py:154
+msgid "ordonnances"
+msgstr "prescriptions"
+
+#: apps/consultations/models.py:189 apps/pharmacie/forms.py:31
+#: apps/pharmacie/models.py:66 apps/pharmacie/models.py:107
+#: apps/pharmacie/models.py:145
+msgid "médicament"
+msgstr "medicine"
+
+#: apps/consultations/models.py:190
+msgid "libellé prescrit"
+msgstr "prescribed name"
+
+#: apps/consultations/models.py:191
+msgid "Copie du libellé au moment de la prescription."
+msgstr "Copy of the name at the time of prescribing."
+
+#: apps/consultations/models.py:192
+msgid "posologie"
+msgstr "dosage"
+
+#: apps/consultations/models.py:193
+msgid "Ex. : 1 comprimé matin et soir."
+msgstr "E.g.: 1 tablet morning and evening."
+
+#: apps/consultations/models.py:194
+msgid "durée (jours)"
+msgstr "duration (days)"
+
+#: apps/consultations/models.py:196
+msgid "quantité à délivrer"
+msgstr "quantity to dispense"
+
+#: apps/consultations/models.py:197
+msgid "Nombre total d'unités à dispenser."
+msgstr "Total number of units to dispense."
+
+#: apps/consultations/models.py:199
+msgid "instructions complémentaires"
+msgstr "additional instructions"
+
+#: apps/consultations/models.py:203
+msgid "ligne d'ordonnance"
+msgstr "prescription line"
+
+#: apps/consultations/models.py:204
+msgid "lignes d'ordonnance"
+msgstr "prescription lines"
+
+#: apps/consultations/views.py:69
+msgid "Consultation créée."
+msgstr "Consultation created."
+
+#: apps/consultations/views.py:89
+msgid "Consultation mise à jour."
+msgstr "Consultation updated."
+
+#: apps/consultations/views.py:129
+msgid "Constantes enregistrées."
+msgstr "Vital signs saved."
+
+#: apps/consultations/views.py:158
+msgid "Ordonnance créée. Ajoutez les médicaments."
+msgstr "Prescription created. Add the medicines."
+
+#: apps/consultations/views.py:194
+msgid "Cette ordonnance n'est plus modifiable."
+msgstr "This prescription can no longer be edited."
+
+#: apps/consultations/views.py:201
+msgid "Médicament ajouté à l'ordonnance."
+msgstr "Medicine added to the prescription."
+
+#: apps/consultations/views.py:203
+msgid "Formulaire invalide : %(err)s"
+msgstr "Invalid form: %(err)s"
+
+#: apps/consultations/views.py:215 apps/facturation/views.py:192
+msgid "Ligne retirée."
+msgstr "Line removed."
+
+#: apps/consultations/views.py:226
+msgid "Ajoutez au moins un médicament avant de transmettre."
+msgstr "Add at least one medicine before sending."
+
+#: apps/consultations/views.py:236
+msgid "Ordonnance transmise à la pharmacie."
+msgstr "Prescription sent to pharmacy."
+
+#: apps/consultations/views.py:249
+msgid "Consultation clôturée."
+msgstr "Consultation closed."
+
+#: apps/core/admin.py:50 apps/core/models.py:111
+msgid "journal d'audit"
+msgstr "audit log"
+
+#: apps/core/models.py:20
+msgid "créé le"
+msgstr "created on"
+
+#: apps/core/models.py:21
+msgid "modifié le"
+msgstr "updated on"
+
+#: apps/core/models.py:28
+msgid "créé par"
+msgstr "created by"
+
+#: apps/core/models.py:36
+msgid "modifié par"
+msgstr "updated by"
+
+#: apps/core/models.py:47
+msgid "nom de l'établissement"
+msgstr "facility name"
+
+#: apps/core/models.py:49
+msgid "logo"
+msgstr "logo"
+
+#: apps/core/models.py:53
+msgid "fuseau horaire"
+msgstr "time zone"
+
+#: apps/core/models.py:56
+msgid "langues actives"
+msgstr "active languages"
+
+#: apps/core/models.py:58
+msgid "Codes des langues proposées dans l'interface, ex. [\"fr\", \"bm\"]."
+msgstr "Language codes offered in the interface, e.g. [\"fr\", \"bm\"]."
+
+#: apps/core/models.py:62 apps/core/models.py:63
+msgid "paramètres système"
+msgstr "system settings"
+
+#: apps/core/models.py:85
+msgid "Création"
+msgstr "Creation"
+
+#: apps/core/models.py:86
+msgid "Modification"
+msgstr "Update"
+
+#: apps/core/models.py:87 apps/facturation/models.py:30
+#: apps/facturation/models.py:39 templates/consultations/formulaire.html:3
+#: templates/consultations/ordonnance_formulaire.html:7
+msgid "Consultation"
+msgstr "View"
+
+#: apps/core/models.py:88
+msgid "Suppression"
+msgstr "Deletion"
+
+#: apps/core/models.py:89 templates/registration/login.html:3
+msgid "Connexion"
+msgstr "Login"
+
+#: apps/core/models.py:90 templates/base.html:72
+msgid "Déconnexion"
+msgstr "Logout"
+
+#: apps/core/models.py:101
+msgid "action"
+msgstr "action"
+
+#: apps/core/models.py:102
+msgid "type d'objet"
+msgstr "object type"
+
+#: apps/core/models.py:103
+msgid "identifiant de l'objet"
+msgstr "object ID"
+
+#: apps/core/models.py:105
+msgid "adresse IP"
+msgstr "IP address"
+
+#: apps/core/models.py:106
+msgid "données complémentaires"
+msgstr "additional data"
+
+#: apps/core/models.py:107
+msgid "horodatage"
+msgstr "timestamp"
+
+#: apps/core/models.py:110
+msgid "entrée du journal d'audit"
+msgstr "audit log entry"
+
+#: apps/core/models.py:119
+msgid "système"
+msgstr "system"
+
+#: apps/core/models.py:147
+msgid "destinataire"
+msgstr "recipient"
+
+#: apps/core/models.py:149
+msgid "titre"
+msgstr "title"
+
+#: apps/core/models.py:150
+msgid "message"
+msgstr "message"
+
+#: apps/core/models.py:151
+msgid "lien"
+msgstr "link"
+
+#: apps/core/models.py:152
+msgid "lu"
+msgstr "read"
+
+#: apps/core/models.py:153
+msgid "créée le"
+msgstr "created on"
+
+#: apps/core/models.py:156
+msgid "notification"
+msgstr "notification"
+
+#: apps/core/models.py:157
+msgid "notifications"
+msgstr "notifications"
+
+#: apps/core/views.py:61 templates/base.html:23
+#: templates/patients/detail.html:8 templates/patients/liste.html:3
+#: templates/patients/liste.html:7
+msgid "Patients"
+msgstr "Patients"
+
+#: apps/core/views.py:63 templates/base.html:26
+#: templates/consultations/detail.html:7 templates/consultations/liste.html:3
+#: templates/consultations/liste.html:6
+msgid "Consultations"
+msgstr "Consultations"
+
+#: apps/core/views.py:65 apps/facturation/models.py:40 templates/base.html:29
+msgid "Hospitalisation"
+msgstr "Inpatient care"
+
+#: apps/core/views.py:67 templates/base.html:32
+#: templates/bloc_operatoire/detail.html:7
+msgid "Bloc opératoire"
+msgstr "Operating theatre"
+
+#: apps/core/views.py:69 templates/base.html:35
+#: templates/laboratoire/detail.html:7 templates/laboratoire/liste.html:3
+msgid "Analyses & imagerie"
+msgstr "Lab & imaging"
+
+#: apps/core/views.py:71 templates/base.html:38
+msgid "Facturation"
+msgstr "Billing"
+
+#: apps/core/views.py:73
+msgid "Bordereaux assurance"
+msgstr "Insurance statements"
+
+#: apps/core/views.py:75 templates/base.html:41
+#: templates/pharmacie/dispensations.html:3
+#: templates/pharmacie/dispensation_detail.html:7
+msgid "Dispensations"
+msgstr "Dispensing"
+
+#: apps/core/views.py:77
+msgid "Pharmacie — stock"
+msgstr "Pharmacy — stock"
+
+#: apps/core/views.py:79 templates/base.html:47
+msgid "Administration"
+msgstr "Administration"
+
+#: apps/facturation/admin.py:44
+msgid "en retard"
+msgstr "overdue"
+
+#: apps/facturation/forms.py:11 apps/facturation/models.py:52
+msgid "montant (FCFA)"
+msgstr "amount (FCFA)"
+
+#: apps/facturation/forms.py:14 apps/facturation/models.py:244
+msgid "mode"
+msgstr "method"
+
+#: apps/facturation/forms.py:16 apps/facturation/models.py:246
+msgid "payeur"
+msgstr "payer"
+
+#: apps/facturation/forms.py:20
+msgid "Remboursement (sortie de caisse)"
+msgstr "Refund (cash outflow)"
+
+#: apps/facturation/forms.py:22
+msgid "réf. transaction"
+msgstr "transaction ref."
+
+#: apps/facturation/forms.py:25 apps/facturation/models.py:254
+#: apps/facturation/models.py:288 apps/laboratoire/forms.py:45
+#: apps/laboratoire/forms.py:56 apps/laboratoire/models.py:177
+#: apps/pharmacie/models.py:233 templates/laboratoire/detail.html:87
+msgid "commentaire"
+msgstr "comment"
+
+#: apps/facturation/forms.py:52 apps/facturation/models.py:108
+#: apps/laboratoire/forms.py:61 apps/laboratoire/models.py:91
+msgid "motif d'annulation"
+msgstr "cancellation reason"
+
+#: apps/facturation/models.py:31
+msgid "Hospitalisation (par jour)"
+msgstr "Inpatient stay (per day)"
+
+#: apps/facturation/models.py:32
+msgid "Acte de bloc opératoire"
+msgstr "Operating theatre procedure"
+
+#: apps/facturation/models.py:33
+#: templates/consultations/ordonnance_detail.html:38
+#: templates/pharmacie/dispensation_detail.html:32
+#: templates/pharmacie/dispensation_detail.html:79
+#: templates/pharmacie/medicaments.html:38
+#: templates/pharmacie/medicament_formulaire.html:3
+#: templates/pharmacie/mouvements.html:20
+msgid "Médicament"
+msgstr "Medicine"
+
+#: apps/facturation/models.py:34 apps/facturation/models.py:43
+msgid "Analyse / imagerie"
+msgstr "Lab test / imaging"
+
+#: apps/facturation/models.py:41
+msgid "Intervention chirurgicale"
+msgstr "Surgical procedure"
+
+#: apps/facturation/models.py:42
+msgid "Dispensation pharmacie"
+msgstr "Pharmacy dispensing"
+
+#: apps/facturation/models.py:49 apps/facturation/models.py:206
+#: apps/laboratoire/models.py:34
+msgid "libellé"
+msgstr "label"
+
+#: apps/facturation/models.py:50 apps/laboratoire/forms.py:11
+#: apps/laboratoire/models.py:35 apps/laboratoire/models.py:71
+msgid "catégorie"
+msgstr "category"
+
+#: apps/facturation/models.py:54
+msgid "référence externe"
+msgstr "external reference"
+
+#: apps/facturation/models.py:55
+msgid "Ex. : identifiant d'un type d'intervention pour un tarif d'acte."
+msgstr "E.g.: a procedure type's ID for a procedure fee."
+
+#: apps/facturation/models.py:60
+msgid "tarif"
+msgstr "fee"
+
+#: apps/facturation/models.py:61
+msgid "grille tarifaire"
+msgstr "fee schedule"
+
+#: apps/facturation/models.py:81
+msgid "Émise"
+msgstr "Issued"
+
+#: apps/facturation/models.py:82
+msgid "Partiellement réglée"
+msgstr "Partially paid"
+
+#: apps/facturation/models.py:83
+msgid "Réglée"
+msgstr "Paid"
+
+#: apps/facturation/models.py:92
+msgid "couverture appliquée"
+msgstr "coverage applied"
+
+#: apps/facturation/models.py:94
+msgid "date d'émission"
+msgstr "issue date"
+
+#: apps/facturation/models.py:95 templates/facturation/detail.html:20
+msgid "échéance"
+msgstr "due date"
+
+#: apps/facturation/models.py:102
+msgid "taux de couverture appliqué (%)"
+msgstr "coverage rate applied (%)"
+
+#: apps/facturation/models.py:105
+msgid "part patient"
+msgstr "patient's share"
+
+#: apps/facturation/models.py:107
+msgid "notes"
+msgstr "notes"
+
+#: apps/facturation/models.py:111 apps/facturation/models.py:201
+#: apps/facturation/models.py:242
+msgid "facture"
+msgstr "invoice"
+
+#: apps/facturation/models.py:112
+msgid "factures"
+msgstr "invoices"
+
+#: apps/facturation/models.py:202
+msgid "origine"
+msgstr "source"
+
+#: apps/facturation/models.py:204
+msgid "identifiant de l'acte"
+msgstr "procedure ID"
+
+#: apps/facturation/models.py:209
+msgid "prix unitaire"
+msgstr "unit price"
+
+#: apps/facturation/models.py:211 apps/facturation/models.py:243
+msgid "montant"
+msgstr "amount"
+
+#: apps/facturation/models.py:215
+msgid "ligne de facture"
+msgstr "invoice line"
+
+#: apps/facturation/models.py:216
+msgid "lignes de facture"
+msgstr "invoice lines"
+
+#: apps/facturation/models.py:229
+msgid "Espèces"
+msgstr "Cash"
+
+#: apps/facturation/models.py:230
+msgid "Mobile money"
+msgstr "Mobile money"
+
+#: apps/facturation/models.py:231
+msgid "Virement bancaire"
+msgstr "Bank transfer"
+
+#: apps/facturation/models.py:232
+msgid "Chèque"
+msgstr "Cheque"
+
+#: apps/facturation/models.py:233
+msgid "Carte bancaire"
+msgstr "Card payment"
+
+#: apps/facturation/models.py:236
+#: templates/assurances/bordereau_detail.html:20
+#: templates/bloc_operatoire/liste.html:27
+#: templates/consultations/liste.html:27 templates/facturation/impayes.html:10
+#: templates/facturation/liste.html:34 templates/hospitalisation/liste.html:29
+#: templates/laboratoire/liste.html:34
+#: templates/pharmacie/dispensations.html:20
+msgid "Patient"
+msgstr "Patient"
+
+#: apps/facturation/models.py:237 templates/assurances/bordereaux.html:34
+msgid "Assurance"
+msgstr "Insurer"
+
+#: apps/facturation/models.py:248
+msgid "remboursement"
+msgstr "refund"
+
+#: apps/facturation/models.py:249
+msgid "référence de transaction"
+msgstr "transaction reference"
+
+#: apps/facturation/models.py:257
+msgid "paiement"
+msgstr "payment"
+
+#: apps/facturation/models.py:258
+msgid "paiements"
+msgstr "payments"
+
+#: apps/facturation/models.py:278 templates/patients/detail.html:60
+#: templates/patients/detail.html:78 templates/patients/liste.html:39
+msgid "Téléphone"
+msgstr "Phone"
+
+#: apps/facturation/models.py:279
+msgid "SMS"
+msgstr "SMS"
+
+#: apps/facturation/models.py:280
+msgid "Courrier"
+msgstr "Mail"
+
+#: apps/facturation/models.py:281
+msgid "Courriel"
+msgstr "Email"
+
+#: apps/facturation/models.py:282
+msgid "Au guichet"
+msgstr "At the front desk"
+
+#: apps/facturation/models.py:286
+msgid "canal"
+msgstr "channel"
+
+#: apps/facturation/models.py:293
+msgid "relance"
+msgstr "reminder"
+
+#: apps/facturation/models.py:294
+msgid "relances"
+msgstr "reminders"
+
+#: apps/facturation/views.py:111
+msgid "Type d'acte inconnu."
+msgstr "Unknown procedure type."
+
+#: apps/facturation/views.py:123
+msgid "Cet acte est déjà facturé."
+msgstr "This procedure is already invoiced."
+
+#: apps/facturation/views.py:127
+msgid "Facture %(r)s générée (brouillon)."
+msgstr "Invoice %(r)s generated (draft)."
+
+#: apps/facturation/views.py:143
+msgid "Facture émise."
+msgstr "Invoice issued."
+
+#: apps/facturation/views.py:162
+msgid "Facture annulée."
+msgstr "Invoice cancelled."
+
+#: apps/facturation/views.py:178
+msgid "Ligne ajoutée."
+msgstr "Line added."
+
+#: apps/facturation/views.py:180 apps/facturation/views.py:233
+#: apps/hospitalisation/views.py:150
+msgid "Formulaire invalide."
+msgstr "Invalid form."
+
+#: apps/facturation/views.py:203
+msgid "Formulaire de paiement invalide."
+msgstr "Invalid payment form."
+
+#: apps/facturation/views.py:216
+msgid "Paiement enregistré."
+msgstr "Payment saved."
+
+#: apps/facturation/views.py:231
+msgid "Relance enregistrée."
+msgstr "Reminder saved."
+
+#: apps/hospitalisation/admin.py:23
+msgid "taux d'occupation"
+msgstr "occupancy rate"
+
+#: apps/hospitalisation/admin.py:42
+msgid "occupé"
+msgstr "occupied"
+
+#: apps/hospitalisation/forms.py:21 apps/hospitalisation/models.py:39
+#: apps/hospitalisation/models.py:78 apps/hospitalisation/models.py:158
+msgid "service"
+msgstr "ward"
+
+#: apps/hospitalisation/forms.py:24 apps/hospitalisation/models.py:110
+#: apps/hospitalisation/models.py:119 apps/hospitalisation/models.py:160
+#: templates/hospitalisation/detail.html:18
+#: templates/hospitalisation/liste.html:38 templates/patients/detail.html:48
+msgid "lit"
+msgstr "bed"
+
+#: apps/hospitalisation/forms.py:26
+msgid "Laisser vide pour une admission sans lit assigné."
+msgstr "Leave blank for an admission with no bed assigned."
+
+#: apps/hospitalisation/forms.py:27 apps/hospitalisation/models.py:169
+msgid "motif d'hospitalisation"
+msgstr "reason for admission"
+
+#: apps/hospitalisation/forms.py:30 apps/hospitalisation/models.py:170
+msgid "diagnostic à l'admission"
+msgstr "admission diagnosis"
+
+#: apps/hospitalisation/forms.py:42
+msgid "Ce lit n'appartient pas au service choisi."
+msgstr "This bed does not belong to the selected ward."
+
+#: apps/hospitalisation/forms.py:44
+msgid "Ce lit est déjà occupé."
+msgstr "This bed is already occupied."
+
+#: apps/hospitalisation/forms.py:50
+msgid "nouveau lit"
+msgstr "new bed"
+
+#: apps/hospitalisation/forms.py:62 apps/hospitalisation/models.py:176
+msgid "mode de sortie"
+msgstr "discharge type"
+
+#: apps/hospitalisation/forms.py:65 apps/hospitalisation/models.py:178
+msgid "compte-rendu d'hospitalisation"
+msgstr "discharge summary"
+
+#: apps/hospitalisation/forms.py:68 apps/hospitalisation/models.py:179
+msgid "consignes de sortie"
+msgstr "discharge instructions"
+
+#: apps/hospitalisation/models.py:35
+msgid "médecin responsable"
+msgstr "ward physician"
+
+#: apps/hospitalisation/models.py:40
+msgid "services"
+msgstr "wards"
+
+#: apps/hospitalisation/models.py:73
+msgid "Individuelle"
+msgstr "Single"
+
+#: apps/hospitalisation/models.py:74
+msgid "Double"
+msgstr "Double"
+
+#: apps/hospitalisation/models.py:75
+msgid "Commune"
+msgstr "Shared"
+
+#: apps/hospitalisation/models.py:79
+msgid "numéro"
+msgstr "number"
+
+#: apps/hospitalisation/models.py:84 apps/hospitalisation/models.py:93
+#: apps/hospitalisation/models.py:103 templates/hospitalisation/detail.html:18
+msgid "chambre"
+msgstr "room"
+
+#: apps/hospitalisation/models.py:85
+msgid "chambres"
+msgstr "rooms"
+
+#: apps/hospitalisation/models.py:104
+msgid "numéro / libellé"
+msgstr "number / label"
+
+#: apps/hospitalisation/models.py:107
+msgid "Hors occupation : un lit occupé est déduit des séjours en cours."
+msgstr "Excludes occupancy: an occupied bed is inferred from ongoing stays."
+
+#: apps/hospitalisation/models.py:111
+#: templates/hospitalisation/occupation.html:16
+msgid "lits"
+msgstr "beds"
+
+#: apps/hospitalisation/models.py:149
+msgid "Retour à domicile"
+msgstr "Discharged home"
+
+#: apps/hospitalisation/models.py:150
+msgid "Transfert vers un autre établissement"
+msgstr "Transfer to another facility"
+
+#: apps/hospitalisation/models.py:151
+msgid "Sortie contre avis médical"
+msgstr "Discharge against medical advice"
+
+#: apps/hospitalisation/models.py:152
+msgid "Décès"
+msgstr "Death"
+
+#: apps/hospitalisation/models.py:163
+msgid "consultation d'origine"
+msgstr "originating consultation"
+
+#: apps/hospitalisation/models.py:167
+msgid "médecin référent"
+msgstr "attending physician"
+
+#: apps/hospitalisation/models.py:171
+msgid "date d'admission"
+msgstr "admission date"
+
+#: apps/hospitalisation/models.py:175
+msgid "date de sortie"
+msgstr "discharge date"
+
+#: apps/hospitalisation/models.py:182
+msgid "hospitalisation"
+msgstr "inpatient stay"
+
+#: apps/hospitalisation/models.py:183
+msgid "hospitalisations"
+msgstr "inpatient stays"
+
+#: apps/hospitalisation/models.py:237
+msgid "mouvement de lit"
+msgstr "bed transfer"
+
+#: apps/hospitalisation/models.py:238
+msgid "mouvements de lit"
+msgstr "bed transfers"
+
+#: apps/hospitalisation/models.py:249
+msgid "Soin infirmier"
+msgstr "Nursing care"
+
+#: apps/hospitalisation/models.py:250
+msgid "Observation médicale"
+msgstr "Medical observation"
+
+#: apps/hospitalisation/models.py:251
+msgid "Administration de traitement"
+msgstr "Medication administration"
+
+#: apps/hospitalisation/models.py:252
+msgid "Relevé de constantes"
+msgstr "Vital signs recording"
+
+#: apps/hospitalisation/models.py:256
+msgid "séjour"
+msgstr "stay"
+
+#: apps/hospitalisation/models.py:262
+msgid "TA systolique"
+msgstr "Systolic BP"
+
+#: apps/hospitalisation/models.py:264
+msgid "TA diastolique"
+msgstr "Diastolic BP"
+
+#: apps/hospitalisation/models.py:266
+msgid "pouls (bpm)"
+msgstr "pulse (bpm)"
+
+#: apps/hospitalisation/models.py:270
+msgid "auteur"
+msgstr "author"
+
+#: apps/hospitalisation/models.py:273
+msgid "note de suivi"
+msgstr "follow-up note"
+
+#: apps/hospitalisation/models.py:274
+msgid "notes de suivi"
+msgstr "follow-up notes"
+
+#: apps/hospitalisation/views.py:111
+msgid "Ce patient est déjà hospitalisé."
+msgstr "This patient is already admitted."
+
+#: apps/hospitalisation/views.py:132
+msgid "Patient admis. Séjour %(r)s."
+msgstr "Patient admitted. Stay %(r)s."
+
+#: apps/hospitalisation/views.py:148
+msgid "Note de suivi ajoutée."
+msgstr "Follow-up note added."
+
+#: apps/hospitalisation/views.py:162
+msgid "Sélection de lit invalide."
+msgstr "Invalid bed selection."
+
+#: apps/hospitalisation/views.py:174
+msgid "Patient transféré."
+msgstr "Patient transferred."
+
+#: apps/hospitalisation/views.py:186
+msgid "Renseignez le mode de sortie et le compte-rendu."
+msgstr "Enter the discharge type and the summary."
+
+#: apps/hospitalisation/views.py:202
+msgid "Sortie enregistrée."
+msgstr "Discharge saved."
+
+#: apps/laboratoire/forms.py:14 apps/laboratoire/models.py:83
+msgid "priorité"
+msgstr "priority"
+
+#: apps/laboratoire/forms.py:15 apps/laboratoire/models.py:57
+msgid "Routine"
+msgstr "Routine"
+
+#: apps/laboratoire/forms.py:15 apps/laboratoire/models.py:58
+#: templates/laboratoire/detail.html:16
+msgid "Urgent"
+msgstr "Urgent"
+
+#: apps/laboratoire/forms.py:18 apps/laboratoire/models.py:85
+msgid "renseignements cliniques"
+msgstr "clinical information"
+
+#: apps/laboratoire/forms.py:21
+msgid "examens demandés"
+msgstr "requested tests"
+
+#: apps/laboratoire/forms.py:33
+msgid "Ces examens ne correspondent pas à la catégorie : %(l)s"
+msgstr "These tests do not match the category: %(l)s"
+
+#: apps/laboratoire/forms.py:39 apps/laboratoire/models.py:168
+msgid "valeur mesurée"
+msgstr "measured value"
+
+#: apps/laboratoire/forms.py:42 apps/laboratoire/models.py:169
+msgid "interprétation"
+msgstr "interpretation"
+
+#: apps/laboratoire/forms.py:43
+msgid "— automatique —"
+msgstr "— automatic —"
+
+#: apps/laboratoire/forms.py:50 apps/laboratoire/models.py:172
+#: templates/laboratoire/detail.html:92
+msgid "compte-rendu"
+msgstr "report"
+
+#: apps/laboratoire/forms.py:52 apps/laboratoire/models.py:173
+#: templates/laboratoire/detail.html:94
+msgid "conclusion"
+msgstr "conclusion"
+
+#: apps/laboratoire/forms.py:54 apps/laboratoire/models.py:174
+msgid "pièce jointe (image / PDF)"
+msgstr "attachment (image / PDF)"
+
+#: apps/laboratoire/models.py:28
+msgid "Analyse biologique"
+msgstr "Lab test"
+
+#: apps/laboratoire/models.py:29
+msgid "Imagerie médicale"
+msgstr "Medical imaging"
+
+#: apps/laboratoire/models.py:37 apps/laboratoire/models.py:135
+msgid "unité"
+msgstr "unit"
+
+#: apps/laboratoire/models.py:38
+msgid "Ex. : g/L, /mm³ (biologie)."
+msgstr "E.g.: g/L, /mm³ (lab tests)."
+
+#: apps/laboratoire/models.py:39 apps/laboratoire/models.py:136
+msgid "valeurs de référence"
+msgstr "reference values"
+
+#: apps/laboratoire/models.py:41
+msgid "Ex. : 3.5 - 5.0"
+msgstr "E.g.: 3.5 - 5.0"
+
+#: apps/laboratoire/models.py:42
+msgid "délai de rendu (heures)"
+msgstr "turnaround time (hours)"
+
+#: apps/laboratoire/models.py:47
+msgid "type d'examen"
+msgstr "test type"
+
+#: apps/laboratoire/models.py:48
+msgid "types d'examen"
+msgstr "test types"
+
+#: apps/laboratoire/models.py:63
+msgid "Résultats disponibles"
+msgstr "Results available"
+
+#: apps/laboratoire/models.py:64
+msgid "Validée"
+msgstr "Validated"
+
+#: apps/laboratoire/models.py:87
+msgid "date de prélèvement"
+msgstr "sample collection date"
+
+#: apps/laboratoire/models.py:95
+msgid "demande d'examen"
+msgstr "test request"
+
+#: apps/laboratoire/models.py:96
+msgid "demandes d'examen"
+msgstr "test requests"
+
+#: apps/laboratoire/models.py:131
+msgid "demande"
+msgstr "request"
+
+#: apps/laboratoire/models.py:133
+msgid "examen"
+msgstr "test"
+
+#: apps/laboratoire/models.py:140
+msgid "ligne d'examen"
+msgstr "test line"
+
+#: apps/laboratoire/models.py:141
+msgid "lignes d'examen"
+msgstr "test lines"
+
+#: apps/laboratoire/models.py:159 templates/laboratoire/detail.html:81
+msgid "Normal"
+msgstr "Normal"
+
+#: apps/laboratoire/models.py:160 templates/laboratoire/detail.html:82
+msgid "Anormal — bas"
+msgstr "Abnormal — low"
+
+#: apps/laboratoire/models.py:161 templates/laboratoire/detail.html:83
+msgid "Anormal — haut"
+msgstr "Abnormal — high"
+
+#: apps/laboratoire/models.py:162 templates/laboratoire/detail.html:84
+msgid "Anormal"
+msgstr "Abnormal"
+
+#: apps/laboratoire/models.py:163
+msgid "Non interprétable"
+msgstr "Not interpretable"
+
+#: apps/laboratoire/models.py:166
+msgid "ligne"
+msgstr "line"
+
+#: apps/laboratoire/models.py:181
+msgid "saisi le"
+msgstr "entered on"
+
+#: apps/laboratoire/models.py:188
+msgid "résultat"
+msgstr "result"
+
+#: apps/laboratoire/models.py:189
+msgid "résultats"
+msgstr "results"
+
+#: apps/laboratoire/models.py:192
+msgid "CR imagerie"
+msgstr "imaging report"
+
+#: apps/laboratoire/views.py:105
+msgid "Demande d'examen enregistrée."
+msgstr "Test request saved."
+
+#: apps/laboratoire/views.py:160
+msgid "Formulaire de résultat invalide."
+msgstr "Invalid result form."
+
+#: apps/laboratoire/views.py:177
+msgid "Résultat enregistré."
+msgstr "Result saved."
+
+#: apps/laboratoire/views.py:192
+msgid "Résultats validés. Le prescripteur a été notifié."
+msgstr "Results validated. The prescriber has been notified."
+
+#: apps/laboratoire/views.py:209
+msgid "Demande annulée."
+msgstr "Request cancelled."
+
+#: apps/patients/admin.py:36
+msgid "Identité"
+msgstr "Identity"
+
+#: apps/patients/admin.py:41 templates/patients/detail.html:57
+msgid "Coordonnées"
+msgstr "Contact details"
+
+#: apps/patients/admin.py:44 templates/patients/detail.html:73
+msgid "Personne à prévenir"
+msgstr "Emergency contact"
+
+#: apps/patients/admin.py:48
+msgid "Informations complémentaires"
+msgstr "Additional information"
+
+#: apps/patients/admin.py:51
+msgid "Traçabilité"
+msgstr "Traceability"
+
+#: apps/patients/admin.py:63
+msgid "âge"
+msgstr "age"
+
+#: apps/patients/models.py:32
+msgid "Inconnu"
+msgstr "Unknown"
+
+#: apps/patients/models.py:54
+msgid "Masculin"
+msgstr "Male"
+
+#: apps/patients/models.py:55
+msgid "Féminin"
+msgstr "Female"
+
+#: apps/patients/models.py:58
+msgid "Célibataire"
+msgstr "Single"
+
+#: apps/patients/models.py:59
+msgid "Marié(e)"
+msgstr "Married"
+
+#: apps/patients/models.py:60
+msgid "Divorcé(e)"
+msgstr "Divorced"
+
+#: apps/patients/models.py:61
+msgid "Veuf/Veuve"
+msgstr "Widowed"
+
+#: apps/patients/models.py:65
+msgid "numéro de dossier"
+msgstr "file number"
+
+#: apps/patients/models.py:66
+msgid "Identifiant unique du patient, attribué automatiquement."
+msgstr "Unique patient ID, assigned automatically."
+
+#: apps/patients/models.py:69
+msgid "prénom"
+msgstr "first name"
+
+#: apps/patients/models.py:70
+msgid "sexe"
+msgstr "sex"
+
+#: apps/patients/models.py:71
+msgid "date de naissance"
+msgstr "date of birth"
+
+#: apps/patients/models.py:73
+msgid "date de naissance estimée"
+msgstr "estimated date of birth"
+
+#: apps/patients/models.py:74
+msgid "Cochez si seule l'année ou l'âge approximatif est connu."
+msgstr "Check if only the year or approximate age is known."
+
+#: apps/patients/models.py:76
+msgid "lieu de naissance"
+msgstr "place of birth"
+
+#: apps/patients/models.py:77
+msgid "nationalité"
+msgstr "nationality"
+
+#: apps/patients/models.py:82
+msgid "ville / commune"
+msgstr "town / district"
+
+#: apps/patients/models.py:84
+msgid "personne à prévenir"
+msgstr "emergency contact"
+
+#: apps/patients/models.py:86
+msgid "lien de parenté"
+msgstr "relationship"
+
+#: apps/patients/models.py:88
+msgid "téléphone d'urgence"
+msgstr "emergency phone"
+
+#: apps/patients/models.py:91
+msgid "profession"
+msgstr "occupation"
+
+#: apps/patients/models.py:93
+msgid "statut matrimonial"
+msgstr "marital status"
+
+#: apps/patients/models.py:97
+msgid "groupe sanguin"
+msgstr "blood type"
+
+#: apps/patients/models.py:100
+msgid "photo"
+msgstr "photo"
+
+#: apps/patients/models.py:105
+msgid "Décochez pour archiver le dossier sans le supprimer."
+msgstr "Uncheck to archive the record without deleting it."
+
+#: apps/patients/models.py:112
+msgid "patients"
+msgstr "patients"
+
+#: apps/patients/models.py:163
+msgid "antécédents médicaux"
+msgstr "medical history"
+
+#: apps/patients/models.py:164
+msgid "antécédents chirurgicaux"
+msgstr "surgical history"
+
+#: apps/patients/models.py:165
+msgid "antécédents familiaux"
+msgstr "family history"
+
+#: apps/patients/models.py:167
+msgid "antécédents gynéco-obstétricaux"
+msgstr "gynaeco-obstetric history"
+
+#: apps/patients/models.py:169
+msgid "traitements en cours"
+msgstr "current treatments"
+
+#: apps/patients/models.py:171
+msgid "habitudes de vie"
+msgstr "lifestyle habits"
+
+#: apps/patients/models.py:172
+msgid "Tabac, alcool, activité physique, régime particulier…"
+msgstr "Tobacco, alcohol, physical activity, special diet…"
+
+#: apps/patients/models.py:174
+msgid "observations générales"
+msgstr "general observations"
+
+#: apps/patients/models.py:177 apps/patients/models.py:198
+msgid "dossier médical"
+msgstr "medical record"
+
+#: apps/patients/models.py:178
+msgid "dossiers médicaux"
+msgstr "medical records"
+
+#: apps/patients/models.py:181
+msgid "Dossier médical de %(p)s"
+msgstr "Medical record of %(p)s"
+
+#: apps/patients/models.py:186
+msgid "Médicamenteuse"
+msgstr "Drug"
+
+#: apps/patients/models.py:187
+msgid "Alimentaire"
+msgstr "Food"
+
+#: apps/patients/models.py:188
+msgid "Environnementale"
+msgstr "Environmental"
+
+#: apps/patients/models.py:192
+msgid "Légère"
+msgstr "Mild"
+
+#: apps/patients/models.py:193 apps/pharmacie/models.py:177
+msgid "Modérée"
+msgstr "Moderate"
+
+#: apps/patients/models.py:194
+msgid "Sévère"
+msgstr "Severe"
+
+#: apps/patients/models.py:200
+msgid "allergène"
+msgstr "allergen"
+
+#: apps/patients/models.py:203
+msgid "sévérité"
+msgstr "severity"
+
+#: apps/patients/models.py:205
+msgid "remarque"
+msgstr "remark"
+
+#: apps/patients/models.py:208
+msgid "allergie"
+msgstr "allergy"
+
+#: apps/patients/models.py:209
+msgid "allergies"
+msgstr "allergies"
+
+#: apps/patients/views.py:73
+msgid "Consultation de la fiche patient"
+msgstr "Patient record viewed"
+
+#: apps/patients/views.py:84
+msgid "Patient créé. Numéro de dossier : %(numero_dossier)s"
+msgstr "Patient created. File number: %(numero_dossier)s"
+
+#: apps/patients/views.py:96
+msgid "Fiche patient mise à jour."
+msgstr "Patient record updated."
+
+#: apps/patients/views.py:107
+msgid "Dossier médical mis à jour."
+msgstr "Medical record updated."
+
+#: apps/patients/views.py:121
+msgid "Modification du dossier médical"
+msgstr "Medical record updated"
+
+#: apps/pharmacie/admin.py:29
+msgid "sous le seuil"
+msgstr "below threshold"
+
+#: apps/pharmacie/admin.py:41
+msgid "périmé"
+msgstr "expired"
+
+#: apps/pharmacie/forms.py:34 apps/pharmacie/models.py:108
+msgid "numéro de lot"
+msgstr "batch number"
+
+#: apps/pharmacie/forms.py:36
+msgid "quantité reçue"
+msgstr "quantity received"
+
+#: apps/pharmacie/forms.py:39 apps/pharmacie/models.py:111
+msgid "date de péremption"
+msgstr "expiry date"
+
+#: apps/pharmacie/forms.py:43 apps/pharmacie/models.py:112
+msgid "date de réception"
+msgstr "reception date"
+
+#: apps/pharmacie/forms.py:46 apps/pharmacie/models.py:113
+msgid "fournisseur"
+msgstr "supplier"
+
+#: apps/pharmacie/forms.py:52
+msgid "La date de péremption doit être future."
+msgstr "The expiry date must be in the future."
+
+#: apps/pharmacie/models.py:30
+msgid "Comprimé"
+msgstr "Tablet"
+
+#: apps/pharmacie/models.py:31
+msgid "Gélule"
+msgstr "Capsule"
+
+#: apps/pharmacie/models.py:32
+msgid "Sirop"
+msgstr "Syrup"
+
+#: apps/pharmacie/models.py:33
+msgid "Suspension buvable"
+msgstr "Oral suspension"
+
+#: apps/pharmacie/models.py:34
+msgid "Injectable"
+msgstr "Injectable"
+
+#: apps/pharmacie/models.py:35
+msgid "Solution pour perfusion"
+msgstr "Infusion solution"
+
+#: apps/pharmacie/models.py:36
+msgid "Pommade / crème"
+msgstr "Ointment / cream"
+
+#: apps/pharmacie/models.py:37
+msgid "Collyre"
+msgstr "Eye drops"
+
+#: apps/pharmacie/models.py:38
+msgid "Suppositoire"
+msgstr "Suppository"
+
+#: apps/pharmacie/models.py:46
+msgid "Code interne ou code-barres, facultatif."
+msgstr "Internal code or barcode, optional."
+
+#: apps/pharmacie/models.py:47
+msgid "dénomination (DCI)"
+msgstr "name (INN)"
+
+#: apps/pharmacie/models.py:48
+msgid "dosage"
+msgstr "strength"
+
+#: apps/pharmacie/models.py:49
+msgid "Ex. : 500 mg, 1 g/10 ml…"
+msgstr "E.g.: 500 mg, 1 g/10 ml…"
+
+#: apps/pharmacie/models.py:50
+msgid "forme galénique"
+msgstr "dosage form"
+
+#: apps/pharmacie/models.py:52
+msgid "unité de délivrance"
+msgstr "dispensing unit"
+
+#: apps/pharmacie/models.py:53
+msgid "Ex. : comprimé, flacon, ampoule, tube…"
+msgstr "E.g.: tablet, bottle, ampoule, tube…"
+
+#: apps/pharmacie/models.py:55
+msgid "seuil d'alerte"
+msgstr "alert threshold"
+
+#: apps/pharmacie/models.py:56
+msgid "En dessous de ce stock utilisable, le médicament est signalé."
+msgstr "Below this usable stock, the medicine is flagged."
+
+#: apps/pharmacie/models.py:59
+msgid "prix unitaire de vente (FCFA)"
+msgstr "unit selling price (FCFA)"
+
+#: apps/pharmacie/models.py:61
+msgid "Utilisé pour la facturation des dispensations (CDC 4.8)."
+msgstr "Used to bill dispensing (spec 4.8)."
+
+#: apps/pharmacie/models.py:67
+msgid "médicaments"
+msgstr "medicines"
+
+#: apps/pharmacie/models.py:109
+msgid "quantité restante"
+msgstr "remaining quantity"
+
+#: apps/pharmacie/models.py:110
+msgid "quantité initiale"
+msgstr "initial quantity"
+
+#: apps/pharmacie/models.py:116
+msgid "lot de médicament"
+msgstr "medicine batch"
+
+#: apps/pharmacie/models.py:117
+msgid "lots de médicaments"
+msgstr "medicine batches"
+
+#: apps/pharmacie/models.py:136
+msgid "Entrée (réception)"
+msgstr "Receipt (incoming)"
+
+#: apps/pharmacie/models.py:137
+msgid "Sortie (dispensation)"
+msgstr "Issue (dispensing)"
+
+#: apps/pharmacie/models.py:138
+msgid "Ajustement positif (inventaire)"
+msgstr "Positive adjustment (stocktake)"
+
+#: apps/pharmacie/models.py:139
+msgid "Ajustement négatif (inventaire, casse)"
+msgstr "Negative adjustment (stocktake, breakage)"
+
+#: apps/pharmacie/models.py:140
+msgid "Retrait pour péremption"
+msgstr "Removal for expiry"
+
+#: apps/pharmacie/models.py:147
+msgid "lot"
+msgstr "batch"
+
+#: apps/pharmacie/models.py:152
+msgid "Ex. : n° de dispensation."
+msgstr "E.g.: dispensing no."
+
+#: apps/pharmacie/models.py:155
+msgid "opérateur"
+msgstr "operator"
+
+#: apps/pharmacie/models.py:159
+msgid "mouvement de stock"
+msgstr "stock movement"
+
+#: apps/pharmacie/models.py:160
+msgid "mouvements de stock"
+msgstr "stock movements"
+
+#: apps/pharmacie/models.py:176
+msgid "Mineure"
+msgstr "Minor"
+
+#: apps/pharmacie/models.py:178
+msgid "Majeure"
+msgstr "Major"
+
+#: apps/pharmacie/models.py:179
+msgid "Association contre-indiquée"
+msgstr "Contraindicated combination"
+
+#: apps/pharmacie/models.py:185
+msgid "gravité"
+msgstr "severity"
+
+#: apps/pharmacie/models.py:187
+msgid "description / conduite à tenir"
+msgstr "description / management"
+
+#: apps/pharmacie/models.py:190
+msgid "interaction médicamenteuse"
+msgstr "drug interaction"
+
+#: apps/pharmacie/models.py:191
+msgid "interactions médicamenteuses"
+msgstr "drug interactions"
+
+#: apps/pharmacie/models.py:218
+msgid "En attente"
+msgstr "Pending"
+
+#: apps/pharmacie/models.py:220
+msgid "Complète"
+msgstr "Complete"
+
+#: apps/pharmacie/models.py:221
+msgid "Partielle"
+msgstr "Partial"
+
+#: apps/pharmacie/models.py:229
+msgid "pharmacien"
+msgstr "pharmacist"
+
+#: apps/pharmacie/models.py:232
+msgid "date de délivrance"
+msgstr "dispensing date"
+
+#: apps/pharmacie/models.py:236
+msgid "dispensation"
+msgstr "dispensing"
+
+#: apps/pharmacie/models.py:237
+msgid "dispensations"
+msgstr "dispensings"
+
+#: apps/pharmacie/models.py:259
+msgid "quantité délivrée"
+msgstr "quantity dispensed"
+
+#: apps/pharmacie/models.py:263
+msgid "ligne de dispensation"
+msgstr "dispensing line"
+
+#: apps/pharmacie/models.py:264
+msgid "lignes de dispensation"
+msgstr "dispensing lines"
+
+#: apps/pharmacie/views.py:53
+msgid "Médicament ajouté au catalogue."
+msgstr "Medicine added to the catalogue."
+
+#: apps/pharmacie/views.py:65
+msgid "Médicament mis à jour."
+msgstr "Medicine updated."
+
+#: apps/pharmacie/views.py:108
+msgid "Entrée de stock enregistrée."
+msgstr "Stock receipt saved."
+
+#: apps/pharmacie/views.py:172
+msgid "Aucune quantité à délivrer saisie."
+msgstr "No quantity to dispense entered."
+
+#: apps/pharmacie/views.py:191
+msgid "Délivrance enregistrée."
+msgstr "Dispensing saved."
+
+#: apps/pharmacie/views.py:220
+msgid "%(n)d unité(s) périmée(s) retirée(s) du stock."
+msgstr "%(n)d expired unit(s) removed from stock."
+
+#: apps/pharmacie/views.py:223
+msgid "Aucun lot périmé à retirer."
+msgstr "No expired batch to remove."
+
+#: config/settings.py:144 apps/accounts/models.py:37
+msgid "Français"
+msgstr "French"
+
+#: config/settings.py:145 apps/accounts/models.py:38
+msgid "Anglais"
+msgstr "English"
+
+#: config/settings.py:146 apps/accounts/models.py:39
+msgid "Arabe"
+msgstr "Arabic"
+
+#: config/settings.py:147 apps/accounts/models.py:40
+msgid "Bambara"
+msgstr "Bambara"
+
+#: config/settings.py:148 apps/accounts/models.py:41
+msgid "Peulh (fulfulde)"
+msgstr "Fula (Fulfulde)"
+
+#: config/settings.py:149 apps/accounts/models.py:42
+msgid "Soninké"
+msgstr "Soninke"
+
+#: scripts/i18n_extract.py:9 scripts/i18n_extract.py:9
+msgid "..."
+msgstr "…"
+
+#: templates/assurances/bordereau_detail.html:7
+#: templates/assurances/liste.html:9
+msgid "Bordereaux"
+msgstr "Statements"
+
+#: templates/assurances/bordereau_detail.html:20
+msgid "Facture"
+msgstr "Invoice"
+
+#: templates/assurances/bordereau_detail.html:21
+#: templates/facturation/detail.html:57
+msgid "Part assurance"
+msgstr "Insurer's share"
+
+#: templates/assurances/bordereau_detail.html:31
+#: templates/facturation/detail.html:56 templates/facturation/liste.html:35
+msgid "Total"
+msgstr "Total"
+
+#: templates/assurances/bordereaux.html:3
+#: templates/assurances/bordereaux.html:6
+msgid "Bordereaux d'assurance"
+msgstr "Insurance statements"
+
+#: templates/assurances/bordereaux.html:10
+msgid "Générer un bordereau"
+msgstr "Generate a statement"
+
+#: templates/assurances/bordereaux.html:27
+msgid ""
+"Regroupe les parts assurance des factures émises sur la période, non déjà "
+"portées à un bordereau."
+msgstr ""
+"Groups the insurer's share of invoices issued in the period, not already on "
+"a statement."
+
+#: templates/assurances/bordereaux.html:34
+#: templates/bloc_operatoire/liste.html:27
+#: templates/consultations/liste.html:26 templates/facturation/impayes.html:10
+#: templates/facturation/liste.html:34 templates/hospitalisation/liste.html:29
+#: templates/laboratoire/liste.html:34 templates/patients/detail.html:138
+msgid "Référence"
+msgstr "Reference"
+
+#: templates/assurances/bordereaux.html:35
+#: templates/bloc_operatoire/indicateurs.html:8
+msgid "Période"
+msgstr "Period"
+
+#: templates/assurances/bordereaux.html:35
+#: templates/facturation/detail.html:38 templates/facturation/tarifs.html:12
+msgid "Montant"
+msgstr "Amount"
+
+#: templates/assurances/bordereaux.html:36
+#: templates/bloc_operatoire/liste.html:30
+#: templates/consultations/liste.html:28 templates/facturation/liste.html:37
+#: templates/hospitalisation/liste.html:31 templates/laboratoire/liste.html:36
+#: templates/patients/detail.html:140
+#: templates/pharmacie/dispensations.html:21
+msgid "Statut"
+msgstr "Status"
+
+#: templates/assurances/bordereaux.html:45
+#: templates/bloc_operatoire/liste.html:42
+#: templates/consultations/liste.html:39 templates/core/notifications.html:24
+#: templates/facturation/impayes.html:22 templates/facturation/liste.html:49
+#: templates/hospitalisation/liste.html:42 templates/laboratoire/liste.html:47
+#: templates/patients/detail.html:150 templates/patients/liste.html:55
+#: templates/pharmacie/medicaments.html:54
+msgid "Ouvrir"
+msgstr "Open"
+
+#: templates/assurances/bordereaux.html:48
+msgid "Aucun bordereau."
+msgstr "No statement."
+
+#: templates/assurances/liste.html:3
+msgid "Assurances"
+msgstr "Insurers"
+
+#: templates/assurances/liste.html:7
+msgid "Assurances partenaires"
+msgstr "Partner insurers"
+
+#: templates/assurances/liste.html:29
+msgid "plafond"
+msgstr "cap"
+
+#: templates/assurances/liste.html:30 templates/patients/detail.html:122
+msgid "inactif"
+msgstr "inactive"
+
+#: templates/assurances/liste.html:31
+msgid "Aucun contrat."
+msgstr "No plan."
+
+#: templates/assurances/liste.html:37
+msgid ""
+"Aucune assurance. L'administrateur peut en ajouter via l'administration."
+msgstr "No insurer. The administrator can add one via the admin site."
+
+#: templates/assurances/patient_assure_formulaire.html:3
+msgid "Couverture d'assurance"
+msgstr "Insurance coverage"
+
+#: templates/assurances/patient_assure_formulaire.html:6
+msgid "Rattacher une assurance"
+msgstr "Attach an insurance plan"
+
+#: templates/assurances/patient_assure_formulaire.html:20
+#: templates/consultations/constantes.html:19
+#: templates/consultations/formulaire.html:23
+#: templates/laboratoire/detail.html:96
+#: templates/patients/dossier_formulaire.html:19
+#: templates/patients/formulaire.html:26
+#: templates/pharmacie/medicament_formulaire.html:23
+msgid "Enregistrer"
+msgstr "Save"
+
+#: templates/assurances/patient_assure_formulaire.html:21
+#: templates/bloc_operatoire/demande.html:24
+#: templates/consultations/constantes.html:20
+#: templates/consultations/formulaire.html:25
+#: templates/consultations/ordonnance_formulaire.html:19
+#: templates/facturation/detail.html:83
+#: templates/hospitalisation/admission.html:28
+#: templates/laboratoire/demande.html:40
+#: templates/patients/dossier_formulaire.html:20
+#: templates/patients/formulaire.html:28
+#: templates/pharmacie/entree_stock.html:19
+#: templates/pharmacie/medicament_formulaire.html:24
+msgid "Annuler"
+msgstr "Cancel"
+
+#: templates/base.html:21 templates/core/dashboard.html:3
+msgid "Tableau de bord"
+msgstr "Dashboard"
+
+#: templates/base.html:44 templates/pharmacie/dispensation_detail.html:35
+msgid "Stock"
+msgstr "Stock"
+
+#: templates/base.html:51 templates/core/notifications.html:3
+#: templates/core/notifications.html:7
+msgid "Notifications"
+msgstr "Notifications"
+
+#: templates/base.html:61
+msgid "Changer de langue"
+msgstr "Change language"
+
+#: templates/base.html:93 templates/registration/login.html:11
+msgid "Gestion hospitalière"
+msgstr "Hospital management"
+
+#: templates/bloc_operatoire/demande.html:3
+msgid "Demande d'intervention"
+msgstr "Procedure request"
+
+#: templates/bloc_operatoire/demande.html:6
+msgid "Demande d'intervention chirurgicale"
+msgstr "Surgical procedure request"
+
+#: templates/bloc_operatoire/demande.html:23
+#: templates/laboratoire/demande.html:39
+msgid "Enregistrer la demande"
+msgstr "Save the request"
+
+#: templates/bloc_operatoire/detail.html:25
+msgid "Facturer l'acte"
+msgstr "Invoice the procedure"
+
+#: templates/bloc_operatoire/detail.html:32
+#: templates/consultations/ordonnance_detail.html:29
+msgid "Alerte"
+msgstr "Alert"
+
+#: templates/bloc_operatoire/detail.html:40
+#: templates/consultations/detail.html:44
+#: templates/consultations/liste.html:27
+#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:139
+#: templates/pharmacie/medicament_detail.html:58
+#: templates/pharmacie/mouvements.html:22
+msgid "Motif"
+msgstr "Reason"
+
+#: templates/bloc_operatoire/detail.html:41
+msgid "Diagnostic préop."
+msgstr "Preop. diagnosis"
+
+#: templates/bloc_operatoire/detail.html:42
+msgid "Durée estimée"
+msgstr "Estimated duration"
+
+#: templates/bloc_operatoire/detail.html:42
+msgid "réelle"
+msgstr "actual"
+
+#: templates/bloc_operatoire/detail.html:43
+msgid "Matériel spécifique"
+msgstr "Specific equipment"
+
+#: templates/bloc_operatoire/detail.html:45
+msgid "Motif annulation/report"
+msgstr "Cancellation/postponement reason"
+
+#: templates/bloc_operatoire/detail.html:52
+msgid "Planifier l'intervention"
+msgstr "Schedule the procedure"
+
+#: templates/bloc_operatoire/detail.html:63
+#: templates/bloc_operatoire/planning.html:30
+msgid "Planifier"
+msgstr "Schedule"
+
+#: templates/bloc_operatoire/detail.html:70
+msgid "Faisabilité anesthésique"
+msgstr "Anaesthetic feasibility"
+
+#: templates/bloc_operatoire/detail.html:73
+msgid "Validée par"
+msgstr "Confirmed by"
+
+#: templates/bloc_operatoire/detail.html:80
+#: templates/bloc_operatoire/detail.html:152
+#: templates/registration/password_change.html:20
+msgid "Valider"
+msgstr "Confirm"
+
+#: templates/bloc_operatoire/detail.html:83
+msgid "En attente de validation par l'anesthésiste."
+msgstr "Awaiting confirmation by the anaesthetist."
+
+#: templates/bloc_operatoire/detail.html:90
+msgid "Annuler / reporter"
+msgstr "Cancel / postpone"
+
+#: templates/bloc_operatoire/detail.html:96
+msgid "Confirmer"
+msgstr "Confirm"
+
+#: templates/bloc_operatoire/detail.html:105
+msgid "Équipe chirurgicale"
+msgstr "Surgical team"
+
+#: templates/bloc_operatoire/detail.html:117
+msgid "Équipe non constituée."
+msgstr "Team not yet formed."
+
+#: templates/bloc_operatoire/detail.html:134
+msgid "Checklist sécurité (type OMS)"
+msgstr "Safety checklist (WHO-type)"
+
+#: templates/bloc_operatoire/detail.html:143
+msgid "à valider"
+msgstr "to confirm"
+
+#: templates/bloc_operatoire/detail.html:147
+msgid "par"
+msgstr "by"
+
+#: templates/bloc_operatoire/detail.html:157
+msgid "La checklist est créée à la planification de l'intervention."
+msgstr "The checklist is created when the procedure is scheduled."
+
+#: templates/bloc_operatoire/detail.html:164
+msgid "Déroulé per-opératoire"
+msgstr "Intraoperative timeline"
+
+#: templates/bloc_operatoire/detail.html:167
+#: templates/bloc_operatoire/detail.html:175
+msgid "Entrée en salle"
+msgstr "Entry into the room"
+
+#: templates/bloc_operatoire/detail.html:168
+msgid "Incision"
+msgstr "Incision"
+
+#: templates/bloc_operatoire/detail.html:169
+msgid "Fin / sortie"
+msgstr "End / exit"
+
+#: templates/bloc_operatoire/detail.html:179
+msgid "Pointer l'incision"
+msgstr "Record incision time"
+
+#: templates/bloc_operatoire/detail.html:182
+msgid "incidents éventuels"
+msgstr "any incidents"
+
+#: templates/bloc_operatoire/detail.html:183
+msgid "Terminer"
+msgstr "Complete"
+
+#: templates/bloc_operatoire/detail.html:193
+msgid "Compte-rendu opératoire"
+msgstr "Operative report"
+
+#: templates/bloc_operatoire/detail.html:205
+msgid "Enregistrer le compte-rendu"
+msgstr "Save the report"
+
+#: templates/bloc_operatoire/detail.html:209
+msgid "Technique"
+msgstr "Technique"
+
+#: templates/bloc_operatoire/detail.html:210
+msgid "Constatations"
+msgstr "Findings"
+
+#: templates/bloc_operatoire/detail.html:211
+msgid "Complications"
+msgstr "Complications"
+
+#: templates/bloc_operatoire/detail.html:212
+msgid "Suites à prévoir"
+msgstr "Expected follow-up"
+
+#: templates/bloc_operatoire/detail.html:215
+msgid "Compte-rendu non rédigé."
+msgstr "Report not written."
+
+#: templates/bloc_operatoire/indicateurs.html:3
+msgid "Indicateurs du bloc"
+msgstr "Theatre indicators"
+
+#: templates/bloc_operatoire/indicateurs.html:6
+msgid "Indicateurs du bloc opératoire"
+msgstr "Operating theatre indicators"
+
+#: templates/bloc_operatoire/indicateurs.html:9
+msgid "L'export PDF/Excel sera ajouté en phase 9."
+msgstr "PDF/Excel export will be added in phase 9."
+
+#: templates/bloc_operatoire/indicateurs.html:15
+msgid "Taux d'occupation des salles"
+msgstr "Room occupancy rate"
+
+#: templates/bloc_operatoire/indicateurs.html:17
+#: templates/bloc_operatoire/liste.html:28
+msgid "Salle"
+msgstr "Room"
+
+#: templates/bloc_operatoire/indicateurs.html:17
+msgid "Interv."
+msgstr "Proc."
+
+#: templates/bloc_operatoire/indicateurs.html:18
+msgid "Heures"
+msgstr "Hours"
+
+#: templates/bloc_operatoire/indicateurs.html:18
+msgid "Taux"
+msgstr "Rate"
+
+#: templates/bloc_operatoire/indicateurs.html:32
+msgid "Déprogrammation / annulation"
+msgstr "Postponement / cancellation"
+
+#: templates/bloc_operatoire/indicateurs.html:37
+msgid "Aucun motif enregistré."
+msgstr "No reason recorded."
+
+#: templates/bloc_operatoire/indicateurs.html:40
+msgid "Temps de rotation moyen entre deux interventions"
+msgstr "Average turnaround time between two procedures"
+
+#: templates/bloc_operatoire/indicateurs.html:42
+msgid "mesures"
+msgstr "measurements"
+
+#: templates/bloc_operatoire/indicateurs.html:49
+msgid "Durée moyenne par type d'acte"
+msgstr "Average duration by procedure type"
+
+#: templates/bloc_operatoire/indicateurs.html:51
+#: templates/bloc_operatoire/liste.html:28
+msgid "Acte"
+msgstr "Procedure"
+
+#: templates/bloc_operatoire/indicateurs.html:51
+#: templates/bloc_operatoire/indicateurs.html:64
+msgid "N"
+msgstr "N"
+
+#: templates/bloc_operatoire/indicateurs.html:51
+#: templates/bloc_operatoire/indicateurs.html:64
+msgid "Durée moy."
+msgstr "Avg. duration"
+
+#: templates/bloc_operatoire/indicateurs.html:62
+msgid "Durée moyenne par praticien"
+msgstr "Average duration by practitioner"
+
+#: templates/bloc_operatoire/indicateurs.html:64
+#: templates/consultations/liste.html:28 templates/patients/detail.html:139
+msgid "Praticien"
+msgstr "Practitioner"
+
+#: templates/bloc_operatoire/liste.html:3
+msgid "Interventions"
+msgstr "Procedures"
+
+#: templates/bloc_operatoire/liste.html:7
+msgid "Interventions chirurgicales"
+msgstr "Surgical procedures"
+
+#: templates/bloc_operatoire/liste.html:8
+msgid "Planning"
+msgstr "Schedule"
+
+#: templates/bloc_operatoire/liste.html:13
+msgid "Référence, patient, acte…"
+msgstr "Reference, patient, procedure…"
+
+#: templates/bloc_operatoire/liste.html:17 templates/facturation/liste.html:24
+#: templates/hospitalisation/liste.html:17
+msgid "Tous les statuts"
+msgstr "All statuses"
+
+#: templates/bloc_operatoire/liste.html:21
+#: templates/consultations/liste.html:13 templates/facturation/liste.html:28
+#: templates/hospitalisation/liste.html:23 templates/laboratoire/liste.html:28
+#: templates/patients/liste.html:19 templates/pharmacie/medicaments.html:21
+msgid "Rechercher"
+msgstr "Search"
+
+#: templates/bloc_operatoire/liste.html:29
+msgid "Début prévu"
+msgstr "Planned start"
+
+#: templates/bloc_operatoire/liste.html:29
+msgid "Urgence"
+msgstr "Urgency"
+
+#: templates/bloc_operatoire/liste.html:45
+msgid "Aucune intervention."
+msgstr "No procedure."
+
+#: templates/bloc_operatoire/planning.html:3
+msgid "Planning du bloc"
+msgstr "Theatre schedule"
+
+#: templates/bloc_operatoire/planning.html:7
+msgid "Planning du bloc opératoire"
+msgstr "Operating theatre schedule"
+
+#: templates/bloc_operatoire/planning.html:9
+msgid "Toutes les interventions"
+msgstr "All procedures"
+
+#: templates/bloc_operatoire/planning.html:10
+msgid "Indicateurs"
+msgstr "Indicators"
+
+#: templates/bloc_operatoire/planning.html:15
+msgid "Jour précédent"
+msgstr "Previous day"
+
+#: templates/bloc_operatoire/planning.html:17
+msgid "Jour suivant"
+msgstr "Next day"
+
+#: templates/bloc_operatoire/planning.html:22
+msgid "Demandes à planifier"
+msgstr "Requests to schedule"
+
+#: templates/bloc_operatoire/planning.html:58
+msgid "Aucune intervention programmée."
+msgstr "No procedure scheduled."
+
+#: templates/bloc_operatoire/planning.html:64
+msgid ""
+"Aucune salle configurée. L'administrateur peut en créer via "
+"l'administration."
+msgstr ""
+"No room configured. The administrator can create one via the admin site."
+
+#: templates/consultations/constantes.html:3
+#: templates/consultations/constantes.html:6
+#: templates/consultations/detail.html:56
+msgid "Constantes"
+msgstr "Vital signs"
+
+#: templates/consultations/detail.html:24 templates/patients/detail.html:39
+#: templates/patients/detail.html:89 templates/patients/formulaire.html:7
+#: templates/pharmacie/medicament_detail.html:26
+#: templates/pharmacie/medicament_formulaire.html:7
+msgid "Modifier"
+msgstr "Edit"
+
+#: templates/consultations/detail.html:26
+msgid "Clôturer"
+msgstr "Close"
+
+#: templates/consultations/detail.html:30
+msgid "Demander un examen"
+msgstr "Request a test"
+
+#: templates/consultations/detail.html:34 templates/laboratoire/detail.html:30
+msgid "Facturer"
+msgstr "Invoice"
+
+#: templates/consultations/detail.html:45
+msgid "Histoire / symptômes"
+msgstr "History / symptoms"
+
+#: templates/consultations/detail.html:46
+msgid "Examen clinique"
+msgstr "Clinical examination"
+
+#: templates/consultations/detail.html:47
+#: templates/hospitalisation/detail.html:34
+msgid "Diagnostic"
+msgstr "Diagnosis"
+
+#: templates/consultations/detail.html:48
+msgid "Conduite à tenir"
+msgstr "Management plan"
+
+#: templates/consultations/detail.html:58
+msgid "Saisir"
+msgstr "Enter"
+
+#: templates/consultations/detail.html:65
+msgid "Poids / Taille"
+msgstr "Weight / Height"
+
+#: templates/consultations/detail.html:66
+msgid "IMC"
+msgstr "BMI"
+
+#: templates/consultations/detail.html:67
+msgid "Température"
+msgstr "Temperature"
+
+#: templates/consultations/detail.html:68
+msgid "Tension"
+msgstr "Blood pressure"
+
+#: templates/consultations/detail.html:69
+msgid "FC / FR"
+msgstr "HR / RR"
+
+#: templates/consultations/detail.html:70
+msgid "SpO₂ / Glycémie"
+msgstr "SpO₂ / Glucose"
+
+#: templates/consultations/detail.html:73
+msgid "Aucune constante saisie."
+msgstr "No vital signs recorded."
+
+#: templates/consultations/detail.html:81
+#: templates/pharmacie/dispensations.html:20
+msgid "Ordonnance"
+msgstr "Prescription"
+
+#: templates/consultations/detail.html:84
+msgid "Créer"
+msgstr "Create"
+
+#: templates/consultations/detail.html:98
+msgid "Ouvrir l'ordonnance"
+msgstr "Open the prescription"
+
+#: templates/consultations/detail.html:100
+msgid "Aucune ordonnance."
+msgstr "No prescription."
+
+#: templates/consultations/formulaire.html:7
+msgid "Modifier la consultation"
+msgstr "Edit the consultation"
+
+#: templates/consultations/formulaire.html:8 templates/patients/detail.html:27
+msgid "Nouvelle consultation"
+msgstr "New consultation"
+
+#: templates/consultations/liste.html:11
+msgid "Référence, patient, motif…"
+msgstr "Reference, patient, reason…"
+
+#: templates/consultations/liste.html:18
+msgid "Mes consultations"
+msgstr "My consultations"
+
+#: templates/consultations/liste.html:26 templates/patients/detail.html:138
+#: templates/pharmacie/dispensation_detail.html:79
+#: templates/pharmacie/medicament_detail.html:57
+#: templates/pharmacie/mouvements.html:20
+msgid "Date"
+msgstr "Date"
+
+#: templates/consultations/liste.html:42
+msgid "Aucune consultation."
+msgstr "No consultation."
+
+#: templates/consultations/ordonnance_detail.html:21
+msgid "Transmettre à la pharmacie"
+msgstr "Send to pharmacy"
+
+#: templates/consultations/ordonnance_detail.html:31
+msgid ""
+"Ces alertes sont informatives et ne bloquent pas la prescription (CDC 4.3)."
+msgstr ""
+"These alerts are informational and do not block prescribing (spec 4.3)."
+
+#: templates/consultations/ordonnance_detail.html:38
+#: templates/pharmacie/dispensation_detail.html:32
+msgid "Posologie"
+msgstr "Dosage"
+
+#: templates/consultations/ordonnance_detail.html:39
+#: templates/hospitalisation/liste.html:31
+msgid "Durée"
+msgstr "Duration"
+
+#: templates/consultations/ordonnance_detail.html:39
+#: templates/facturation/detail.html:37
+#: templates/pharmacie/dispensation_detail.html:80
+#: templates/pharmacie/medicament_detail.html:36
+#: templates/pharmacie/medicament_detail.html:58
+msgid "Qté"
+msgstr "Qty"
+
+#: templates/consultations/ordonnance_detail.html:40
+msgid "Délivré"
+msgstr "Dispensed"
+
+#: templates/consultations/ordonnance_detail.html:59
+msgid "Aucun médicament."
+msgstr "No medicine."
+
+#: templates/consultations/ordonnance_detail.html:67
+msgid "Ajouter un médicament"
+msgstr "Add a medicine"
+
+#: templates/consultations/ordonnance_formulaire.html:3
+#: templates/consultations/ordonnance_formulaire.html:6
+msgid "Nouvelle ordonnance"
+msgstr "New prescription"
+
+#: templates/consultations/ordonnance_formulaire.html:18
+msgid "Créer l'ordonnance"
+msgstr "Create the prescription"
+
+#: templates/core/dashboard.html:8
+msgid "Bonjour, %(prenom)s"
+msgstr "Hello, %(prenom)s"
+
+#: templates/core/dashboard.html:19
+msgid "Ouvrir le module"
+msgstr "Open the module"
+
+#: templates/core/dashboard.html:26
+msgid ""
+"Aucun module n'est encore accessible avec votre rôle. Contactez "
+"l'administrateur."
+msgstr ""
+"No module is yet accessible with your role. Contact the administrator."
+
+#: templates/core/dashboard.html:33
+msgid ""
+"Les modules consultation, pharmacie, hospitalisation, bloc opératoire, "
+"laboratoire, facturation et assurances seront activés au fil du planning du "
+"projet."
+msgstr ""
+"The consultation, pharmacy, inpatient care, operating theatre, laboratory, "
+"billing and insurance modules will be activated as the project progresses."
+
+#: templates/core/notifications.html:10
+msgid "Tout marquer comme lu"
+msgstr "Mark all as read"
+
+#: templates/core/notifications.html:27
+msgid "Marquer comme lu"
+msgstr "Mark as read"
+
+#: templates/core/notifications.html:33
+msgid "Aucune notification."
+msgstr "No notification."
+
+#: templates/facturation/detail.html:7 templates/facturation/liste.html:3
+#: templates/facturation/liste.html:7
+msgid "Factures"
+msgstr "Invoices"
+
+#: templates/facturation/detail.html:16
+msgid "En retard"
+msgstr "Overdue"
+
+#: templates/facturation/detail.html:19
+msgid "Émise le"
+msgstr "Issued on"
+
+#: templates/facturation/detail.html:27
+msgid "Émettre"
+msgstr "Issue"
+
+#: templates/facturation/detail.html:35
+msgid "Détail"
+msgstr "Details"
+
+#: templates/facturation/detail.html:37 templates/facturation/tarifs.html:10
+msgid "Libellé"
+msgstr "Label"
+
+#: templates/facturation/detail.html:38
+msgid "P.U."
+msgstr "Unit price"
+
+#: templates/facturation/detail.html:58 templates/facturation/liste.html:36
+msgid "Part patient"
+msgstr "Patient's share"
+
+#: templates/facturation/detail.html:59 templates/facturation/impayes.html:11
+msgid "Reste à payer"
+msgstr "Balance due"
+
+#: templates/facturation/detail.html:78
+msgid "Annuler la facture"
+msgstr "Cancel the invoice"
+
+#: templates/facturation/detail.html:85
+msgid ""
+"Impossible si des paiements existent (enregistrer d'abord les "
+"remboursements)."
+msgstr "Not possible if payments exist (record refunds first)."
+
+#: templates/facturation/detail.html:96
+msgid "Paiements"
+msgstr "Payments"
+
+#: templates/facturation/detail.html:100
+msgid "remb."
+msgstr "refund"
+
+#: templates/facturation/detail.html:104
+msgid "Aucun paiement."
+msgstr "No payment."
+
+#: templates/facturation/detail.html:116
+msgid "Enregistrer le paiement"
+msgstr "Save the payment"
+
+#: templates/facturation/detail.html:123 templates/facturation/impayes.html:12
+msgid "Relances"
+msgstr "Reminders"
+
+#: templates/facturation/detail.html:128
+msgid "Aucune relance."
+msgstr "No reminder."
+
+#: templates/facturation/impayes.html:3
+msgid "Impayés"
+msgstr "Unpaid invoices"
+
+#: templates/facturation/impayes.html:6
+msgid "Factures impayées échues"
+msgstr "Overdue unpaid invoices"
+
+#: templates/facturation/impayes.html:11
+msgid "Échéance"
+msgstr "Due date"
+
+#: templates/facturation/impayes.html:25
+msgid "Aucun impayé échu. 🎉"
+msgstr "No overdue unpaid invoices. 🎉"
+
+#: templates/facturation/liste.html:10
+msgid "%(n)s impayé"
+msgid_plural "%(n)s impayés"
+msgstr[0] "%(n)s unpaid invoice"
+msgstr[1] "%(n)s unpaid invoices"
+
+#: templates/facturation/liste.html:13 templates/facturation/tarifs.html:3
+#: templates/facturation/tarifs.html:6
+msgid "Grille tarifaire"
+msgstr "Fee schedule"
+
+#: templates/facturation/liste.html:20 templates/hospitalisation/liste.html:13
+#: templates/laboratoire/liste.html:13
+msgid "Référence, patient…"
+msgstr "Reference, patient…"
+
+#: templates/facturation/liste.html:35
+msgid "Émission"
+msgstr "Issue date"
+
+#: templates/facturation/liste.html:37
+msgid "Reste"
+msgstr "Balance"
+
+#: templates/facturation/liste.html:52
+msgid "Aucune facture."
+msgstr "No invoice."
+
+#: templates/facturation/tarifs.html:7
+msgid "Modifiable via l'interface d'administration."
+msgstr "Editable via the admin site."
+
+#: templates/facturation/tarifs.html:10
+msgid "Code"
+msgstr "Code"
+
+#: templates/facturation/tarifs.html:11 templates/laboratoire/liste.html:35
+msgid "Catégorie"
+msgstr "Category"
+
+#: templates/facturation/tarifs.html:11
+msgid "Réf. externe"
+msgstr "External ref."
+
+#: templates/facturation/tarifs.html:12
+msgid "Actif"
+msgstr "Active"
+
+#: templates/facturation/tarifs.html:22
+msgid "Grille vide."
+msgstr "Empty fee schedule."
+
+#: templates/hospitalisation/admission.html:3
+#: templates/hospitalisation/liste.html:30
+msgid "Admission"
+msgstr "Admission"
+
+#: templates/hospitalisation/admission.html:6
+msgid "Admission en hospitalisation"
+msgstr "Inpatient admission"
+
+#: templates/hospitalisation/admission.html:11
+msgid "Ce patient a déjà un séjour en cours."
+msgstr "This patient already has an ongoing stay."
+
+#: templates/hospitalisation/admission.html:27
+#: templates/patients/detail.html:30
+msgid "Admettre"
+msgstr "Admit"
+
+#: templates/hospitalisation/detail.html:7
+#: templates/hospitalisation/liste.html:3
+msgid "Séjours"
+msgstr "Stays"
+
+#: templates/hospitalisation/detail.html:18
+msgid "sans lit assigné"
+msgstr "no bed assigned"
+
+#: templates/hospitalisation/detail.html:19
+msgid "admis le"
+msgstr "admitted on"
+
+#: templates/hospitalisation/detail.html:24
+msgid "Facturer le séjour"
+msgstr "Invoice the stay"
+
+#: templates/hospitalisation/detail.html:35
+msgid "Médecin référent"
+msgstr "Attending physician"
+
+#: templates/hospitalisation/detail.html:37
+msgid "Sortie le"
+msgstr "Discharged on"
+
+#: templates/hospitalisation/detail.html:38
+msgid "Mode"
+msgstr "Type"
+
+#: templates/hospitalisation/detail.html:45
+msgid "Compte-rendu d'hospitalisation"
+msgstr "Discharge summary"
+
+#: templates/hospitalisation/detail.html:49
+msgid "Consignes de sortie"
+msgstr "Discharge instructions"
+
+#: templates/hospitalisation/detail.html:58
+msgid "Transférer de lit"
+msgstr "Transfer bed"
+
+#: templates/hospitalisation/detail.html:63
+msgid "Transférer"
+msgstr "Transfer"
+
+#: templates/hospitalisation/detail.html:70
+msgid "Prononcer la sortie"
+msgstr "Record discharge"
+
+#: templates/hospitalisation/detail.html:77
+msgid "Enregistrer la sortie"
+msgstr "Save the discharge"
+
+#: templates/hospitalisation/detail.html:87
+msgid "Suivi quotidien"
+msgstr "Daily follow-up"
+
+#: templates/hospitalisation/detail.html:98
+#: templates/hospitalisation/detail.html:115
+msgid "pouls"
+msgstr "pulse"
+
+#: templates/hospitalisation/detail.html:99
+msgid "Ajouter la note"
+msgstr "Add the note"
+
+#: templates/hospitalisation/detail.html:120
+msgid "Aucune note de suivi."
+msgstr "No follow-up note."
+
+#: templates/hospitalisation/detail.html:127
+msgid "Historique des lits"
+msgstr "Bed history"
+
+#: templates/hospitalisation/liste.html:7
+msgid "Séjours hospitaliers"
+msgstr "Inpatient stays"
+
+#: templates/hospitalisation/liste.html:8
+msgid "Vue d'occupation"
+msgstr "Occupancy view"
+
+#: templates/hospitalisation/liste.html:30
+msgid "Service / Lit"
+msgstr "Ward / Bed"
+
+#: templates/hospitalisation/liste.html:45
+msgid "Aucun séjour."
+msgstr "No stay."
+
+#: templates/hospitalisation/occupation.html:3
+#: templates/hospitalisation/occupation.html:7
+msgid "Occupation des lits"
+msgstr "Bed occupancy"
+
+#: templates/hospitalisation/occupation.html:8
+msgid "Liste des séjours"
+msgstr "List of stays"
+
+#: templates/hospitalisation/occupation.html:22
+msgid "Chambre"
+msgstr "Room"
+
+#: templates/hospitalisation/occupation.html:28
+msgid "Lit"
+msgstr "Bed"
+
+#: templates/hospitalisation/occupation.html:31
+msgid "depuis le"
+msgstr "since"
+
+#: templates/hospitalisation/occupation.html:40
+msgid "Aucun lit."
+msgstr "No bed."
+
+#: templates/hospitalisation/occupation.html:45
+msgid "Aucune chambre configurée."
+msgstr "No room configured."
+
+#: templates/hospitalisation/occupation.html:50
+msgid ""
+"Aucun service configuré. L'administrateur peut en créer via "
+"l'administration."
+msgstr ""
+"No ward configured. The administrator can create one via the admin site."
+
+#: templates/laboratoire/demande.html:3
+msgid "Demande d'examen"
+msgstr "Test request"
+
+#: templates/laboratoire/demande.html:6
+msgid "Demande d'analyse ou d'imagerie"
+msgstr "Lab test or imaging request"
+
+#: templates/laboratoire/detail.html:19
+#: templates/pharmacie/dispensation_detail.html:15
+msgid "prescrite par"
+msgstr "requested by"
+
+#: templates/laboratoire/detail.html:26
+msgid "Valider et notifier"
+msgstr "Validate and notify"
+
+#: templates/laboratoire/detail.html:36
+msgid "Renseignements cliniques"
+msgstr "Clinical information"
+
+#: templates/laboratoire/detail.html:48
+msgid "saisi, non validé"
+msgstr "entered, not validated"
+
+#: templates/laboratoire/detail.html:49
+msgid "en attente"
+msgstr "pending"
+
+#: templates/laboratoire/detail.html:56
+msgid "réf."
+msgstr "ref."
+
+#: templates/laboratoire/detail.html:63
+msgid "Conclusion"
+msgstr "Conclusion"
+
+#: templates/laboratoire/detail.html:64
+msgid "Pièce jointe"
+msgstr "Attachment"
+
+#: templates/laboratoire/detail.html:67
+msgid "saisi par"
+msgstr "entered by"
+
+#: templates/laboratoire/detail.html:77
+msgid "valeur"
+msgstr "value"
+
+#: templates/laboratoire/detail.html:80
+msgid "— auto —"
+msgstr "— auto —"
+
+#: templates/laboratoire/detail.html:110
+msgid "Annuler la demande"
+msgstr "Cancel the request"
+
+#: templates/laboratoire/liste.html:7
+msgid "Demandes d'examen"
+msgstr "Test requests"
+
+#: templates/laboratoire/liste.html:8
+msgid "Mes résultats validés"
+msgstr "My validated results"
+
+#: templates/laboratoire/liste.html:17
+msgid "En cours (défaut)"
+msgstr "In progress (default)"
+
+#: templates/laboratoire/liste.html:25
+msgid "Mes prescriptions"
+msgstr "My requests"
+
+#: templates/laboratoire/liste.html:35
+msgid "Priorité"
+msgstr "Priority"
+
+#: templates/laboratoire/liste.html:36
+msgid "Demandée le"
+msgstr "Requested on"
+
+#: templates/laboratoire/liste.html:50
+msgid "Aucune demande."
+msgstr "No request."
+
+#: templates/laboratoire/mes_resultats.html:3
+msgid "Mes résultats"
+msgstr "My results"
+
+#: templates/laboratoire/mes_resultats.html:6
+msgid "Résultats validés — mes prescriptions"
+msgstr "Validated results — my requests"
+
+#: templates/laboratoire/mes_resultats.html:14
+msgid "examen(s)"
+msgstr "test(s)"
+
+#: templates/laboratoire/mes_resultats.html:17
+msgid "Aucun résultat validé."
+msgstr "No validated result."
+
+#: templates/patients/detail.html:16
+msgid "Archivé"
+msgstr "Archived"
+
+#: templates/patients/detail.html:21
+msgid "âge inconnu"
+msgstr "age unknown"
+
+#: templates/patients/detail.html:21
+msgid "%(a)s ans"
+msgstr "%(a)s years old"
+
+#: templates/patients/detail.html:22
+msgid "Groupe"
+msgstr "Type"
+
+#: templates/patients/detail.html:33
+msgid "Demander une intervention"
+msgstr "Request a procedure"
+
+#: templates/patients/detail.html:36
+msgid "Ajouter une assurance"
+msgstr "Add insurance"
+
+#: templates/patients/detail.html:47
+msgid "Patient hospitalisé — %(s)s"
+msgstr "Patient admitted — %(s)s"
+
+#: templates/patients/detail.html:61
+msgid "Adresse"
+msgstr "Address"
+
+#: templates/patients/detail.html:62 templates/patients/liste.html:40
+msgid "Ville"
+msgstr "Town"
+
+#: templates/patients/detail.html:63
+msgid "Date de naissance"
+msgstr "Date of birth"
+
+#: templates/patients/detail.html:64
+msgid "estimée"
+msgstr "estimated"
+
+#: templates/patients/detail.html:65
+msgid "Lieu de naissance"
+msgstr "Place of birth"
+
+#: templates/patients/detail.html:66
+msgid "Profession"
+msgstr "Occupation"
+
+#: templates/patients/detail.html:76 templates/patients/liste.html:36
+msgid "Nom"
+msgstr "Name"
+
+#: templates/patients/detail.html:77
+msgid "Lien"
+msgstr "Relationship"
+
+#: templates/patients/detail.html:87
+#: templates/patients/dossier_formulaire.html:3
+#: templates/patients/dossier_formulaire.html:6
+msgid "Dossier médical"
+msgstr "Medical record"
+
+#: templates/patients/detail.html:95
+msgid "Antécédents médicaux"
+msgstr "Medical history"
+
+#: templates/patients/detail.html:96
+msgid "Antécédents chirurgicaux"
+msgstr "Surgical history"
+
+#: templates/patients/detail.html:97
+msgid "Antécédents familiaux"
+msgstr "Family history"
+
+#: templates/patients/detail.html:98
+msgid "Traitements en cours"
+msgstr "Current treatments"
+
+#: templates/patients/detail.html:99
+msgid "Habitudes de vie"
+msgstr "Lifestyle habits"
+
+#: templates/patients/detail.html:100
+msgid "Observations"
+msgstr "Observations"
+
+#: templates/patients/detail.html:101
+msgid "Allergies"
+msgstr "Allergies"
+
+#: templates/patients/detail.html:116
+msgid "Couvertures d'assurance"
+msgstr "Insurance coverage"
+
+#: templates/patients/detail.html:125
+msgid "Aucune couverture enregistrée."
+msgstr "No coverage recorded."
+
+#: templates/patients/detail.html:135
+msgid "Historique des consultations"
+msgstr "Consultation history"
+
+#: templates/patients/detail.html:153
+msgid "Aucune consultation enregistrée."
+msgstr "No consultation recorded."
+
+#: templates/patients/formulaire.html:3
+msgid "Modifier le patient"
+msgstr "Edit patient"
+
+#: templates/patients/formulaire.html:3 templates/patients/formulaire.html:7
+#: templates/patients/liste.html:9
+msgid "Nouveau patient"
+msgstr "New patient"
+
+#: templates/patients/liste.html:16
+msgid "Nom, prénom, n° de dossier, téléphone…"
+msgstr "Last name, first name, file no., phone…"
+
+#: templates/patients/liste.html:25
+msgid "Inclure les dossiers archivés"
+msgstr "Include archived records"
+
+#: templates/patients/liste.html:35
+msgid "N° dossier"
+msgstr "File no."
+
+#: templates/patients/liste.html:37
+msgid "Sexe"
+msgstr "Sex"
+
+#: templates/patients/liste.html:38
+msgid "Âge"
+msgstr "Age"
+
+#: templates/patients/liste.html:61
+msgid "Aucun patient trouvé."
+msgstr "No patient found."
+
+#: templates/patients/liste.html:75
+msgid "Page %(n)s / %(t)s"
+msgstr "Page %(n)s / %(t)s"
+
+#: templates/pharmacie/dispensation_detail.html:3
+#: templates/pharmacie/dispensation_detail.html:11
+msgid "Dispensation"
+msgstr "Dispensing"
+
+#: templates/pharmacie/dispensation_detail.html:18
+msgid "Note du prescripteur"
+msgstr "Prescriber's note"
+
+#: templates/pharmacie/dispensation_detail.html:23
+msgid "Facturer la dispensation"
+msgstr "Invoice the dispensing"
+
+#: templates/pharmacie/dispensation_detail.html:33
+msgid "Prescrit"
+msgstr "Prescribed"
+
+#: templates/pharmacie/dispensation_detail.html:34
+msgid "Déjà délivré"
+msgstr "Already dispensed"
+
+#: templates/pharmacie/dispensation_detail.html:36
+msgid "À délivrer"
+msgstr "To dispense"
+
+#: templates/pharmacie/dispensation_detail.html:59
+msgid "Commentaire"
+msgstr "Comment"
+
+#: templates/pharmacie/dispensation_detail.html:64
+msgid "Enregistrer la délivrance"
+msgstr "Save the dispensing"
+
+#: templates/pharmacie/dispensation_detail.html:65
+msgid "Retour"
+msgstr "Back"
+
+#: templates/pharmacie/dispensation_detail.html:68
+msgid ""
+"L'allocation se fait automatiquement en FEFO (premier lot périmé, premier "
+"sorti)."
+msgstr "Allocation is automatic on a FEFO basis (first to expire, first out)."
+
+#: templates/pharmacie/dispensation_detail.html:71
+msgid "Cette dispensation est clôturée."
+msgstr "This dispensing is closed."
+
+#: templates/pharmacie/dispensation_detail.html:77
+msgid "Détail des délivrances"
+msgstr "Dispensing details"
+
+#: templates/pharmacie/dispensation_detail.html:80
+#: templates/pharmacie/medicament_detail.html:36
+msgid "Lot"
+msgstr "Batch"
+
+#: templates/pharmacie/dispensations.html:6
+msgid "File de dispensation"
+msgstr "Dispensing queue"
+
+#: templates/pharmacie/dispensations.html:10
+msgid "En cours (par défaut)"
+msgstr "In progress (default)"
+
+#: templates/pharmacie/dispensations.html:21
+msgid "Reçue le"
+msgstr "Received on"
+
+#: templates/pharmacie/dispensations.html:22
+msgid "Pharmacien"
+msgstr "Pharmacist"
+
+#: templates/pharmacie/dispensations.html:32
+msgid "Traiter"
+msgstr "Process"
+
+#: templates/pharmacie/dispensations.html:35
+msgid "Aucune dispensation en attente."
+msgstr "No pending dispensing."
+
+#: templates/pharmacie/entree_stock.html:3
+#: templates/pharmacie/entree_stock.html:6
+#: templates/pharmacie/medicaments.html:10
+#: templates/pharmacie/medicament_detail.html:23
+msgid "Entrée de stock"
+msgstr "Stock receipt"
+
+#: templates/pharmacie/entree_stock.html:18
+msgid "Enregistrer l'entrée"
+msgstr "Save the receipt"
+
+#: templates/pharmacie/medicament_detail.html:7
+msgid "Catalogue"
+msgstr "Catalogue"
+
+#: templates/pharmacie/medicament_detail.html:16
+msgid "stock utilisable"
+msgstr "usable stock"
+
+#: templates/pharmacie/medicament_detail.html:17
+msgid "seuil"
+msgstr "threshold"
+
+#: templates/pharmacie/medicament_detail.html:34
+msgid "Lots en stock"
+msgstr "Batches in stock"
+
+#: templates/pharmacie/medicament_detail.html:37
+msgid "Péremption"
+msgstr "Expiry"
+
+#: templates/pharmacie/medicament_detail.html:37
+msgid "Fournisseur"
+msgstr "Supplier"
+
+#: templates/pharmacie/medicament_detail.html:47
+msgid "Aucun lot."
+msgstr "No batch."
+
+#: templates/pharmacie/medicament_detail.html:55
+msgid "Derniers mouvements"
+msgstr "Recent movements"
+
+#: templates/pharmacie/medicament_detail.html:57
+#: templates/pharmacie/mouvements.html:21
+msgid "Type"
+msgstr "Type"
+
+#: templates/pharmacie/medicament_detail.html:68
+#: templates/pharmacie/mouvements.html:35
+msgid "Aucun mouvement."
+msgstr "No movement."
+
+#: templates/pharmacie/medicaments.html:3
+#: templates/pharmacie/medicaments.html:7
+msgid "Catalogue et stock"
+msgstr "Catalogue and stock"
+
+#: templates/pharmacie/medicaments.html:13
+#: templates/pharmacie/medicament_formulaire.html:8
+msgid "Nouveau médicament"
+msgstr "New medicine"
+
+#: templates/pharmacie/medicaments.html:20
+msgid "Rechercher…"
+msgstr "Search…"
+
+#: templates/pharmacie/medicaments.html:25
+msgid "%(n)s sous le seuil"
+msgid_plural "%(n)s sous le seuil"
+msgstr[0] "%(n)s below threshold"
+msgstr[1] "%(n)s below threshold"
+
+#: templates/pharmacie/medicaments.html:29
+msgid "Retirer les périmés"
+msgstr "Remove expired items"
+
+#: templates/pharmacie/medicaments.html:32
+msgid "Journal des mouvements"
+msgstr "Movement log"
+
+#: templates/pharmacie/medicaments.html:38
+msgid "Forme"
+msgstr "Form"
+
+#: templates/pharmacie/medicaments.html:39
+msgid "Stock utilisable"
+msgstr "Usable stock"
+
+#: templates/pharmacie/medicaments.html:40
+msgid "Seuil"
+msgstr "Threshold"
+
+#: templates/pharmacie/medicaments.html:50
+#: templates/pharmacie/medicament_detail.html:18
+msgid "Sous le seuil"
+msgstr "Below threshold"
+
+#: templates/pharmacie/medicaments.html:51
+msgid "Lots périmés"
+msgstr "Expired batches"
+
+#: templates/pharmacie/medicaments.html:52
+msgid "Inactif"
+msgstr "Inactive"
+
+#: templates/pharmacie/medicaments.html:57
+msgid "Catalogue vide."
+msgstr "Empty catalogue."
+
+#: templates/pharmacie/mouvements.html:3
+msgid "Mouvements de stock"
+msgstr "Stock movements"
+
+#: templates/pharmacie/mouvements.html:6
+msgid "Journal des mouvements de stock"
+msgstr "Stock movement log"
+
+#: templates/pharmacie/mouvements.html:10
+msgid "Tous les types"
+msgstr "All types"
+
+#: templates/pharmacie/mouvements.html:21
+msgid "Quantité"
+msgstr "Quantity"
+
+#: templates/pharmacie/mouvements.html:22
+msgid "Opérateur"
+msgstr "Operator"
+
+#: templates/registration/login.html:28
+msgid "Se connecter"
+msgstr "Log in"
+
+#: templates/registration/password_change.html:3
+msgid "Changer le mot de passe"
+msgstr "Change password"
+
+#: templates/registration/password_change.html:8
+msgid "Changer mon mot de passe"
+msgstr "Change my password"
+
+#: templates/registration/password_change_done.html:3
+msgid "Mot de passe modifié"
+msgstr "Password changed"
+
+#: templates/registration/password_change_done.html:6
+msgid "Votre mot de passe a été mis à jour."
+msgstr "Your password has been updated."
+
+#: templates/registration/password_change_done.html:7
+msgid "Retour au tableau de bord"
+msgstr "Back to dashboard"

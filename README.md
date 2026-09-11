@@ -160,14 +160,53 @@ Les tests couvrent en priorité les règles de gestion critiques (CDC 7.5) :
 génération des numéros de dossier, création automatique du dossier médical,
 et application du RBAC (qui peut créer / consulter un patient).
 
-## Internationalisation
+## Internationalisation (phase 8)
+
+6 langues actives (CDC 4.11) : français (source), anglais, arabe (RTL),
+bambara, peulh (fulfulde), soninké. Bascule instantanée via le sélecteur de la
+barre de navigation (`/i18n/setlang/`), sans perte de contexte de saisie.
+
+**État des traductions** — français (langue source, complet), **anglais et
+arabe traduits à 100 %** (930 chaînes), bambara/peulh/soninké **non
+traduits** : ces trois langues n'ont pas de catalogue Django préexistant et
+leur traduction est, comme le signale le cahier des charges lui-même
+(CDC 4.11 / 12.5), une tâche de traduction humaine par un locuteur natif,
+distincte du développement logiciel — à mener en parallèle, non bloquante.
+En attendant, l'interface dans ces langues retombe proprement sur le français
+(comportement standard de gettext : chaîne source affichée si aucune
+traduction n'existe).
+
+### Chaîne d'outillage — sans GNU gettext
+
+Cette machine de développement ne dispose pas des outils GNU gettext
+(`xgettext`, `msgfmt`) et leur installation nécessite des droits
+d'administration indisponibles ici. Les scripts `scripts/i18n_*.py`
+(dépendance `polib`, pur Python — voir `requirements-dev.txt`) en tiennent
+lieu :
 
 ```bash
-python manage.py makemessages -l bm -l ff -l snk -l ar -l en
-# traduire les fichiers locale/<lang>/LC_MESSAGES/django.po (locuteurs natifs)
-python manage.py compilemessages
+pip install -r requirements-dev.txt
+
+python scripts/i18n_extract.py      # scanne apps/**/*.py et templates/**/*.html
+                                     # -> régénère locale/<lang>/LC_MESSAGES/django.po
+                                     # (fusion non destructive : ne perd jamais une
+                                     # traduction déjà saisie)
+
+python scripts/i18n_apply.py en ar  # applique scripts/i18n_translations_{en,ar}.py
+                                     # aux .po (dictionnaires msgid -> msgstr relus
+                                     # manuellement ; gère le pluriel, y compris les
+                                     # 6 formes de l'arabe)
+
+python scripts/i18n_compile.py      # compile tous les .po en .mo (pur Python)
 ```
 
-Le bambara, le peulh (fulfulde) et le soninké n'ont pas de catalogue Django
-préexistant : la traduction est une tâche à part entière, à mener en parallèle
-du développement (CDC 4.11 / 12.5).
+Les `.po` **et** `.mo` sont versionnés (pas de dépendance à gettext au
+déploiement). **Sur un environnement disposant de GNU gettext** (la plupart
+des serveurs Linux), préférer les commandes standard `manage.py makemessages`
+/ `manage.py compilemessages`, strictement équivalentes pour l'exécution —
+seule l'étape de *génération* des `.po`/`.mo` diffère.
+
+**Pour un traducteur bambara / peulh / soninké** : éditer directement
+`locale/<bm|ff|snk>/LC_MESSAGES/django.po` (un champ `msgstr ""` par chaîne à
+traduire, avec son contexte en commentaire `#:`), puis lancer
+`python scripts/i18n_compile.py`.

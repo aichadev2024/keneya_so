@@ -1,0 +1,8 @@
+# Kènèya Sô — dépendances de développement (non requises en production)
+
+-r requirements.txt
+
+polib==1.2.0   # scripts/i18n_extract.py, i18n_apply.py, i18n_compile.py — voir
+               # README « Internationalisation » : substitut pur Python à
+               # django-admin makemessages/compilemessages (GNU gettext absent
+               # de cette machine de développement).

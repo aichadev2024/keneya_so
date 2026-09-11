@@ -1,0 +1,3966 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Kenya So\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+
+#: apps/accounts/admin.py:19 apps/accounts/admin.py:24
+msgid "Profil métier Kènèya Sô"
+msgstr "الملف المهني في كِنيا سو"
+
+#: apps/accounts/admin.py:29
+msgid "nom complet"
+msgstr "الاسم الكامل"
+
+#: apps/accounts/forms.py:15 templates/registration/login.html:20
+msgid "Identifiant"
+msgstr "اسم المستخدم"
+
+#: apps/accounts/forms.py:18 templates/registration/login.html:24
+msgid "Mot de passe"
+msgstr "كلمة المرور"
+
+#: apps/accounts/forms.py:22
+msgid "Identifiant ou mot de passe incorrect."
+msgstr "اسم المستخدم أو كلمة المرور غير صحيحة."
+
+#: apps/accounts/forms.py:23
+msgid "Ce compte est désactivé. Contactez l'administrateur."
+msgstr "هذا الحساب معطّل. يرجى الاتصال بالمسؤول."
+
+#: apps/accounts/models.py:21
+msgid "Administrateur"
+msgstr "مسؤول النظام"
+
+#: apps/accounts/models.py:22
+msgid "Médecin"
+msgstr "طبيب"
+
+#: apps/accounts/models.py:23
+msgid "Infirmier(ère)"
+msgstr "ممرض(ة)"
+
+#: apps/accounts/models.py:24
+msgid "Pharmacien(ne)"
+msgstr "صيدلي(ة)"
+
+#: apps/accounts/models.py:25
+msgid "Laborantin(e)"
+msgstr "فني(ة) مختبر"
+
+#: apps/accounts/models.py:26
+msgid "Radiologue / agent d'imagerie"
+msgstr "أخصائي أشعة / فني تصوير"
+
+#: apps/accounts/models.py:27
+msgid "Agent d'accueil"
+msgstr "موظف الاستقبال"
+
+#: apps/accounts/models.py:28
+msgid "Comptable"
+msgstr "محاسب"
+
+#: apps/accounts/models.py:30
+msgid "Chirurgien(ne)"
+msgstr "جرّاح(ة)"
+
+#: apps/accounts/models.py:31
+msgid "Médecin anesthésiste-réanimateur"
+msgstr "طبيب تخدير وإنعاش"
+
+#: apps/accounts/models.py:32
+msgid "Infirmier(ère) de bloc opératoire (IBODE)"
+msgstr "ممرض(ة) غرفة العمليات"
+
+#: apps/accounts/models.py:33
+msgid "Agent de stérilisation"
+msgstr "فني(ة) التعقيم"
+
+#: apps/accounts/models.py:34
+msgid "Agent de programmation / cadre de bloc"
+msgstr "مسؤول جدولة / منسق غرفة العمليات"
+
+#: apps/accounts/models.py:45 apps/bloc_operatoire/forms.py:94
+#: apps/bloc_operatoire/models.py:321
+msgid "rôle"
+msgstr "الدور"
+
+#: apps/accounts/models.py:46
+msgid "Détermine les fonctions et les données accessibles (RBAC)."
+msgstr "يحدد الوظائف والبيانات المتاحة (نظام الصلاحيات)."
+
+#: apps/accounts/models.py:48
+msgid "matricule"
+msgstr "الرقم الوظيفي"
+
+#: apps/accounts/models.py:50 apps/assurances/models.py:40
+#: apps/core/models.py:51 apps/patients/models.py:80
+msgid "téléphone"
+msgstr "الهاتف"
+
+#: apps/accounts/models.py:51 apps/bloc_operatoire/models.py:140
+msgid "spécialité"
+msgstr "التخصص"
+
+#: apps/accounts/models.py:52
+msgid "langue préférée"
+msgstr "اللغة المفضلة"
+
+#: apps/accounts/models.py:56
+msgid "adresse électronique"
+msgstr "البريد الإلكتروني"
+
+#: apps/accounts/models.py:59 apps/core/models.py:99
+msgid "utilisateur"
+msgstr "مستخدم"
+
+#: apps/accounts/models.py:60
+msgid "utilisateurs"
+msgstr "المستخدمون"
+
+#: apps/assurances/admin.py:42
+msgid "taux effectif"
+msgstr "النسبة الفعلية"
+
+#: apps/assurances/forms.py:31 apps/assurances/models.py:166
+msgid "début de période"
+msgstr "بداية الفترة"
+
+#: apps/assurances/forms.py:33 apps/assurances/models.py:167
+msgid "fin de période"
+msgstr "نهاية الفترة"
+
+#: apps/assurances/models.py:28
+msgid "Compagnie privée"
+msgstr "شركة خاصة"
+
+#: apps/assurances/models.py:29
+msgid "Mutuelle"
+msgstr "تعاضدية"
+
+#: apps/assurances/models.py:30
+msgid "Prise en charge de l'État"
+msgstr "تكفّل الدولة"
+
+#: apps/assurances/models.py:31
+msgid "ONG / organisme humanitaire"
+msgstr "منظمة غير حكومية / إنسانية"
+
+#: apps/assurances/models.py:32 apps/bloc_operatoire/models.py:314
+#: apps/bloc_operatoire/models.py:405 apps/core/models.py:91
+#: apps/facturation/models.py:35 apps/facturation/models.py:44
+#: apps/hospitalisation/models.py:253 apps/patients/models.py:62
+#: apps/patients/models.py:189 apps/pharmacie/models.py:39
+msgid "Autre"
+msgstr "أخرى"
+
+#: apps/assurances/models.py:34 apps/bloc_operatoire/models.py:45
+#: apps/hospitalisation/models.py:30 apps/patients/models.py:68
+msgid "nom"
+msgstr "اللقب"
+
+#: apps/assurances/models.py:35 apps/bloc_operatoire/models.py:46
+#: apps/facturation/models.py:48 apps/hospitalisation/models.py:31
+#: apps/laboratoire/models.py:33 apps/pharmacie/models.py:45
+msgid "code"
+msgstr "الرمز"
+
+#: apps/assurances/models.py:36 apps/hospitalisation/models.py:80
+#: apps/hospitalisation/models.py:257 apps/patients/models.py:201
+#: apps/pharmacie/models.py:148
+msgid "type"
+msgstr "النوع"
+
+#: apps/assurances/models.py:38 apps/core/models.py:50
+#: apps/patients/models.py:81
+msgid "adresse"
+msgstr "العنوان"
+
+#: apps/assurances/models.py:39
+msgid "interlocuteur"
+msgstr "الشخص المسؤول"
+
+#: apps/assurances/models.py:41 apps/core/models.py:52
+msgid "courriel"
+msgstr "البريد الإلكتروني"
+
+#: apps/assurances/models.py:42 apps/assurances/models.py:68
+#: apps/assurances/models.py:101 apps/bloc_operatoire/models.py:119
+#: apps/bloc_operatoire/models.py:146 apps/facturation/models.py:57
+#: apps/hospitalisation/models.py:36 apps/laboratoire/models.py:44
+#: apps/patients/models.py:104 apps/pharmacie/models.py:63
+msgid "actif"
+msgstr "نشط"
+
+#: apps/assurances/models.py:45 apps/assurances/models.py:57
+#: apps/assurances/models.py:165
+msgid "assurance"
+msgstr "التأمين"
+
+#: apps/assurances/models.py:46
+msgid "assurances"
+msgstr "شركات التأمين"
+
+#: apps/assurances/models.py:58
+msgid "libellé du contrat"
+msgstr "اسم العقد"
+
+#: apps/assurances/models.py:60
+msgid "taux de prise en charge (%)"
+msgstr "نسبة التكفل (%)"
+
+#: apps/assurances/models.py:62
+msgid "Part remboursée par l'assurance, de 0 à 100."
+msgstr "النسبة التي يسددها التأمين، من 0 إلى 100."
+
+#: apps/assurances/models.py:65
+msgid "plafond annuel (FCFA)"
+msgstr "السقف السنوي (فرنك أفريقي)"
+
+#: apps/assurances/models.py:66
+msgid "Laisser vide pour un contrat sans plafond."
+msgstr "اتركه فارغًا لعقد بلا سقف."
+
+#: apps/assurances/models.py:71
+msgid "contrat d'assurance"
+msgstr "عقد التأمين"
+
+#: apps/assurances/models.py:72
+msgid "contrats d'assurance"
+msgstr "عقود التأمين"
+
+#: apps/assurances/models.py:87 apps/bloc_operatoire/models.py:196
+#: apps/consultations/admin.py:48 apps/consultations/models.py:47
+#: apps/facturation/models.py:89 apps/hospitalisation/models.py:156
+#: apps/laboratoire/models.py:70 apps/patients/models.py:111
+#: apps/patients/models.py:161
+msgid "patient"
+msgstr "مريض"
+
+#: apps/assurances/models.py:89
+msgid "contrat"
+msgstr "العقد"
+
+#: apps/assurances/models.py:90
+msgid "numéro d'adhérent"
+msgstr "رقم الانخراط"
+
+#: apps/assurances/models.py:92
+msgid "taux spécifique (%)"
+msgstr "نسبة خاصة (%)"
+
+#: apps/assurances/models.py:93
+msgid "Surcharge le taux du contrat pour ce patient."
+msgstr "يجاوز نسبة العقد الخاصة بهذا المريض."
+
+#: apps/assurances/models.py:96
+msgid "plafond spécifique (FCFA)"
+msgstr "سقف خاص (فرنك أفريقي)"
+
+#: apps/assurances/models.py:99
+msgid "date de début"
+msgstr "تاريخ البداية"
+
+#: apps/assurances/models.py:100
+msgid "date de fin"
+msgstr "تاريخ النهاية"
+
+#: apps/assurances/models.py:104
+msgid "patient assuré"
+msgstr "مريض مؤمَّن"
+
+#: apps/assurances/models.py:105
+msgid "patients assurés"
+msgstr "المرضى المؤمَّنون"
+
+#: apps/assurances/models.py:158 apps/consultations/models.py:133
+#: apps/facturation/models.py:80
+msgid "Brouillon"
+msgstr "مسودة"
+
+#: apps/assurances/models.py:159
+msgid "Envoyé"
+msgstr "مُرسَل"
+
+#: apps/assurances/models.py:160
+msgid "Soldé"
+msgstr "مُسدَّد"
+
+#: apps/assurances/models.py:162 apps/bloc_operatoire/models.py:111
+#: apps/bloc_operatoire/models.py:194 apps/consultations/models.py:45
+#: apps/consultations/models.py:139 apps/facturation/models.py:86
+#: apps/facturation/models.py:239 apps/hospitalisation/models.py:154
+#: apps/laboratoire/models.py:67 apps/pharmacie/models.py:151
+msgid "référence"
+msgstr "المرجع"
+
+#: apps/assurances/models.py:168 templates/assurances/bordereau_detail.html:15
+msgid "généré le"
+msgstr "أُنشئ في"
+
+#: apps/assurances/models.py:169 apps/bloc_operatoire/models.py:54
+#: apps/bloc_operatoire/models.py:224 apps/consultations/models.py:59
+#: apps/consultations/models.py:147 apps/facturation/models.py:96
+#: apps/hospitalisation/models.py:105 apps/hospitalisation/models.py:173
+#: apps/laboratoire/models.py:89 apps/pharmacie/models.py:230
+msgid "statut"
+msgstr "الحالة"
+
+#: apps/assurances/models.py:171 apps/facturation/models.py:99
+msgid "montant total"
+msgstr "المبلغ الإجمالي"
+
+#: apps/assurances/models.py:177
+msgid "bordereau d'assurance"
+msgstr "كشف التأمين"
+
+#: apps/assurances/models.py:178
+msgid "bordereaux d'assurance"
+msgstr "كشوف التأمين"
+
+#: apps/assurances/models.py:206 apps/facturation/models.py:103
+msgid "part assurance"
+msgstr "حصة التأمين"
+
+#: apps/assurances/models.py:210
+msgid "ligne de bordereau"
+msgstr "سطر الكشف"
+
+#: apps/assurances/models.py:211
+msgid "lignes de bordereau"
+msgstr "سطور الكشف"
+
+#: apps/assurances/views.py:41
+msgid "Couverture d'assurance enregistrée."
+msgstr "تم تسجيل التغطية التأمينية."
+
+#: apps/assurances/views.py:78 apps/bloc_operatoire/views.py:203
+#: apps/bloc_operatoire/views.py:230 apps/bloc_operatoire/views.py:252
+#: apps/bloc_operatoire/views.py:273 apps/bloc_operatoire/views.py:283
+#: apps/bloc_operatoire/views.py:301 apps/bloc_operatoire/views.py:326
+#: apps/bloc_operatoire/views.py:347 apps/consultations/views.py:191
+#: apps/consultations/views.py:212 apps/consultations/views.py:223
+#: apps/consultations/views.py:244 apps/facturation/views.py:107
+#: apps/facturation/views.py:136 apps/facturation/views.py:151
+#: apps/facturation/views.py:171 apps/facturation/views.py:189
+#: apps/facturation/views.py:200 apps/facturation/views.py:224
+#: apps/hospitalisation/views.py:140 apps/hospitalisation/views.py:158
+#: apps/hospitalisation/views.py:182 apps/laboratoire/views.py:154
+#: apps/laboratoire/views.py:185 apps/laboratoire/views.py:200
+#: apps/pharmacie/views.py:162 apps/pharmacie/views.py:216
+msgid "Action non autorisée."
+msgstr "إجراء غير مسموح به."
+
+#: apps/assurances/views.py:83
+msgid "Période invalide."
+msgstr "فترة غير صالحة."
+
+#: apps/assurances/views.py:97
+msgid "Bordereau %(r)s généré (%(n)d factures, %(m)s FCFA)."
+msgstr "تم إنشاء الكشف %(r)s (%(n)d فاتورة، %(m)s فرنك أفريقي)."
+
+#: apps/bloc_operatoire/admin.py:30
+msgid "statut temps réel"
+msgstr "الحالة الفورية"
+
+#: apps/bloc_operatoire/forms.py:63 apps/bloc_operatoire/models.py:205
+msgid "salle"
+msgstr "الغرفة"
+
+#: apps/bloc_operatoire/forms.py:64 apps/facturation/models.py:251
+#: apps/facturation/models.py:285 apps/hospitalisation/models.py:232
+#: apps/hospitalisation/models.py:267 apps/pharmacie/models.py:156
+#: apps/pharmacie/models.py:260
+msgid "date"
+msgstr "التاريخ"
+
+#: apps/bloc_operatoire/forms.py:66
+msgid "heure de début"
+msgstr "وقت البدء"
+
+#: apps/bloc_operatoire/forms.py:69 apps/bloc_operatoire/models.py:220
+msgid "durée estimée (minutes)"
+msgstr "المدة المقدَّرة (دقائق)"
+
+#: apps/bloc_operatoire/forms.py:72
+msgid ""
+"Forcer (extrême urgence) : reporte les interventions programmées en conflit"
+msgstr "فرض (حالة قصوى الاستعجال): يؤجل العمليات المبرمجة المتعارضة"
+
+#: apps/bloc_operatoire/forms.py:83
+msgid "protocole d'anesthésie et surveillance peropératoire"
+msgstr "بروتوكول التخدير والمراقبة أثناء العملية"
+
+#: apps/bloc_operatoire/forms.py:85
+msgid "Je valide la faisabilité anesthésique"
+msgstr "أؤكد إمكانية التخدير"
+
+#: apps/bloc_operatoire/forms.py:92 apps/bloc_operatoire/models.py:320
+msgid "membre"
+msgstr "عضو"
+
+#: apps/bloc_operatoire/forms.py:96
+msgid "Ignorer le conflit de planning"
+msgstr "تجاهل تعارض الجدولة"
+
+#: apps/bloc_operatoire/forms.py:106
+msgid "motif (obligatoire)"
+msgstr "السبب (إلزامي)"
+
+#: apps/bloc_operatoire/forms.py:109
+msgid "Reporter (déprogrammer) plutôt qu'annuler définitivement"
+msgstr "تأجيل (إلغاء البرمجة) بدلاً من الإلغاء النهائي"
+
+#: apps/bloc_operatoire/forms.py:115
+msgid "incidents / complications peropératoires"
+msgstr "حوادث / مضاعفات أثناء العملية"
+
+#: apps/bloc_operatoire/forms.py:130 templates/bloc_operatoire/detail.html:151
+msgid "réserves éventuelles"
+msgstr "تحفظات محتملة"
+
+#: apps/bloc_operatoire/models.py:34 apps/hospitalisation/models.py:98
+#: templates/hospitalisation/occupation.html:35
+msgid "Disponible"
+msgstr "متاحة"
+
+#: apps/bloc_operatoire/models.py:35 apps/bloc_operatoire/models.py:42
+msgid "En maintenance"
+msgstr "قيد الصيانة"
+
+#: apps/bloc_operatoire/models.py:36 apps/bloc_operatoire/models.py:43
+#: apps/hospitalisation/models.py:100
+msgid "Hors service"
+msgstr "خارج الخدمة"
+
+#: apps/bloc_operatoire/models.py:39
+msgid "Libre"
+msgstr "شاغر"
+
+#: apps/bloc_operatoire/models.py:40
+msgid "Occupée"
+msgstr "مشغولة"
+
+#: apps/bloc_operatoire/models.py:41 apps/hospitalisation/models.py:99
+msgid "En nettoyage"
+msgstr "قيد التنظيف"
+
+#: apps/bloc_operatoire/models.py:47
+msgid "équipement disponible"
+msgstr "التجهيزات المتاحة"
+
+#: apps/bloc_operatoire/models.py:48
+msgid "capacité (interventions simultanées)"
+msgstr "السعة (عمليات متزامنة)"
+
+#: apps/bloc_operatoire/models.py:51
+msgid "temps de nettoyage (minutes)"
+msgstr "مدة التنظيف (دقائق)"
+
+#: apps/bloc_operatoire/models.py:52
+msgid "Temps tampon inséré automatiquement entre deux interventions."
+msgstr "فترة فاصلة تُدرج تلقائيًا بين عمليتين."
+
+#: apps/bloc_operatoire/models.py:56
+msgid "active"
+msgstr "نشطة"
+
+#: apps/bloc_operatoire/models.py:59
+msgid "salle opératoire"
+msgstr "غرفة العمليات"
+
+#: apps/bloc_operatoire/models.py:60
+msgid "salles opératoires"
+msgstr "غرف العمليات"
+
+#: apps/bloc_operatoire/models.py:105
+msgid "Stérilisé"
+msgstr "مُعقَّم"
+
+#: apps/bloc_operatoire/models.py:106
+msgid "En stérilisation"
+msgstr "قيد التعقيم"
+
+#: apps/bloc_operatoire/models.py:107
+msgid "Non stérilisé"
+msgstr "غير مُعقَّم"
+
+#: apps/bloc_operatoire/models.py:108
+msgid "Péremption de stérilité dépassée"
+msgstr "تجاوز صلاحية التعقيم"
+
+#: apps/bloc_operatoire/models.py:110
+msgid "désignation"
+msgstr "التسمية"
+
+#: apps/bloc_operatoire/models.py:112
+msgid "quantité disponible"
+msgstr "الكمية المتاحة"
+
+#: apps/bloc_operatoire/models.py:113
+msgid "quantité totale"
+msgstr "الكمية الإجمالية"
+
+#: apps/bloc_operatoire/models.py:115
+msgid "statut de stérilisation"
+msgstr "حالة التعقيم"
+
+#: apps/bloc_operatoire/models.py:118
+msgid "date de stérilisation"
+msgstr "تاريخ التعقيم"
+
+#: apps/bloc_operatoire/models.py:122
+msgid "matériel de bloc"
+msgstr "معدات غرفة العمليات"
+
+#: apps/bloc_operatoire/models.py:123
+msgid "matériels de bloc"
+msgstr "معدات غرفة العمليات"
+
+#: apps/bloc_operatoire/models.py:139
+msgid "libellé de l'acte"
+msgstr "اسم العملية"
+
+#: apps/bloc_operatoire/models.py:141
+msgid "durée standard (minutes)"
+msgstr "المدة المعيارية (دقائق)"
+
+#: apps/bloc_operatoire/models.py:143 apps/bloc_operatoire/models.py:413
+#: apps/core/models.py:104 apps/hospitalisation/models.py:32
+#: apps/hospitalisation/models.py:259
+msgid "description"
+msgstr "الوصف"
+
+#: apps/bloc_operatoire/models.py:149
+msgid "type d'intervention"
+msgstr "نوع العملية"
+
+#: apps/bloc_operatoire/models.py:150
+msgid "types d'intervention"
+msgstr "أنواع العمليات"
+
+#: apps/bloc_operatoire/models.py:164 apps/facturation/models.py:207
+#: apps/pharmacie/admin.py:65 apps/pharmacie/models.py:149
+msgid "quantité"
+msgstr "الكمية"
+
+#: apps/bloc_operatoire/models.py:167
+msgid "matériel requis"
+msgstr "المعدات المطلوبة"
+
+#: apps/bloc_operatoire/models.py:168
+msgid "matériels requis"
+msgstr "المعدات المطلوبة"
+
+#: apps/bloc_operatoire/models.py:180
+msgid "Programmée"
+msgstr "مبرمجة"
+
+#: apps/bloc_operatoire/models.py:181
+msgid "Urgente"
+msgstr "مستعجلة"
+
+#: apps/bloc_operatoire/models.py:182
+msgid "Extrême urgence"
+msgstr "استعجال قصوى"
+
+#: apps/bloc_operatoire/models.py:185 apps/laboratoire/models.py:61
+msgid "Demandée"
+msgstr "مطلوبة"
+
+#: apps/bloc_operatoire/models.py:186
+msgid "Planifiée"
+msgstr "مجدولة"
+
+#: apps/bloc_operatoire/models.py:187 apps/consultations/models.py:41
+#: apps/hospitalisation/models.py:144 apps/laboratoire/models.py:62
+#: apps/pharmacie/models.py:219
+msgid "En cours"
+msgstr "جارية"
+
+#: apps/bloc_operatoire/models.py:188 apps/hospitalisation/models.py:145
+msgid "Terminée"
+msgstr "منتهية"
+
+#: apps/bloc_operatoire/models.py:189
+msgid "Reportée"
+msgstr "مؤجلة"
+
+#: apps/bloc_operatoire/models.py:190 apps/consultations/models.py:43
+#: apps/consultations/models.py:137 apps/facturation/models.py:84
+#: apps/hospitalisation/models.py:146 apps/laboratoire/models.py:65
+#: apps/pharmacie/models.py:222 templates/facturation/detail.html:90
+#: templates/laboratoire/detail.html:39
+msgid "Annulée"
+msgstr "ملغاة"
+
+#: apps/bloc_operatoire/models.py:199
+msgid "type d'acte"
+msgstr "نوع العملية"
+
+#: apps/bloc_operatoire/models.py:208
+msgid "chirurgien principal"
+msgstr "الجرّاح الرئيسي"
+
+#: apps/bloc_operatoire/models.py:212
+msgid "demandeur"
+msgstr "مقدّم الطلب"
+
+#: apps/bloc_operatoire/models.py:214
+msgid "motif de l'intervention"
+msgstr "سبب العملية"
+
+#: apps/bloc_operatoire/models.py:215
+msgid "diagnostic préopératoire"
+msgstr "التشخيص قبل العملية"
+
+#: apps/bloc_operatoire/models.py:216
+msgid "matériel spécifique requis"
+msgstr "معدات خاصة مطلوبة"
+
+#: apps/bloc_operatoire/models.py:218 apps/laboratoire/models.py:86
+msgid "date de la demande"
+msgstr "تاريخ الطلب"
+
+#: apps/bloc_operatoire/models.py:219
+msgid "début prévu"
+msgstr "البدء المقرر"
+
+#: apps/bloc_operatoire/models.py:222
+msgid "niveau d'urgence"
+msgstr "درجة الاستعجال"
+
+#: apps/bloc_operatoire/models.py:229
+msgid "faisabilité anesthésique validée"
+msgstr "تم تأكيد إمكانية التخدير"
+
+#: apps/bloc_operatoire/models.py:230
+msgid "protocole d'anesthésie"
+msgstr "بروتوكول التخدير"
+
+#: apps/bloc_operatoire/models.py:233
+msgid "anesthésiste"
+msgstr "طبيب التخدير"
+
+#: apps/bloc_operatoire/models.py:237
+msgid "entrée en salle"
+msgstr "الدخول إلى الغرفة"
+
+#: apps/bloc_operatoire/models.py:238
+msgid "début (incision)"
+msgstr "البدء (الشق الجراحي)"
+
+#: apps/bloc_operatoire/models.py:240
+msgid "fin d'intervention"
+msgstr "نهاية العملية"
+
+#: apps/bloc_operatoire/models.py:242
+msgid "sortie de salle"
+msgstr "الخروج من الغرفة"
+
+#: apps/bloc_operatoire/models.py:243
+msgid "incidents / complications"
+msgstr "حوادث / مضاعفات"
+
+#: apps/bloc_operatoire/models.py:246
+msgid "motif d'annulation / de report"
+msgstr "سبب الإلغاء / التأجيل"
+
+#: apps/bloc_operatoire/models.py:249
+msgid "annulée / reportée le"
+msgstr "أُلغيت / أُجّلت في"
+
+#: apps/bloc_operatoire/models.py:252 apps/bloc_operatoire/models.py:317
+#: apps/bloc_operatoire/models.py:374
+msgid "intervention"
+msgstr "عملية"
+
+#: apps/bloc_operatoire/models.py:253
+msgid "interventions"
+msgstr "العمليات"
+
+#: apps/bloc_operatoire/models.py:309
+msgid "Chirurgien"
+msgstr "جرّاح"
+
+#: apps/bloc_operatoire/models.py:310
+msgid "Chirurgien aide"
+msgstr "جرّاح مساعد"
+
+#: apps/bloc_operatoire/models.py:311
+msgid "Anesthésiste"
+msgstr "طبيب تخدير"
+
+#: apps/bloc_operatoire/models.py:312
+msgid "IBODE"
+msgstr "ممرض(ة) غرفة العمليات"
+
+#: apps/bloc_operatoire/models.py:313
+msgid "Aide-opératoire"
+msgstr "مساعد جراحي"
+
+#: apps/bloc_operatoire/models.py:322
+msgid "notifié le"
+msgstr "أُشعر في"
+
+#: apps/bloc_operatoire/models.py:325
+msgid "membre d'équipe"
+msgstr "عضو الفريق"
+
+#: apps/bloc_operatoire/models.py:326
+msgid "équipe chirurgicale"
+msgstr "الفريق الجراحي"
+
+#: apps/bloc_operatoire/models.py:340
+msgid "Avant l'induction anesthésique"
+msgstr "قبل بدء التخدير"
+
+#: apps/bloc_operatoire/models.py:341
+msgid "Avant l'incision"
+msgstr "قبل الشق الجراحي"
+
+#: apps/bloc_operatoire/models.py:342
+msgid "Avant la sortie de salle"
+msgstr "قبل مغادرة الغرفة"
+
+#: apps/bloc_operatoire/models.py:348
+msgid "temps"
+msgstr "المرحلة"
+
+#: apps/bloc_operatoire/models.py:349 apps/laboratoire/models.py:182
+#: templates/laboratoire/detail.html:47
+msgid "validé"
+msgstr "مؤكَّد"
+
+#: apps/bloc_operatoire/models.py:352
+msgid "validé par"
+msgstr "أكّده"
+
+#: apps/bloc_operatoire/models.py:353 apps/laboratoire/models.py:185
+msgid "validé le"
+msgstr "أُكِّد في"
+
+#: apps/bloc_operatoire/models.py:354
+msgid "réserves / commentaire"
+msgstr "تحفظات / ملاحظة"
+
+#: apps/bloc_operatoire/models.py:357
+msgid "étape de checklist"
+msgstr "بند قائمة التحقق"
+
+#: apps/bloc_operatoire/models.py:358
+msgid "checklist de sécurité"
+msgstr "قائمة التحقق الأمنية"
+
+#: apps/bloc_operatoire/models.py:375
+msgid "technique opératoire"
+msgstr "التقنية الجراحية"
+
+#: apps/bloc_operatoire/models.py:376
+msgid "constatations peropératoires"
+msgstr "ملاحظات أثناء العملية"
+
+#: apps/bloc_operatoire/models.py:377
+msgid "complications"
+msgstr "المضاعفات"
+
+#: apps/bloc_operatoire/models.py:378
+msgid "suites à prévoir"
+msgstr "المتابعة المتوقعة"
+
+#: apps/bloc_operatoire/models.py:379
+msgid "prescription postopératoire"
+msgstr "الوصفة بعد العملية"
+
+#: apps/bloc_operatoire/models.py:383
+msgid "rédigé par"
+msgstr "حرّره"
+
+#: apps/bloc_operatoire/models.py:384
+msgid "rédigé le"
+msgstr "حُرِّر في"
+
+#: apps/bloc_operatoire/models.py:387
+msgid "compte-rendu opératoire"
+msgstr "التقرير الجراحي"
+
+#: apps/bloc_operatoire/models.py:388
+msgid "comptes-rendus opératoires"
+msgstr "التقارير الجراحية"
+
+#: apps/bloc_operatoire/models.py:391
+msgid "CR — %(ref)s"
+msgstr "تقرير — %(ref)s"
+
+#: apps/bloc_operatoire/models.py:402
+msgid "Maintenance planifiée"
+msgstr "صيانة مبرمجة"
+
+#: apps/bloc_operatoire/models.py:403
+msgid "Panne d'équipement"
+msgstr "عطل في المعدات"
+
+#: apps/bloc_operatoire/models.py:404
+msgid "Travaux"
+msgstr "أشغال"
+
+#: apps/bloc_operatoire/models.py:409 apps/hospitalisation/forms.py:52
+#: apps/hospitalisation/models.py:231 apps/pharmacie/models.py:150
+msgid "motif"
+msgstr "السبب"
+
+#: apps/bloc_operatoire/models.py:411
+msgid "début"
+msgstr "البداية"
+
+#: apps/bloc_operatoire/models.py:412
+msgid "fin"
+msgstr "النهاية"
+
+#: apps/bloc_operatoire/models.py:418
+msgid "indisponibilité de salle"
+msgstr "عدم توفر الغرفة"
+
+#: apps/bloc_operatoire/models.py:419
+msgid "indisponibilités de salle"
+msgstr "حالات عدم توفر الغرفة"
+
+#: apps/bloc_operatoire/views.py:134
+msgid "Demande d'intervention enregistrée."
+msgstr "تم تسجيل طلب العملية."
+
+#: apps/bloc_operatoire/views.py:206
+msgid "Formulaire de planification invalide."
+msgstr "استمارة الجدولة غير صالحة."
+
+#: apps/bloc_operatoire/views.py:222
+msgid "Intervention planifiée."
+msgstr "تمت جدولة العملية."
+
+#: apps/bloc_operatoire/views.py:233
+msgid "Renseignez le protocole d'anesthésie."
+msgstr "يرجى إدخال بروتوكول التخدير."
+
+#: apps/bloc_operatoire/views.py:244
+msgid "Faisabilité anesthésique validée."
+msgstr "تم تأكيد إمكانية التخدير."
+
+#: apps/bloc_operatoire/views.py:255
+msgid "Sélection invalide."
+msgstr "اختيار غير صالح."
+
+#: apps/bloc_operatoire/views.py:265
+msgid "Membre ajouté à l'équipe (notification envoyée)."
+msgstr "تمت إضافة العضو إلى الفريق (تم إرسال إشعار)."
+
+#: apps/bloc_operatoire/views.py:275
+msgid "Membre retiré."
+msgstr "تمت إزالة العضو."
+
+#: apps/bloc_operatoire/views.py:293
+msgid "Étape de checklist validée."
+msgstr "تم تأكيد بند قائمة التحقق."
+
+#: apps/bloc_operatoire/views.py:313
+msgid "Étape inconnue."
+msgstr "مرحلة غير معروفة."
+
+#: apps/bloc_operatoire/views.py:318
+msgid "Étape enregistrée."
+msgstr "تم تسجيل المرحلة."
+
+#: apps/bloc_operatoire/views.py:329 apps/facturation/views.py:154
+#: apps/laboratoire/views.py:203
+msgid "Le motif est obligatoire."
+msgstr "السبب إلزامي."
+
+#: apps/bloc_operatoire/views.py:339
+msgid "Intervention mise à jour."
+msgstr "تم تحديث العملية."
+
+#: apps/bloc_operatoire/views.py:351
+msgid "La technique opératoire est obligatoire."
+msgstr "التقنية الجراحية إلزامية."
+
+#: apps/bloc_operatoire/views.py:362
+msgid "Compte-rendu opératoire enregistré."
+msgstr "تم تسجيل التقرير الجراحي."
+
+#: apps/consultations/models.py:42
+msgid "Clôturée"
+msgstr "مغلقة"
+
+#: apps/consultations/models.py:50
+msgid "praticien"
+msgstr "الممارس"
+
+#: apps/consultations/models.py:51
+msgid "date de la consultation"
+msgstr "تاريخ الاستشارة"
+
+#: apps/consultations/models.py:53
+msgid "motif de consultation"
+msgstr "سبب الاستشارة"
+
+#: apps/consultations/models.py:54
+msgid "histoire de la maladie / symptômes"
+msgstr "تاريخ المرض / الأعراض"
+
+#: apps/consultations/models.py:55
+msgid "examen clinique"
+msgstr "الفحص السريري"
+
+#: apps/consultations/models.py:56
+msgid "diagnostic"
+msgstr "التشخيص"
+
+#: apps/consultations/models.py:57
+msgid "conduite à tenir / traitement"
+msgstr "الإجراء المتبع / العلاج"
+
+#: apps/consultations/models.py:63 apps/consultations/models.py:82
+#: apps/consultations/models.py:142 templates/laboratoire/demande.html:9
+msgid "consultation"
+msgstr "استشارة"
+
+#: apps/consultations/models.py:64
+msgid "consultations"
+msgstr "الاستشارات"
+
+#: apps/consultations/models.py:83
+msgid "poids (kg)"
+msgstr "الوزن (كغ)"
+
+#: apps/consultations/models.py:85
+msgid "taille (cm)"
+msgstr "الطول (سم)"
+
+#: apps/consultations/models.py:87 apps/hospitalisation/models.py:260
+msgid "température (°C)"
+msgstr "الحرارة (°م)"
+
+#: apps/consultations/models.py:89
+msgid "TA systolique (mmHg)"
+msgstr "الضغط الانقباضي (مم زئبقي)"
+
+#: apps/consultations/models.py:91
+msgid "TA diastolique (mmHg)"
+msgstr "الضغط الانبساطي (مم زئبقي)"
+
+#: apps/consultations/models.py:93
+msgid "fréquence cardiaque (bpm)"
+msgstr "معدل ضربات القلب (نبضة/دقيقة)"
+
+#: apps/consultations/models.py:96
+msgid "fréquence respiratoire (cycles/min)"
+msgstr "معدل التنفس (دورة/دقيقة)"
+
+#: apps/consultations/models.py:97
+msgid "SpO₂ (%)"
+msgstr "تشبع الأكسجين (%)"
+
+#: apps/consultations/models.py:98
+msgid "glycémie (g/L)"
+msgstr "نسبة السكر في الدم (غ/ل)"
+
+#: apps/consultations/models.py:100
+msgid "relevé le"
+msgstr "سُجِّل في"
+
+#: apps/consultations/models.py:103
+msgid "relevé par"
+msgstr "سجّله"
+
+#: apps/consultations/models.py:106 apps/consultations/models.py:107
+msgid "constantes"
+msgstr "العلامات الحيوية"
+
+#: apps/consultations/models.py:110
+msgid "Constantes de %(ref)s"
+msgstr "العلامات الحيوية لـ %(ref)s"
+
+#: apps/consultations/models.py:134
+msgid "Transmise à la pharmacie"
+msgstr "أُرسلت إلى الصيدلية"
+
+#: apps/consultations/models.py:135
+msgid "Dispensée partiellement"
+msgstr "صُرفت جزئيًا"
+
+#: apps/consultations/models.py:136
+msgid "Dispensée"
+msgstr "صُرفت"
+
+#: apps/consultations/models.py:145 apps/laboratoire/models.py:82
+msgid "prescripteur"
+msgstr "الطبيب الواصف"
+
+#: apps/consultations/models.py:146
+msgid "date de prescription"
+msgstr "تاريخ الوصف"
+
+#: apps/consultations/models.py:149
+msgid "date de transmission"
+msgstr "تاريخ الإرسال"
+
+#: apps/consultations/models.py:150
+msgid "notes au pharmacien"
+msgstr "ملاحظات للصيدلي"
+
+#: apps/consultations/models.py:153 apps/consultations/models.py:186
+#: apps/pharmacie/models.py:226
+msgid "ordonnance"
+msgstr "وصفة طبية"
+
+#: apps/consultations/models.py:154
+msgid "ordonnances"
+msgstr "الوصفات الطبية"
+
+#: apps/consultations/models.py:189 apps/pharmacie/forms.py:31
+#: apps/pharmacie/models.py:66 apps/pharmacie/models.py:107
+#: apps/pharmacie/models.py:145
+msgid "médicament"
+msgstr "دواء"
+
+#: apps/consultations/models.py:190
+msgid "libellé prescrit"
+msgstr "الاسم الموصوف"
+
+#: apps/consultations/models.py:191
+msgid "Copie du libellé au moment de la prescription."
+msgstr "نسخة من الاسم عند الوصف."
+
+#: apps/consultations/models.py:192
+msgid "posologie"
+msgstr "طريقة الاستعمال"
+
+#: apps/consultations/models.py:193
+msgid "Ex. : 1 comprimé matin et soir."
+msgstr "مثال: قرص واحد صباحًا ومساءً."
+
+#: apps/consultations/models.py:194
+msgid "durée (jours)"
+msgstr "المدة (أيام)"
+
+#: apps/consultations/models.py:196
+msgid "quantité à délivrer"
+msgstr "الكمية المطلوب صرفها"
+
+#: apps/consultations/models.py:197
+msgid "Nombre total d'unités à dispenser."
+msgstr "العدد الإجمالي للوحدات المطلوب صرفها."
+
+#: apps/consultations/models.py:199
+msgid "instructions complémentaires"
+msgstr "تعليمات إضافية"
+
+#: apps/consultations/models.py:203
+msgid "ligne d'ordonnance"
+msgstr "سطر الوصفة"
+
+#: apps/consultations/models.py:204
+msgid "lignes d'ordonnance"
+msgstr "سطور الوصفة"
+
+#: apps/consultations/views.py:69
+msgid "Consultation créée."
+msgstr "تم إنشاء الاستشارة."
+
+#: apps/consultations/views.py:89
+msgid "Consultation mise à jour."
+msgstr "تم تحديث الاستشارة."
+
+#: apps/consultations/views.py:129
+msgid "Constantes enregistrées."
+msgstr "تم تسجيل العلامات الحيوية."
+
+#: apps/consultations/views.py:158
+msgid "Ordonnance créée. Ajoutez les médicaments."
+msgstr "تم إنشاء الوصفة. أضف الأدوية."
+
+#: apps/consultations/views.py:194
+msgid "Cette ordonnance n'est plus modifiable."
+msgstr "لم يعد بالإمكان تعديل هذه الوصفة."
+
+#: apps/consultations/views.py:201
+msgid "Médicament ajouté à l'ordonnance."
+msgstr "تمت إضافة الدواء إلى الوصفة."
+
+#: apps/consultations/views.py:203
+msgid "Formulaire invalide : %(err)s"
+msgstr "استمارة غير صالحة: %(err)s"
+
+#: apps/consultations/views.py:215 apps/facturation/views.py:192
+msgid "Ligne retirée."
+msgstr "تمت إزالة السطر."
+
+#: apps/consultations/views.py:226
+msgid "Ajoutez au moins un médicament avant de transmettre."
+msgstr "أضف دواءً واحدًا على الأقل قبل الإرسال."
+
+#: apps/consultations/views.py:236
+msgid "Ordonnance transmise à la pharmacie."
+msgstr "تم إرسال الوصفة إلى الصيدلية."
+
+#: apps/consultations/views.py:249
+msgid "Consultation clôturée."
+msgstr "تم إغلاق الاستشارة."
+
+#: apps/core/admin.py:50 apps/core/models.py:111
+msgid "journal d'audit"
+msgstr "سجل التدقيق"
+
+#: apps/core/models.py:20
+msgid "créé le"
+msgstr "أُنشئ في"
+
+#: apps/core/models.py:21
+msgid "modifié le"
+msgstr "عُدِّل في"
+
+#: apps/core/models.py:28
+msgid "créé par"
+msgstr "أنشأه"
+
+#: apps/core/models.py:36
+msgid "modifié par"
+msgstr "عدّله"
+
+#: apps/core/models.py:47
+msgid "nom de l'établissement"
+msgstr "اسم المؤسسة"
+
+#: apps/core/models.py:49
+msgid "logo"
+msgstr "الشعار"
+
+#: apps/core/models.py:53
+msgid "fuseau horaire"
+msgstr "المنطقة الزمنية"
+
+#: apps/core/models.py:56
+msgid "langues actives"
+msgstr "اللغات النشطة"
+
+#: apps/core/models.py:58
+msgid "Codes des langues proposées dans l'interface, ex. [\"fr\", \"bm\"]."
+msgstr "رموز اللغات المقترحة في الواجهة، مثال: [\"fr\", \"bm\"]."
+
+#: apps/core/models.py:62 apps/core/models.py:63
+msgid "paramètres système"
+msgstr "إعدادات النظام"
+
+#: apps/core/models.py:85
+msgid "Création"
+msgstr "إنشاء"
+
+#: apps/core/models.py:86
+msgid "Modification"
+msgstr "تعديل"
+
+#: apps/core/models.py:87 apps/facturation/models.py:30
+#: apps/facturation/models.py:39 templates/consultations/formulaire.html:3
+#: templates/consultations/ordonnance_formulaire.html:7
+msgid "Consultation"
+msgstr "اطّلاع"
+
+#: apps/core/models.py:88
+msgid "Suppression"
+msgstr "حذف"
+
+#: apps/core/models.py:89 templates/registration/login.html:3
+msgid "Connexion"
+msgstr "تسجيل الدخول"
+
+#: apps/core/models.py:90 templates/base.html:72
+msgid "Déconnexion"
+msgstr "تسجيل الخروج"
+
+#: apps/core/models.py:101
+msgid "action"
+msgstr "الإجراء"
+
+#: apps/core/models.py:102
+msgid "type d'objet"
+msgstr "نوع العنصر"
+
+#: apps/core/models.py:103
+msgid "identifiant de l'objet"
+msgstr "معرّف العنصر"
+
+#: apps/core/models.py:105
+msgid "adresse IP"
+msgstr "عنوان IP"
+
+#: apps/core/models.py:106
+msgid "données complémentaires"
+msgstr "بيانات إضافية"
+
+#: apps/core/models.py:107
+msgid "horodatage"
+msgstr "الطابع الزمني"
+
+#: apps/core/models.py:110
+msgid "entrée du journal d'audit"
+msgstr "قيد في سجل التدقيق"
+
+#: apps/core/models.py:119
+msgid "système"
+msgstr "النظام"
+
+#: apps/core/models.py:147
+msgid "destinataire"
+msgstr "المستلم"
+
+#: apps/core/models.py:149
+msgid "titre"
+msgstr "العنوان"
+
+#: apps/core/models.py:150
+msgid "message"
+msgstr "الرسالة"
+
+#: apps/core/models.py:151
+msgid "lien"
+msgstr "الرابط"
+
+#: apps/core/models.py:152
+msgid "lu"
+msgstr "مقروء"
+
+#: apps/core/models.py:153
+msgid "créée le"
+msgstr "أُنشئت في"
+
+#: apps/core/models.py:156
+msgid "notification"
+msgstr "إشعار"
+
+#: apps/core/models.py:157
+msgid "notifications"
+msgstr "الإشعارات"
+
+#: apps/core/views.py:61 templates/base.html:23
+#: templates/patients/detail.html:8 templates/patients/liste.html:3
+#: templates/patients/liste.html:7
+msgid "Patients"
+msgstr "المرضى"
+
+#: apps/core/views.py:63 templates/base.html:26
+#: templates/consultations/detail.html:7 templates/consultations/liste.html:3
+#: templates/consultations/liste.html:6
+msgid "Consultations"
+msgstr "الاستشارات"
+
+#: apps/core/views.py:65 apps/facturation/models.py:40 templates/base.html:29
+msgid "Hospitalisation"
+msgstr "الإيواء"
+
+#: apps/core/views.py:67 templates/base.html:32
+#: templates/bloc_operatoire/detail.html:7
+msgid "Bloc opératoire"
+msgstr "غرفة العمليات"
+
+#: apps/core/views.py:69 templates/base.html:35
+#: templates/laboratoire/detail.html:7 templates/laboratoire/liste.html:3
+msgid "Analyses & imagerie"
+msgstr "التحاليل والتصوير"
+
+#: apps/core/views.py:71 templates/base.html:38
+msgid "Facturation"
+msgstr "الفوترة"
+
+#: apps/core/views.py:73
+msgid "Bordereaux assurance"
+msgstr "كشوف التأمين"
+
+#: apps/core/views.py:75 templates/base.html:41
+#: templates/pharmacie/dispensations.html:3
+#: templates/pharmacie/dispensation_detail.html:7
+msgid "Dispensations"
+msgstr "الصرف الدوائي"
+
+#: apps/core/views.py:77
+msgid "Pharmacie — stock"
+msgstr "الصيدلية — المخزون"
+
+#: apps/core/views.py:79 templates/base.html:47
+msgid "Administration"
+msgstr "الإدارة"
+
+#: apps/facturation/admin.py:44
+msgid "en retard"
+msgstr "متأخرة"
+
+#: apps/facturation/forms.py:11 apps/facturation/models.py:52
+msgid "montant (FCFA)"
+msgstr "المبلغ (فرنك أفريقي)"
+
+#: apps/facturation/forms.py:14 apps/facturation/models.py:244
+msgid "mode"
+msgstr "طريقة الدفع"
+
+#: apps/facturation/forms.py:16 apps/facturation/models.py:246
+msgid "payeur"
+msgstr "الجهة الدافعة"
+
+#: apps/facturation/forms.py:20
+msgid "Remboursement (sortie de caisse)"
+msgstr "استرداد (صرف من الصندوق)"
+
+#: apps/facturation/forms.py:22
+msgid "réf. transaction"
+msgstr "مرجع المعاملة"
+
+#: apps/facturation/forms.py:25 apps/facturation/models.py:254
+#: apps/facturation/models.py:288 apps/laboratoire/forms.py:45
+#: apps/laboratoire/forms.py:56 apps/laboratoire/models.py:177
+#: apps/pharmacie/models.py:233 templates/laboratoire/detail.html:87
+msgid "commentaire"
+msgstr "ملاحظة"
+
+#: apps/facturation/forms.py:52 apps/facturation/models.py:108
+#: apps/laboratoire/forms.py:61 apps/laboratoire/models.py:91
+msgid "motif d'annulation"
+msgstr "سبب الإلغاء"
+
+#: apps/facturation/models.py:31
+msgid "Hospitalisation (par jour)"
+msgstr "الإيواء (لليوم الواحد)"
+
+#: apps/facturation/models.py:32
+msgid "Acte de bloc opératoire"
+msgstr "عملية في غرفة العمليات"
+
+#: apps/facturation/models.py:33
+#: templates/consultations/ordonnance_detail.html:38
+#: templates/pharmacie/dispensation_detail.html:32
+#: templates/pharmacie/dispensation_detail.html:79
+#: templates/pharmacie/medicaments.html:38
+#: templates/pharmacie/medicament_formulaire.html:3
+#: templates/pharmacie/mouvements.html:20
+msgid "Médicament"
+msgstr "دواء"
+
+#: apps/facturation/models.py:34 apps/facturation/models.py:43
+msgid "Analyse / imagerie"
+msgstr "تحليل / تصوير"
+
+#: apps/facturation/models.py:41
+msgid "Intervention chirurgicale"
+msgstr "عملية جراحية"
+
+#: apps/facturation/models.py:42
+msgid "Dispensation pharmacie"
+msgstr "صرف دوائي"
+
+#: apps/facturation/models.py:49 apps/facturation/models.py:206
+#: apps/laboratoire/models.py:34
+msgid "libellé"
+msgstr "التسمية"
+
+#: apps/facturation/models.py:50 apps/laboratoire/forms.py:11
+#: apps/laboratoire/models.py:35 apps/laboratoire/models.py:71
+msgid "catégorie"
+msgstr "الفئة"
+
+#: apps/facturation/models.py:54
+msgid "référence externe"
+msgstr "مرجع خارجي"
+
+#: apps/facturation/models.py:55
+msgid "Ex. : identifiant d'un type d'intervention pour un tarif d'acte."
+msgstr "مثال: معرّف نوع عملية لتسعيرة عملية."
+
+#: apps/facturation/models.py:60
+msgid "tarif"
+msgstr "التسعيرة"
+
+#: apps/facturation/models.py:61
+msgid "grille tarifaire"
+msgstr "جدول التسعيرات"
+
+#: apps/facturation/models.py:81
+msgid "Émise"
+msgstr "صادرة"
+
+#: apps/facturation/models.py:82
+msgid "Partiellement réglée"
+msgstr "مسددة جزئيًا"
+
+#: apps/facturation/models.py:83
+msgid "Réglée"
+msgstr "مسددة"
+
+#: apps/facturation/models.py:92
+msgid "couverture appliquée"
+msgstr "التغطية المطبَّقة"
+
+#: apps/facturation/models.py:94
+msgid "date d'émission"
+msgstr "تاريخ الإصدار"
+
+#: apps/facturation/models.py:95 templates/facturation/detail.html:20
+msgid "échéance"
+msgstr "تاريخ الاستحقاق"
+
+#: apps/facturation/models.py:102
+msgid "taux de couverture appliqué (%)"
+msgstr "نسبة التغطية المطبَّقة (%)"
+
+#: apps/facturation/models.py:105
+msgid "part patient"
+msgstr "حصة المريض"
+
+#: apps/facturation/models.py:107
+msgid "notes"
+msgstr "ملاحظات"
+
+#: apps/facturation/models.py:111 apps/facturation/models.py:201
+#: apps/facturation/models.py:242
+msgid "facture"
+msgstr "فاتورة"
+
+#: apps/facturation/models.py:112
+msgid "factures"
+msgstr "الفواتير"
+
+#: apps/facturation/models.py:202
+msgid "origine"
+msgstr "المصدر"
+
+#: apps/facturation/models.py:204
+msgid "identifiant de l'acte"
+msgstr "معرّف العملية"
+
+#: apps/facturation/models.py:209
+msgid "prix unitaire"
+msgstr "سعر الوحدة"
+
+#: apps/facturation/models.py:211 apps/facturation/models.py:243
+msgid "montant"
+msgstr "المبلغ"
+
+#: apps/facturation/models.py:215
+msgid "ligne de facture"
+msgstr "سطر الفاتورة"
+
+#: apps/facturation/models.py:216
+msgid "lignes de facture"
+msgstr "سطور الفاتورة"
+
+#: apps/facturation/models.py:229
+msgid "Espèces"
+msgstr "نقدًا"
+
+#: apps/facturation/models.py:230
+msgid "Mobile money"
+msgstr "الدفع عبر الهاتف"
+
+#: apps/facturation/models.py:231
+msgid "Virement bancaire"
+msgstr "تحويل بنكي"
+
+#: apps/facturation/models.py:232
+msgid "Chèque"
+msgstr "شيك"
+
+#: apps/facturation/models.py:233
+msgid "Carte bancaire"
+msgstr "بطاقة بنكية"
+
+#: apps/facturation/models.py:236
+#: templates/assurances/bordereau_detail.html:20
+#: templates/bloc_operatoire/liste.html:27
+#: templates/consultations/liste.html:27 templates/facturation/impayes.html:10
+#: templates/facturation/liste.html:34 templates/hospitalisation/liste.html:29
+#: templates/laboratoire/liste.html:34
+#: templates/pharmacie/dispensations.html:20
+msgid "Patient"
+msgstr "المريض"
+
+#: apps/facturation/models.py:237 templates/assurances/bordereaux.html:34
+msgid "Assurance"
+msgstr "التأمين"
+
+#: apps/facturation/models.py:248
+msgid "remboursement"
+msgstr "استرداد"
+
+#: apps/facturation/models.py:249
+msgid "référence de transaction"
+msgstr "مرجع المعاملة"
+
+#: apps/facturation/models.py:257
+msgid "paiement"
+msgstr "دفعة"
+
+#: apps/facturation/models.py:258
+msgid "paiements"
+msgstr "المدفوعات"
+
+#: apps/facturation/models.py:278 templates/patients/detail.html:60
+#: templates/patients/detail.html:78 templates/patients/liste.html:39
+msgid "Téléphone"
+msgstr "الهاتف"
+
+#: apps/facturation/models.py:279
+msgid "SMS"
+msgstr "رسالة نصية"
+
+#: apps/facturation/models.py:280
+msgid "Courrier"
+msgstr "بريد"
+
+#: apps/facturation/models.py:281
+msgid "Courriel"
+msgstr "بريد إلكتروني"
+
+#: apps/facturation/models.py:282
+msgid "Au guichet"
+msgstr "في الشباك"
+
+#: apps/facturation/models.py:286
+msgid "canal"
+msgstr "القناة"
+
+#: apps/facturation/models.py:293
+msgid "relance"
+msgstr "تذكير"
+
+#: apps/facturation/models.py:294
+msgid "relances"
+msgstr "التذكيرات"
+
+#: apps/facturation/views.py:111
+msgid "Type d'acte inconnu."
+msgstr "نوع عملية غير معروف."
+
+#: apps/facturation/views.py:123
+msgid "Cet acte est déjà facturé."
+msgstr "هذه العملية مفوترة بالفعل."
+
+#: apps/facturation/views.py:127
+msgid "Facture %(r)s générée (brouillon)."
+msgstr "تم إنشاء الفاتورة %(r)s (مسودة)."
+
+#: apps/facturation/views.py:143
+msgid "Facture émise."
+msgstr "تم إصدار الفاتورة."
+
+#: apps/facturation/views.py:162
+msgid "Facture annulée."
+msgstr "تم إلغاء الفاتورة."
+
+#: apps/facturation/views.py:178
+msgid "Ligne ajoutée."
+msgstr "تمت إضافة السطر."
+
+#: apps/facturation/views.py:180 apps/facturation/views.py:233
+#: apps/hospitalisation/views.py:150
+msgid "Formulaire invalide."
+msgstr "استمارة غير صالحة."
+
+#: apps/facturation/views.py:203
+msgid "Formulaire de paiement invalide."
+msgstr "استمارة الدفع غير صالحة."
+
+#: apps/facturation/views.py:216
+msgid "Paiement enregistré."
+msgstr "تم تسجيل الدفعة."
+
+#: apps/facturation/views.py:231
+msgid "Relance enregistrée."
+msgstr "تم تسجيل التذكير."
+
+#: apps/hospitalisation/admin.py:23
+msgid "taux d'occupation"
+msgstr "نسبة الإشغال"
+
+#: apps/hospitalisation/admin.py:42
+msgid "occupé"
+msgstr "مشغول"
+
+#: apps/hospitalisation/forms.py:21 apps/hospitalisation/models.py:39
+#: apps/hospitalisation/models.py:78 apps/hospitalisation/models.py:158
+msgid "service"
+msgstr "القسم"
+
+#: apps/hospitalisation/forms.py:24 apps/hospitalisation/models.py:110
+#: apps/hospitalisation/models.py:119 apps/hospitalisation/models.py:160
+#: templates/hospitalisation/detail.html:18
+#: templates/hospitalisation/liste.html:38 templates/patients/detail.html:48
+msgid "lit"
+msgstr "السرير"
+
+#: apps/hospitalisation/forms.py:26
+msgid "Laisser vide pour une admission sans lit assigné."
+msgstr "اتركه فارغًا لإدخال بلا سرير مخصَّص."
+
+#: apps/hospitalisation/forms.py:27 apps/hospitalisation/models.py:169
+msgid "motif d'hospitalisation"
+msgstr "سبب الإيواء"
+
+#: apps/hospitalisation/forms.py:30 apps/hospitalisation/models.py:170
+msgid "diagnostic à l'admission"
+msgstr "التشخيص عند الإدخال"
+
+#: apps/hospitalisation/forms.py:42
+msgid "Ce lit n'appartient pas au service choisi."
+msgstr "هذا السرير لا ينتمي إلى القسم المختار."
+
+#: apps/hospitalisation/forms.py:44
+msgid "Ce lit est déjà occupé."
+msgstr "هذا السرير مشغول بالفعل."
+
+#: apps/hospitalisation/forms.py:50
+msgid "nouveau lit"
+msgstr "سرير جديد"
+
+#: apps/hospitalisation/forms.py:62 apps/hospitalisation/models.py:176
+msgid "mode de sortie"
+msgstr "نوع الخروج"
+
+#: apps/hospitalisation/forms.py:65 apps/hospitalisation/models.py:178
+msgid "compte-rendu d'hospitalisation"
+msgstr "تقرير الإيواء"
+
+#: apps/hospitalisation/forms.py:68 apps/hospitalisation/models.py:179
+msgid "consignes de sortie"
+msgstr "تعليمات الخروج"
+
+#: apps/hospitalisation/models.py:35
+msgid "médecin responsable"
+msgstr "الطبيب المسؤول"
+
+#: apps/hospitalisation/models.py:40
+msgid "services"
+msgstr "الأقسام"
+
+#: apps/hospitalisation/models.py:73
+msgid "Individuelle"
+msgstr "فردية"
+
+#: apps/hospitalisation/models.py:74
+msgid "Double"
+msgstr "مزدوجة"
+
+#: apps/hospitalisation/models.py:75
+msgid "Commune"
+msgstr "مشتركة"
+
+#: apps/hospitalisation/models.py:79
+msgid "numéro"
+msgstr "الرقم"
+
+#: apps/hospitalisation/models.py:84 apps/hospitalisation/models.py:93
+#: apps/hospitalisation/models.py:103 templates/hospitalisation/detail.html:18
+msgid "chambre"
+msgstr "الغرفة"
+
+#: apps/hospitalisation/models.py:85
+msgid "chambres"
+msgstr "الغرف"
+
+#: apps/hospitalisation/models.py:104
+msgid "numéro / libellé"
+msgstr "الرقم / التسمية"
+
+#: apps/hospitalisation/models.py:107
+msgid "Hors occupation : un lit occupé est déduit des séjours en cours."
+msgstr "باستثناء الإشغال: يُستنتج السرير المشغول من الإقامات الجارية."
+
+#: apps/hospitalisation/models.py:111
+#: templates/hospitalisation/occupation.html:16
+msgid "lits"
+msgstr "الأسرّة"
+
+#: apps/hospitalisation/models.py:149
+msgid "Retour à domicile"
+msgstr "العودة إلى المنزل"
+
+#: apps/hospitalisation/models.py:150
+msgid "Transfert vers un autre établissement"
+msgstr "نقل إلى مؤسسة أخرى"
+
+#: apps/hospitalisation/models.py:151
+msgid "Sortie contre avis médical"
+msgstr "خروج ضد النصيحة الطبية"
+
+#: apps/hospitalisation/models.py:152
+msgid "Décès"
+msgstr "الوفاة"
+
+#: apps/hospitalisation/models.py:163
+msgid "consultation d'origine"
+msgstr "الاستشارة الأصلية"
+
+#: apps/hospitalisation/models.py:167
+msgid "médecin référent"
+msgstr "الطبيب المعالج"
+
+#: apps/hospitalisation/models.py:171
+msgid "date d'admission"
+msgstr "تاريخ الإدخال"
+
+#: apps/hospitalisation/models.py:175
+msgid "date de sortie"
+msgstr "تاريخ الخروج"
+
+#: apps/hospitalisation/models.py:182
+msgid "hospitalisation"
+msgstr "إقامة بالمستشفى"
+
+#: apps/hospitalisation/models.py:183
+msgid "hospitalisations"
+msgstr "الإقامات بالمستشفى"
+
+#: apps/hospitalisation/models.py:237
+msgid "mouvement de lit"
+msgstr "نقل السرير"
+
+#: apps/hospitalisation/models.py:238
+msgid "mouvements de lit"
+msgstr "تنقلات الأسرّة"
+
+#: apps/hospitalisation/models.py:249
+msgid "Soin infirmier"
+msgstr "رعاية تمريضية"
+
+#: apps/hospitalisation/models.py:250
+msgid "Observation médicale"
+msgstr "ملاحظة طبية"
+
+#: apps/hospitalisation/models.py:251
+msgid "Administration de traitement"
+msgstr "إعطاء العلاج"
+
+#: apps/hospitalisation/models.py:252
+msgid "Relevé de constantes"
+msgstr "تسجيل العلامات الحيوية"
+
+#: apps/hospitalisation/models.py:256
+msgid "séjour"
+msgstr "الإقامة"
+
+#: apps/hospitalisation/models.py:262
+msgid "TA systolique"
+msgstr "الضغط الانقباضي"
+
+#: apps/hospitalisation/models.py:264
+msgid "TA diastolique"
+msgstr "الضغط الانبساطي"
+
+#: apps/hospitalisation/models.py:266
+msgid "pouls (bpm)"
+msgstr "النبض (نبضة/دقيقة)"
+
+#: apps/hospitalisation/models.py:270
+msgid "auteur"
+msgstr "الكاتب"
+
+#: apps/hospitalisation/models.py:273
+msgid "note de suivi"
+msgstr "ملاحظة متابعة"
+
+#: apps/hospitalisation/models.py:274
+msgid "notes de suivi"
+msgstr "ملاحظات المتابعة"
+
+#: apps/hospitalisation/views.py:111
+msgid "Ce patient est déjà hospitalisé."
+msgstr "هذا المريض مُدخل بالفعل."
+
+#: apps/hospitalisation/views.py:132
+msgid "Patient admis. Séjour %(r)s."
+msgstr "تم إدخال المريض. الإقامة %(r)s."
+
+#: apps/hospitalisation/views.py:148
+msgid "Note de suivi ajoutée."
+msgstr "تمت إضافة ملاحظة المتابعة."
+
+#: apps/hospitalisation/views.py:162
+msgid "Sélection de lit invalide."
+msgstr "اختيار السرير غير صالح."
+
+#: apps/hospitalisation/views.py:174
+msgid "Patient transféré."
+msgstr "تم نقل المريض."
+
+#: apps/hospitalisation/views.py:186
+msgid "Renseignez le mode de sortie et le compte-rendu."
+msgstr "يرجى إدخال نوع الخروج والتقرير."
+
+#: apps/hospitalisation/views.py:202
+msgid "Sortie enregistrée."
+msgstr "تم تسجيل الخروج."
+
+#: apps/laboratoire/forms.py:14 apps/laboratoire/models.py:83
+msgid "priorité"
+msgstr "الأولوية"
+
+#: apps/laboratoire/forms.py:15 apps/laboratoire/models.py:57
+msgid "Routine"
+msgstr "روتيني"
+
+#: apps/laboratoire/forms.py:15 apps/laboratoire/models.py:58
+#: templates/laboratoire/detail.html:16
+msgid "Urgent"
+msgstr "مستعجل"
+
+#: apps/laboratoire/forms.py:18 apps/laboratoire/models.py:85
+msgid "renseignements cliniques"
+msgstr "المعلومات السريرية"
+
+#: apps/laboratoire/forms.py:21
+msgid "examens demandés"
+msgstr "الفحوصات المطلوبة"
+
+#: apps/laboratoire/forms.py:33
+msgid "Ces examens ne correspondent pas à la catégorie : %(l)s"
+msgstr "هذه الفحوصات لا تتوافق مع الفئة: %(l)s"
+
+#: apps/laboratoire/forms.py:39 apps/laboratoire/models.py:168
+msgid "valeur mesurée"
+msgstr "القيمة المقاسة"
+
+#: apps/laboratoire/forms.py:42 apps/laboratoire/models.py:169
+msgid "interprétation"
+msgstr "التفسير"
+
+#: apps/laboratoire/forms.py:43
+msgid "— automatique —"
+msgstr "— تلقائي —"
+
+#: apps/laboratoire/forms.py:50 apps/laboratoire/models.py:172
+#: templates/laboratoire/detail.html:92
+msgid "compte-rendu"
+msgstr "التقرير"
+
+#: apps/laboratoire/forms.py:52 apps/laboratoire/models.py:173
+#: templates/laboratoire/detail.html:94
+msgid "conclusion"
+msgstr "الخلاصة"
+
+#: apps/laboratoire/forms.py:54 apps/laboratoire/models.py:174
+msgid "pièce jointe (image / PDF)"
+msgstr "مرفق (صورة / PDF)"
+
+#: apps/laboratoire/models.py:28
+msgid "Analyse biologique"
+msgstr "تحليل مخبري"
+
+#: apps/laboratoire/models.py:29
+msgid "Imagerie médicale"
+msgstr "تصوير طبي"
+
+#: apps/laboratoire/models.py:37 apps/laboratoire/models.py:135
+msgid "unité"
+msgstr "الوحدة"
+
+#: apps/laboratoire/models.py:38
+msgid "Ex. : g/L, /mm³ (biologie)."
+msgstr "مثال: غ/ل، /مم³ (تحاليل)."
+
+#: apps/laboratoire/models.py:39 apps/laboratoire/models.py:136
+msgid "valeurs de référence"
+msgstr "القيم المرجعية"
+
+#: apps/laboratoire/models.py:41
+msgid "Ex. : 3.5 - 5.0"
+msgstr "مثال: 3.5 - 5.0"
+
+#: apps/laboratoire/models.py:42
+msgid "délai de rendu (heures)"
+msgstr "مهلة تسليم النتائج (ساعات)"
+
+#: apps/laboratoire/models.py:47
+msgid "type d'examen"
+msgstr "نوع الفحص"
+
+#: apps/laboratoire/models.py:48
+msgid "types d'examen"
+msgstr "أنواع الفحوصات"
+
+#: apps/laboratoire/models.py:63
+msgid "Résultats disponibles"
+msgstr "النتائج متاحة"
+
+#: apps/laboratoire/models.py:64
+msgid "Validée"
+msgstr "مؤكَّدة"
+
+#: apps/laboratoire/models.py:87
+msgid "date de prélèvement"
+msgstr "تاريخ أخذ العينة"
+
+#: apps/laboratoire/models.py:95
+msgid "demande d'examen"
+msgstr "طلب فحص"
+
+#: apps/laboratoire/models.py:96
+msgid "demandes d'examen"
+msgstr "طلبات الفحوصات"
+
+#: apps/laboratoire/models.py:131
+msgid "demande"
+msgstr "الطلب"
+
+#: apps/laboratoire/models.py:133
+msgid "examen"
+msgstr "الفحص"
+
+#: apps/laboratoire/models.py:140
+msgid "ligne d'examen"
+msgstr "سطر الفحص"
+
+#: apps/laboratoire/models.py:141
+msgid "lignes d'examen"
+msgstr "سطور الفحوصات"
+
+#: apps/laboratoire/models.py:159 templates/laboratoire/detail.html:81
+msgid "Normal"
+msgstr "طبيعي"
+
+#: apps/laboratoire/models.py:160 templates/laboratoire/detail.html:82
+msgid "Anormal — bas"
+msgstr "غير طبيعي — منخفض"
+
+#: apps/laboratoire/models.py:161 templates/laboratoire/detail.html:83
+msgid "Anormal — haut"
+msgstr "غير طبيعي — مرتفع"
+
+#: apps/laboratoire/models.py:162 templates/laboratoire/detail.html:84
+msgid "Anormal"
+msgstr "غير طبيعي"
+
+#: apps/laboratoire/models.py:163
+msgid "Non interprétable"
+msgstr "غير قابل للتفسير"
+
+#: apps/laboratoire/models.py:166
+msgid "ligne"
+msgstr "السطر"
+
+#: apps/laboratoire/models.py:181
+msgid "saisi le"
+msgstr "أُدخل في"
+
+#: apps/laboratoire/models.py:188
+msgid "résultat"
+msgstr "النتيجة"
+
+#: apps/laboratoire/models.py:189
+msgid "résultats"
+msgstr "النتائج"
+
+#: apps/laboratoire/models.py:192
+msgid "CR imagerie"
+msgstr "تقرير التصوير"
+
+#: apps/laboratoire/views.py:105
+msgid "Demande d'examen enregistrée."
+msgstr "تم تسجيل طلب الفحص."
+
+#: apps/laboratoire/views.py:160
+msgid "Formulaire de résultat invalide."
+msgstr "استمارة النتيجة غير صالحة."
+
+#: apps/laboratoire/views.py:177
+msgid "Résultat enregistré."
+msgstr "تم تسجيل النتيجة."
+
+#: apps/laboratoire/views.py:192
+msgid "Résultats validés. Le prescripteur a été notifié."
+msgstr "تم تأكيد النتائج. تم إشعار الطبيب الواصف."
+
+#: apps/laboratoire/views.py:209
+msgid "Demande annulée."
+msgstr "تم إلغاء الطلب."
+
+#: apps/patients/admin.py:36
+msgid "Identité"
+msgstr "الهوية"
+
+#: apps/patients/admin.py:41 templates/patients/detail.html:57
+msgid "Coordonnées"
+msgstr "بيانات الاتصال"
+
+#: apps/patients/admin.py:44 templates/patients/detail.html:73
+msgid "Personne à prévenir"
+msgstr "الشخص الواجب إعلامه"
+
+#: apps/patients/admin.py:48
+msgid "Informations complémentaires"
+msgstr "معلومات إضافية"
+
+#: apps/patients/admin.py:51
+msgid "Traçabilité"
+msgstr "التتبّع"
+
+#: apps/patients/admin.py:63
+msgid "âge"
+msgstr "العمر"
+
+#: apps/patients/models.py:32
+msgid "Inconnu"
+msgstr "غير معروف"
+
+#: apps/patients/models.py:54
+msgid "Masculin"
+msgstr "ذكر"
+
+#: apps/patients/models.py:55
+msgid "Féminin"
+msgstr "أنثى"
+
+#: apps/patients/models.py:58
+msgid "Célibataire"
+msgstr "أعزب"
+
+#: apps/patients/models.py:59
+msgid "Marié(e)"
+msgstr "متزوج(ة)"
+
+#: apps/patients/models.py:60
+msgid "Divorcé(e)"
+msgstr "مطلَّق(ة)"
+
+#: apps/patients/models.py:61
+msgid "Veuf/Veuve"
+msgstr "أرمل(ة)"
+
+#: apps/patients/models.py:65
+msgid "numéro de dossier"
+msgstr "رقم الملف"
+
+#: apps/patients/models.py:66
+msgid "Identifiant unique du patient, attribué automatiquement."
+msgstr "معرّف فريد للمريض، يُسند تلقائيًا."
+
+#: apps/patients/models.py:69
+msgid "prénom"
+msgstr "الاسم الأول"
+
+#: apps/patients/models.py:70
+msgid "sexe"
+msgstr "الجنس"
+
+#: apps/patients/models.py:71
+msgid "date de naissance"
+msgstr "تاريخ الميلاد"
+
+#: apps/patients/models.py:73
+msgid "date de naissance estimée"
+msgstr "تاريخ ميلاد تقديري"
+
+#: apps/patients/models.py:74
+msgid "Cochez si seule l'année ou l'âge approximatif est connu."
+msgstr "ضع علامة إذا كانت السنة أو العمر التقريبي فقط معروفًا."
+
+#: apps/patients/models.py:76
+msgid "lieu de naissance"
+msgstr "مكان الميلاد"
+
+#: apps/patients/models.py:77
+msgid "nationalité"
+msgstr "الجنسية"
+
+#: apps/patients/models.py:82
+msgid "ville / commune"
+msgstr "المدينة / البلدية"
+
+#: apps/patients/models.py:84
+msgid "personne à prévenir"
+msgstr "الشخص الواجب إعلامه"
+
+#: apps/patients/models.py:86
+msgid "lien de parenté"
+msgstr "صلة القرابة"
+
+#: apps/patients/models.py:88
+msgid "téléphone d'urgence"
+msgstr "هاتف الطوارئ"
+
+#: apps/patients/models.py:91
+msgid "profession"
+msgstr "المهنة"
+
+#: apps/patients/models.py:93
+msgid "statut matrimonial"
+msgstr "الحالة الاجتماعية"
+
+#: apps/patients/models.py:97
+msgid "groupe sanguin"
+msgstr "فصيلة الدم"
+
+#: apps/patients/models.py:100
+msgid "photo"
+msgstr "الصورة"
+
+#: apps/patients/models.py:105
+msgid "Décochez pour archiver le dossier sans le supprimer."
+msgstr "أزل العلامة لأرشفة الملف دون حذفه."
+
+#: apps/patients/models.py:112
+msgid "patients"
+msgstr "المرضى"
+
+#: apps/patients/models.py:163
+msgid "antécédents médicaux"
+msgstr "السوابق الطبية"
+
+#: apps/patients/models.py:164
+msgid "antécédents chirurgicaux"
+msgstr "السوابق الجراحية"
+
+#: apps/patients/models.py:165
+msgid "antécédents familiaux"
+msgstr "السوابق العائلية"
+
+#: apps/patients/models.py:167
+msgid "antécédents gynéco-obstétricaux"
+msgstr "السوابق النسائية والتوليدية"
+
+#: apps/patients/models.py:169
+msgid "traitements en cours"
+msgstr "العلاجات الجارية"
+
+#: apps/patients/models.py:171
+msgid "habitudes de vie"
+msgstr "عادات الحياة"
+
+#: apps/patients/models.py:172
+msgid "Tabac, alcool, activité physique, régime particulier…"
+msgstr "التدخين، الكحول، النشاط البدني، نظام غذائي خاص…"
+
+#: apps/patients/models.py:174
+msgid "observations générales"
+msgstr "ملاحظات عامة"
+
+#: apps/patients/models.py:177 apps/patients/models.py:198
+msgid "dossier médical"
+msgstr "الملف الطبي"
+
+#: apps/patients/models.py:178
+msgid "dossiers médicaux"
+msgstr "الملفات الطبية"
+
+#: apps/patients/models.py:181
+msgid "Dossier médical de %(p)s"
+msgstr "الملف الطبي لـ %(p)s"
+
+#: apps/patients/models.py:186
+msgid "Médicamenteuse"
+msgstr "دوائية"
+
+#: apps/patients/models.py:187
+msgid "Alimentaire"
+msgstr "غذائية"
+
+#: apps/patients/models.py:188
+msgid "Environnementale"
+msgstr "بيئية"
+
+#: apps/patients/models.py:192
+msgid "Légère"
+msgstr "خفيفة"
+
+#: apps/patients/models.py:193 apps/pharmacie/models.py:177
+msgid "Modérée"
+msgstr "متوسطة"
+
+#: apps/patients/models.py:194
+msgid "Sévère"
+msgstr "شديدة"
+
+#: apps/patients/models.py:200
+msgid "allergène"
+msgstr "مسبب الحساسية"
+
+#: apps/patients/models.py:203
+msgid "sévérité"
+msgstr "الشدة"
+
+#: apps/patients/models.py:205
+msgid "remarque"
+msgstr "ملاحظة"
+
+#: apps/patients/models.py:208
+msgid "allergie"
+msgstr "حساسية"
+
+#: apps/patients/models.py:209
+msgid "allergies"
+msgstr "الحساسيات"
+
+#: apps/patients/views.py:73
+msgid "Consultation de la fiche patient"
+msgstr "الاطّلاع على ملف المريض"
+
+#: apps/patients/views.py:84
+msgid "Patient créé. Numéro de dossier : %(numero_dossier)s"
+msgstr "تم إنشاء المريض. رقم الملف: %(numero_dossier)s"
+
+#: apps/patients/views.py:96
+msgid "Fiche patient mise à jour."
+msgstr "تم تحديث ملف المريض."
+
+#: apps/patients/views.py:107
+msgid "Dossier médical mis à jour."
+msgstr "تم تحديث الملف الطبي."
+
+#: apps/patients/views.py:121
+msgid "Modification du dossier médical"
+msgstr "تعديل الملف الطبي"
+
+#: apps/pharmacie/admin.py:29
+msgid "sous le seuil"
+msgstr "دون العتبة"
+
+#: apps/pharmacie/admin.py:41
+msgid "périmé"
+msgstr "منتهي الصلاحية"
+
+#: apps/pharmacie/forms.py:34 apps/pharmacie/models.py:108
+msgid "numéro de lot"
+msgstr "رقم الدفعة"
+
+#: apps/pharmacie/forms.py:36
+msgid "quantité reçue"
+msgstr "الكمية المستلَمة"
+
+#: apps/pharmacie/forms.py:39 apps/pharmacie/models.py:111
+msgid "date de péremption"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#: apps/pharmacie/forms.py:43 apps/pharmacie/models.py:112
+msgid "date de réception"
+msgstr "تاريخ الاستلام"
+
+#: apps/pharmacie/forms.py:46 apps/pharmacie/models.py:113
+msgid "fournisseur"
+msgstr "المورّد"
+
+#: apps/pharmacie/forms.py:52
+msgid "La date de péremption doit être future."
+msgstr "يجب أن يكون تاريخ انتهاء الصلاحية في المستقبل."
+
+#: apps/pharmacie/models.py:30
+msgid "Comprimé"
+msgstr "قرص"
+
+#: apps/pharmacie/models.py:31
+msgid "Gélule"
+msgstr "كبسولة"
+
+#: apps/pharmacie/models.py:32
+msgid "Sirop"
+msgstr "شراب"
+
+#: apps/pharmacie/models.py:33
+msgid "Suspension buvable"
+msgstr "معلَّق فموي"
+
+#: apps/pharmacie/models.py:34
+msgid "Injectable"
+msgstr "حقن"
+
+#: apps/pharmacie/models.py:35
+msgid "Solution pour perfusion"
+msgstr "محلول للتسريب"
+
+#: apps/pharmacie/models.py:36
+msgid "Pommade / crème"
+msgstr "مرهم / كريم"
+
+#: apps/pharmacie/models.py:37
+msgid "Collyre"
+msgstr "قطرة عين"
+
+#: apps/pharmacie/models.py:38
+msgid "Suppositoire"
+msgstr "تحميلة"
+
+#: apps/pharmacie/models.py:46
+msgid "Code interne ou code-barres, facultatif."
+msgstr "رمز داخلي أو باركود، اختياري."
+
+#: apps/pharmacie/models.py:47
+msgid "dénomination (DCI)"
+msgstr "التسمية (الاسم العلمي)"
+
+#: apps/pharmacie/models.py:48
+msgid "dosage"
+msgstr "التركيز"
+
+#: apps/pharmacie/models.py:49
+msgid "Ex. : 500 mg, 1 g/10 ml…"
+msgstr "مثال: 500 ملغ، 1 غ/10 مل…"
+
+#: apps/pharmacie/models.py:50
+msgid "forme galénique"
+msgstr "الشكل الصيدلاني"
+
+#: apps/pharmacie/models.py:52
+msgid "unité de délivrance"
+msgstr "وحدة الصرف"
+
+#: apps/pharmacie/models.py:53
+msgid "Ex. : comprimé, flacon, ampoule, tube…"
+msgstr "مثال: قرص، قارورة، أمبولة، أنبوب…"
+
+#: apps/pharmacie/models.py:55
+msgid "seuil d'alerte"
+msgstr "عتبة التنبيه"
+
+#: apps/pharmacie/models.py:56
+msgid "En dessous de ce stock utilisable, le médicament est signalé."
+msgstr "دون هذا المخزون القابل للاستخدام، يُشار إلى الدواء."
+
+#: apps/pharmacie/models.py:59
+msgid "prix unitaire de vente (FCFA)"
+msgstr "سعر بيع الوحدة (فرنك أفريقي)"
+
+#: apps/pharmacie/models.py:61
+msgid "Utilisé pour la facturation des dispensations (CDC 4.8)."
+msgstr "يُستخدم لفوترة عمليات الصرف (البند 4.8)."
+
+#: apps/pharmacie/models.py:67
+msgid "médicaments"
+msgstr "الأدوية"
+
+#: apps/pharmacie/models.py:109
+msgid "quantité restante"
+msgstr "الكمية المتبقية"
+
+#: apps/pharmacie/models.py:110
+msgid "quantité initiale"
+msgstr "الكمية الأولية"
+
+#: apps/pharmacie/models.py:116
+msgid "lot de médicament"
+msgstr "دفعة دواء"
+
+#: apps/pharmacie/models.py:117
+msgid "lots de médicaments"
+msgstr "دفعات الأدوية"
+
+#: apps/pharmacie/models.py:136
+msgid "Entrée (réception)"
+msgstr "دخول (استلام)"
+
+#: apps/pharmacie/models.py:137
+msgid "Sortie (dispensation)"
+msgstr "خروج (صرف)"
+
+#: apps/pharmacie/models.py:138
+msgid "Ajustement positif (inventaire)"
+msgstr "تسوية إيجابية (جرد)"
+
+#: apps/pharmacie/models.py:139
+msgid "Ajustement négatif (inventaire, casse)"
+msgstr "تسوية سلبية (جرد، تلف)"
+
+#: apps/pharmacie/models.py:140
+msgid "Retrait pour péremption"
+msgstr "سحب بسبب انتهاء الصلاحية"
+
+#: apps/pharmacie/models.py:147
+msgid "lot"
+msgstr "الدفعة"
+
+#: apps/pharmacie/models.py:152
+msgid "Ex. : n° de dispensation."
+msgstr "مثال: رقم عملية الصرف."
+
+#: apps/pharmacie/models.py:155
+msgid "opérateur"
+msgstr "المنفِّذ"
+
+#: apps/pharmacie/models.py:159
+msgid "mouvement de stock"
+msgstr "حركة المخزون"
+
+#: apps/pharmacie/models.py:160
+msgid "mouvements de stock"
+msgstr "حركات المخزون"
+
+#: apps/pharmacie/models.py:176
+msgid "Mineure"
+msgstr "طفيفة"
+
+#: apps/pharmacie/models.py:178
+msgid "Majeure"
+msgstr "كبيرة"
+
+#: apps/pharmacie/models.py:179
+msgid "Association contre-indiquée"
+msgstr "توليفة ممنوعة"
+
+#: apps/pharmacie/models.py:185
+msgid "gravité"
+msgstr "الخطورة"
+
+#: apps/pharmacie/models.py:187
+msgid "description / conduite à tenir"
+msgstr "الوصف / الإجراء المتبع"
+
+#: apps/pharmacie/models.py:190
+msgid "interaction médicamenteuse"
+msgstr "تفاعل دوائي"
+
+#: apps/pharmacie/models.py:191
+msgid "interactions médicamenteuses"
+msgstr "التفاعلات الدوائية"
+
+#: apps/pharmacie/models.py:218
+msgid "En attente"
+msgstr "قيد الانتظار"
+
+#: apps/pharmacie/models.py:220
+msgid "Complète"
+msgstr "كاملة"
+
+#: apps/pharmacie/models.py:221
+msgid "Partielle"
+msgstr "جزئية"
+
+#: apps/pharmacie/models.py:229
+msgid "pharmacien"
+msgstr "الصيدلي"
+
+#: apps/pharmacie/models.py:232
+msgid "date de délivrance"
+msgstr "تاريخ الصرف"
+
+#: apps/pharmacie/models.py:236
+msgid "dispensation"
+msgstr "الصرف"
+
+#: apps/pharmacie/models.py:237
+msgid "dispensations"
+msgstr "عمليات الصرف"
+
+#: apps/pharmacie/models.py:259
+msgid "quantité délivrée"
+msgstr "الكمية المصروفة"
+
+#: apps/pharmacie/models.py:263
+msgid "ligne de dispensation"
+msgstr "سطر الصرف"
+
+#: apps/pharmacie/models.py:264
+msgid "lignes de dispensation"
+msgstr "سطور الصرف"
+
+#: apps/pharmacie/views.py:53
+msgid "Médicament ajouté au catalogue."
+msgstr "تمت إضافة الدواء إلى الكتالوج."
+
+#: apps/pharmacie/views.py:65
+msgid "Médicament mis à jour."
+msgstr "تم تحديث الدواء."
+
+#: apps/pharmacie/views.py:108
+msgid "Entrée de stock enregistrée."
+msgstr "تم تسجيل دخول المخزون."
+
+#: apps/pharmacie/views.py:172
+msgid "Aucune quantité à délivrer saisie."
+msgstr "لم تُدخل أي كمية للصرف."
+
+#: apps/pharmacie/views.py:191
+msgid "Délivrance enregistrée."
+msgstr "تم تسجيل الصرف."
+
+#: apps/pharmacie/views.py:220
+msgid "%(n)d unité(s) périmée(s) retirée(s) du stock."
+msgstr "تم سحب %(n)d وحدة منتهية الصلاحية من المخزون."
+
+#: apps/pharmacie/views.py:223
+msgid "Aucun lot périmé à retirer."
+msgstr "لا توجد دفعة منتهية الصلاحية للسحب."
+
+#: config/settings.py:144 apps/accounts/models.py:37
+msgid "Français"
+msgstr "الفرنسية"
+
+#: config/settings.py:145 apps/accounts/models.py:38
+msgid "Anglais"
+msgstr "الإنجليزية"
+
+#: config/settings.py:146 apps/accounts/models.py:39
+msgid "Arabe"
+msgstr "العربية"
+
+#: config/settings.py:147 apps/accounts/models.py:40
+msgid "Bambara"
+msgstr "البمبارا"
+
+#: config/settings.py:148 apps/accounts/models.py:41
+msgid "Peulh (fulfulde)"
+msgstr "الفولانية (الفولفولدي)"
+
+#: config/settings.py:149 apps/accounts/models.py:42
+msgid "Soninké"
+msgstr "السوننكية"
+
+#: scripts/i18n_extract.py:9 scripts/i18n_extract.py:9
+msgid "..."
+msgstr "…"
+
+#: templates/assurances/bordereau_detail.html:7
+#: templates/assurances/liste.html:9
+msgid "Bordereaux"
+msgstr "الكشوف"
+
+#: templates/assurances/bordereau_detail.html:20
+msgid "Facture"
+msgstr "الفاتورة"
+
+#: templates/assurances/bordereau_detail.html:21
+#: templates/facturation/detail.html:57
+msgid "Part assurance"
+msgstr "حصة التأمين"
+
+#: templates/assurances/bordereau_detail.html:31
+#: templates/facturation/detail.html:56 templates/facturation/liste.html:35
+msgid "Total"
+msgstr "المجموع"
+
+#: templates/assurances/bordereaux.html:3
+#: templates/assurances/bordereaux.html:6
+msgid "Bordereaux d'assurance"
+msgstr "كشوف التأمين"
+
+#: templates/assurances/bordereaux.html:10
+msgid "Générer un bordereau"
+msgstr "إنشاء كشف"
+
+#: templates/assurances/bordereaux.html:27
+msgid ""
+"Regroupe les parts assurance des factures émises sur la période, non déjà "
+"portées à un bordereau."
+msgstr ""
+"يجمع حصص التأمين من الفواتير الصادرة خلال الفترة، غير المدرجة بعد في كشف."
+
+#: templates/assurances/bordereaux.html:34
+#: templates/bloc_operatoire/liste.html:27
+#: templates/consultations/liste.html:26 templates/facturation/impayes.html:10
+#: templates/facturation/liste.html:34 templates/hospitalisation/liste.html:29
+#: templates/laboratoire/liste.html:34 templates/patients/detail.html:138
+msgid "Référence"
+msgstr "المرجع"
+
+#: templates/assurances/bordereaux.html:35
+#: templates/bloc_operatoire/indicateurs.html:8
+msgid "Période"
+msgstr "الفترة"
+
+#: templates/assurances/bordereaux.html:35
+#: templates/facturation/detail.html:38 templates/facturation/tarifs.html:12
+msgid "Montant"
+msgstr "المبلغ"
+
+#: templates/assurances/bordereaux.html:36
+#: templates/bloc_operatoire/liste.html:30
+#: templates/consultations/liste.html:28 templates/facturation/liste.html:37
+#: templates/hospitalisation/liste.html:31 templates/laboratoire/liste.html:36
+#: templates/patients/detail.html:140
+#: templates/pharmacie/dispensations.html:21
+msgid "Statut"
+msgstr "الحالة"
+
+#: templates/assurances/bordereaux.html:45
+#: templates/bloc_operatoire/liste.html:42
+#: templates/consultations/liste.html:39 templates/core/notifications.html:24
+#: templates/facturation/impayes.html:22 templates/facturation/liste.html:49
+#: templates/hospitalisation/liste.html:42 templates/laboratoire/liste.html:47
+#: templates/patients/detail.html:150 templates/patients/liste.html:55
+#: templates/pharmacie/medicaments.html:54
+msgid "Ouvrir"
+msgstr "فتح"
+
+#: templates/assurances/bordereaux.html:48
+msgid "Aucun bordereau."
+msgstr "لا يوجد كشف."
+
+#: templates/assurances/liste.html:3
+msgid "Assurances"
+msgstr "شركات التأمين"
+
+#: templates/assurances/liste.html:7
+msgid "Assurances partenaires"
+msgstr "شركات التأمين الشريكة"
+
+#: templates/assurances/liste.html:29
+msgid "plafond"
+msgstr "السقف"
+
+#: templates/assurances/liste.html:30 templates/patients/detail.html:122
+msgid "inactif"
+msgstr "غير نشط"
+
+#: templates/assurances/liste.html:31
+msgid "Aucun contrat."
+msgstr "لا يوجد عقد."
+
+#: templates/assurances/liste.html:37
+msgid ""
+"Aucune assurance. L'administrateur peut en ajouter via l'administration."
+msgstr "لا يوجد تأمين. يمكن للمسؤول إضافته عبر لوحة الإدارة."
+
+#: templates/assurances/patient_assure_formulaire.html:3
+msgid "Couverture d'assurance"
+msgstr "التغطية التأمينية"
+
+#: templates/assurances/patient_assure_formulaire.html:6
+msgid "Rattacher une assurance"
+msgstr "ربط تأمين"
+
+#: templates/assurances/patient_assure_formulaire.html:20
+#: templates/consultations/constantes.html:19
+#: templates/consultations/formulaire.html:23
+#: templates/laboratoire/detail.html:96
+#: templates/patients/dossier_formulaire.html:19
+#: templates/patients/formulaire.html:26
+#: templates/pharmacie/medicament_formulaire.html:23
+msgid "Enregistrer"
+msgstr "حفظ"
+
+#: templates/assurances/patient_assure_formulaire.html:21
+#: templates/bloc_operatoire/demande.html:24
+#: templates/consultations/constantes.html:20
+#: templates/consultations/formulaire.html:25
+#: templates/consultations/ordonnance_formulaire.html:19
+#: templates/facturation/detail.html:83
+#: templates/hospitalisation/admission.html:28
+#: templates/laboratoire/demande.html:40
+#: templates/patients/dossier_formulaire.html:20
+#: templates/patients/formulaire.html:28
+#: templates/pharmacie/entree_stock.html:19
+#: templates/pharmacie/medicament_formulaire.html:24
+msgid "Annuler"
+msgstr "إلغاء"
+
+#: templates/base.html:21 templates/core/dashboard.html:3
+msgid "Tableau de bord"
+msgstr "لوحة التحكم"
+
+#: templates/base.html:44 templates/pharmacie/dispensation_detail.html:35
+msgid "Stock"
+msgstr "المخزون"
+
+#: templates/base.html:51 templates/core/notifications.html:3
+#: templates/core/notifications.html:7
+msgid "Notifications"
+msgstr "الإشعارات"
+
+#: templates/base.html:61
+msgid "Changer de langue"
+msgstr "تغيير اللغة"
+
+#: templates/base.html:93 templates/registration/login.html:11
+msgid "Gestion hospitalière"
+msgstr "إدارة المستشفى"
+
+#: templates/bloc_operatoire/demande.html:3
+msgid "Demande d'intervention"
+msgstr "طلب عملية"
+
+#: templates/bloc_operatoire/demande.html:6
+msgid "Demande d'intervention chirurgicale"
+msgstr "طلب عملية جراحية"
+
+#: templates/bloc_operatoire/demande.html:23
+#: templates/laboratoire/demande.html:39
+msgid "Enregistrer la demande"
+msgstr "حفظ الطلب"
+
+#: templates/bloc_operatoire/detail.html:25
+msgid "Facturer l'acte"
+msgstr "فوترة العملية"
+
+#: templates/bloc_operatoire/detail.html:32
+#: templates/consultations/ordonnance_detail.html:29
+msgid "Alerte"
+msgstr "تنبيه"
+
+#: templates/bloc_operatoire/detail.html:40
+#: templates/consultations/detail.html:44
+#: templates/consultations/liste.html:27
+#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:139
+#: templates/pharmacie/medicament_detail.html:58
+#: templates/pharmacie/mouvements.html:22
+msgid "Motif"
+msgstr "السبب"
+
+#: templates/bloc_operatoire/detail.html:41
+msgid "Diagnostic préop."
+msgstr "تشخيص ما قبل العملية"
+
+#: templates/bloc_operatoire/detail.html:42
+msgid "Durée estimée"
+msgstr "المدة المقدَّرة"
+
+#: templates/bloc_operatoire/detail.html:42
+msgid "réelle"
+msgstr "الفعلية"
+
+#: templates/bloc_operatoire/detail.html:43
+msgid "Matériel spécifique"
+msgstr "معدات خاصة"
+
+#: templates/bloc_operatoire/detail.html:45
+msgid "Motif annulation/report"
+msgstr "سبب الإلغاء/التأجيل"
+
+#: templates/bloc_operatoire/detail.html:52
+msgid "Planifier l'intervention"
+msgstr "جدولة العملية"
+
+#: templates/bloc_operatoire/detail.html:63
+#: templates/bloc_operatoire/planning.html:30
+msgid "Planifier"
+msgstr "جدولة"
+
+#: templates/bloc_operatoire/detail.html:70
+msgid "Faisabilité anesthésique"
+msgstr "إمكانية التخدير"
+
+#: templates/bloc_operatoire/detail.html:73
+msgid "Validée par"
+msgstr "أكّدها"
+
+#: templates/bloc_operatoire/detail.html:80
+#: templates/bloc_operatoire/detail.html:152
+#: templates/registration/password_change.html:20
+msgid "Valider"
+msgstr "تأكيد"
+
+#: templates/bloc_operatoire/detail.html:83
+msgid "En attente de validation par l'anesthésiste."
+msgstr "بانتظار تأكيد طبيب التخدير."
+
+#: templates/bloc_operatoire/detail.html:90
+msgid "Annuler / reporter"
+msgstr "إلغاء / تأجيل"
+
+#: templates/bloc_operatoire/detail.html:96
+msgid "Confirmer"
+msgstr "تأكيد"
+
+#: templates/bloc_operatoire/detail.html:105
+msgid "Équipe chirurgicale"
+msgstr "الفريق الجراحي"
+
+#: templates/bloc_operatoire/detail.html:117
+msgid "Équipe non constituée."
+msgstr "لم يتم تشكيل الفريق بعد."
+
+#: templates/bloc_operatoire/detail.html:134
+msgid "Checklist sécurité (type OMS)"
+msgstr "قائمة التحقق الأمنية (نمط منظمة الصحة العالمية)"
+
+#: templates/bloc_operatoire/detail.html:143
+msgid "à valider"
+msgstr "بانتظار التأكيد"
+
+#: templates/bloc_operatoire/detail.html:147
+msgid "par"
+msgstr "بواسطة"
+
+#: templates/bloc_operatoire/detail.html:157
+msgid "La checklist est créée à la planification de l'intervention."
+msgstr "تُنشأ قائمة التحقق عند جدولة العملية."
+
+#: templates/bloc_operatoire/detail.html:164
+msgid "Déroulé per-opératoire"
+msgstr "سير العملية"
+
+#: templates/bloc_operatoire/detail.html:167
+#: templates/bloc_operatoire/detail.html:175
+msgid "Entrée en salle"
+msgstr "الدخول إلى الغرفة"
+
+#: templates/bloc_operatoire/detail.html:168
+msgid "Incision"
+msgstr "الشق الجراحي"
+
+#: templates/bloc_operatoire/detail.html:169
+msgid "Fin / sortie"
+msgstr "النهاية / الخروج"
+
+#: templates/bloc_operatoire/detail.html:179
+msgid "Pointer l'incision"
+msgstr "تسجيل وقت الشق الجراحي"
+
+#: templates/bloc_operatoire/detail.html:182
+msgid "incidents éventuels"
+msgstr "حوادث محتملة"
+
+#: templates/bloc_operatoire/detail.html:183
+msgid "Terminer"
+msgstr "إنهاء"
+
+#: templates/bloc_operatoire/detail.html:193
+msgid "Compte-rendu opératoire"
+msgstr "التقرير الجراحي"
+
+#: templates/bloc_operatoire/detail.html:205
+msgid "Enregistrer le compte-rendu"
+msgstr "حفظ التقرير"
+
+#: templates/bloc_operatoire/detail.html:209
+msgid "Technique"
+msgstr "التقنية"
+
+#: templates/bloc_operatoire/detail.html:210
+msgid "Constatations"
+msgstr "الملاحظات"
+
+#: templates/bloc_operatoire/detail.html:211
+msgid "Complications"
+msgstr "المضاعفات"
+
+#: templates/bloc_operatoire/detail.html:212
+msgid "Suites à prévoir"
+msgstr "المتابعة المتوقعة"
+
+#: templates/bloc_operatoire/detail.html:215
+msgid "Compte-rendu non rédigé."
+msgstr "لم يُحرَّر التقرير بعد."
+
+#: templates/bloc_operatoire/indicateurs.html:3
+msgid "Indicateurs du bloc"
+msgstr "مؤشرات غرفة العمليات"
+
+#: templates/bloc_operatoire/indicateurs.html:6
+msgid "Indicateurs du bloc opératoire"
+msgstr "مؤشرات غرفة العمليات"
+
+#: templates/bloc_operatoire/indicateurs.html:9
+msgid "L'export PDF/Excel sera ajouté en phase 9."
+msgstr "سيُضاف التصدير بصيغة PDF/Excel في المرحلة 9."
+
+#: templates/bloc_operatoire/indicateurs.html:15
+msgid "Taux d'occupation des salles"
+msgstr "نسبة إشغال الغرف"
+
+#: templates/bloc_operatoire/indicateurs.html:17
+#: templates/bloc_operatoire/liste.html:28
+msgid "Salle"
+msgstr "الغرفة"
+
+#: templates/bloc_operatoire/indicateurs.html:17
+msgid "Interv."
+msgstr "عملية"
+
+#: templates/bloc_operatoire/indicateurs.html:18
+msgid "Heures"
+msgstr "الساعات"
+
+#: templates/bloc_operatoire/indicateurs.html:18
+msgid "Taux"
+msgstr "النسبة"
+
+#: templates/bloc_operatoire/indicateurs.html:32
+msgid "Déprogrammation / annulation"
+msgstr "إلغاء البرمجة / الإلغاء"
+
+#: templates/bloc_operatoire/indicateurs.html:37
+msgid "Aucun motif enregistré."
+msgstr "لم يُسجَّل أي سبب."
+
+#: templates/bloc_operatoire/indicateurs.html:40
+msgid "Temps de rotation moyen entre deux interventions"
+msgstr "متوسط وقت التبديل بين عمليتين"
+
+#: templates/bloc_operatoire/indicateurs.html:42
+msgid "mesures"
+msgstr "قياسات"
+
+#: templates/bloc_operatoire/indicateurs.html:49
+msgid "Durée moyenne par type d'acte"
+msgstr "متوسط المدة حسب نوع العملية"
+
+#: templates/bloc_operatoire/indicateurs.html:51
+#: templates/bloc_operatoire/liste.html:28
+msgid "Acte"
+msgstr "العملية"
+
+#: templates/bloc_operatoire/indicateurs.html:51
+#: templates/bloc_operatoire/indicateurs.html:64
+msgid "N"
+msgstr "العدد"
+
+#: templates/bloc_operatoire/indicateurs.html:51
+#: templates/bloc_operatoire/indicateurs.html:64
+msgid "Durée moy."
+msgstr "متوسط المدة"
+
+#: templates/bloc_operatoire/indicateurs.html:62
+msgid "Durée moyenne par praticien"
+msgstr "متوسط المدة حسب الممارس"
+
+#: templates/bloc_operatoire/indicateurs.html:64
+#: templates/consultations/liste.html:28 templates/patients/detail.html:139
+msgid "Praticien"
+msgstr "الممارس"
+
+#: templates/bloc_operatoire/liste.html:3
+msgid "Interventions"
+msgstr "العمليات"
+
+#: templates/bloc_operatoire/liste.html:7
+msgid "Interventions chirurgicales"
+msgstr "العمليات الجراحية"
+
+#: templates/bloc_operatoire/liste.html:8
+msgid "Planning"
+msgstr "الجدول الزمني"
+
+#: templates/bloc_operatoire/liste.html:13
+msgid "Référence, patient, acte…"
+msgstr "المرجع، المريض، العملية…"
+
+#: templates/bloc_operatoire/liste.html:17 templates/facturation/liste.html:24
+#: templates/hospitalisation/liste.html:17
+msgid "Tous les statuts"
+msgstr "جميع الحالات"
+
+#: templates/bloc_operatoire/liste.html:21
+#: templates/consultations/liste.html:13 templates/facturation/liste.html:28
+#: templates/hospitalisation/liste.html:23 templates/laboratoire/liste.html:28
+#: templates/patients/liste.html:19 templates/pharmacie/medicaments.html:21
+msgid "Rechercher"
+msgstr "بحث"
+
+#: templates/bloc_operatoire/liste.html:29
+msgid "Début prévu"
+msgstr "البدء المقرر"
+
+#: templates/bloc_operatoire/liste.html:29
+msgid "Urgence"
+msgstr "الاستعجال"
+
+#: templates/bloc_operatoire/liste.html:45
+msgid "Aucune intervention."
+msgstr "لا توجد عملية."
+
+#: templates/bloc_operatoire/planning.html:3
+msgid "Planning du bloc"
+msgstr "جدول غرفة العمليات"
+
+#: templates/bloc_operatoire/planning.html:7
+msgid "Planning du bloc opératoire"
+msgstr "جدول غرفة العمليات"
+
+#: templates/bloc_operatoire/planning.html:9
+msgid "Toutes les interventions"
+msgstr "جميع العمليات"
+
+#: templates/bloc_operatoire/planning.html:10
+msgid "Indicateurs"
+msgstr "المؤشرات"
+
+#: templates/bloc_operatoire/planning.html:15
+msgid "Jour précédent"
+msgstr "اليوم السابق"
+
+#: templates/bloc_operatoire/planning.html:17
+msgid "Jour suivant"
+msgstr "اليوم التالي"
+
+#: templates/bloc_operatoire/planning.html:22
+msgid "Demandes à planifier"
+msgstr "طلبات بانتظار الجدولة"
+
+#: templates/bloc_operatoire/planning.html:58
+msgid "Aucune intervention programmée."
+msgstr "لا توجد عملية مبرمجة."
+
+#: templates/bloc_operatoire/planning.html:64
+msgid ""
+"Aucune salle configurée. L'administrateur peut en créer via "
+"l'administration."
+msgstr "لا توجد غرفة مُهيَّأة. يمكن للمسؤول إنشاء واحدة عبر لوحة الإدارة."
+
+#: templates/consultations/constantes.html:3
+#: templates/consultations/constantes.html:6
+#: templates/consultations/detail.html:56
+msgid "Constantes"
+msgstr "العلامات الحيوية"
+
+#: templates/consultations/detail.html:24 templates/patients/detail.html:39
+#: templates/patients/detail.html:89 templates/patients/formulaire.html:7
+#: templates/pharmacie/medicament_detail.html:26
+#: templates/pharmacie/medicament_formulaire.html:7
+msgid "Modifier"
+msgstr "تعديل"
+
+#: templates/consultations/detail.html:26
+msgid "Clôturer"
+msgstr "إغلاق"
+
+#: templates/consultations/detail.html:30
+msgid "Demander un examen"
+msgstr "طلب فحص"
+
+#: templates/consultations/detail.html:34 templates/laboratoire/detail.html:30
+msgid "Facturer"
+msgstr "فوترة"
+
+#: templates/consultations/detail.html:45
+msgid "Histoire / symptômes"
+msgstr "التاريخ المرضي / الأعراض"
+
+#: templates/consultations/detail.html:46
+msgid "Examen clinique"
+msgstr "الفحص السريري"
+
+#: templates/consultations/detail.html:47
+#: templates/hospitalisation/detail.html:34
+msgid "Diagnostic"
+msgstr "التشخيص"
+
+#: templates/consultations/detail.html:48
+msgid "Conduite à tenir"
+msgstr "الإجراء المتبع"
+
+#: templates/consultations/detail.html:58
+msgid "Saisir"
+msgstr "إدخال"
+
+#: templates/consultations/detail.html:65
+msgid "Poids / Taille"
+msgstr "الوزن / الطول"
+
+#: templates/consultations/detail.html:66
+msgid "IMC"
+msgstr "مؤشر كتلة الجسم"
+
+#: templates/consultations/detail.html:67
+msgid "Température"
+msgstr "الحرارة"
+
+#: templates/consultations/detail.html:68
+msgid "Tension"
+msgstr "ضغط الدم"
+
+#: templates/consultations/detail.html:69
+msgid "FC / FR"
+msgstr "النبض / التنفس"
+
+#: templates/consultations/detail.html:70
+msgid "SpO₂ / Glycémie"
+msgstr "تشبع الأكسجين / السكر"
+
+#: templates/consultations/detail.html:73
+msgid "Aucune constante saisie."
+msgstr "لم تُسجَّل أي علامة حيوية."
+
+#: templates/consultations/detail.html:81
+#: templates/pharmacie/dispensations.html:20
+msgid "Ordonnance"
+msgstr "الوصفة الطبية"
+
+#: templates/consultations/detail.html:84
+msgid "Créer"
+msgstr "إنشاء"
+
+#: templates/consultations/detail.html:98
+msgid "Ouvrir l'ordonnance"
+msgstr "فتح الوصفة"
+
+#: templates/consultations/detail.html:100
+msgid "Aucune ordonnance."
+msgstr "لا توجد وصفة."
+
+#: templates/consultations/formulaire.html:7
+msgid "Modifier la consultation"
+msgstr "تعديل الاستشارة"
+
+#: templates/consultations/formulaire.html:8 templates/patients/detail.html:27
+msgid "Nouvelle consultation"
+msgstr "استشارة جديدة"
+
+#: templates/consultations/liste.html:11
+msgid "Référence, patient, motif…"
+msgstr "المرجع، المريض، السبب…"
+
+#: templates/consultations/liste.html:18
+msgid "Mes consultations"
+msgstr "استشاراتي"
+
+#: templates/consultations/liste.html:26 templates/patients/detail.html:138
+#: templates/pharmacie/dispensation_detail.html:79
+#: templates/pharmacie/medicament_detail.html:57
+#: templates/pharmacie/mouvements.html:20
+msgid "Date"
+msgstr "التاريخ"
+
+#: templates/consultations/liste.html:42
+msgid "Aucune consultation."
+msgstr "لا توجد استشارة."
+
+#: templates/consultations/ordonnance_detail.html:21
+msgid "Transmettre à la pharmacie"
+msgstr "إرسال إلى الصيدلية"
+
+#: templates/consultations/ordonnance_detail.html:31
+msgid ""
+"Ces alertes sont informatives et ne bloquent pas la prescription (CDC 4.3)."
+msgstr "هذه التنبيهات إعلامية ولا تمنع الوصف الطبي (البند 4.3)."
+
+#: templates/consultations/ordonnance_detail.html:38
+#: templates/pharmacie/dispensation_detail.html:32
+msgid "Posologie"
+msgstr "طريقة الاستعمال"
+
+#: templates/consultations/ordonnance_detail.html:39
+#: templates/hospitalisation/liste.html:31
+msgid "Durée"
+msgstr "المدة"
+
+#: templates/consultations/ordonnance_detail.html:39
+#: templates/facturation/detail.html:37
+#: templates/pharmacie/dispensation_detail.html:80
+#: templates/pharmacie/medicament_detail.html:36
+#: templates/pharmacie/medicament_detail.html:58
+msgid "Qté"
+msgstr "الكمية"
+
+#: templates/consultations/ordonnance_detail.html:40
+msgid "Délivré"
+msgstr "المصروف"
+
+#: templates/consultations/ordonnance_detail.html:59
+msgid "Aucun médicament."
+msgstr "لا يوجد دواء."
+
+#: templates/consultations/ordonnance_detail.html:67
+msgid "Ajouter un médicament"
+msgstr "إضافة دواء"
+
+#: templates/consultations/ordonnance_formulaire.html:3
+#: templates/consultations/ordonnance_formulaire.html:6
+msgid "Nouvelle ordonnance"
+msgstr "وصفة جديدة"
+
+#: templates/consultations/ordonnance_formulaire.html:18
+msgid "Créer l'ordonnance"
+msgstr "إنشاء الوصفة"
+
+#: templates/core/dashboard.html:8
+msgid "Bonjour, %(prenom)s"
+msgstr "مرحبًا، %(prenom)s"
+
+#: templates/core/dashboard.html:19
+msgid "Ouvrir le module"
+msgstr "فتح الوحدة"
+
+#: templates/core/dashboard.html:26
+msgid ""
+"Aucun module n'est encore accessible avec votre rôle. Contactez "
+"l'administrateur."
+msgstr "لا توجد وحدة متاحة بعد لدورك. يرجى الاتصال بالمسؤول."
+
+#: templates/core/dashboard.html:33
+msgid ""
+"Les modules consultation, pharmacie, hospitalisation, bloc opératoire, "
+"laboratoire, facturation et assurances seront activés au fil du planning du "
+"projet."
+msgstr ""
+"ستُفعَّل وحدات الاستشارة والصيدلية والإيواء وغرفة العمليات والمختبر والفوترة"
+" والتأمين تدريجيًا وفق مخطط المشروع."
+
+#: templates/core/notifications.html:10
+msgid "Tout marquer comme lu"
+msgstr "تحديد الكل كمقروء"
+
+#: templates/core/notifications.html:27
+msgid "Marquer comme lu"
+msgstr "تحديد كمقروء"
+
+#: templates/core/notifications.html:33
+msgid "Aucune notification."
+msgstr "لا يوجد إشعار."
+
+#: templates/facturation/detail.html:7 templates/facturation/liste.html:3
+#: templates/facturation/liste.html:7
+msgid "Factures"
+msgstr "الفواتير"
+
+#: templates/facturation/detail.html:16
+msgid "En retard"
+msgstr "متأخرة"
+
+#: templates/facturation/detail.html:19
+msgid "Émise le"
+msgstr "صدرت في"
+
+#: templates/facturation/detail.html:27
+msgid "Émettre"
+msgstr "إصدار"
+
+#: templates/facturation/detail.html:35
+msgid "Détail"
+msgstr "التفاصيل"
+
+#: templates/facturation/detail.html:37 templates/facturation/tarifs.html:10
+msgid "Libellé"
+msgstr "التسمية"
+
+#: templates/facturation/detail.html:38
+msgid "P.U."
+msgstr "سعر الوحدة"
+
+#: templates/facturation/detail.html:58 templates/facturation/liste.html:36
+msgid "Part patient"
+msgstr "حصة المريض"
+
+#: templates/facturation/detail.html:59 templates/facturation/impayes.html:11
+msgid "Reste à payer"
+msgstr "المتبقي للدفع"
+
+#: templates/facturation/detail.html:78
+msgid "Annuler la facture"
+msgstr "إلغاء الفاتورة"
+
+#: templates/facturation/detail.html:85
+msgid ""
+"Impossible si des paiements existent (enregistrer d'abord les "
+"remboursements)."
+msgstr "غير ممكن إذا وُجدت مدفوعات (سجّل الاستردادات أولاً)."
+
+#: templates/facturation/detail.html:96
+msgid "Paiements"
+msgstr "المدفوعات"
+
+#: templates/facturation/detail.html:100
+msgid "remb."
+msgstr "استرداد"
+
+#: templates/facturation/detail.html:104
+msgid "Aucun paiement."
+msgstr "لا توجد دفعة."
+
+#: templates/facturation/detail.html:116
+msgid "Enregistrer le paiement"
+msgstr "حفظ الدفعة"
+
+#: templates/facturation/detail.html:123 templates/facturation/impayes.html:12
+msgid "Relances"
+msgstr "التذكيرات"
+
+#: templates/facturation/detail.html:128
+msgid "Aucune relance."
+msgstr "لا يوجد تذكير."
+
+#: templates/facturation/impayes.html:3
+msgid "Impayés"
+msgstr "الفواتير غير المسددة"
+
+#: templates/facturation/impayes.html:6
+msgid "Factures impayées échues"
+msgstr "الفواتير غير المسددة المستحقة"
+
+#: templates/facturation/impayes.html:11
+msgid "Échéance"
+msgstr "تاريخ الاستحقاق"
+
+#: templates/facturation/impayes.html:25
+msgid "Aucun impayé échu. 🎉"
+msgstr "لا توجد فواتير مستحقة غير مسددة. 🎉"
+
+#: templates/facturation/liste.html:10
+msgid "%(n)s impayé"
+msgid_plural "%(n)s impayés"
+msgstr[0] "لا فاتورة غير مسددة"
+msgstr[1] "فاتورة واحدة غير مسددة"
+msgstr[2] "فاتورتان غير مسددتين"
+msgstr[3] "%(n)s فواتير غير مسددة"
+msgstr[4] "%(n)s فاتورة غير مسددة"
+msgstr[5] "%(n)s فاتورة غير مسددة"
+
+#: templates/facturation/liste.html:13 templates/facturation/tarifs.html:3
+#: templates/facturation/tarifs.html:6
+msgid "Grille tarifaire"
+msgstr "جدول التسعيرات"
+
+#: templates/facturation/liste.html:20 templates/hospitalisation/liste.html:13
+#: templates/laboratoire/liste.html:13
+msgid "Référence, patient…"
+msgstr "المرجع، المريض…"
+
+#: templates/facturation/liste.html:35
+msgid "Émission"
+msgstr "تاريخ الإصدار"
+
+#: templates/facturation/liste.html:37
+msgid "Reste"
+msgstr "المتبقي"
+
+#: templates/facturation/liste.html:52
+msgid "Aucune facture."
+msgstr "لا توجد فاتورة."
+
+#: templates/facturation/tarifs.html:7
+msgid "Modifiable via l'interface d'administration."
+msgstr "قابل للتعديل عبر لوحة الإدارة."
+
+#: templates/facturation/tarifs.html:10
+msgid "Code"
+msgstr "الرمز"
+
+#: templates/facturation/tarifs.html:11 templates/laboratoire/liste.html:35
+msgid "Catégorie"
+msgstr "الفئة"
+
+#: templates/facturation/tarifs.html:11
+msgid "Réf. externe"
+msgstr "مرجع خارجي"
+
+#: templates/facturation/tarifs.html:12
+msgid "Actif"
+msgstr "نشط"
+
+#: templates/facturation/tarifs.html:22
+msgid "Grille vide."
+msgstr "جدول فارغ."
+
+#: templates/hospitalisation/admission.html:3
+#: templates/hospitalisation/liste.html:30
+msgid "Admission"
+msgstr "الإدخال"
+
+#: templates/hospitalisation/admission.html:6
+msgid "Admission en hospitalisation"
+msgstr "إدخال للإيواء"
+
+#: templates/hospitalisation/admission.html:11
+msgid "Ce patient a déjà un séjour en cours."
+msgstr "لدى هذا المريض إقامة جارية بالفعل."
+
+#: templates/hospitalisation/admission.html:27
+#: templates/patients/detail.html:30
+msgid "Admettre"
+msgstr "إدخال"
+
+#: templates/hospitalisation/detail.html:7
+#: templates/hospitalisation/liste.html:3
+msgid "Séjours"
+msgstr "الإقامات"
+
+#: templates/hospitalisation/detail.html:18
+msgid "sans lit assigné"
+msgstr "بلا سرير مخصَّص"
+
+#: templates/hospitalisation/detail.html:19
+msgid "admis le"
+msgstr "أُدخل في"
+
+#: templates/hospitalisation/detail.html:24
+msgid "Facturer le séjour"
+msgstr "فوترة الإقامة"
+
+#: templates/hospitalisation/detail.html:35
+msgid "Médecin référent"
+msgstr "الطبيب المعالج"
+
+#: templates/hospitalisation/detail.html:37
+msgid "Sortie le"
+msgstr "خرج في"
+
+#: templates/hospitalisation/detail.html:38
+msgid "Mode"
+msgstr "النوع"
+
+#: templates/hospitalisation/detail.html:45
+msgid "Compte-rendu d'hospitalisation"
+msgstr "تقرير الإيواء"
+
+#: templates/hospitalisation/detail.html:49
+msgid "Consignes de sortie"
+msgstr "تعليمات الخروج"
+
+#: templates/hospitalisation/detail.html:58
+msgid "Transférer de lit"
+msgstr "نقل السرير"
+
+#: templates/hospitalisation/detail.html:63
+msgid "Transférer"
+msgstr "نقل"
+
+#: templates/hospitalisation/detail.html:70
+msgid "Prononcer la sortie"
+msgstr "تسجيل الخروج"
+
+#: templates/hospitalisation/detail.html:77
+msgid "Enregistrer la sortie"
+msgstr "حفظ الخروج"
+
+#: templates/hospitalisation/detail.html:87
+msgid "Suivi quotidien"
+msgstr "المتابعة اليومية"
+
+#: templates/hospitalisation/detail.html:98
+#: templates/hospitalisation/detail.html:115
+msgid "pouls"
+msgstr "النبض"
+
+#: templates/hospitalisation/detail.html:99
+msgid "Ajouter la note"
+msgstr "إضافة الملاحظة"
+
+#: templates/hospitalisation/detail.html:120
+msgid "Aucune note de suivi."
+msgstr "لا توجد ملاحظة متابعة."
+
+#: templates/hospitalisation/detail.html:127
+msgid "Historique des lits"
+msgstr "سجل الأسرّة"
+
+#: templates/hospitalisation/liste.html:7
+msgid "Séjours hospitaliers"
+msgstr "إقامات المستشفى"
+
+#: templates/hospitalisation/liste.html:8
+msgid "Vue d'occupation"
+msgstr "عرض الإشغال"
+
+#: templates/hospitalisation/liste.html:30
+msgid "Service / Lit"
+msgstr "القسم / السرير"
+
+#: templates/hospitalisation/liste.html:45
+msgid "Aucun séjour."
+msgstr "لا توجد إقامة."
+
+#: templates/hospitalisation/occupation.html:3
+#: templates/hospitalisation/occupation.html:7
+msgid "Occupation des lits"
+msgstr "إشغال الأسرّة"
+
+#: templates/hospitalisation/occupation.html:8
+msgid "Liste des séjours"
+msgstr "قائمة الإقامات"
+
+#: templates/hospitalisation/occupation.html:22
+msgid "Chambre"
+msgstr "الغرفة"
+
+#: templates/hospitalisation/occupation.html:28
+msgid "Lit"
+msgstr "السرير"
+
+#: templates/hospitalisation/occupation.html:31
+msgid "depuis le"
+msgstr "منذ"
+
+#: templates/hospitalisation/occupation.html:40
+msgid "Aucun lit."
+msgstr "لا يوجد سرير."
+
+#: templates/hospitalisation/occupation.html:45
+msgid "Aucune chambre configurée."
+msgstr "لا توجد غرفة مُهيَّأة."
+
+#: templates/hospitalisation/occupation.html:50
+msgid ""
+"Aucun service configuré. L'administrateur peut en créer via "
+"l'administration."
+msgstr "لا يوجد قسم مُهيَّأ. يمكن للمسؤول إنشاء واحد عبر لوحة الإدارة."
+
+#: templates/laboratoire/demande.html:3
+msgid "Demande d'examen"
+msgstr "طلب فحص"
+
+#: templates/laboratoire/demande.html:6
+msgid "Demande d'analyse ou d'imagerie"
+msgstr "طلب تحليل أو تصوير"
+
+#: templates/laboratoire/detail.html:19
+#: templates/pharmacie/dispensation_detail.html:15
+msgid "prescrite par"
+msgstr "طلبها"
+
+#: templates/laboratoire/detail.html:26
+msgid "Valider et notifier"
+msgstr "تأكيد وإشعار"
+
+#: templates/laboratoire/detail.html:36
+msgid "Renseignements cliniques"
+msgstr "المعلومات السريرية"
+
+#: templates/laboratoire/detail.html:48
+msgid "saisi, non validé"
+msgstr "أُدخل، لم يُؤكَّد"
+
+#: templates/laboratoire/detail.html:49
+msgid "en attente"
+msgstr "قيد الانتظار"
+
+#: templates/laboratoire/detail.html:56
+msgid "réf."
+msgstr "مرجع"
+
+#: templates/laboratoire/detail.html:63
+msgid "Conclusion"
+msgstr "الخلاصة"
+
+#: templates/laboratoire/detail.html:64
+msgid "Pièce jointe"
+msgstr "مرفق"
+
+#: templates/laboratoire/detail.html:67
+msgid "saisi par"
+msgstr "أدخله"
+
+#: templates/laboratoire/detail.html:77
+msgid "valeur"
+msgstr "القيمة"
+
+#: templates/laboratoire/detail.html:80
+msgid "— auto —"
+msgstr "— تلقائي —"
+
+#: templates/laboratoire/detail.html:110
+msgid "Annuler la demande"
+msgstr "إلغاء الطلب"
+
+#: templates/laboratoire/liste.html:7
+msgid "Demandes d'examen"
+msgstr "طلبات الفحوصات"
+
+#: templates/laboratoire/liste.html:8
+msgid "Mes résultats validés"
+msgstr "نتائجي المؤكَّدة"
+
+#: templates/laboratoire/liste.html:17
+msgid "En cours (défaut)"
+msgstr "جارية (افتراضي)"
+
+#: templates/laboratoire/liste.html:25
+msgid "Mes prescriptions"
+msgstr "طلباتي"
+
+#: templates/laboratoire/liste.html:35
+msgid "Priorité"
+msgstr "الأولوية"
+
+#: templates/laboratoire/liste.html:36
+msgid "Demandée le"
+msgstr "طُلب في"
+
+#: templates/laboratoire/liste.html:50
+msgid "Aucune demande."
+msgstr "لا يوجد طلب."
+
+#: templates/laboratoire/mes_resultats.html:3
+msgid "Mes résultats"
+msgstr "نتائجي"
+
+#: templates/laboratoire/mes_resultats.html:6
+msgid "Résultats validés — mes prescriptions"
+msgstr "النتائج المؤكَّدة — طلباتي"
+
+#: templates/laboratoire/mes_resultats.html:14
+msgid "examen(s)"
+msgstr "فحص/فحوصات"
+
+#: templates/laboratoire/mes_resultats.html:17
+msgid "Aucun résultat validé."
+msgstr "لا توجد نتيجة مؤكَّدة."
+
+#: templates/patients/detail.html:16
+msgid "Archivé"
+msgstr "مؤرشف"
+
+#: templates/patients/detail.html:21
+msgid "âge inconnu"
+msgstr "العمر غير معروف"
+
+#: templates/patients/detail.html:21
+msgid "%(a)s ans"
+msgstr "%(a)s سنة"
+
+#: templates/patients/detail.html:22
+msgid "Groupe"
+msgstr "الفصيلة"
+
+#: templates/patients/detail.html:33
+msgid "Demander une intervention"
+msgstr "طلب عملية"
+
+#: templates/patients/detail.html:36
+msgid "Ajouter une assurance"
+msgstr "إضافة تأمين"
+
+#: templates/patients/detail.html:47
+msgid "Patient hospitalisé — %(s)s"
+msgstr "مريض مُدخل — %(s)s"
+
+#: templates/patients/detail.html:61
+msgid "Adresse"
+msgstr "العنوان"
+
+#: templates/patients/detail.html:62 templates/patients/liste.html:40
+msgid "Ville"
+msgstr "المدينة"
+
+#: templates/patients/detail.html:63
+msgid "Date de naissance"
+msgstr "تاريخ الميلاد"
+
+#: templates/patients/detail.html:64
+msgid "estimée"
+msgstr "تقديري"
+
+#: templates/patients/detail.html:65
+msgid "Lieu de naissance"
+msgstr "مكان الميلاد"
+
+#: templates/patients/detail.html:66
+msgid "Profession"
+msgstr "المهنة"
+
+#: templates/patients/detail.html:76 templates/patients/liste.html:36
+msgid "Nom"
+msgstr "الاسم"
+
+#: templates/patients/detail.html:77
+msgid "Lien"
+msgstr "الصلة"
+
+#: templates/patients/detail.html:87
+#: templates/patients/dossier_formulaire.html:3
+#: templates/patients/dossier_formulaire.html:6
+msgid "Dossier médical"
+msgstr "الملف الطبي"
+
+#: templates/patients/detail.html:95
+msgid "Antécédents médicaux"
+msgstr "السوابق الطبية"
+
+#: templates/patients/detail.html:96
+msgid "Antécédents chirurgicaux"
+msgstr "السوابق الجراحية"
+
+#: templates/patients/detail.html:97
+msgid "Antécédents familiaux"
+msgstr "السوابق العائلية"
+
+#: templates/patients/detail.html:98
+msgid "Traitements en cours"
+msgstr "العلاجات الجارية"
+
+#: templates/patients/detail.html:99
+msgid "Habitudes de vie"
+msgstr "عادات الحياة"
+
+#: templates/patients/detail.html:100
+msgid "Observations"
+msgstr "الملاحظات"
+
+#: templates/patients/detail.html:101
+msgid "Allergies"
+msgstr "الحساسيات"
+
+#: templates/patients/detail.html:116
+msgid "Couvertures d'assurance"
+msgstr "التغطيات التأمينية"
+
+#: templates/patients/detail.html:125
+msgid "Aucune couverture enregistrée."
+msgstr "لا توجد تغطية مسجَّلة."
+
+#: templates/patients/detail.html:135
+msgid "Historique des consultations"
+msgstr "سجل الاستشارات"
+
+#: templates/patients/detail.html:153
+msgid "Aucune consultation enregistrée."
+msgstr "لا توجد استشارة مسجَّلة."
+
+#: templates/patients/formulaire.html:3
+msgid "Modifier le patient"
+msgstr "تعديل المريض"
+
+#: templates/patients/formulaire.html:3 templates/patients/formulaire.html:7
+#: templates/patients/liste.html:9
+msgid "Nouveau patient"
+msgstr "مريض جديد"
+
+#: templates/patients/liste.html:16
+msgid "Nom, prénom, n° de dossier, téléphone…"
+msgstr "اللقب، الاسم، رقم الملف، الهاتف…"
+
+#: templates/patients/liste.html:25
+msgid "Inclure les dossiers archivés"
+msgstr "تضمين الملفات المؤرشفة"
+
+#: templates/patients/liste.html:35
+msgid "N° dossier"
+msgstr "رقم الملف"
+
+#: templates/patients/liste.html:37
+msgid "Sexe"
+msgstr "الجنس"
+
+#: templates/patients/liste.html:38
+msgid "Âge"
+msgstr "العمر"
+
+#: templates/patients/liste.html:61
+msgid "Aucun patient trouvé."
+msgstr "لم يُعثر على أي مريض."
+
+#: templates/patients/liste.html:75
+msgid "Page %(n)s / %(t)s"
+msgstr "الصفحة %(n)s / %(t)s"
+
+#: templates/pharmacie/dispensation_detail.html:3
+#: templates/pharmacie/dispensation_detail.html:11
+msgid "Dispensation"
+msgstr "الصرف"
+
+#: templates/pharmacie/dispensation_detail.html:18
+msgid "Note du prescripteur"
+msgstr "ملاحظة الطبيب الواصف"
+
+#: templates/pharmacie/dispensation_detail.html:23
+msgid "Facturer la dispensation"
+msgstr "فوترة الصرف"
+
+#: templates/pharmacie/dispensation_detail.html:33
+msgid "Prescrit"
+msgstr "الموصوف"
+
+#: templates/pharmacie/dispensation_detail.html:34
+msgid "Déjà délivré"
+msgstr "المصروف سابقًا"
+
+#: templates/pharmacie/dispensation_detail.html:36
+msgid "À délivrer"
+msgstr "المطلوب صرفه"
+
+#: templates/pharmacie/dispensation_detail.html:59
+msgid "Commentaire"
+msgstr "ملاحظة"
+
+#: templates/pharmacie/dispensation_detail.html:64
+msgid "Enregistrer la délivrance"
+msgstr "حفظ الصرف"
+
+#: templates/pharmacie/dispensation_detail.html:65
+msgid "Retour"
+msgstr "رجوع"
+
+#: templates/pharmacie/dispensation_detail.html:68
+msgid ""
+"L'allocation se fait automatiquement en FEFO (premier lot périmé, premier "
+"sorti)."
+msgstr "يتم التخصيص تلقائيًا وفق مبدأ الأقرب انتهاءً أولاً بأول."
+
+#: templates/pharmacie/dispensation_detail.html:71
+msgid "Cette dispensation est clôturée."
+msgstr "عملية الصرف هذه مغلقة."
+
+#: templates/pharmacie/dispensation_detail.html:77
+msgid "Détail des délivrances"
+msgstr "تفاصيل عمليات الصرف"
+
+#: templates/pharmacie/dispensation_detail.html:80
+#: templates/pharmacie/medicament_detail.html:36
+msgid "Lot"
+msgstr "الدفعة"
+
+#: templates/pharmacie/dispensations.html:6
+msgid "File de dispensation"
+msgstr "قائمة انتظار الصرف"
+
+#: templates/pharmacie/dispensations.html:10
+msgid "En cours (par défaut)"
+msgstr "جارية (افتراضي)"
+
+#: templates/pharmacie/dispensations.html:21
+msgid "Reçue le"
+msgstr "استُلمت في"
+
+#: templates/pharmacie/dispensations.html:22
+msgid "Pharmacien"
+msgstr "الصيدلي"
+
+#: templates/pharmacie/dispensations.html:32
+msgid "Traiter"
+msgstr "معالجة"
+
+#: templates/pharmacie/dispensations.html:35
+msgid "Aucune dispensation en attente."
+msgstr "لا توجد عملية صرف قيد الانتظار."
+
+#: templates/pharmacie/entree_stock.html:3
+#: templates/pharmacie/entree_stock.html:6
+#: templates/pharmacie/medicaments.html:10
+#: templates/pharmacie/medicament_detail.html:23
+msgid "Entrée de stock"
+msgstr "دخول مخزون"
+
+#: templates/pharmacie/entree_stock.html:18
+msgid "Enregistrer l'entrée"
+msgstr "حفظ الدخول"
+
+#: templates/pharmacie/medicament_detail.html:7
+msgid "Catalogue"
+msgstr "الكتالوج"
+
+#: templates/pharmacie/medicament_detail.html:16
+msgid "stock utilisable"
+msgstr "المخزون القابل للاستخدام"
+
+#: templates/pharmacie/medicament_detail.html:17
+msgid "seuil"
+msgstr "العتبة"
+
+#: templates/pharmacie/medicament_detail.html:34
+msgid "Lots en stock"
+msgstr "الدفعات في المخزون"
+
+#: templates/pharmacie/medicament_detail.html:37
+msgid "Péremption"
+msgstr "انتهاء الصلاحية"
+
+#: templates/pharmacie/medicament_detail.html:37
+msgid "Fournisseur"
+msgstr "المورّد"
+
+#: templates/pharmacie/medicament_detail.html:47
+msgid "Aucun lot."
+msgstr "لا توجد دفعة."
+
+#: templates/pharmacie/medicament_detail.html:55
+msgid "Derniers mouvements"
+msgstr "آخر الحركات"
+
+#: templates/pharmacie/medicament_detail.html:57
+#: templates/pharmacie/mouvements.html:21
+msgid "Type"
+msgstr "النوع"
+
+#: templates/pharmacie/medicament_detail.html:68
+#: templates/pharmacie/mouvements.html:35
+msgid "Aucun mouvement."
+msgstr "لا توجد حركة."
+
+#: templates/pharmacie/medicaments.html:3
+#: templates/pharmacie/medicaments.html:7
+msgid "Catalogue et stock"
+msgstr "الكتالوج والمخزون"
+
+#: templates/pharmacie/medicaments.html:13
+#: templates/pharmacie/medicament_formulaire.html:8
+msgid "Nouveau médicament"
+msgstr "دواء جديد"
+
+#: templates/pharmacie/medicaments.html:20
+msgid "Rechercher…"
+msgstr "بحث…"
+
+#: templates/pharmacie/medicaments.html:25
+msgid "%(n)s sous le seuil"
+msgid_plural "%(n)s sous le seuil"
+msgstr[0] "لا عنصر دون العتبة"
+msgstr[1] "عنصر واحد دون العتبة"
+msgstr[2] "عنصران دون العتبة"
+msgstr[3] "%(n)s عناصر دون العتبة"
+msgstr[4] "%(n)s عنصرًا دون العتبة"
+msgstr[5] "%(n)s عنصر دون العتبة"
+
+#: templates/pharmacie/medicaments.html:29
+msgid "Retirer les périmés"
+msgstr "سحب منتهية الصلاحية"
+
+#: templates/pharmacie/medicaments.html:32
+msgid "Journal des mouvements"
+msgstr "سجل الحركات"
+
+#: templates/pharmacie/medicaments.html:38
+msgid "Forme"
+msgstr "الشكل"
+
+#: templates/pharmacie/medicaments.html:39
+msgid "Stock utilisable"
+msgstr "المخزون القابل للاستخدام"
+
+#: templates/pharmacie/medicaments.html:40
+msgid "Seuil"
+msgstr "العتبة"
+
+#: templates/pharmacie/medicaments.html:50
+#: templates/pharmacie/medicament_detail.html:18
+msgid "Sous le seuil"
+msgstr "دون العتبة"
+
+#: templates/pharmacie/medicaments.html:51
+msgid "Lots périmés"
+msgstr "دفعات منتهية الصلاحية"
+
+#: templates/pharmacie/medicaments.html:52
+msgid "Inactif"
+msgstr "غير نشط"
+
+#: templates/pharmacie/medicaments.html:57
+msgid "Catalogue vide."
+msgstr "كتالوج فارغ."
+
+#: templates/pharmacie/mouvements.html:3
+msgid "Mouvements de stock"
+msgstr "حركات المخزون"
+
+#: templates/pharmacie/mouvements.html:6
+msgid "Journal des mouvements de stock"
+msgstr "سجل حركات المخزون"
+
+#: templates/pharmacie/mouvements.html:10
+msgid "Tous les types"
+msgstr "جميع الأنواع"
+
+#: templates/pharmacie/mouvements.html:21
+msgid "Quantité"
+msgstr "الكمية"
+
+#: templates/pharmacie/mouvements.html:22
+msgid "Opérateur"
+msgstr "المنفِّذ"
+
+#: templates/registration/login.html:28
+msgid "Se connecter"
+msgstr "تسجيل الدخول"
+
+#: templates/registration/password_change.html:3
+msgid "Changer le mot de passe"
+msgstr "تغيير كلمة المرور"
+
+#: templates/registration/password_change.html:8
+msgid "Changer mon mot de passe"
+msgstr "تغيير كلمة مروري"
+
+#: templates/registration/password_change_done.html:3
+msgid "Mot de passe modifié"
+msgstr "تم تغيير كلمة المرور"
+
+#: templates/registration/password_change_done.html:6
+msgid "Votre mot de passe a été mis à jour."
+msgstr "تم تحديث كلمة مرورك."
+
+#: templates/registration/password_change_done.html:7
+msgid "Retour au tableau de bord"
+msgstr "العودة إلى لوحة التحكم"
