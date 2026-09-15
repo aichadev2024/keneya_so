@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Kènèya Sô — habillage de l'administration Django (CDC 4.10 / 7.3).
+   Surcharge des variables CSS officiellement supportées par le thème de
+   l'admin (https://docs.djangoproject.com/en/5.2/ref/contrib/admin/#theming-support) :
+   aucune dépendance à la structure interne des gabarits admin, robuste aux
+   montées de version de Django.
+   ========================================================================== */
+
+html[data-theme="light"], :root {
+  --primary: #16294f;
+  --secondary: #16294f;
+  --accent: #0d9488;
+  --primary-fg: #fff;
+
+  --header-color: #fff;
+  --header-branding-color: #5eead4;
+  --header-bg: #16294f;
+  --header-link-color: #fff;
+
+  --breadcrumbs-fg: #c7d3e8;
+  --breadcrumbs-link-fg: #fff;
+  --breadcrumbs-bg: #0d1a33;
+
+  --link-fg: #0d9488;
+  --link-hover-color: #0b7a70;
+  --link-selected-fg: #16294f;
+
+  --button-fg: #fff;
+  --button-bg: #16294f;
+  --button-hover-bg: #0d1a33;
+  --default-button-bg: #0d9488;
+  --default-button-hover-bg: #0b7a70;
+
+  --object-tools-fg: #fff;
+  --object-tools-bg: #0d9488;
+  --object-tools-hover-bg: #0b7a70;
+
+  --font-family-primary: "Inter", "Segoe UI", system-ui, Roboto, "Helvetica Neue",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #0d1a33;
+    --header-bg: #0d1a33;
+    --breadcrumbs-bg: #060d1c;
+    --link-fg: #2dd4bf;
+    --link-hover-color: #5eead4;
+    --object-tools-bg: #0d9488;
+    --object-tools-hover-bg: #0b7a70;
+  }
+}
+
+html[data-theme="dark"] {
+  --primary: #0d1a33;
+  --header-bg: #0d1a33;
+  --breadcrumbs-bg: #060d1c;
+  --link-fg: #2dd4bf;
+  --link-hover-color: #5eead4;
+  --object-tools-bg: #0d9488;
+  --object-tools-hover-bg: #0b7a70;
+}
+
+#header { box-shadow: 0 1px 4px rgba(0, 0, 0, .18); }
+
+#branding { display: flex; align-items: center; gap: .6rem; }
+#branding .brand-mark { width: 26px; height: 26px; flex-shrink: 0; }
+#branding h1#site-name a { font-weight: 700; letter-spacing: -.01em; }
+
+div.breadcrumbs { font-size: .78rem; }
+
+.module h2, .module caption, .inline-group h2 {
+  border-radius: 8px 8px 0 0;
+}
+
+a.button, button.button, input[type="submit"], input[type="button"], .submit-row input {
+  border-radius: 8px !important;
+}
+
+.object-tools a { border-radius: 8px !important; }
+
+#content-related .module, .dashboard .module { border-radius: 10px; overflow: hidden; }
