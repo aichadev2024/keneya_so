@@ -5,96 +5,105 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Kènèya Sô{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316294f'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z' fill='%230d9488'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="{% static 'css/app.css' %}" rel="stylesheet">
 </head>
-<body class="bg-body-tertiary">
-{% if user.is_authenticated %}
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container">
-    <a class="navbar-brand fw-semibold" href="{% url 'core:dashboard' %}">Kènèya&nbsp;Sô</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'core:dashboard' %}">{% translate "Tableau de bord" %}</a></li>
-        {% if perms.patients.view_patient %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'patients:liste' %}">{% translate "Patients" %}</a></li>
-        {% endif %}
-        {% if perms.consultations.view_consultation %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'consultations:liste' %}">{% translate "Consultations" %}</a></li>
-        {% endif %}
-        {% if perms.hospitalisation.view_hospitalisation %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'hospitalisation:occupation' %}">{% translate "Hospitalisation" %}</a></li>
-        {% endif %}
-        {% if perms.bloc_operatoire.view_intervention %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'bloc_operatoire:planning' %}">{% translate "Bloc opératoire" %}</a></li>
-        {% endif %}
-        {% if perms.laboratoire.view_demandeexamen %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'laboratoire:liste' %}">{% translate "Analyses & imagerie" %}</a></li>
-        {% endif %}
-        {% if perms.facturation.view_facture %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'facturation:liste' %}">{% translate "Facturation" %}</a></li>
-        {% endif %}
-        {% if perms.pharmacie.view_dispensation %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:dispensations' %}">{% translate "Dispensations" %}</a></li>
-        {% endif %}
-        {% if perms.pharmacie.view_medicament %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'pharmacie:medicaments' %}">{% translate "Stock" %}</a></li>
-        {% endif %}
-        {% if user.is_staff or user.role == "COMPTABLE" %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'core:statistiques' %}">{% translate "Statistiques" %}</a></li>
-        {% endif %}
-        {% if user.is_staff %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">{% translate "Administration" %}</a></li>
-        {% endif %}
-      </ul>
-      <div class="d-flex align-items-center gap-3">
-        <a class="nav-link position-relative" href="{% url 'core:notifications' %}" title="{% translate 'Notifications' %}">
-          &#128276;
-          {% if notifications_non_lues %}
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">{{ notifications_non_lues }}</span>
-          {% endif %}
+<body>
+<div class="app-shell" id="appShell">
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <aside class="app-sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0d9488"/>
+        <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#ffffff"/>
+      </svg>
+      <span>
+        <span class="brand-name">Kènèya&nbsp;Sô</span>
+        <span class="brand-tag">{% translate "Gestion hospitalière" %}</span>
+      </span>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link{% if request.resolver_match.url_name == 'dashboard' %} active{% endif %}"
+         href="{% url 'core:dashboard' %}">
+        <i class="bi bi-speedometer2"></i><span>{% translate "Tableau de bord" %}</span>
+      </a>
+      <div class="sidebar-section">{% translate "Modules" %}</div>
+      {% for item in navigation_principale %}
+        <a class="sidebar-link{% if item.actif %} active{% endif %}"
+           href="{% url item.url_name %}">
+          <i class="bi {{ item.icone }}"></i><span>{{ item.libelle }}</span>
         </a>
-        <form action="{% url 'set_language' %}" method="post" class="d-flex">
-          {% csrf_token %}
-          <input type="hidden" name="next" value="{{ request.get_full_path }}">
-          <select name="language" class="form-select form-select-sm" onchange="this.form.submit()"
-                  aria-label="{% translate 'Changer de langue' %}">
-            {% get_current_language as CUR %}
-            {% get_available_languages as LANGS %}
-            {% for code, name in LANGS %}
-              <option value="{{ code }}"{% if code == CUR %} selected{% endif %}>{{ name }}</option>
-            {% endfor %}
-          </select>
-        </form>
-        <span class="navbar-text small">{{ user.get_full_name|default:user.username }}</span>
+      {% endfor %}
+    </nav>
+    <div class="sidebar-footer">Kènèya Sô · {% now "Y" %}</div>
+  </aside>
+
+  <div class="app-main">
+    <header class="app-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="{% translate 'Menu' %}">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="flex-grow-1"></div>
+      <a class="bell-btn" href="{% url 'core:notifications' %}" title="{% translate 'Notifications' %}">
+        <i class="bi bi-bell"></i>
+        {% if notifications_non_lues %}
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger" style="font-size:.62rem">{{ notifications_non_lues }}</span>
+        {% endif %}
+      </a>
+      <form action="{% url 'set_language' %}" method="post" class="d-flex m-0">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <select name="language" class="form-select form-select-sm" onchange="this.form.submit()"
+                aria-label="{% translate 'Changer de langue' %}" style="width:auto">
+          {% get_current_language as CUR %}
+          {% get_available_languages as LANGS %}
+          {% for code, name in LANGS %}
+            <option value="{{ code }}"{% if code == CUR %} selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </form>
+      <div class="d-flex align-items-center gap-2 ps-2 border-start">
+        <div class="text-end d-none d-sm-block lh-sm">
+          <div class="small fw-semibold">{{ user.get_full_name|default:user.username }}</div>
+          {% if user.get_role_display %}<div class="text-body-secondary" style="font-size:.72rem">{{ user.get_role_display }}</div>{% endif %}
+        </div>
         <form action="{% url 'accounts:logout' %}" method="post" class="m-0">
           {% csrf_token %}
-          <button class="btn btn-sm btn-outline-light" type="submit">{% translate "Déconnexion" %}</button>
+          <button class="btn btn-sm btn-outline-secondary" type="submit" title="{% translate 'Déconnexion' %}">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
         </form>
       </div>
-    </div>
+    </header>
+
+    <main class="app-content">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="app-footer">Kènèya Sô — {% translate "Gestion hospitalière" %} · {% now "Y" %}</footer>
   </div>
-</nav>
-{% endif %}
-
-<main class="container py-4">
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-    {% endfor %}
-  {% endif %}
-  {% block content %}{% endblock %}
-</main>
-
-<footer class="container py-4 text-center text-body-secondary small">
-  Kènèya Sô — {% translate "Gestion hospitalière" %} · {% now "Y" %}
-</footer>
+</div>
+<script>
+  (function () {
+    var shell = document.getElementById("appShell");
+    var toggle = document.getElementById("sidebarToggle");
+    var backdrop = document.getElementById("sidebarBackdrop");
+    function close() { shell.classList.remove("sidebar-open"); }
+    if (toggle) toggle.addEventListener("click", function () { shell.classList.toggle("sidebar-open"); });
+    if (backdrop) backdrop.addEventListener("click", close);
+  })();
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

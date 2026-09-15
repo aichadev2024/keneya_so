@@ -17,12 +17,12 @@ msgstr ""
 msgid "nom complet"
 msgstr ""
 
-#: apps/accounts/forms.py:15 templates/registration/login.html:20
+#: apps/accounts/forms.py:15 templates/registration/login.html:21
 msgid "Identifiant"
 msgstr ""
 
 #: apps/accounts/forms.py:18 apps/core/tests.py:28
-#: templates/registration/login.html:24
+#: templates/registration/login.html:25
 msgid "Mot de passe"
 msgstr ""
 
@@ -1237,10 +1237,9 @@ msgstr ""
 msgid "lignes d'ordonnance"
 msgstr ""
 
-#: apps/consultations/views.py:27 apps/core/views.py:76 apps/core/views.py:124
-#: templates/base.html:26 templates/consultations/detail.html:7
-#: templates/consultations/liste.html:3 templates/consultations/liste.html:7
-#: templates/core/statistiques.html:23
+#: apps/consultations/views.py:27 apps/core/views.py:76 apps/core/views.py:130
+#: templates/consultations/detail.html:7 templates/consultations/liste.html:3
+#: templates/consultations/liste.html:7 templates/core/statistiques.html:23
 msgid "Consultations"
 msgstr ""
 
@@ -1362,7 +1361,7 @@ msgstr ""
 msgid "Connexion"
 msgstr ""
 
-#: apps/core/models.py:90 templates/base.html:75
+#: apps/core/models.py:90 templates/base.html:76
 msgid "Déconnexion"
 msgstr ""
 
@@ -1430,7 +1429,7 @@ msgstr ""
 msgid "notifications"
 msgstr ""
 
-#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:21
+#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:32
 #: templates/core/dashboard.html:3
 msgid "Tableau de bord"
 msgstr ""
@@ -1517,7 +1516,7 @@ msgstr ""
 msgid "Interventions terminées"
 msgstr ""
 
-#: apps/core/views.py:94 apps/core/views.py:136 templates/base.html:41
+#: apps/core/views.py:94 apps/core/views.py:153
 #: templates/core/statistiques.html:57
 #: templates/pharmacie/dispensations.html:3
 #: templates/pharmacie/dispensation_detail.html:7
@@ -1533,43 +1532,42 @@ msgstr ""
 msgid "Statistiques générales"
 msgstr ""
 
-#: apps/core/views.py:122 apps/patients/views.py:45 templates/base.html:23
+#: apps/core/views.py:127 apps/patients/views.py:45
 #: templates/patients/detail.html:8 templates/patients/liste.html:3
 #: templates/patients/liste.html:7
 msgid "Patients"
 msgstr ""
 
-#: apps/core/views.py:126 apps/facturation/models.py:40 templates/base.html:29
+#: apps/core/views.py:134 apps/facturation/models.py:40
 msgid "Hospitalisation"
 msgstr ""
 
-#: apps/core/views.py:128 templates/base.html:32
-#: templates/bloc_operatoire/detail.html:7
+#: apps/core/views.py:138 templates/bloc_operatoire/detail.html:7
 msgid "Bloc opératoire"
 msgstr ""
 
-#: apps/core/views.py:130 templates/base.html:35
-#: templates/laboratoire/detail.html:7 templates/laboratoire/liste.html:3
+#: apps/core/views.py:142 templates/laboratoire/detail.html:7
+#: templates/laboratoire/liste.html:3
 msgid "Analyses & imagerie"
 msgstr ""
 
-#: apps/core/views.py:132 templates/base.html:38
+#: apps/core/views.py:146
 msgid "Facturation"
 msgstr ""
 
-#: apps/core/views.py:134
+#: apps/core/views.py:149
 msgid "Bordereaux assurance"
 msgstr ""
 
-#: apps/core/views.py:138
+#: apps/core/views.py:157
 msgid "Pharmacie — stock"
 msgstr ""
 
-#: apps/core/views.py:140 templates/base.html:47
+#: apps/core/views.py:161
 msgid "Statistiques"
 msgstr ""
 
-#: apps/core/views.py:142 templates/base.html:50
+#: apps/core/views.py:164
 msgid "Administration"
 msgstr ""
 
@@ -2901,27 +2899,27 @@ msgstr ""
 msgid "Aucun lot périmé à retirer."
 msgstr ""
 
-#: config/settings.py:144 apps/accounts/models.py:37
+#: config/settings.py:145 apps/accounts/models.py:37
 msgid "Français"
 msgstr ""
 
-#: config/settings.py:145 apps/accounts/models.py:38
+#: config/settings.py:146 apps/accounts/models.py:38
 msgid "Anglais"
 msgstr ""
 
-#: config/settings.py:146 apps/accounts/models.py:39
+#: config/settings.py:147 apps/accounts/models.py:39
 msgid "Arabe"
 msgstr ""
 
-#: config/settings.py:147 apps/accounts/models.py:40
+#: config/settings.py:148 apps/accounts/models.py:40
 msgid "Bambara"
 msgstr ""
 
-#: config/settings.py:148 apps/accounts/models.py:41
+#: config/settings.py:149 apps/accounts/models.py:41
 msgid "Peulh (fulfulde)"
 msgstr ""
 
-#: config/settings.py:149 apps/accounts/models.py:42
+#: config/settings.py:150 apps/accounts/models.py:42
 msgid "Soninké"
 msgstr ""
 
@@ -3016,21 +3014,26 @@ msgstr ""
 msgid "Annuler"
 msgstr ""
 
-#: templates/base.html:44 templates/pharmacie/dispensation_detail.html:35
-msgid "Stock"
+#: templates/base.html:26 templates/base.html:94
+#: templates/registration/login.html:12
+msgid "Gestion hospitalière"
 msgstr ""
 
-#: templates/base.html:54 templates/core/notifications.html:3
+#: templates/base.html:34
+msgid "Modules"
+msgstr ""
+
+#: templates/base.html:47
+msgid "Menu"
+msgstr ""
+
+#: templates/base.html:51 templates/core/notifications.html:3
 #: templates/core/notifications.html:7
 msgid "Notifications"
 msgstr ""
 
-#: templates/base.html:64
+#: templates/base.html:61
 msgid "Changer de langue"
-msgstr ""
-
-#: templates/base.html:96 templates/registration/login.html:11
-msgid "Gestion hospitalière"
 msgstr ""
 
 #: templates/bloc_operatoire/demande.html:3
@@ -3440,25 +3443,22 @@ msgstr ""
 msgid "Export Excel"
 msgstr ""
 
-#: templates/core/dashboard.html:8
+#: templates/core/dashboard.html:7
 msgid "Bonjour, %(prenom)s"
 msgstr ""
 
-#: templates/core/dashboard.html:19
+#: templates/core/dashboard.html:9
+msgid "Voici vos modules disponibles."
+msgstr ""
+
+#: templates/core/dashboard.html:21
 msgid "Ouvrir le module"
 msgstr ""
 
-#: templates/core/dashboard.html:26
+#: templates/core/dashboard.html:29
 msgid ""
 "Aucun module n'est encore accessible avec votre rôle. Contactez "
 "l'administrateur."
-msgstr ""
-
-#: templates/core/dashboard.html:33
-msgid ""
-"Les modules consultation, pharmacie, hospitalisation, bloc opératoire, "
-"laboratoire, facturation et assurances seront activés au fil du planning du "
-"projet."
 msgstr ""
 
 #: templates/core/notifications.html:10
@@ -3950,6 +3950,10 @@ msgstr ""
 msgid "Déjà délivré"
 msgstr ""
 
+#: templates/pharmacie/dispensation_detail.html:35
+msgid "Stock"
+msgstr ""
+
 #: templates/pharmacie/dispensation_detail.html:36
 msgid "À délivrer"
 msgstr ""
@@ -4096,7 +4100,7 @@ msgstr ""
 msgid "Tous les types"
 msgstr ""
 
-#: templates/registration/login.html:28
+#: templates/registration/login.html:29
 msgid "Se connecter"
 msgstr ""
 

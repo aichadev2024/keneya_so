@@ -3,21 +3,24 @@
 {% block title %}{% translate "Tableau de bord" %} — Kènèya Sô{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <div>
-    <h1 class="h3 mb-0">{% blocktranslate with prenom=user.first_name|default:user.username %}Bonjour, {{ prenom }}{% endblocktranslate %}</h1>
-    {% if role_affiche %}<span class="badge text-bg-secondary">{{ role_affiche }}</span>{% endif %}
-  </div>
+<div class="mb-4">
+  <h1 class="h3 mb-1">{% blocktranslate with prenom=user.first_name|default:user.username %}Bonjour, {{ prenom }}{% endblocktranslate %}</h1>
+  <p class="text-body-secondary mb-0">
+    {% translate "Voici vos modules disponibles." %}
+    {% if role_affiche %}<span class="badge text-bg-light border ms-1">{{ role_affiche }}</span>{% endif %}
+  </p>
 </div>
 
 <div class="row g-3">
-  {% for libelle, url_name in raccourcis %}
-    <div class="col-sm-6 col-lg-4">
-      <a class="card text-decoration-none h-100 shadow-sm" href="{% url url_name %}">
-        <div class="card-body">
-          <h2 class="h5 card-title mb-1">{{ libelle }}</h2>
-          <p class="card-text text-body-secondary small mb-0">{% translate "Ouvrir le module" %}</p>
-        </div>
+  {% for item in raccourcis %}
+    <div class="col-sm-6 col-xl-4">
+      <a class="card module-card" href="{% url item.url_name %}">
+        <span class="icon-chip icon-chip-{{ item.couleur }}"><i class="bi {{ item.icone }}"></i></span>
+        <span>
+          <span class="module-title d-block">{{ item.libelle }}</span>
+          <span class="module-sub">{% translate "Ouvrir le module" %}</span>
+        </span>
+        <i class="bi bi-chevron-right"></i>
       </a>
     </div>
   {% empty %}
@@ -28,8 +31,4 @@
     </div>
   {% endfor %}
 </div>
-
-<p class="text-body-secondary small mt-4 mb-0">
-  {% translate "Les modules consultation, pharmacie, hospitalisation, bloc opératoire, laboratoire, facturation et assurances seront activés au fil du planning du projet." %}
-</p>
 {% endblock %}

@@ -969,6 +969,11 @@ TRADUCTIONS = {
     "30 derniers jours": "last 30 days",
     "Voir aussi les indicateurs détaillés du bloc opératoire.":
         "See also the detailed operating theatre indicators.",
+
+    # --- Refonte visuelle (barre latérale) ---
+    "Modules": "Modules",
+    "Menu": "Menu",
+    "Voici vos modules disponibles.": "Here are your available modules.",
 }
 
 # Entrées avec pluriel : {(msgid, msgid_plural): (msgstr[0], msgstr[1])}

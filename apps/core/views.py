@@ -116,28 +116,51 @@ class StatistiquesView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
 
 
 def _raccourcis_pour(utilisateur):
-    """Liste de raccourcis (libellé, url_name) selon les permissions réelles."""
+    """
+    Navigation principale (libellé, url_name, icône, couleur) selon les
+    permissions réelles de l'utilisateur — source unique consommée à la fois
+    par la barre latérale (base.html, via le context processor `navigation`)
+    et par les cartes du tableau de bord.
+    """
     raccourcis = []
     if utilisateur.has_perm("patients.view_patient"):
-        raccourcis.append((_("Patients"), "patients:liste"))
+        raccourcis.append({"libelle": _("Patients"), "url_name": "patients:liste",
+                           "icone": "bi-people-fill", "couleur": "bleu"})
     if utilisateur.has_perm("consultations.view_consultation"):
-        raccourcis.append((_("Consultations"), "consultations:liste"))
+        raccourcis.append({"libelle": _("Consultations"),
+                           "url_name": "consultations:liste",
+                           "icone": "bi-clipboard2-pulse", "couleur": "indigo"})
     if utilisateur.has_perm("hospitalisation.view_hospitalisation"):
-        raccourcis.append((_("Hospitalisation"), "hospitalisation:occupation"))
+        raccourcis.append({"libelle": _("Hospitalisation"),
+                           "url_name": "hospitalisation:occupation",
+                           "icone": "bi-hospital", "couleur": "cyan"})
     if utilisateur.has_perm("bloc_operatoire.view_intervention"):
-        raccourcis.append((_("Bloc opératoire"), "bloc_operatoire:planning"))
+        raccourcis.append({"libelle": _("Bloc opératoire"),
+                           "url_name": "bloc_operatoire:planning",
+                           "icone": "bi-activity", "couleur": "rose"})
     if utilisateur.has_perm("laboratoire.view_demandeexamen"):
-        raccourcis.append((_("Analyses & imagerie"), "laboratoire:liste"))
+        raccourcis.append({"libelle": _("Analyses & imagerie"),
+                           "url_name": "laboratoire:liste",
+                           "icone": "bi-clipboard2-data", "couleur": "violet"})
     if utilisateur.has_perm("facturation.view_facture"):
-        raccourcis.append((_("Facturation"), "facturation:liste"))
+        raccourcis.append({"libelle": _("Facturation"), "url_name": "facturation:liste",
+                           "icone": "bi-receipt-cutoff", "couleur": "ambre"})
     if utilisateur.has_perm("assurances.view_bordereauassurance"):
-        raccourcis.append((_("Bordereaux assurance"), "assurances:bordereaux"))
+        raccourcis.append({"libelle": _("Bordereaux assurance"),
+                           "url_name": "assurances:bordereaux",
+                           "icone": "bi-file-earmark-medical", "couleur": "teal"})
     if utilisateur.has_perm("pharmacie.view_dispensation"):
-        raccourcis.append((_("Dispensations"), "pharmacie:dispensations"))
+        raccourcis.append({"libelle": _("Dispensations"),
+                           "url_name": "pharmacie:dispensations",
+                           "icone": "bi-capsule", "couleur": "vert"})
     if utilisateur.has_perm("pharmacie.view_medicament"):
-        raccourcis.append((_("Pharmacie — stock"), "pharmacie:medicaments"))
+        raccourcis.append({"libelle": _("Pharmacie — stock"),
+                           "url_name": "pharmacie:medicaments",
+                           "icone": "bi-boxes", "couleur": "vert"})
     if utilisateur.is_staff or utilisateur.role == "COMPTABLE":
-        raccourcis.append((_("Statistiques"), "core:statistiques"))
+        raccourcis.append({"libelle": _("Statistiques"), "url_name": "core:statistiques",
+                           "icone": "bi-graph-up-arrow", "couleur": "slate"})
     if utilisateur.is_staff:
-        raccourcis.append((_("Administration"), "admin:index"))
+        raccourcis.append({"libelle": _("Administration"), "url_name": "admin:index",
+                           "icone": "bi-gear-fill", "couleur": "slate"})
     return raccourcis

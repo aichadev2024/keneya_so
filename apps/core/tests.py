@@ -180,3 +180,37 @@ class StatistiquesTests(TestCase):
         reponse = self.client.get(reverse("core:statistiques") + "?format=pdf")
         self.assertEqual(reponse["Content-Type"], "application/pdf")
         self.assertTrue(reponse.content.startswith(b"%PDF"))
+
+
+class NavigationTests(TestCase):
+    """Barre latérale (refonte visuelle) : un seul élément actif à la fois."""
+
+    def test_statistiques_actif_seulement_sur_sa_propre_page(self):
+        # Régression : le tableau de bord et /statistiques/ partagent le même
+        # namespace "core" ; comparer seulement le namespace allumait "Statistiques"
+        # même sur le tableau de bord.
+        Utilisateur.objects.create_user("cpt_nav", password="x",
+                                        role=Utilisateur.Role.COMPTABLE)
+        self.client.login(username="cpt_nav", password="x")
+
+        tableau = self.client.get(reverse("core:dashboard"))
+        item_tb = next(i for i in tableau.context["navigation_principale"]
+                       if i["url_name"] == "core:statistiques")
+        self.assertFalse(item_tb["actif"])
+
+        stats = self.client.get(reverse("core:statistiques"))
+        item_stats = next(i for i in stats.context["navigation_principale"]
+                          if i["url_name"] == "core:statistiques")
+        self.assertTrue(item_stats["actif"])
+
+    def test_module_actif_sur_ses_sous_pages(self):
+        from apps.patients.models import Patient
+        u = Utilisateur.objects.create_user("acc_nav", password="x",
+                                            role=Utilisateur.Role.AGENT_ACCUEIL)
+        self.client.login(username="acc_nav", password="x")
+        p = Patient.objects.create(nom="Nav", prenom="Test", sexe="M")
+
+        reponse = self.client.get(reverse("patients:detail", args=[p.pk]))
+        item = next(i for i in reponse.context["navigation_principale"]
+                   if i["url_name"] == "patients:liste")
+        self.assertTrue(item["actif"])

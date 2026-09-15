@@ -973,6 +973,11 @@ TRADUCTIONS = {
     "30 derniers jours": "آخر 30 يومًا",
     "Voir aussi les indicateurs détaillés du bloc opératoire.":
         "انظر أيضًا المؤشرات التفصيلية لغرفة العمليات.",
+
+    # --- إعادة التصميم البصري (الشريط الجانبي) ---
+    "Modules": "الوحدات",
+    "Menu": "القائمة",
+    "Voici vos modules disponibles.": "هذه هي الوحدات المتاحة لك.",
 }
 
 # Entrées avec pluriel arabe (6 formes CLDR : zero, one, two, few, many, other).

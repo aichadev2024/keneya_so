@@ -1,34 +1,32 @@
-{% extends "base.html" %}
+{% extends "base_auth.html" %}
 {% load i18n %}
 {% block title %}{% translate "Connexion" %} — Kènèya Sô{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-  <div class="col-sm-9 col-md-6 col-lg-4">
-    <div class="card shadow-sm mt-4">
-      <div class="card-body p-4">
-        <h1 class="h4 text-center mb-1">Kènèya Sô</h1>
-        <p class="text-center text-body-secondary small mb-4">{% translate "Gestion hospitalière" %}</p>
+<div class="auth-card">
+  <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="64" height="64" rx="14" fill="#16294f"/>
+    <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
+  </svg>
+  <h1 class="h4 text-center mb-1">Kènèya Sô</h1>
+  <p class="text-center text-body-secondary small mb-4">{% translate "Gestion hospitalière" %}</p>
 
-        {% if form.non_field_errors %}
-          <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
-        {% endif %}
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
+  {% endif %}
 
-        <form method="post">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label class="form-label" for="{{ form.username.id_for_label }}">{% translate "Identifiant" %}</label>
-            {{ form.username }}
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="{{ form.password.id_for_label }}">{% translate "Mot de passe" %}</label>
-            {{ form.password }}
-          </div>
-          <input type="hidden" name="next" value="{{ next }}">
-          <button type="submit" class="btn btn-primary w-100">{% translate "Se connecter" %}</button>
-        </form>
-      </div>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.username.id_for_label }}">{% translate "Identifiant" %}</label>
+      {{ form.username }}
     </div>
-  </div>
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.password.id_for_label }}">{% translate "Mot de passe" %}</label>
+      {{ form.password }}
+    </div>
+    <input type="hidden" name="next" value="{{ next }}">
+    <button type="submit" class="btn btn-primary w-100 py-2">{% translate "Se connecter" %}</button>
+  </form>
 </div>
 {% endblock %}

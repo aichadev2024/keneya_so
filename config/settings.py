@@ -101,6 +101,7 @@ TEMPLATES = [
                 "django.template.context_processors.i18n",
                 "django.contrib.messages.context_processors.messages",
                 "apps.core.context_processors.notifications",
+                "apps.core.context_processors.navigation",
             ],
         },
     },

@@ -1,21 +1,393 @@
-/* Kènèya Sô — ajustements légers par-dessus Bootstrap 5 (CDC 7.3 — interface sobre). */
+/* ==========================================================================
+   Kènèya Sô — système de design (CDC 7.3 : interface sobre et cohérente).
+   Vient par-dessus Bootstrap 5 : tokens de couleur/typo, mise en page en
+   barre latérale, et un habillage plus soigné des composants (cartes,
+   tableaux, badges, boutons) qu'un thème Bootstrap par défaut.
+   ========================================================================== */
 
 :root {
-  --bs-primary: #1f3864; /* bleu profond, cohérent avec les tableaux du cahier des charges */
+  /* --- Marque --- */
+  --ks-primary: #16294f;
+  --ks-primary-dark: #0d1a33;
+  --ks-primary-light: #22396b;
+  --ks-accent: #0d9488;
+  --ks-accent-dark: #0b7a70;
+
+  /* --- Neutres --- */
+  --ks-bg: #f5f6fa;
+  --ks-surface: #ffffff;
+  --ks-border: #e4e7ef;
+  --ks-text: #1c2233;
+  --ks-text-muted: #667085;
+
+  /* --- Sémantique (alignées sur les teintes Bootstrap, affinées) --- */
+  --ks-success: #15803d;
+  --ks-warning: #b45309;
+  --ks-danger: #b91c1c;
+  --ks-info: #1d4ed8;
+
+  /* --- Rythme --- */
+  --ks-radius-sm: 8px;
+  --ks-radius: 12px;
+  --ks-radius-lg: 16px;
+  --ks-shadow-sm: 0 1px 2px rgba(16, 24, 40, .06);
+  --ks-shadow: 0 2px 8px rgba(16, 24, 40, .08);
+  --ks-shadow-lg: 0 12px 32px rgba(16, 24, 40, .14);
+  --ks-sidebar-w: 17rem;
+
+  /* Palette d'accent par module (fond clair + premier-plan), pour les puces
+     d'icône du tableau de bord et de la barre latérale. */
+  --ks-a-bleu-bg: #e7f0ff;   --ks-a-bleu-fg: #2563eb;
+  --ks-a-indigo-bg: #ece9fe; --ks-a-indigo-fg: #6366f1;
+  --ks-a-cyan-bg: #e0f7fa;   --ks-a-cyan-fg: #0891b2;
+  --ks-a-rose-bg: #fde9ef;   --ks-a-rose-fg: #e11d48;
+  --ks-a-violet-bg: #f3e8ff; --ks-a-violet-fg: #9333ea;
+  --ks-a-ambre-bg: #fef3e0;  --ks-a-ambre-fg: #d97706;
+  --ks-a-teal-bg: #e6fbf8;   --ks-a-teal-fg: #0d9488;
+  --ks-a-vert-bg: #e8f8ee;   --ks-a-vert-fg: #16a34a;
+  --ks-a-slate-bg: #eef1f5;  --ks-a-slate-fg: #475569;
+
+  --bs-primary: var(--ks-primary);
+  --bs-primary-rgb: 22, 41, 79;
+  --bs-body-font-family: "Inter", "Segoe UI", "Noto Sans Arabic", system-ui, sans-serif;
 }
 
-.navbar.bg-primary {
-  background-color: var(--bs-primary) !important;
+html[lang="ar"], [dir="rtl"] {
+  --bs-body-font-family: "Cairo", "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--ks-bg);
+  color: var(--ks-text);
+  font-family: var(--bs-body-font-family);
+  font-optical-sizing: auto;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+a { color: var(--ks-primary); }
+code { color: var(--ks-accent-dark); background: var(--ks-a-teal-bg); padding: .1em .4em; border-radius: 6px; }
+
+/* ==========================================================================
+   Mise en page : barre latérale + zone de contenu
+   ========================================================================== */
+
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(13, 148, 136, .35), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(34, 57, 107, .55), transparent 50%),
+    var(--ks-primary-dark);
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  position: fixed;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--ks-sidebar-w);
+  background: linear-gradient(185deg, var(--ks-primary) 0%, var(--ks-primary-dark) 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 1030;
+  transition: transform .2s ease;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: 1.35rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.sidebar-brand .brand-mark { width: 32px; height: 32px; flex-shrink: 0; }
+.sidebar-brand .brand-name { font-weight: 700; font-size: 1.1rem; color: #fff; line-height: 1.15; }
+.sidebar-brand .brand-tag { display: block; font-size: .68rem; font-weight: 500; color: rgba(255, 255, 255, .55); letter-spacing: .04em; text-transform: uppercase; }
+
+.sidebar-nav {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: .85rem .75rem;
+}
+
+.sidebar-section {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .4);
+  padding: .9rem .6rem .35rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .55rem .7rem;
+  margin-block-end: .15rem;
+  border-radius: var(--ks-radius-sm);
+  color: rgba(255, 255, 255, .82);
+  text-decoration: none;
+  font-size: .89rem;
+  font-weight: 500;
+  transition: background-color .12s ease, color .12s ease;
+}
+
+.sidebar-link i { font-size: 1.05rem; width: 1.3rem; text-align: center; flex-shrink: 0; }
+
+.sidebar-link:hover { background: rgba(255, 255, 255, .08); color: #fff; }
+
+.sidebar-link.active {
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  box-shadow: inset 3px 0 0 var(--ks-accent);
+}
+
+[dir="rtl"] .sidebar-link.active { box-shadow: inset -3px 0 0 var(--ks-accent); }
+
+.sidebar-footer {
+  padding: .9rem 1.25rem 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  font-size: .72rem;
+  color: rgba(255, 255, 255, .45);
+}
+
+.app-main {
+  flex: 1 1 auto;
+  margin-inline-start: var(--ks-sidebar-w);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .65rem 1.5rem;
+  background: rgba(245, 246, 250, .92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--ks-border);
+}
+
+.app-content {
+  flex: 1 1 auto;
+  padding: 1.75rem;
+  max-width: 1600px;
+  width: 100%;
+}
+
+.app-footer {
+  padding: 1.25rem 1.75rem;
+  color: var(--ks-text-muted);
+  font-size: .8rem;
+  text-align: center;
+}
+
+.sidebar-toggle {
+  border: none;
+  background: transparent;
+  font-size: 1.3rem;
+  color: var(--ks-text);
+  line-height: 1;
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, .45);
+  z-index: 1025;
+}
+
+@media (max-width: 991.98px) {
+  .app-sidebar { transform: translateX(-105%); }
+  [dir="rtl"] .app-sidebar { transform: translateX(105%); }
+  .app-shell.sidebar-open .app-sidebar { transform: translateX(0); }
+  .app-shell.sidebar-open .sidebar-backdrop { display: block; }
+  .app-main { margin-inline-start: 0; }
+  .app-content { padding: 1.15rem; }
+}
+
+@media (min-width: 992px) {
+  .sidebar-toggle { display: none; }
+}
+
+/* ==========================================================================
+   Composants
+   ========================================================================== */
+
+.card {
+  border: 1px solid var(--ks-border);
+  border-radius: var(--ks-radius);
+  box-shadow: var(--ks-shadow-sm);
 }
 
 .card-header {
   font-weight: 600;
+  background: var(--ks-surface);
+  border-bottom: 1px solid var(--ks-border);
 }
 
-code {
-  color: var(--bs-primary);
+.shadow-sm { box-shadow: var(--ks-shadow-sm) !important; }
+
+.btn {
+  border-radius: var(--ks-radius-sm);
+  font-weight: 500;
 }
 
-/* Support RTL (arabe, CDC 4.11) : alignements de base. */
-html[dir="rtl"] .me-auto { margin-right: 0 !important; margin-left: auto !important; }
-html[dir="rtl"] .text-end { text-align: left !important; }
+.btn-primary {
+  background: var(--ks-primary);
+  border-color: var(--ks-primary);
+}
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--ks-primary-dark);
+  border-color: var(--ks-primary-dark);
+}
+.btn-outline-primary { color: var(--ks-primary); border-color: var(--ks-primary); }
+.btn-outline-primary:hover { background: var(--ks-primary); border-color: var(--ks-primary); }
+
+.form-control, .form-select {
+  border-radius: var(--ks-radius-sm);
+  border-color: var(--ks-border);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--ks-accent);
+  box-shadow: 0 0 0 .2rem rgba(13, 148, 136, .15);
+}
+
+.table { --bs-table-bg: transparent; }
+.table > thead {
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--ks-text-muted);
+  border-bottom-width: 1px;
+}
+.table > :not(caption) > * > * { padding: .65rem .9rem; }
+
+.badge { font-weight: 600; letter-spacing: .01em; border-radius: 999px; padding-inline: .6em; }
+
+.breadcrumb { font-size: .82rem; }
+
+/* Fiches détail : libellé au-dessus de la valeur plutôt que côte à côte —
+   beaucoup plus lisible que le grid Bootstrap par défaut dans une carte
+   étroite (deux cartes par ligne à côté de la barre latérale). S'applique à
+   tout `<dl class="row">…<dt class="col-*">…<dd class="col-*">` existant,
+   sans toucher aux gabarits. */
+dl.row { row-gap: .1rem; }
+dl.row dt {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  margin-top: .6rem;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--ks-text-muted);
+}
+dl.row dd {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 0;
+}
+dl.row dt:first-child { margin-top: 0; }
+
+/* Puce d'icône colorée (cartes du tableau de bord, en-têtes de section). */
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--ks-radius-sm);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.icon-chip-sm { width: 2.1rem; height: 2.1rem; font-size: 1rem; }
+
+.icon-chip-bleu   { background: var(--ks-a-bleu-bg);   color: var(--ks-a-bleu-fg); }
+.icon-chip-indigo { background: var(--ks-a-indigo-bg); color: var(--ks-a-indigo-fg); }
+.icon-chip-cyan   { background: var(--ks-a-cyan-bg);   color: var(--ks-a-cyan-fg); }
+.icon-chip-rose   { background: var(--ks-a-rose-bg);   color: var(--ks-a-rose-fg); }
+.icon-chip-violet { background: var(--ks-a-violet-bg); color: var(--ks-a-violet-fg); }
+.icon-chip-ambre  { background: var(--ks-a-ambre-bg);  color: var(--ks-a-ambre-fg); }
+.icon-chip-teal   { background: var(--ks-a-teal-bg);   color: var(--ks-a-teal-fg); }
+.icon-chip-vert   { background: var(--ks-a-vert-bg);   color: var(--ks-a-vert-fg); }
+.icon-chip-slate  { background: var(--ks-a-slate-bg);  color: var(--ks-a-slate-fg); }
+
+/* Carte de module du tableau de bord */
+.module-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 1.15rem;
+  height: 100%;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.module-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ks-shadow);
+  border-color: var(--ks-accent);
+}
+.module-card .module-title { font-weight: 600; color: var(--ks-text); margin-bottom: .15rem; }
+.module-card .module-sub { color: var(--ks-text-muted); font-size: .82rem; }
+.module-card .bi-chevron-right { color: var(--ks-text-muted); margin-inline-start: auto; align-self: center; }
+
+/* Cartes indicateur (statistiques / KPI) */
+.stat-card { padding: 1.1rem 1.25rem; }
+.stat-card .stat-value { font-size: 1.6rem; font-weight: 700; color: var(--ks-primary); line-height: 1.2; }
+.stat-card .stat-label { color: var(--ks-text-muted); font-size: .8rem; }
+
+/* Notifications */
+.bell-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  color: var(--ks-text);
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+.bell-btn:hover { background: var(--ks-border); }
+
+/* Auth card (connexion, changement de mot de passe) */
+.auth-card {
+  width: 100%;
+  max-width: 26rem;
+  background: var(--ks-surface);
+  border-radius: var(--ks-radius-lg);
+  box-shadow: var(--ks-shadow-lg);
+  padding: 2.25rem 2rem;
+}
+.auth-card .brand-mark { width: 46px; height: 46px; margin-inline: auto; display: block; margin-bottom: 1rem; }
+
+[dir="rtl"] .module-card .bi-chevron-right { transform: scaleX(-1); display: inline-block; }
+
+/* RTL : Bootstrap standard (non-rtl.css) code .text-end/.text-start en valeurs
+   physiques (right/left) ; on les repasse en logique pour un vrai miroir RTL
+   (.text-end = bord de fin de ligne = gauche en arabe, pas toujours la droite). */
+[dir="rtl"] .text-end { text-align: end !important; }
+[dir="rtl"] .text-start { text-align: start !important; }
