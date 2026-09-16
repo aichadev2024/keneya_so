@@ -1,0 +1,35 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% translate "Configuration initiale" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="64" height="64" rx="14" fill="#16294f"/>
+    <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
+  </svg>
+  <h1 class="h4 text-center mb-1">{% translate "Configuration initiale" %}</h1>
+  <p class="text-center text-body-secondary small mb-4">
+    {% translate "Création du premier compte administrateur" %}
+  </p>
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary w-100 py-2">
+      {% translate "Créer le compte administrateur" %}
+    </button>
+  </form>
+</div>
+{% endblock %}

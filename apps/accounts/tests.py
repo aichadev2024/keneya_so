@@ -2,7 +2,8 @@
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
-from django.test import TestCase
+from django.test import TestCase, override_settings
+from django.urls import reverse
 
 from .models import groupe_pour_role
 from .roles import PERMISSIONS_PAR_ROLE
@@ -68,3 +69,50 @@ class AffectationGroupeUtilisateurTests(TestCase):
         u = Utilisateur.objects.create_user("boss", password="x", role=Utilisateur.Role.ADMIN)
         u = Utilisateur.objects.get(pk=u.pk)
         self.assertTrue(u.is_staff)
+
+
+@override_settings(SETUP_TOKEN="jeton-de-test")
+class PremiereConfigurationTests(TestCase):
+    """Création du tout premier compte administrateur (bootstrap public, CDC 7.1)."""
+
+    def setUp(self):
+        self.url = reverse("accounts:premiere_configuration")
+
+    def _donnees(self, **overrides):
+        d = {
+            "username": "premier_admin", "first_name": "Awa", "last_name": "Diarra",
+            "email": "awa@example.com", "password1": "UnMotDePasseSolide2026!",
+            "password2": "UnMotDePasseSolide2026!", "jeton": "jeton-de-test",
+        }
+        d.update(overrides)
+        return d
+
+    @override_settings(SETUP_TOKEN="")
+    def test_desactivee_sans_jeton_configure(self):
+        self.assertEqual(self.client.get(self.url).status_code, 404)
+
+    def test_desactivee_si_un_superutilisateur_existe_deja(self):
+        Utilisateur.objects.create_superuser("dej_admin", password="x")
+        self.assertEqual(self.client.get(self.url).status_code, 404)
+
+    def test_accessible_tant_qu_aucun_superutilisateur_n_existe(self):
+        self.assertEqual(self.client.get(self.url).status_code, 200)
+
+    def test_jeton_incorrect_rejete(self):
+        reponse = self.client.post(self.url, self._donnees(jeton="mauvais-jeton"))
+        self.assertEqual(reponse.status_code, 200)  # réaffiche le formulaire, pas de redirection
+        self.assertFalse(Utilisateur.objects.filter(username="premier_admin").exists())
+
+    def test_creation_reussie_avec_le_bon_jeton(self):
+        reponse = self.client.post(self.url, self._donnees())
+        self.assertRedirects(reponse, reverse("accounts:login"))
+        u = Utilisateur.objects.get(username="premier_admin")
+        self.assertTrue(u.is_superuser)
+        self.assertTrue(u.is_staff)
+        self.assertEqual(u.role, Utilisateur.Role.ADMIN)
+
+    def test_deuxieme_creation_bloquee_apres_la_premiere(self):
+        self.client.post(self.url, self._donnees())
+        # La page est maintenant verrouillée : un deuxième essai est refusé (404),
+        # même avec le bon jeton.
+        self.assertEqual(self.client.get(self.url).status_code, 404)

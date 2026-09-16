@@ -33,6 +33,7 @@ env = environ.Env(
     DJANGO_CSRF_COOKIE_SECURE=(bool, False),
     DJANGO_CORS_ALLOWED_ORIGINS=(list, []),
     DJANGO_PROXIES_DE_CONFIANCE=(int, 0),
+    DJANGO_SETUP_TOKEN=(str, ""),
 )
 
 environ.Env.read_env(BASE_DIR / ".env")
@@ -285,6 +286,12 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGINS = env("DJANGO_CORS_ALLOWED_ORIGINS")
+
+# Jeton exigé par /comptes/premiere-configuration/ pour créer le tout premier
+# compte administrateur (apps/accounts/views.py::PremiereConfigurationView) —
+# sans jeton configuré, cette page reste désactivée (404). Sur un déploiement
+# déjà public, la protège d'un tiers qui la découvrirait avant vous.
+SETUP_TOKEN = env("DJANGO_SETUP_TOKEN")
 
 # Nombre de reverse-proxies de confiance devant l'application (0 en développement
 # = X-Forwarded-For jamais pris en compte, voir apps/accounts/signals.py::_ip).

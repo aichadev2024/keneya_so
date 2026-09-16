@@ -10,4 +10,6 @@ urlpatterns = [
     path("mot-de-passe/", views.ChangementMotDePasseView.as_view(), name="password_change"),
     path("mot-de-passe/termine/", views.ChangementMotDePasseTermineView.as_view(),
          name="password_change_done"),
+    path("premiere-configuration/", views.PremiereConfigurationView.as_view(),
+         name="premiere_configuration"),
 ]
