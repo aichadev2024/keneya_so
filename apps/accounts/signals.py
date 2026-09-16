@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import logging
 
+from django.conf import settings
 from django.contrib.auth.models import Group, Permission
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db.models.signals import post_migrate, post_save
@@ -113,9 +114,27 @@ def journaliser_deconnexion(sender, request, user, **kwargs):
 
 
 def _ip(request):
+    """Adresse IP consignée dans le journal d'audit.
+
+    ``X-Forwarded-For`` est un en-tête HTTP ordinaire : sans reverse-proxy de
+    confiance connu, n'importe quel client peut y écrire ce qu'il veut, ce qui
+    rendrait l'IP du journal d'audit falsifiable. Par défaut on ne fait donc
+    confiance qu'à ``REMOTE_ADDR`` (jamais falsifiable, c'est l'adresse TCP
+    réelle). En production derrière un reverse-proxy connu (Render/Railway),
+    ``DJANGO_PROXIES_DE_CONFIANCE=1`` indique qu'un seul maillon de confiance
+    précède l'application : on prend alors l'IP à N positions du bout de la
+    chaîne ``X-Forwarded-For`` (en ignorant tout ce qu'un client aurait pu
+    préfixer lui-même avant d'atteindre ce proxy), jamais aveuglément la
+    première valeur.
+    """
     if request is None:
         return None
-    xff = request.META.get("HTTP_X_FORWARDED_FOR")
-    if xff:
-        return xff.split(",")[0].strip()
+    proxies_de_confiance = getattr(settings, "IP_PROXIES_DE_CONFIANCE", 0)
+    if proxies_de_confiance > 0:
+        xff = request.META.get("HTTP_X_FORWARDED_FOR")
+        if xff:
+            chaine = [ip.strip() for ip in xff.split(",") if ip.strip()]
+            index = len(chaine) - proxies_de_confiance
+            if 0 <= index < len(chaine):
+                return chaine[index]
     return request.META.get("REMOTE_ADDR")

@@ -61,7 +61,7 @@
         {% else %}
           <p style="white-space:pre-wrap">{{ r.compte_rendu }}</p>
           {% if r.conclusion %}<p><strong>{% translate "Conclusion" %} :</strong> {{ r.conclusion }}</p>{% endif %}
-          {% if r.fichier %}<a href="{{ r.fichier.url }}" target="_blank" class="btn btn-sm btn-outline-secondary">{% translate "Pièce jointe" %}</a>{% endif %}
+          {% if r.fichier %}<a href="{% url 'laboratoire:telecharger_resultat' demande.pk ligne.pk %}" class="btn btn-sm btn-outline-secondary">{% translate "Pièce jointe" %}</a>{% endif %}
         {% endif %}
         {% if r.commentaire %}<p class="small text-body-secondary mb-0">{{ r.commentaire }}</p>{% endif %}
         <p class="small text-body-secondary mb-0">{% translate "saisi par" %} {{ r.saisi_par.get_full_name }} — {{ r.saisi_le|date:"d/m/Y H:i" }}</p>

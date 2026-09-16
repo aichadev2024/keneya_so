@@ -1,8 +1,12 @@
 """Vues gabarit du module laboratoire / imagerie (CDC 4.6)."""
 
+import os
+
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
+from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -203,6 +207,29 @@ def demande_valider(request, pk):
            f"Résultats validés — {demande.reference} (prescripteur notifié)")
     messages.success(request, _("Résultats validés. Le prescripteur a été notifié."))
     return redirect("laboratoire:detail", pk=pk)
+
+
+_TYPES_MIME_PIECE_JOINTE = {
+    ".pdf": "application/pdf", ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg", ".png": "image/png",
+}
+
+
+@login_required
+@permission_required("laboratoire.view_demandeexamen", raise_exception=True)
+def telecharger_resultat(request, pk, ligne_pk):
+    """Sert la pièce jointe d'un résultat après vérification des permissions
+    (jamais via une URL /media/ publique — CDC 7.1, données de santé)."""
+    demande = get_object_or_404(DemandeExamen, pk=pk)
+    ligne = get_object_or_404(LigneExamen, pk=ligne_pk, demande=demande)
+    resultat = getattr(ligne, "resultat", None)
+    if not resultat or not resultat.fichier:
+        raise Http404
+    ext = os.path.splitext(resultat.fichier.name)[1].lower()
+    content_type = _TYPES_MIME_PIECE_JOINTE.get(ext, "application/octet-stream")
+    return FileResponse(resultat.fichier.open("rb"), content_type=content_type,
+                        as_attachment=True,
+                        filename=f"{demande.reference}_{ligne.type_examen.code}{ext}")
 
 
 @require_POST

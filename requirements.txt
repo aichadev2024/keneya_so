@@ -5,6 +5,7 @@ Django==5.2.17
 djangorestframework==3.18.1
 django-environ==0.14.0
 django-cors-headers==4.9.0
+django-axes==8.3.1          # verrouillage de compte après échecs de connexion (CDC 7.1)
 drf-spectacular==0.30.0
 psycopg[binary]==3.3.5      # pilote PostgreSQL (base de données cible, CDC 8)
 Pillow==12.3.0              # ImageField (logo établissement, pièces jointes imagerie)

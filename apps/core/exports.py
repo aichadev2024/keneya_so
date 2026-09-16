@@ -98,6 +98,17 @@ def _texte(valeur) -> str:
     return texte
 
 
+def _texte_paragraphe(valeur) -> str:
+    """Comme ``_texte``, mais échappe en plus &, < et > : à utiliser uniquement
+    pour un texte destiné à ``Paragraph()``, qui interprète une mini-syntaxe
+    XML (``<b>``, ``<font>``…) — contrairement aux cellules de ``Table``, qui
+    affichent le texte tel quel. Sans cet échappement, un texte saisi par un
+    utilisateur (ex. nom d'une assurance) contenant un caractère XML spécial
+    peut casser la génération du PDF."""
+    texte = _texte(valeur)
+    return texte.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
 _TYPES_EXCEL_NATIFS = (str, int, float, bool, date, datetime)
 
 
@@ -147,8 +158,8 @@ def exporter_pdf(*, titre: str, colonnes: list[str], lignes: list[list],
                                       textColor=colors.grey)
 
     elements = [
-        Paragraph(_texte(titre), style_titre),
-        Paragraph(_texte(sous_titre or
+        Paragraph(_texte_paragraphe(titre), style_titre),
+        Paragraph(_texte_paragraphe(sous_titre or
                          f"Généré le {timezone.localtime():%d/%m/%Y %H:%M} — Kènèya Sô"),
                  style_sous_titre),
         Spacer(1, 0.5 * cm),
@@ -175,7 +186,7 @@ def exporter_pdf(*, titre: str, colonnes: list[str], lignes: list[list],
     elements.append(table)
     if len(lignes) == 0:
         elements.append(Spacer(1, 0.5 * cm))
-        elements.append(Paragraph(_texte("Aucune donnée pour cette sélection."),
+        elements.append(Paragraph(_texte_paragraphe("Aucune donnée pour cette sélection."),
                                   styles["Normal"]))
 
     doc.build(elements)
@@ -213,17 +224,17 @@ def exporter_pdf_multi(*, titre: str, sections: list[tuple[str, list[str], list[
                                    spaceBefore=10, spaceAfter=4)
 
     elements = [
-        Paragraph(_texte(titre), style_titre),
-        Paragraph(_texte(sous_titre or
+        Paragraph(_texte_paragraphe(titre), style_titre),
+        Paragraph(_texte_paragraphe(sous_titre or
                          f"Généré le {timezone.localtime():%d/%m/%Y %H:%M} — Kènèya Sô"),
                  style_sous_titre),
     ]
     largeur_dispo = taille_page[0] - 3 * cm
 
     for titre_section, colonnes, lignes in sections:
-        elements.append(Paragraph(_texte(titre_section), style_section))
+        elements.append(Paragraph(_texte_paragraphe(titre_section), style_section))
         if not lignes:
-            elements.append(Paragraph(_texte("Aucune donnée."), styles["Normal"]))
+            elements.append(Paragraph(_texte_paragraphe("Aucune donnée."), styles["Normal"]))
             continue
         donnees = [[_texte(c) for c in colonnes]] + [[_texte(v) for v in l] for l in lignes]
         largeur_colonne = largeur_dispo / max(len(colonnes), 1)

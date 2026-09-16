@@ -9,11 +9,18 @@ django-environ, pour séparer le code des secrets et faciliter le déploiement
 (CDC 7.5 — maintenabilité).
 """
 
+import sys
 from pathlib import Path
 
 import environ
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# `manage.py test` utilise Client.login(), qui n'émule pas une vraie requête
+# HTTP — incompatible avec AxesBackend (qui exige une requête réelle). Pattern
+# documenté par django-axes : désactiver axes pendant les tests uniquement.
+TESTING = "test" in sys.argv
 
 # --------------------------------------------------------------------------- #
 # Environnement
@@ -25,13 +32,24 @@ env = environ.Env(
     DJANGO_SESSION_COOKIE_SECURE=(bool, False),
     DJANGO_CSRF_COOKIE_SECURE=(bool, False),
     DJANGO_CORS_ALLOWED_ORIGINS=(list, []),
+    DJANGO_PROXIES_DE_CONFIANCE=(int, 0),
 )
 
 environ.Env.read_env(BASE_DIR / ".env")
 
-SECRET_KEY = env("DJANGO_SECRET_KEY", default="dev-insecure-key-change-me")
 DEBUG = env("DJANGO_DEBUG")
 ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS")
+
+# Pas de valeur par défaut : hors DEBUG, une SECRET_KEY absente doit stopper le
+# démarrage plutôt que de faire tourner l'application avec une clé connue de
+# tous (elle serait alors visible dans ce fichier même après correction ici,
+# puisqu'il est versionné) — signature de session/CSRF/tokens compromise sinon.
+SECRET_KEY = env("DJANGO_SECRET_KEY", default="dev-insecure-key-change-me" if DEBUG else None)
+if not SECRET_KEY:
+    raise ImproperlyConfigured(
+        "DJANGO_SECRET_KEY doit être définie (hors DEBUG). "
+        "Générez-en une avec : python -c \"from django.core.management.utils "
+        "import get_random_secret_key; print(get_random_secret_key())\"")
 
 # --------------------------------------------------------------------------- #
 # Applications
@@ -49,6 +67,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "corsheaders",
     "drf_spectacular",
+    "axes",  # verrouillage de compte après échecs de connexion répétés (CDC 7.1)
 ]
 
 # Une application Django par module métier (CDC 7.5 — architecture modulaire).
@@ -82,6 +101,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "axes.middleware.AxesMiddleware",  # doit rester après AuthenticationMiddleware
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -118,6 +138,20 @@ DATABASES = {
 # Authentification et modèle utilisateur (CDC 4.10, 7.1 — RBAC)
 # --------------------------------------------------------------------------- #
 AUTH_USER_MODEL = "accounts.Utilisateur"
+
+# AxesStandaloneBackend doit passer en premier : il bloque la tentative avant
+# même que ModelBackend ne vérifie le mot de passe, une fois le seuil atteint.
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesStandaloneBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+# Verrouillage après échecs répétés (CDC 7.1 — protection contre le brute-force).
+AXES_ENABLED = not TESTING
+AXES_FAILURE_LIMIT = 5
+AXES_COOLOFF_TIME = 1  # heure
+AXES_LOCKOUT_PARAMETERS = ["username", "ip_address"]
+AXES_RESET_ON_SUCCESS = True
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -228,11 +262,34 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 X_FRAME_OPTIONS = "DENY"
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
+# HSTS : n'a de sens qu'une fois HTTPS forcé (SECURE_SSL_REDIRECT=True en
+# production) — sinon un navigateur qui n'a jamais vu le site en HTTPS ignore
+# l'en-tête. Protège contre l'interception de la 1ère requête (SSL-stripping),
+# un risque réel sur un réseau Wi-Fi hospitalier partagé.
+SECURE_HSTS_SECONDS = 31536000 if SECURE_SSL_REDIRECT else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_SSL_REDIRECT
+SECURE_HSTS_PRELOAD = SECURE_SSL_REDIRECT
+
+# Session : durée réduite (au lieu des 2 semaines par défaut de Django) — des
+# postes d'accueil/soins sont souvent partagés entre plusieurs utilisateurs.
+SESSION_COOKIE_AGE = 8 * 60 * 60  # 8h (une garde/journée de travail)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True  # la fermeture de session glisse avec l'activité
+
 CSRF_TRUSTED_ORIGINS = [
     f"https://{h}" for h in ALLOWED_HOSTS if h not in ("localhost", "127.0.0.1")
 ]
 
 CORS_ALLOWED_ORIGINS = env("DJANGO_CORS_ALLOWED_ORIGINS")
+
+# Nombre de reverse-proxies de confiance devant l'application (0 en développement
+# = X-Forwarded-For jamais pris en compte, voir apps/accounts/signals.py::_ip).
+IP_PROXIES_DE_CONFIANCE = env.int("DJANGO_PROXIES_DE_CONFIANCE")
+
+# Plafond global de toute requête (formulaires + fichiers confondus) — filet de
+# sécurité anti-épuisement disque en plus des validations par champ (CDC 7.1).
+DATA_UPLOAD_MAX_MEMORY_SIZE = 15 * 1024 * 1024  # 15 Mo
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024   # bascule mémoire -> disque au-delà
 
 # --------------------------------------------------------------------------- #
 # Journalisation (CDC 7.1 — audit trail applicatif complété par apps.core)
