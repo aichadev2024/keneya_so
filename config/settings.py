@@ -276,8 +276,12 @@ SESSION_COOKIE_AGE = 8 * 60 * 60  # 8h (une garde/journée de travail)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True  # la fermeture de session glisse avec l'activité
 
+# Django accepte ".exemple.com" dans ALLOWED_HOSTS (tout sous-domaine) mais
+# exige "https://*.exemple.com" dans CSRF_TRUSTED_ORIGINS pour le même usage
+# — conversion nécessaire, sinon un hôte joker casse silencieusement le CSRF.
 CSRF_TRUSTED_ORIGINS = [
-    f"https://{h}" for h in ALLOWED_HOSTS if h not in ("localhost", "127.0.0.1")
+    f"https://*{h}" if h.startswith(".") else f"https://{h}"
+    for h in ALLOWED_HOSTS if h not in ("localhost", "127.0.0.1")
 ]
 
 CORS_ALLOWED_ORIGINS = env("DJANGO_CORS_ALLOWED_ORIGINS")
