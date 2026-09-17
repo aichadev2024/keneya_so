@@ -391,3 +391,26 @@ dl.row dt:first-child { margin-top: 0; }
    (.text-end = bord de fin de ligne = gauche en arabe, pas toujours la droite). */
 [dir="rtl"] .text-end { text-align: end !important; }
 [dir="rtl"] .text-start { text-align: start !important; }
+
+/* Bascule afficher/masquer un mot de passe (comportement : static/js/app.js,
+   appliqué automatiquement à tout input[type=password] de la page). */
+.password-field { position: relative; }
+.password-field input { padding-inline-end: 2.75rem; }
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: .35rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+  color: var(--ks-text-muted);
+  border-radius: 999px;
+  line-height: 1;
+}
+.password-toggle:hover { background: var(--ks-border); color: var(--ks-text); }
+.password-toggle:focus-visible { outline: 2px solid var(--ks-accent); outline-offset: 1px; }
