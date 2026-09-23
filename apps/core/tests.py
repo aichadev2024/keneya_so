@@ -214,3 +214,18 @@ class NavigationTests(TestCase):
         item = next(i for i in reponse.context["navigation_principale"]
                    if i["url_name"] == "patients:liste")
         self.assertTrue(item["actif"])
+
+
+class AccueilTests(TestCase):
+    """Page racine : vitrine publique si anonyme, tableau de bord si connecté."""
+
+    def test_visiteur_anonyme_voit_la_vitrine(self):
+        reponse = self.client.get(reverse("core:accueil"))
+        self.assertEqual(reponse.status_code, 200)
+        self.assertTemplateUsed(reponse, "core/vitrine.html")
+
+    def test_utilisateur_connecte_est_redirige_vers_le_tableau_de_bord(self):
+        Utilisateur.objects.create_user("visiteur", password="x")
+        self.client.login(username="visiteur", password="x")
+        reponse = self.client.get(reverse("core:accueil"))
+        self.assertRedirects(reponse, reverse("core:dashboard"))

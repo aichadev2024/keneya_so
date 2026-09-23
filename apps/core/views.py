@@ -30,10 +30,10 @@ def dashboard(request):
 
 
 def accueil(request):
-    """Redirige vers le tableau de bord si connecté, sinon vers la connexion."""
+    """Tableau de bord si connecté ; page vitrine publique sinon (CDC 2.2)."""
     if request.user.is_authenticated:
         return redirect("core:dashboard")
-    return redirect("accounts:login")
+    return render(request, "core/vitrine.html")
 
 
 @login_required

@@ -4,12 +4,8 @@
 
 {% block content %}
 <div class="auth-card">
-  <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect width="64" height="64" rx="14" fill="#16294f"/>
-    <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
-  </svg>
-  <h1 class="h4 text-center mb-1">Kènèya Sô</h1>
-  <p class="text-center text-body-secondary small mb-4">{% translate "Gestion hospitalière" %}</p>
+  <h1 class="mb-1">{% translate "Connexion" %}</h1>
+  <p class="text-body-secondary mb-4">{% translate "Accédez à votre espace de travail." %}</p>
 
   {% if form.non_field_errors %}
     <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>

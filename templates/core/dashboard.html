@@ -3,18 +3,19 @@
 {% block title %}{% translate "Tableau de bord" %} — Kènèya Sô{% endblock %}
 
 {% block content %}
-<div class="mb-4">
-  <h1 class="h3 mb-1">{% blocktranslate with prenom=user.first_name|default:user.username %}Bonjour, {{ prenom }}{% endblocktranslate %}</h1>
-  <p class="text-body-secondary mb-0">
-    {% translate "Voici vos modules disponibles." %}
-    {% if role_affiche %}<span class="badge text-bg-light border ms-1">{{ role_affiche }}</span>{% endif %}
-  </p>
+<div class="dash-hero mb-4">
+  <div>
+    <p class="dash-hero-eyebrow">{% now "l j F Y" %}</p>
+    <h1 class="dash-hero-title">{% blocktranslate with prenom=user.first_name|default:user.username %}Bonjour, {{ prenom }}{% endblocktranslate %}</h1>
+    <p class="dash-hero-sub">{% translate "Voici vos modules disponibles." %}</p>
+  </div>
+  {% if role_affiche %}<span class="dash-hero-role">{{ role_affiche }}</span>{% endif %}
 </div>
 
 <div class="row g-3">
   {% for item in raccourcis %}
     <div class="col-sm-6 col-xl-4">
-      <a class="card module-card" href="{% url item.url_name %}">
+      <a class="card module-card module-card-{{ item.couleur }}" href="{% url item.url_name %}">
         <span class="icon-chip icon-chip-{{ item.couleur }}"><i class="bi {{ item.icone }}"></i></span>
         <span>
           <span class="module-title d-block">{{ item.libelle }}</span>

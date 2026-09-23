@@ -17,21 +17,25 @@ msgstr ""
 msgid "nom complet"
 msgstr ""
 
-#: apps/accounts/forms.py:15 templates/registration/login.html:21
+#: apps/accounts/forms.py:18 templates/registration/login.html:17
 msgid "Identifiant"
 msgstr ""
 
-#: apps/accounts/forms.py:18 apps/core/tests.py:28
-#: templates/registration/login.html:25
+#: apps/accounts/forms.py:21 apps/core/tests.py:28
+#: templates/registration/login.html:21
 msgid "Mot de passe"
 msgstr ""
 
-#: apps/accounts/forms.py:22
+#: apps/accounts/forms.py:25
 msgid "Identifiant ou mot de passe incorrect."
 msgstr ""
 
-#: apps/accounts/forms.py:23
+#: apps/accounts/forms.py:26
 msgid "Ce compte est désactivé. Contactez l'administrateur."
+msgstr ""
+
+#: apps/accounts/forms.py:41 apps/accounts/forms.py:42
+msgid "Jeton d'installation"
 msgstr ""
 
 #: apps/accounts/models.py:21
@@ -122,6 +126,18 @@ msgstr ""
 
 #: apps/accounts/models.py:60
 msgid "utilisateurs"
+msgstr ""
+
+#: apps/accounts/views.py:59
+msgid "Jeton d'installation incorrect."
+msgstr ""
+
+#: apps/accounts/views.py:64
+msgid "Un compte administrateur existe déjà."
+msgstr ""
+
+#: apps/accounts/views.py:79
+msgid "Compte administrateur créé. Vous pouvez vous connecter."
 msgstr ""
 
 #: apps/assurances/admin.py:42
@@ -348,7 +364,7 @@ msgstr ""
 #: apps/assurances/views.py:65 apps/bloc_operatoire/views.py:93
 #: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:31
 #: apps/facturation/views.py:44 apps/facturation/views.py:106
-#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:44
+#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:48
 #: templates/assurances/bordereaux.html:37
 #: templates/bloc_operatoire/liste.html:30
 #: templates/consultations/liste.html:29 templates/facturation/impayes.html:13
@@ -376,7 +392,7 @@ msgstr ""
 
 #: apps/assurances/views.py:66 apps/bloc_operatoire/views.py:94
 #: apps/consultations/views.py:32 apps/facturation/views.py:45
-#: apps/hospitalisation/views.py:57 apps/laboratoire/views.py:45
+#: apps/hospitalisation/views.py:57 apps/laboratoire/views.py:49
 #: templates/assurances/bordereaux.html:39
 #: templates/bloc_operatoire/liste.html:33
 #: templates/consultations/liste.html:31 templates/facturation/liste.html:38
@@ -397,7 +413,7 @@ msgstr ""
 #: apps/assurances/views.py:96 apps/bloc_operatoire/views.py:93
 #: apps/consultations/views.py:31 apps/facturation/models.py:236
 #: apps/facturation/views.py:44 apps/facturation/views.py:106
-#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:44
+#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:48
 #: templates/assurances/bordereau_detail.html:23
 #: templates/bloc_operatoire/liste.html:30
 #: templates/consultations/liste.html:30 templates/facturation/impayes.html:13
@@ -424,8 +440,8 @@ msgstr ""
 #: apps/facturation/views.py:194 apps/facturation/views.py:212
 #: apps/facturation/views.py:223 apps/facturation/views.py:247
 #: apps/hospitalisation/views.py:153 apps/hospitalisation/views.py:171
-#: apps/hospitalisation/views.py:195 apps/laboratoire/views.py:166
-#: apps/laboratoire/views.py:197 apps/laboratoire/views.py:212
+#: apps/hospitalisation/views.py:195 apps/laboratoire/views.py:170
+#: apps/laboratoire/views.py:201 apps/laboratoire/views.py:239
 #: apps/pharmacie/views.py:174 apps/pharmacie/views.py:240
 msgid "Action non autorisée."
 msgstr ""
@@ -1045,7 +1061,7 @@ msgid "Étape enregistrée."
 msgstr ""
 
 #: apps/bloc_operatoire/views.py:377 apps/facturation/views.py:177
-#: apps/laboratoire/views.py:215
+#: apps/laboratoire/views.py:242
 msgid "Le motif est obligatoire."
 msgstr ""
 
@@ -1240,6 +1256,7 @@ msgstr ""
 #: apps/consultations/views.py:27 apps/core/views.py:76 apps/core/views.py:130
 #: templates/consultations/detail.html:7 templates/consultations/liste.html:3
 #: templates/consultations/liste.html:7 templates/core/statistiques.html:23
+#: templates/core/vitrine.html:82
 msgid "Consultations"
 msgstr ""
 
@@ -1358,6 +1375,7 @@ msgid "Suppression"
 msgstr ""
 
 #: apps/core/models.py:89 templates/registration/login.html:3
+#: templates/registration/login.html:7
 msgid "Connexion"
 msgstr ""
 
@@ -1533,16 +1551,19 @@ msgid "Statistiques générales"
 msgstr ""
 
 #: apps/core/views.py:127 apps/patients/views.py:45
+#: templates/core/vitrine.html:60 templates/core/vitrine.html:77
 #: templates/patients/detail.html:8 templates/patients/liste.html:3
 #: templates/patients/liste.html:7
 msgid "Patients"
 msgstr ""
 
 #: apps/core/views.py:134 apps/facturation/models.py:40
+#: templates/core/vitrine.html:92
 msgid "Hospitalisation"
 msgstr ""
 
 #: apps/core/views.py:138 templates/bloc_operatoire/detail.html:7
+#: templates/core/vitrine.html:62 templates/core/vitrine.html:97
 msgid "Bloc opératoire"
 msgstr ""
 
@@ -1551,7 +1572,8 @@ msgstr ""
 msgid "Analyses & imagerie"
 msgstr ""
 
-#: apps/core/views.py:146
+#: apps/core/views.py:146 templates/core/vitrine.html:63
+#: templates/core/vitrine.html:107
 msgid "Facturation"
 msgstr ""
 
@@ -1596,14 +1618,14 @@ msgid "réf. transaction"
 msgstr ""
 
 #: apps/facturation/forms.py:25 apps/facturation/models.py:254
-#: apps/facturation/models.py:288 apps/laboratoire/forms.py:45
-#: apps/laboratoire/forms.py:56 apps/laboratoire/models.py:177
+#: apps/facturation/models.py:288 apps/laboratoire/forms.py:75
+#: apps/laboratoire/forms.py:86 apps/laboratoire/models.py:177
 #: apps/pharmacie/models.py:233 templates/laboratoire/detail.html:87
 msgid "commentaire"
 msgstr ""
 
 #: apps/facturation/forms.py:52 apps/facturation/models.py:108
-#: apps/laboratoire/forms.py:61 apps/laboratoire/models.py:91
+#: apps/laboratoire/forms.py:97 apps/laboratoire/models.py:91
 msgid "motif d'annulation"
 msgstr ""
 
@@ -1643,7 +1665,7 @@ msgstr ""
 msgid "libellé"
 msgstr ""
 
-#: apps/facturation/models.py:50 apps/laboratoire/forms.py:11
+#: apps/facturation/models.py:50 apps/laboratoire/forms.py:41
 #: apps/laboratoire/models.py:35 apps/laboratoire/models.py:71
 msgid "catégorie"
 msgstr ""
@@ -2126,54 +2148,66 @@ msgstr ""
 msgid "Sortie enregistrée."
 msgstr ""
 
-#: apps/laboratoire/forms.py:14 apps/laboratoire/models.py:83
+#: apps/laboratoire/forms.py:28
+msgid "Format de fichier non autorisé (formats acceptés : PDF, JPG, PNG)."
+msgstr ""
+
+#: apps/laboratoire/forms.py:31
+msgid "Le fichier dépasse la taille maximale autorisée (10 Mo)."
+msgstr ""
+
+#: apps/laboratoire/forms.py:36
+msgid "Le contenu du fichier ne correspond pas à son extension."
+msgstr ""
+
+#: apps/laboratoire/forms.py:44 apps/laboratoire/models.py:83
 msgid "priorité"
 msgstr ""
 
-#: apps/laboratoire/forms.py:15 apps/laboratoire/models.py:57
+#: apps/laboratoire/forms.py:45 apps/laboratoire/models.py:57
 msgid "Routine"
 msgstr ""
 
-#: apps/laboratoire/forms.py:15 apps/laboratoire/models.py:58
+#: apps/laboratoire/forms.py:45 apps/laboratoire/models.py:58
 #: templates/laboratoire/detail.html:16
 msgid "Urgent"
 msgstr ""
 
-#: apps/laboratoire/forms.py:18 apps/laboratoire/models.py:85
+#: apps/laboratoire/forms.py:48 apps/laboratoire/models.py:85
 msgid "renseignements cliniques"
 msgstr ""
 
-#: apps/laboratoire/forms.py:21
+#: apps/laboratoire/forms.py:51
 msgid "examens demandés"
 msgstr ""
 
-#: apps/laboratoire/forms.py:33
+#: apps/laboratoire/forms.py:63
 msgid "Ces examens ne correspondent pas à la catégorie : %(l)s"
 msgstr ""
 
-#: apps/laboratoire/forms.py:39 apps/laboratoire/models.py:168
+#: apps/laboratoire/forms.py:69 apps/laboratoire/models.py:168
 msgid "valeur mesurée"
 msgstr ""
 
-#: apps/laboratoire/forms.py:42 apps/laboratoire/models.py:169
+#: apps/laboratoire/forms.py:72 apps/laboratoire/models.py:169
 msgid "interprétation"
 msgstr ""
 
-#: apps/laboratoire/forms.py:43
+#: apps/laboratoire/forms.py:73
 msgid "— automatique —"
 msgstr ""
 
-#: apps/laboratoire/forms.py:50 apps/laboratoire/models.py:172
+#: apps/laboratoire/forms.py:80 apps/laboratoire/models.py:172
 #: templates/laboratoire/detail.html:92
 msgid "compte-rendu"
 msgstr ""
 
-#: apps/laboratoire/forms.py:52 apps/laboratoire/models.py:173
+#: apps/laboratoire/forms.py:82 apps/laboratoire/models.py:173
 #: templates/laboratoire/detail.html:94
 msgid "conclusion"
 msgstr ""
 
-#: apps/laboratoire/forms.py:54 apps/laboratoire/models.py:174
+#: apps/laboratoire/forms.py:84 apps/laboratoire/models.py:174
 msgid "pièce jointe (image / PDF)"
 msgstr ""
 
@@ -2289,40 +2323,40 @@ msgstr ""
 msgid "CR imagerie"
 msgstr ""
 
-#: apps/laboratoire/views.py:40 templates/laboratoire/liste.html:7
+#: apps/laboratoire/views.py:44 templates/laboratoire/liste.html:7
 msgid "Demandes d'examen"
 msgstr ""
 
-#: apps/laboratoire/views.py:44 templates/facturation/tarifs.html:11
+#: apps/laboratoire/views.py:48 templates/facturation/tarifs.html:11
 #: templates/laboratoire/liste.html:38
 msgid "Catégorie"
 msgstr ""
 
-#: apps/laboratoire/views.py:45 templates/laboratoire/liste.html:38
+#: apps/laboratoire/views.py:49 templates/laboratoire/liste.html:38
 msgid "Priorité"
 msgstr ""
 
-#: apps/laboratoire/views.py:45 templates/laboratoire/liste.html:39
+#: apps/laboratoire/views.py:49 templates/laboratoire/liste.html:39
 msgid "Demandée le"
 msgstr ""
 
-#: apps/laboratoire/views.py:117
+#: apps/laboratoire/views.py:121
 msgid "Demande d'examen enregistrée."
 msgstr ""
 
-#: apps/laboratoire/views.py:172
+#: apps/laboratoire/views.py:176
 msgid "Formulaire de résultat invalide."
 msgstr ""
 
-#: apps/laboratoire/views.py:189
+#: apps/laboratoire/views.py:193
 msgid "Résultat enregistré."
 msgstr ""
 
-#: apps/laboratoire/views.py:204
+#: apps/laboratoire/views.py:208
 msgid "Résultats validés. Le prescripteur a été notifié."
 msgstr ""
 
-#: apps/laboratoire/views.py:221
+#: apps/laboratoire/views.py:248
 msgid "Demande annulée."
 msgstr ""
 
@@ -2342,7 +2376,7 @@ msgstr ""
 msgid "Informations complémentaires"
 msgstr ""
 
-#: apps/patients/admin.py:51
+#: apps/patients/admin.py:51 templates/core/vitrine.html:141
 msgid "Traçabilité"
 msgstr ""
 
@@ -2899,27 +2933,27 @@ msgstr ""
 msgid "Aucun lot périmé à retirer."
 msgstr ""
 
-#: config/settings.py:145 apps/accounts/models.py:37
+#: config/settings.py:180 apps/accounts/models.py:37
 msgid "Français"
 msgstr ""
 
-#: config/settings.py:146 apps/accounts/models.py:38
+#: config/settings.py:181 apps/accounts/models.py:38
 msgid "Anglais"
 msgstr ""
 
-#: config/settings.py:147 apps/accounts/models.py:39
+#: config/settings.py:182 apps/accounts/models.py:39
 msgid "Arabe"
 msgstr ""
 
-#: config/settings.py:148 apps/accounts/models.py:40
+#: config/settings.py:183 apps/accounts/models.py:40
 msgid "Bambara"
 msgstr ""
 
-#: config/settings.py:149 apps/accounts/models.py:41
+#: config/settings.py:184 apps/accounts/models.py:41
 msgid "Peulh (fulfulde)"
 msgstr ""
 
-#: config/settings.py:150 apps/accounts/models.py:42
+#: config/settings.py:185 apps/accounts/models.py:42
 msgid "Soninké"
 msgstr ""
 
@@ -2956,7 +2990,7 @@ msgstr ""
 msgid "Aucun bordereau."
 msgstr ""
 
-#: templates/assurances/liste.html:3
+#: templates/assurances/liste.html:3 templates/core/vitrine.html:112
 msgid "Assurances"
 msgstr ""
 
@@ -3015,7 +3049,7 @@ msgid "Annuler"
 msgstr ""
 
 #: templates/base.html:26 templates/base.html:94
-#: templates/registration/login.html:12
+#: templates/core/vitrine.html:47 templates/core/vitrine.html:159
 msgid "Gestion hospitalière"
 msgstr ""
 
@@ -3032,8 +3066,30 @@ msgstr ""
 msgid "Notifications"
 msgstr ""
 
-#: templates/base.html:61
+#: templates/base.html:61 templates/core/vitrine.html:32
 msgid "Changer de langue"
+msgstr ""
+
+#: templates/base_auth.html:36
+msgid ""
+"Plateforme de gestion hospitalière intelligente, pensée pour le contexte "
+"malien."
+msgstr ""
+
+#: templates/base_auth.html:39
+msgid "Dossiers patients centralisés"
+msgstr ""
+
+#: templates/base_auth.html:40
+msgid "Pharmacie et stock en temps réel"
+msgstr ""
+
+#: templates/base_auth.html:41
+msgid "Hospitalisation et bloc opératoire"
+msgstr ""
+
+#: templates/base_auth.html:42
+msgid "Accès contrôlé par rôle métier"
 msgstr ""
 
 #: templates/bloc_operatoire/demande.html:3
@@ -3443,19 +3499,19 @@ msgstr ""
 msgid "Export Excel"
 msgstr ""
 
-#: templates/core/dashboard.html:7
+#: templates/core/dashboard.html:9
 msgid "Bonjour, %(prenom)s"
 msgstr ""
 
-#: templates/core/dashboard.html:9
+#: templates/core/dashboard.html:10
 msgid "Voici vos modules disponibles."
 msgstr ""
 
-#: templates/core/dashboard.html:21
+#: templates/core/dashboard.html:22
 msgid "Ouvrir le module"
 msgstr ""
 
-#: templates/core/dashboard.html:29
+#: templates/core/dashboard.html:30
 msgid ""
 "Aucun module n'est encore accessible avec votre rôle. Contactez "
 "l'administrateur."
@@ -3479,6 +3535,148 @@ msgstr ""
 
 #: templates/core/statistiques.html:66
 msgid "Voir aussi les indicateurs détaillés du bloc opératoire."
+msgstr ""
+
+#: templates/core/vitrine.html:7
+msgid "Plateforme de gestion hospitalière"
+msgstr ""
+
+#: templates/core/vitrine.html:8
+msgid ""
+"Kènèya Sô centralise patients, pharmacie, hospitalisation, bloc opératoire, "
+"laboratoire, facturation et assurances dans une seule plateforme."
+msgstr ""
+
+#: templates/core/vitrine.html:40 templates/core/vitrine.html:53
+#: templates/core/vitrine.html:151 templates/registration/login.html:25
+msgid "Se connecter"
+msgstr ""
+
+#: templates/core/vitrine.html:48
+msgid "Toute la vie de l'hôpital, dans un seul outil."
+msgstr ""
+
+#: templates/core/vitrine.html:50
+msgid ""
+"Kènèya Sô centralise les patients, les consultations, la pharmacie, "
+"l'hospitalisation, le bloc opératoire, le laboratoire et la facturation — "
+"avec un accès contrôlé selon le rôle de chaque membre du personnel."
+msgstr ""
+
+#: templates/core/vitrine.html:54
+msgid "Découvrir les fonctionnalités"
+msgstr ""
+
+#: templates/core/vitrine.html:60
+msgid "Dossiers médicaux"
+msgstr ""
+
+#: templates/core/vitrine.html:61 templates/core/vitrine.html:87
+msgid "Pharmacie"
+msgstr ""
+
+#: templates/core/vitrine.html:61
+msgid "Stock en temps réel"
+msgstr ""
+
+#: templates/core/vitrine.html:62
+msgid "Planification"
+msgstr ""
+
+#: templates/core/vitrine.html:63
+msgid "Automatique"
+msgstr ""
+
+#: templates/core/vitrine.html:71
+msgid "Un module par métier de l'hôpital"
+msgstr ""
+
+#: templates/core/vitrine.html:72
+msgid ""
+"Chaque service retrouve ses outils, sans se marcher dessus — les accès sont "
+"définis par rôle."
+msgstr ""
+
+#: templates/core/vitrine.html:78
+msgid ""
+"Dossiers médicaux, allergies et antécédents centralisés pour chaque patient."
+msgstr ""
+
+#: templates/core/vitrine.html:83
+msgid ""
+"Constantes, diagnostic et ordonnances avec alertes d'allergie et "
+"d'interaction."
+msgstr ""
+
+#: templates/core/vitrine.html:88
+msgid "Stock par lots (FEFO), dispensation et alertes de péremption."
+msgstr ""
+
+#: templates/core/vitrine.html:93
+msgid "Occupation des lits en temps réel, admission, suivi quotidien, sortie."
+msgstr ""
+
+#: templates/core/vitrine.html:98
+msgid ""
+"Planification sans conflit, checklist sécurité, comptes-rendus opératoires."
+msgstr ""
+
+#: templates/core/vitrine.html:102
+msgid "Laboratoire & imagerie"
+msgstr ""
+
+#: templates/core/vitrine.html:103
+msgid ""
+"Demandes d'examen, résultats et notification automatique du prescripteur."
+msgstr ""
+
+#: templates/core/vitrine.html:108
+msgid "Factures générées automatiquement à la clôture de chaque acte."
+msgstr ""
+
+#: templates/core/vitrine.html:113
+msgid "Contrats, taux de couverture et bordereaux par organisme."
+msgstr ""
+
+#: templates/core/vitrine.html:121
+msgid "Conçu pour un usage hospitalier sérieux"
+msgstr ""
+
+#: templates/core/vitrine.html:126
+msgid "Accès par rôle"
+msgstr ""
+
+#: templates/core/vitrine.html:127
+msgid "Chaque utilisateur ne voit que ce qui concerne son métier."
+msgstr ""
+
+#: templates/core/vitrine.html:131
+msgid "Multilingue"
+msgstr ""
+
+#: templates/core/vitrine.html:132
+msgid "Français, anglais, arabe et langues nationales."
+msgstr ""
+
+#: templates/core/vitrine.html:136
+msgid "Exports PDF/Excel"
+msgstr ""
+
+#: templates/core/vitrine.html:137
+msgid "Sur tous les modules, pour le suivi et le reporting."
+msgstr ""
+
+#: templates/core/vitrine.html:142
+msgid "Journal d'audit sur les actions sensibles."
+msgstr ""
+
+#: templates/core/vitrine.html:149
+msgid "Prête à organiser votre hôpital ?"
+msgstr ""
+
+#: templates/core/vitrine.html:150
+msgid ""
+"Connectez-vous avec votre compte pour accéder à votre espace de travail."
 msgstr ""
 
 #: templates/facturation/detail.html:16
@@ -4100,8 +4298,8 @@ msgstr ""
 msgid "Tous les types"
 msgstr ""
 
-#: templates/registration/login.html:29
-msgid "Se connecter"
+#: templates/registration/login.html:8
+msgid "Accédez à votre espace de travail."
 msgstr ""
 
 #: templates/registration/password_change.html:3
@@ -4122,4 +4320,17 @@ msgstr ""
 
 #: templates/registration/password_change_done.html:7
 msgid "Retour au tableau de bord"
+msgstr ""
+
+#: templates/registration/premiere_configuration.html:3
+#: templates/registration/premiere_configuration.html:7
+msgid "Configuration initiale"
+msgstr ""
+
+#: templates/registration/premiere_configuration.html:9
+msgid "Création du premier compte administrateur"
+msgstr ""
+
+#: templates/registration/premiere_configuration.html:27
+msgid "Créer le compte administrateur"
 msgstr ""

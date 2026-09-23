@@ -24,7 +24,29 @@
       {% endfor %}
     </div>
   {% endif %}
-  {% block content %}{% endblock %}
+  <div class="auth-grid">
+    <aside class="auth-showcase">
+      <div class="auth-showcase-inner">
+        <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#0d9488"/>
+          <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#ffffff"/>
+        </svg>
+        <h1 class="auth-showcase-title">Kènèya Sô</h1>
+        <p class="auth-showcase-tag">
+          {% translate "Plateforme de gestion hospitalière intelligente, pensée pour le contexte malien." %}
+        </p>
+        <ul class="auth-showcase-features">
+          <li><i class="bi bi-people"></i> {% translate "Dossiers patients centralisés" %}</li>
+          <li><i class="bi bi-capsule"></i> {% translate "Pharmacie et stock en temps réel" %}</li>
+          <li><i class="bi bi-hospital"></i> {% translate "Hospitalisation et bloc opératoire" %}</li>
+          <li><i class="bi bi-shield-check"></i> {% translate "Accès contrôlé par rôle métier" %}</li>
+        </ul>
+      </div>
+    </aside>
+    <section class="auth-panel">
+      {% block content %}{% endblock %}
+    </section>
+  </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'js/app.js' %}"></script>

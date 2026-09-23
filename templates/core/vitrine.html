@@ -1,0 +1,163 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kènèya Sô — {% translate "Plateforme de gestion hospitalière" %}</title>
+  <meta name="description" content="{% translate 'Kènèya Sô centralise patients, pharmacie, hospitalisation, bloc opératoire, laboratoire, facturation et assurances dans une seule plateforme.' %}">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316294f'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z' fill='%230d9488'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="{% static 'css/app.css' %}" rel="stylesheet">
+  <link href="{% static 'css/landing.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="lp-nav">
+  <a class="lp-nav-brand" href="{% url 'core:accueil' %}">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#16294f"/>
+      <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
+    </svg>
+    Kènèya Sô
+  </a>
+  <div class="d-flex align-items-center gap-2">
+    <form action="{% url 'set_language' %}" method="post" class="d-flex m-0">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <select name="language" class="form-select form-select-sm" onchange="this.form.submit()"
+              aria-label="{% translate 'Changer de langue' %}" style="width:auto">
+        {% get_current_language as CUR %}
+        {% get_available_languages as LANGS %}
+        {% for code, name in LANGS %}
+          <option value="{{ code }}"{% if code == CUR %} selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </form>
+    <a class="btn btn-primary" href="{% url 'accounts:login' %}">{% translate "Se connecter" %}</a>
+  </div>
+</nav>
+
+<header class="lp-hero">
+  <div class="lp-hero-inner">
+    <div>
+      <span class="lp-eyebrow"><i class="bi bi-hospital"></i> {% translate "Gestion hospitalière" %}</span>
+      <h1>{% translate "Toute la vie de l'hôpital, dans un seul outil." %}</h1>
+      <p class="lead">
+        {% translate "Kènèya Sô centralise les patients, les consultations, la pharmacie, l'hospitalisation, le bloc opératoire, le laboratoire et la facturation — avec un accès contrôlé selon le rôle de chaque membre du personnel." %}
+      </p>
+      <div class="lp-hero-cta">
+        <a class="btn btn-light btn-lg" href="{% url 'accounts:login' %}">{% translate "Se connecter" %}</a>
+        <a class="btn btn-outline-light btn-lg" href="#fonctionnalites">{% translate "Découvrir les fonctionnalités" %}</a>
+      </div>
+    </div>
+    <div class="lp-preview" aria-hidden="true">
+      <div class="lp-preview-bar"><span></span><span></span><span></span></div>
+      <div class="lp-preview-grid">
+        <div class="lp-preview-card"><i class="bi bi-people-fill" style="color:var(--ks-a-bleu-fg)"></i><b>{% translate "Patients" %}</b><small>{% translate "Dossiers médicaux" %}</small></div>
+        <div class="lp-preview-card"><i class="bi bi-capsule" style="color:var(--ks-a-vert-fg)"></i><b>{% translate "Pharmacie" %}</b><small>{% translate "Stock en temps réel" %}</small></div>
+        <div class="lp-preview-card"><i class="bi bi-activity" style="color:var(--ks-a-rose-fg)"></i><b>{% translate "Bloc opératoire" %}</b><small>{% translate "Planification" %}</small></div>
+        <div class="lp-preview-card"><i class="bi bi-receipt-cutoff" style="color:var(--ks-a-ambre-fg)"></i><b>{% translate "Facturation" %}</b><small>{% translate "Automatique" %}</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="lp-section" id="fonctionnalites">
+  <div class="lp-section-head">
+    <h2>{% translate "Un module par métier de l'hôpital" %}</h2>
+    <p>{% translate "Chaque service retrouve ses outils, sans se marcher dessus — les accès sont définis par rôle." %}</p>
+  </div>
+  <div class="lp-feature-grid">
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-bleu"><i class="bi bi-people-fill"></i></span>
+      <h3>{% translate "Patients" %}</h3>
+      <p>{% translate "Dossiers médicaux, allergies et antécédents centralisés pour chaque patient." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-indigo"><i class="bi bi-clipboard2-pulse"></i></span>
+      <h3>{% translate "Consultations" %}</h3>
+      <p>{% translate "Constantes, diagnostic et ordonnances avec alertes d'allergie et d'interaction." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-vert"><i class="bi bi-capsule"></i></span>
+      <h3>{% translate "Pharmacie" %}</h3>
+      <p>{% translate "Stock par lots (FEFO), dispensation et alertes de péremption." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-cyan"><i class="bi bi-hospital"></i></span>
+      <h3>{% translate "Hospitalisation" %}</h3>
+      <p>{% translate "Occupation des lits en temps réel, admission, suivi quotidien, sortie." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-rose"><i class="bi bi-activity"></i></span>
+      <h3>{% translate "Bloc opératoire" %}</h3>
+      <p>{% translate "Planification sans conflit, checklist sécurité, comptes-rendus opératoires." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-violet"><i class="bi bi-clipboard2-data"></i></span>
+      <h3>{% translate "Laboratoire & imagerie" %}</h3>
+      <p>{% translate "Demandes d'examen, résultats et notification automatique du prescripteur." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-ambre"><i class="bi bi-receipt-cutoff"></i></span>
+      <h3>{% translate "Facturation" %}</h3>
+      <p>{% translate "Factures générées automatiquement à la clôture de chaque acte." %}</p>
+    </div>
+    <div class="lp-feature-card">
+      <span class="icon-chip icon-chip-teal"><i class="bi bi-file-earmark-medical"></i></span>
+      <h3>{% translate "Assurances" %}</h3>
+      <p>{% translate "Contrats, taux de couverture et bordereaux par organisme." %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="lp-why">
+  <div class="lp-section">
+    <div class="lp-section-head">
+      <h2>{% translate "Conçu pour un usage hospitalier sérieux" %}</h2>
+    </div>
+    <div class="lp-why-grid">
+      <div class="lp-why-item">
+        <span class="icon-chip icon-chip-slate"><i class="bi bi-shield-check"></i></span>
+        <h3>{% translate "Accès par rôle" %}</h3>
+        <p>{% translate "Chaque utilisateur ne voit que ce qui concerne son métier." %}</p>
+      </div>
+      <div class="lp-why-item">
+        <span class="icon-chip icon-chip-slate"><i class="bi bi-translate"></i></span>
+        <h3>{% translate "Multilingue" %}</h3>
+        <p>{% translate "Français, anglais, arabe et langues nationales." %}</p>
+      </div>
+      <div class="lp-why-item">
+        <span class="icon-chip icon-chip-slate"><i class="bi bi-file-earmark-arrow-down"></i></span>
+        <h3>{% translate "Exports PDF/Excel" %}</h3>
+        <p>{% translate "Sur tous les modules, pour le suivi et le reporting." %}</p>
+      </div>
+      <div class="lp-why-item">
+        <span class="icon-chip icon-chip-slate"><i class="bi bi-clock-history"></i></span>
+        <h3>{% translate "Traçabilité" %}</h3>
+        <p>{% translate "Journal d'audit sur les actions sensibles." %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lp-cta">
+  <h2>{% translate "Prête à organiser votre hôpital ?" %}</h2>
+  <p>{% translate "Connectez-vous avec votre compte pour accéder à votre espace de travail." %}</p>
+  <a class="btn btn-light btn-lg" href="{% url 'accounts:login' %}">{% translate "Se connecter" %}</a>
+</div>
+
+<footer class="lp-footer">
+  <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="64" height="64" rx="14" fill="#16294f"/>
+    <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
+  </svg>
+  <div>Kènèya Sô — {% translate "Gestion hospitalière" %}</div>
+</footer>
+
+</body>
+</html>

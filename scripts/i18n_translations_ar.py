@@ -978,6 +978,82 @@ TRADUCTIONS = {
     "Modules": "الوحدات",
     "Menu": "القائمة",
     "Voici vos modules disponibles.": "هذه هي الوحدات المتاحة لك.",
+
+    # --- الإعداد الأولي (أول مسؤول) ---
+    "Jeton d'installation": "رمز التثبيت",
+    "Jeton d'installation incorrect.": "رمز التثبيت غير صحيح.",
+    "Un compte administrateur existe déjà.": "يوجد بالفعل حساب مسؤول.",
+    "Compte administrateur créé. Vous pouvez vous connecter.":
+        "تم إنشاء حساب المسؤول. يمكنكم الآن تسجيل الدخول.",
+    "Configuration initiale": "الإعداد الأولي",
+    "Création du premier compte administrateur": "إنشاء أول حساب مسؤول",
+    "Créer le compte administrateur": "إنشاء حساب المسؤول",
+    "Accédez à votre espace de travail.": "ادخلوا إلى مساحة عملكم.",
+
+    # --- التحقق من المرفقات (المختبر) ---
+    "Format de fichier non autorisé (formats acceptés : PDF, JPG, PNG).":
+        "صيغة الملف غير مسموح بها (الصيغ المقبولة: PDF، JPG، PNG).",
+    "Le fichier dépasse la taille maximale autorisée (10 Mo).":
+        "حجم الملف يتجاوز الحد الأقصى المسموح به (10 ميغابايت).",
+    "Le contenu du fichier ne correspond pas à son extension.":
+        "محتوى الملف لا يتطابق مع امتداده.",
+
+    # --- الصفحة التعريفية العامة ---
+    "Plateforme de gestion hospitalière intelligente, pensée pour le contexte malien.":
+        "منصة ذكية لإدارة المستشفيات، مصمَّمة خصيصًا للسياق المالي.",
+    "Dossiers patients centralisés": "ملفات مرضى مركزية",
+    "Pharmacie et stock en temps réel": "الصيدلية والمخزون في الوقت الفعلي",
+    "Hospitalisation et bloc opératoire": "التنويم وغرفة العمليات",
+    "Accès contrôlé par rôle métier": "وصول محكوم حسب الدور الوظيفي",
+    "Plateforme de gestion hospitalière": "منصة إدارة المستشفيات",
+    "Kènèya Sô centralise patients, pharmacie, hospitalisation, bloc opératoire, laboratoire, facturation et assurances dans une seule plateforme.":
+        "تجمع كِنيا سو المرضى والصيدلية والتنويم وغرفة العمليات والمختبر والفوترة "
+        "والتأمينات في منصة واحدة.",
+    "Toute la vie de l'hôpital, dans un seul outil.":
+        "كل حياة المستشفى، في أداة واحدة.",
+    "Kènèya Sô centralise les patients, les consultations, la pharmacie, l'hospitalisation, le bloc opératoire, le laboratoire et la facturation — avec un accès contrôlé selon le rôle de chaque membre du personnel.":
+        "تجمع كِنيا سو المرضى والاستشارات والصيدلية والتنويم وغرفة العمليات "
+        "والمختبر والفوترة — مع وصول محكوم حسب دور كل موظف.",
+    "Découvrir les fonctionnalités": "اكتشاف الميزات",
+    "Dossiers médicaux": "الملفات الطبية",
+    "Pharmacie": "الصيدلية",
+    "Stock en temps réel": "المخزون في الوقت الفعلي",
+    "Planification": "التخطيط",
+    "Automatique": "تلقائي",
+    "Un module par métier de l'hôpital": "وحدة لكل مهنة في المستشفى",
+    "Chaque service retrouve ses outils, sans se marcher dessus — les accès sont définis par rôle.":
+        "يجد كل قسم أدواته الخاصة، دون تداخل — الوصول محدَّد حسب الدور.",
+    "Dossiers médicaux, allergies et antécédents centralisés pour chaque patient.":
+        "ملفات طبية وحساسيات وسوابق مركزية لكل مريض.",
+    "Constantes, diagnostic et ordonnances avec alertes d'allergie et d'interaction.":
+        "العلامات الحيوية والتشخيص والوصفات الطبية مع تنبيهات الحساسية والتداخل الدوائي.",
+    "Stock par lots (FEFO), dispensation et alertes de péremption.":
+        "مخزون حسب الدُفعات (FEFO)، صرف الأدوية وتنبيهات انتهاء الصلاحية.",
+    "Occupation des lits en temps réel, admission, suivi quotidien, sortie.":
+        "إشغال الأسرّة في الوقت الفعلي، القبول، المتابعة اليومية، الخروج.",
+    "Planification sans conflit, checklist sécurité, comptes-rendus opératoires.":
+        "تخطيط دون تعارض، قائمة تحقق أمان، تقارير العمليات الجراحية.",
+    "Laboratoire & imagerie": "المختبر والتصوير",
+    "Demandes d'examen, résultats et notification automatique du prescripteur.":
+        "طلبات الفحوصات والنتائج وإشعار تلقائي للطبيب الطالب.",
+    "Factures générées automatiquement à la clôture de chaque acte.":
+        "فواتير تُنشأ تلقائيًا عند إغلاق كل إجراء.",
+    "Contrats, taux de couverture et bordereaux par organisme.":
+        "عقود ونسب تغطية وكشوفات حسب الجهة الضامنة.",
+    "Conçu pour un usage hospitalier sérieux": "مصمَّم لاستخدام استشفائي جاد",
+    "Accès par rôle": "وصول حسب الدور",
+    "Chaque utilisateur ne voit que ce qui concerne son métier.":
+        "لا يرى كل مستخدم سوى ما يخص مهنته.",
+    "Multilingue": "متعدد اللغات",
+    "Français, anglais, arabe et langues nationales.":
+        "الفرنسية والإنجليزية والعربية واللغات الوطنية.",
+    "Exports PDF/Excel": "تصدير PDF/Excel",
+    "Sur tous les modules, pour le suivi et le reporting.":
+        "على جميع الوحدات، للمتابعة وإعداد التقارير.",
+    "Journal d'audit sur les actions sensibles.": "سجل تدقيق للإجراءات الحساسة.",
+    "Prête à organiser votre hôpital ?": "هل أنتم مستعدون لتنظيم مستشفاكم؟",
+    "Connectez-vous avec votre compte pour accéder à votre espace de travail.":
+        "سجّلوا الدخول بحسابكم للوصول إلى مساحة عملكم.",
 }
 
 # Entrées avec pluriel arabe (6 formes CLDR : zero, one, two, few, many, other).

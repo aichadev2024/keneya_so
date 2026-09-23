@@ -974,6 +974,84 @@ TRADUCTIONS = {
     "Modules": "Modules",
     "Menu": "Menu",
     "Voici vos modules disponibles.": "Here are your available modules.",
+
+    # --- Configuration initiale (premier admin) ---
+    "Jeton d'installation": "Installation token",
+    "Jeton d'installation incorrect.": "Incorrect installation token.",
+    "Un compte administrateur existe déjà.": "An administrator account already exists.",
+    "Compte administrateur créé. Vous pouvez vous connecter.":
+        "Administrator account created. You can now sign in.",
+    "Configuration initiale": "Initial setup",
+    "Création du premier compte administrateur": "Creating the first administrator account",
+    "Créer le compte administrateur": "Create administrator account",
+    "Accédez à votre espace de travail.": "Access your workspace.",
+
+    # --- Validation des pièces jointes (laboratoire) ---
+    "Format de fichier non autorisé (formats acceptés : PDF, JPG, PNG).":
+        "File format not allowed (accepted formats: PDF, JPG, PNG).",
+    "Le fichier dépasse la taille maximale autorisée (10 Mo).":
+        "The file exceeds the maximum allowed size (10 MB).",
+    "Le contenu du fichier ne correspond pas à son extension.":
+        "The file's content does not match its extension.",
+
+    # --- Page vitrine publique ---
+    "Plateforme de gestion hospitalière intelligente, pensée pour le contexte malien.":
+        "Smart hospital management platform, designed for the Malian context.",
+    "Dossiers patients centralisés": "Centralised patient records",
+    "Pharmacie et stock en temps réel": "Pharmacy and real-time stock",
+    "Hospitalisation et bloc opératoire": "Inpatient care and operating theatre",
+    "Accès contrôlé par rôle métier": "Access controlled by job role",
+    "Plateforme de gestion hospitalière": "Hospital management platform",
+    "Kènèya Sô centralise patients, pharmacie, hospitalisation, bloc opératoire, laboratoire, facturation et assurances dans une seule plateforme.":
+        "Kènèya Sô brings patients, pharmacy, inpatient care, the operating theatre, "
+        "the lab, billing and insurance together in one platform.",
+    "Toute la vie de l'hôpital, dans un seul outil.":
+        "Everything your hospital does, in one tool.",
+    "Kènèya Sô centralise les patients, les consultations, la pharmacie, l'hospitalisation, le bloc opératoire, le laboratoire et la facturation — avec un accès contrôlé selon le rôle de chaque membre du personnel.":
+        "Kènèya Sô brings together patients, consultations, the pharmacy, inpatient "
+        "care, the operating theatre, the lab and billing — with access controlled "
+        "by each staff member's role.",
+    "Découvrir les fonctionnalités": "Explore the features",
+    "Dossiers médicaux": "Medical records",
+    "Pharmacie": "Pharmacy",
+    "Stock en temps réel": "Real-time stock",
+    "Planification": "Scheduling",
+    "Automatique": "Automatic",
+    "Un module par métier de l'hôpital": "One module for every hospital role",
+    "Chaque service retrouve ses outils, sans se marcher dessus — les accès sont définis par rôle.":
+        "Every department gets its own tools, without stepping on each other's "
+        "toes — access is defined by role.",
+    "Dossiers médicaux, allergies et antécédents centralisés pour chaque patient.":
+        "Medical records, allergies and history centralised for every patient.",
+    "Constantes, diagnostic et ordonnances avec alertes d'allergie et d'interaction.":
+        "Vitals, diagnosis and prescriptions with allergy and interaction alerts.",
+    "Stock par lots (FEFO), dispensation et alertes de péremption.":
+        "Batch-tracked stock (FEFO), dispensing and expiry alerts.",
+    "Occupation des lits en temps réel, admission, suivi quotidien, sortie.":
+        "Real-time bed occupancy, admission, daily follow-up, discharge.",
+    "Planification sans conflit, checklist sécurité, comptes-rendus opératoires.":
+        "Conflict-free scheduling, safety checklist, operative reports.",
+    "Laboratoire & imagerie": "Lab & imaging",
+    "Demandes d'examen, résultats et notification automatique du prescripteur.":
+        "Test requests, results and automatic notification of the requesting clinician.",
+    "Factures générées automatiquement à la clôture de chaque acte.":
+        "Invoices generated automatically when each procedure is closed.",
+    "Contrats, taux de couverture et bordereaux par organisme.":
+        "Contracts, coverage rates and settlement statements per insurer.",
+    "Conçu pour un usage hospitalier sérieux": "Built for serious hospital use",
+    "Accès par rôle": "Role-based access",
+    "Chaque utilisateur ne voit que ce qui concerne son métier.":
+        "Each user only sees what concerns their role.",
+    "Multilingue": "Multilingual",
+    "Français, anglais, arabe et langues nationales.":
+        "French, English, Arabic and national languages.",
+    "Exports PDF/Excel": "PDF/Excel exports",
+    "Sur tous les modules, pour le suivi et le reporting.":
+        "Across every module, for tracking and reporting.",
+    "Journal d'audit sur les actions sensibles.": "Audit log for sensitive actions.",
+    "Prête à organiser votre hôpital ?": "Ready to organise your hospital?",
+    "Connectez-vous avec votre compte pour accéder à votre espace de travail.":
+        "Sign in with your account to access your workspace.",
 }
 
 # Entrées avec pluriel : {(msgid, msgid_plural): (msgstr[0], msgstr[1])}
