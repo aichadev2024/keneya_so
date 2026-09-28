@@ -22,8 +22,10 @@ from django.db.models import Max, Sum
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from apps.core.models import TenantOwnedModel
 
-class Assurance(models.Model):
+
+class Assurance(TenantOwnedModel):
     class Type(models.TextChoices):
         PRIVEE = "PRIVEE", _("Compagnie privée")
         MUTUELLE = "MUTUELLE", _("Mutuelle")
@@ -31,7 +33,7 @@ class Assurance(models.Model):
         ONG = "ONG", _("ONG / organisme humanitaire")
         AUTRE = "AUTRE", _("Autre")
 
-    nom = models.CharField(_("nom"), max_length=150, unique=True)
+    nom = models.CharField(_("nom"), max_length=150)
     code = models.CharField(_("code"), max_length=20, blank=True)
     type = models.CharField(_("type"), max_length=10, choices=Type.choices,
                             default=Type.PRIVEE)
@@ -45,12 +47,13 @@ class Assurance(models.Model):
         verbose_name = _("assurance")
         verbose_name_plural = _("assurances")
         ordering = ["nom"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "nom"], name="assurance_nom_par_etablissement")]
 
     def __str__(self) -> str:
         return self.nom
 
 
-class ContratAssurance(models.Model):
+class ContratAssurance(TenantOwnedModel):
     """Offre d'un organisme : taux de prise en charge et plafond annuel."""
 
     assurance = models.ForeignKey(Assurance, on_delete=models.CASCADE,
@@ -80,7 +83,7 @@ class ContratAssurance(models.Model):
         return f"{self.assurance.nom} — {self.libelle} ({self.taux_prise_en_charge} %)"
 
 
-class PatientAssure(models.Model):
+class PatientAssure(TenantOwnedModel):
     """Adhésion d'un patient à un contrat (CDC 4.9)."""
 
     patient = models.ForeignKey("patients.Patient", on_delete=models.CASCADE,
@@ -151,7 +154,7 @@ class PatientAssure(models.Model):
         return max(Decimal("0"), plafond - self.consommation_annee(annee))
 
 
-class BordereauAssurance(models.Model):
+class BordereauAssurance(TenantOwnedModel):
     """Relevé des parts assurance sur une période, destiné à l'organisme (CDC 4.9)."""
 
     class Statut(models.TextChoices):
@@ -159,7 +162,7 @@ class BordereauAssurance(models.Model):
         ENVOYE = "ENVOYE", _("Envoyé")
         SOLDE = "SOLDE", _("Soldé")
 
-    reference = models.CharField(_("référence"), max_length=24, unique=True,
+    reference = models.CharField(_("référence"), max_length=24, 
                                  editable=False)
     assurance = models.ForeignKey(Assurance, on_delete=models.PROTECT,
                                   related_name="bordereaux", verbose_name=_("assurance"))
@@ -177,6 +180,7 @@ class BordereauAssurance(models.Model):
         verbose_name = _("bordereau d'assurance")
         verbose_name_plural = _("bordereaux d'assurance")
         ordering = ["-date_generation"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="bordereauassurance_reference_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.reference} — {self.assurance.nom}"
@@ -198,7 +202,7 @@ class BordereauAssurance(models.Model):
         self.save(update_fields=["montant_total"])
 
 
-class LigneBordereau(models.Model):
+class LigneBordereau(TenantOwnedModel):
     bordereau = models.ForeignKey(BordereauAssurance, on_delete=models.CASCADE,
                                   related_name="lignes")
     facture = models.ForeignKey("facturation.Facture", on_delete=models.PROTECT,

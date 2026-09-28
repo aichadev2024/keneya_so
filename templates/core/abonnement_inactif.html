@@ -1,0 +1,22 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% translate "Accès suspendu" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <span class="icon-chip icon-chip-ambre mb-3"><i class="bi bi-lock"></i></span>
+  <h1 class="mb-2">
+    {% if etablissement.essai_termine %}{% translate "Période d'essai terminée" %}{% else %}{% translate "Accès suspendu" %}{% endif %}
+  </h1>
+  <p class="text-body-secondary">
+    {% blocktranslate with nom=etablissement.nom %}L'accès de « {{ nom }} » à la plateforme est actuellement inactif. Vos données sont conservées intactes.{% endblocktranslate %}
+  </p>
+  <p class="text-body-secondary">
+    {% translate "Contactez l'équipe Kènèya Sô pour activer ou renouveler votre abonnement." %}
+  </p>
+  <form action="{% url 'accounts:logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-primary w-100">{% translate "Se déconnecter" %}</button>
+  </form>
+</div>
+{% endblock %}

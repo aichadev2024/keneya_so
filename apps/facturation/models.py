@@ -21,7 +21,7 @@ from django.db.models import Max, Sum
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
 
 DELAI_ECHEANCE_JOURS = 30
 
@@ -44,8 +44,8 @@ class TypeSource(models.TextChoices):
     AUTRE = "AUTRE", _("Autre")
 
 
-class Tarif(models.Model):
-    code = models.CharField(_("code"), max_length=40, unique=True)
+class Tarif(TenantOwnedModel):
+    code = models.CharField(_("code"), max_length=40)
     libelle = models.CharField(_("libellé"), max_length=150)
     categorie = models.CharField(_("catégorie"), max_length=16,
                                  choices=CategorieTarif.choices)
@@ -60,6 +60,7 @@ class Tarif(models.Model):
         verbose_name = _("tarif")
         verbose_name_plural = _("grille tarifaire")
         ordering = ["categorie", "libelle"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "code"], name="tarif_code_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.libelle} — {self.montant} FCFA"
@@ -75,7 +76,7 @@ class Tarif(models.Model):
         return generique.montant if generique else None
 
 
-class Facture(TimeStampedModel):
+class Facture(TenantOwnedModel, TimeStampedModel):
     class Statut(models.TextChoices):
         BROUILLON = "BROUILLON", _("Brouillon")
         EMISE = "EMISE", _("Émise")
@@ -83,7 +84,7 @@ class Facture(TimeStampedModel):
         REGLEE = "REGLEE", _("Réglée")
         ANNULEE = "ANNULEE", _("Annulée")
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True,
+    reference = models.CharField(_("référence"), max_length=20, 
                                  editable=False)
     patient = models.ForeignKey("patients.Patient", on_delete=models.PROTECT,
                                 related_name="factures", verbose_name=_("patient"))
@@ -115,6 +116,7 @@ class Facture(TimeStampedModel):
             models.Index(fields=["statut", "date_echeance"]),
             models.Index(fields=["patient", "-date_emission"]),
         ]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="facture_reference_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.reference} — {self.patient.nom_complet}"
@@ -196,7 +198,7 @@ class Facture(TimeStampedModel):
             self.save(update_fields=["statut", "modifie_le"])
 
 
-class LigneFacture(models.Model):
+class LigneFacture(TenantOwnedModel):
     facture = models.ForeignKey(Facture, on_delete=models.CASCADE, related_name="lignes",
                                 verbose_name=_("facture"))
     type_source = models.CharField(_("origine"), max_length=16,
@@ -224,7 +226,7 @@ class LigneFacture(models.Model):
         super().save(*args, **kwargs)
 
 
-class Paiement(models.Model):
+class Paiement(TenantOwnedModel):
     class Mode(models.TextChoices):
         ESPECES = "ESPECES", _("Espèces")
         MOBILE_MONEY = "MOBILE_MONEY", _("Mobile money")
@@ -236,7 +238,7 @@ class Paiement(models.Model):
         PATIENT = "PATIENT", _("Patient")
         ASSURANCE = "ASSURANCE", _("Assurance")
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True,
+    reference = models.CharField(_("référence"), max_length=20, 
                                  editable=False)
     facture = models.ForeignKey(Facture, on_delete=models.PROTECT,
                                 related_name="paiements", verbose_name=_("facture"))
@@ -257,6 +259,7 @@ class Paiement(models.Model):
         verbose_name = _("paiement")
         verbose_name_plural = _("paiements")
         ordering = ["-date_paiement"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="paiement_reference_par_etablissement")]
 
     def __str__(self) -> str:
         signe = "-" if self.est_remboursement else "+"
@@ -273,7 +276,7 @@ class Paiement(models.Model):
         super().save(*args, **kwargs)
 
 
-class Relance(models.Model):
+class Relance(TenantOwnedModel):
     class Canal(models.TextChoices):
         TELEPHONE = "TELEPHONE", _("Téléphone")
         SMS = "SMS", _("SMS")

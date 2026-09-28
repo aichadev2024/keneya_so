@@ -13,6 +13,7 @@ def creer_checklist(sender, instance: Intervention, **kwargs):
     if instance.checklist.exists():
         return
     EtapeChecklist.objects.bulk_create([
-        EtapeChecklist(intervention=instance, temps=temps)
+        EtapeChecklist(intervention=instance, temps=temps,
+                       etablissement_id=instance.etablissement_id)
         for temps in EtapeChecklist.ORDRE
     ])

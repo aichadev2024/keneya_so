@@ -19,7 +19,7 @@ from django.db.models import Max
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
 
 
 def _reference_incrementee(prefixe: str, modele, champ: str = "reference") -> str:
@@ -34,7 +34,7 @@ def _reference_incrementee(prefixe: str, modele, champ: str = "reference") -> st
     return f"{base}{sequence:06d}"
 
 
-class Consultation(TimeStampedModel):
+class Consultation(TenantOwnedModel, TimeStampedModel):
     """Un acte de consultation médicale pour un patient (CDC 4.2)."""
 
     class Statut(models.TextChoices):
@@ -42,7 +42,7 @@ class Consultation(TimeStampedModel):
         CLOTUREE = "CLOTUREE", _("Clôturée")
         ANNULEE = "ANNULEE", _("Annulée")
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True, editable=False)
+    reference = models.CharField(_("référence"), max_length=20, editable=False)
     patient = models.ForeignKey("patients.Patient", on_delete=models.PROTECT,
                                 related_name="consultations", verbose_name=_("patient"))
     praticien = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
@@ -64,6 +64,7 @@ class Consultation(TimeStampedModel):
         verbose_name_plural = _("consultations")
         ordering = ["-date_consultation"]
         indexes = [models.Index(fields=["patient", "-date_consultation"])]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="consultation_reference_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.reference} — {self.patient.nom_complet}"
@@ -74,7 +75,7 @@ class Consultation(TimeStampedModel):
         super().save(*args, **kwargs)
 
 
-class Constantes(models.Model):
+class Constantes(TenantOwnedModel):
     """Constantes vitales relevées pour une consultation (CDC 4.2)."""
 
     consultation = models.OneToOneField(Consultation, on_delete=models.CASCADE,
@@ -126,7 +127,7 @@ class Constantes(models.Model):
         return "—"
 
 
-class Ordonnance(TimeStampedModel):
+class Ordonnance(TenantOwnedModel, TimeStampedModel):
     """Prescription médicamenteuse issue d'une consultation (CDC 4.3)."""
 
     class Statut(models.TextChoices):
@@ -136,7 +137,7 @@ class Ordonnance(TimeStampedModel):
         DISPENSEE = "DISPENSEE", _("Dispensée")
         ANNULEE = "ANNULEE", _("Annulée")
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True, editable=False)
+    reference = models.CharField(_("référence"), max_length=20, editable=False)
     consultation = models.OneToOneField(Consultation, on_delete=models.CASCADE,
                                         related_name="ordonnance",
                                         verbose_name=_("consultation"))
@@ -153,6 +154,7 @@ class Ordonnance(TimeStampedModel):
         verbose_name = _("ordonnance")
         verbose_name_plural = _("ordonnances")
         ordering = ["-date_prescription"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="ordonnance_reference_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.reference} — {self.patient.nom_complet}"
@@ -179,7 +181,7 @@ class Ordonnance(TimeStampedModel):
         self.save(update_fields=["statut", "date_transmission", "modifie_le"])
 
 
-class LigneOrdonnance(models.Model):
+class LigneOrdonnance(TenantOwnedModel):
     """Un médicament prescrit sur une ordonnance."""
 
     ordonnance = models.ForeignKey(Ordonnance, on_delete=models.CASCADE,

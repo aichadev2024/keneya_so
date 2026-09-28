@@ -103,6 +103,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",  # doit rester après AuthenticationMiddleware
+    "apps.core.tenancy.EtablissementMiddleware",  # isolation multi-établissements (SaaS)
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -123,6 +124,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "apps.core.context_processors.notifications",
                 "apps.core.context_processors.navigation",
+                "apps.core.context_processors.abonnement",
             ],
         },
     },
@@ -286,6 +288,9 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGINS = env("DJANGO_CORS_ALLOWED_ORIGINS")
+
+# Durée de la période d'essai offerte à un nouvel hôpital inscrit (SaaS).
+ESSAI_DUREE_JOURS = env.int("DJANGO_ESSAI_DUREE_JOURS", default=30)
 
 # Jeton exigé par /comptes/premiere-configuration/ pour créer le tout premier
 # compte administrateur (apps/accounts/views.py::PremiereConfigurationView) —
