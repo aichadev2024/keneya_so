@@ -250,3 +250,25 @@ class ConsoleProprietaireTests(TestCase):
         self.etab.refresh_from_db()
         self.assertEqual(self.etab.essai_jusqu_au, date.today() + timedelta(days=30))
         self.assertTrue(self.etab.acces_autorise)
+
+
+class NomDeLHopitalDansLeMenuTests(TestCase):
+    def test_le_menu_affiche_le_nom_de_l_hopital_connecte(self):
+        etab = Etablissement.objects.create(nom="Clinique Bon Secours", slug="bon-secours",
+                                            statut="ACTIF")
+        u = Utilisateur(username="adm", role=Utilisateur.Role.ADMIN, etablissement=etab)
+        u.set_password("x")
+        u.save()
+        self.client.login(username="adm", password="x")
+        page = self.client.get(reverse("core:dashboard")).content.decode()
+        marque = page[page.index('class="sidebar-brand"'):page.index('class="sidebar-nav"')]
+        self.assertIn("Clinique Bon Secours", marque)
+        self.assertNotIn("Gestion hospitalière", marque)
+
+    def test_le_proprietaire_sans_hopital_garde_la_marque_de_la_plateforme(self):
+        Utilisateur.tous.create_superuser("proprio", "p@k.ml", "x")
+        self.client.login(username="proprio", password="x")
+        page = self.client.get(reverse("core:dashboard")).content.decode()
+        marque = page[page.index('class="sidebar-brand"'):page.index('class="sidebar-nav"')]
+        self.assertIn("Gestion hospitalière", marque)
+
