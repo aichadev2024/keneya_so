@@ -1118,3 +1118,29 @@ TRADUCTIONS_PLURIEL = {
     ),
     ("Période d'essai : %(n)s jour restant.", "Période d'essai : %(n)s jours restants."): ('انتهت الفترة التجريبية', 'الفترة التجريبية: يوم واحد متبقٍ', 'الفترة التجريبية: يومان متبقيان', 'الفترة التجريبية: %(n)s أيام متبقية', 'الفترة التجريبية: %(n)s يومًا متبقيًا', 'الفترة التجريبية: %(n)s يوم متبقٍ'),
 }
+
+
+# Réinitialisation du mot de passe par e-mail
+TRADUCTIONS.update({
+    "Mot de passe oublié ?": "هل نسيت كلمة المرور؟",
+    "Mot de passe oublié": "نسيت كلمة المرور",
+    "Saisissez l'adresse e-mail de votre compte : nous vous enverrons un lien pour choisir un nouveau mot de passe.": "أدخل البريد الإلكتروني لحسابك: سنرسل إليك رابطًا لاختيار كلمة مرور جديدة.",
+    "Envoyer le lien": "إرسال الرابط",
+    "Retour à la connexion": "العودة إلى تسجيل الدخول",
+    "Vérifiez vos e-mails": "تحقق من بريدك الإلكتروني",
+    "Si un compte correspond à cette adresse, un lien de réinitialisation vient de lui être envoyé. Il est valable une heure.": "إذا كان هناك حساب مرتبط بهذا العنوان، فقد أُرسل إليه للتو رابط إعادة التعيين. الرابط صالح لمدة ساعة.",
+    "Rien reçu ? Vérifiez vos courriers indésirables. Si votre compte n'a pas d'adresse e-mail, demandez à l'administrateur de votre hôpital de réinitialiser votre mot de passe.": "لم تستلم شيئًا؟ تحقق من البريد العشوائي. وإذا لم يكن لحسابك بريد إلكتروني، فاطلب من مسؤول مستشفاك إعادة تعيين كلمة المرور.",
+    "Nouveau mot de passe": "كلمة مرور جديدة",
+    "Choisissez un nouveau mot de passe pour votre compte.": "اختر كلمة مرور جديدة لحسابك.",
+    "Enregistrer le mot de passe": "حفظ كلمة المرور",
+    "Lien invalide": "رابط غير صالح",
+    "Ce lien de réinitialisation n'est plus valable (il expire au bout d'une heure et ne sert qu'une fois).": "لم يعد رابط إعادة التعيين هذا صالحًا (ينتهي بعد ساعة ويُستخدم مرة واحدة فقط).",
+    "Demander un nouveau lien": "طلب رابط جديد",
+    "Votre mot de passe a été mis à jour. Vous pouvez maintenant vous connecter.": "تم تحديث كلمة المرور. يمكنك الآن تسجيل الدخول.",
+    "Kènèya Sô — réinitialisation de votre mot de passe": "كِنيا سو — إعادة تعيين كلمة المرور",
+    "Bonjour,": "مرحبًا،",
+    "Vous (ou quelqu'un d'autre) avez demandé la réinitialisation du mot de passe du compte de %(nom)s sur Kènèya Sô.": "لقد طلبت (أو طلب شخص آخر) إعادة تعيين كلمة مرور حساب %(nom)s على كِنيا سو.",
+    "Pour choisir un nouveau mot de passe, ouvrez ce lien (valable une heure) :": "لاختيار كلمة مرور جديدة، افتح هذا الرابط (صالح لمدة ساعة):",
+    "Votre identifiant de connexion : %(username)s": "اسم المستخدم الخاص بك: %(username)s",
+    "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement ce message : votre mot de passe reste inchangé.": "إذا لم تكن أنت صاحب هذا الطلب، فتجاهل هذه الرسالة: كلمة مرورك لم تتغير.",
+})

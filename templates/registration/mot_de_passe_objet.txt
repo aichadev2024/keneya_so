@@ -1,0 +1,1 @@
+{% load i18n %}{% autoescape off %}{% translate "Kènèya Sô — réinitialisation de votre mot de passe" %}{% endautoescape %}

@@ -1,0 +1,29 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% translate "Mot de passe oublié" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <h1 class="mb-1">{% translate "Mot de passe oublié" %}</h1>
+  <p class="text-body-secondary mb-4">
+    {% translate "Saisissez l'adresse e-mail de votre compte : nous vous enverrons un lien pour choisir un nouveau mot de passe." %}
+  </p>
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+      {{ form.email }}
+      {% if form.email.errors %}<div class="text-danger small">{{ form.email.errors }}</div>{% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary w-100 py-2">{% translate "Envoyer le lien" %}</button>
+  </form>
+  <p class="text-center small mt-3 mb-0">
+    <a href="{% url 'accounts:login' %}">{% translate "Retour à la connexion" %}</a>
+  </p>
+</div>
+{% endblock %}

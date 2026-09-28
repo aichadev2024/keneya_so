@@ -1,0 +1,14 @@
+{% load i18n %}{% autoescape off %}{% translate "Bonjour," %}
+
+{% blocktranslate with nom=user.get_full_name|default:user.get_username %}Vous (ou quelqu'un d'autre) avez demandé la réinitialisation du mot de passe du compte de {{ nom }} sur Kènèya Sô.{% endblocktranslate %}
+
+{% translate "Pour choisir un nouveau mot de passe, ouvrez ce lien (valable une heure) :" %}
+
+{{ protocol }}://{{ domain }}{% url 'accounts:password_reset_confirm' uidb64=uid token=token %}
+
+{% blocktranslate with username=user.get_username %}Votre identifiant de connexion : {{ username }}{% endblocktranslate %}
+
+{% translate "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement ce message : votre mot de passe reste inchangé." %}
+
+— Kènèya Sô
+{% endautoescape %}

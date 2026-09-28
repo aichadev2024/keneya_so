@@ -2,7 +2,9 @@
 
 from django import forms
 from django.contrib.auth import get_user_model, password_validation
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordResetForm, SetPasswordForm, UserCreationForm,
+)
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -106,3 +108,23 @@ class InscriptionHopitalForm(forms.Form):
                 except ValidationError as exc:
                     self.add_error("password1", exc)
         return data
+
+
+class DemandeReinitialisationForm(PasswordResetForm):
+    """Demande de lien de réinitialisation, par adresse e-mail."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].label = _("Adresse e-mail")
+        self.fields["email"].widget.attrs.update(
+            {"class": "form-control", "autofocus": True, "autocomplete": "email"})
+
+
+class NouveauMotDePasseForm(SetPasswordForm):
+    """Choix du nouveau mot de passe (mêmes règles de robustesse que partout ailleurs)."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for champ in self.fields.values():
+            champ.widget.attrs["class"] = "form-control"
+        self.fields["new_password1"].widget.attrs["autofocus"] = True

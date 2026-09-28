@@ -1099,3 +1099,29 @@ TRADUCTIONS_PLURIEL = {
     ("%(n)s sous le seuil", "%(n)s sous le seuil"): ("%(n)s below threshold", "%(n)s below threshold"),
     ("Période d'essai : %(n)s jour restant.", "Période d'essai : %(n)s jours restants."): ('Trial period: %(n)s day left.', 'Trial period: %(n)s days left.'),
 }
+
+
+# Réinitialisation du mot de passe par e-mail
+TRADUCTIONS.update({
+    "Mot de passe oublié ?": "Forgot your password?",
+    "Mot de passe oublié": "Forgot password",
+    "Saisissez l'adresse e-mail de votre compte : nous vous enverrons un lien pour choisir un nouveau mot de passe.": "Enter your account's e-mail address: we will send you a link to choose a new password.",
+    "Envoyer le lien": "Send the link",
+    "Retour à la connexion": "Back to sign in",
+    "Vérifiez vos e-mails": "Check your e-mail",
+    "Si un compte correspond à cette adresse, un lien de réinitialisation vient de lui être envoyé. Il est valable une heure.": "If an account matches this address, a reset link has just been sent to it. It is valid for one hour.",
+    "Rien reçu ? Vérifiez vos courriers indésirables. Si votre compte n'a pas d'adresse e-mail, demandez à l'administrateur de votre hôpital de réinitialiser votre mot de passe.": "Nothing received? Check your spam folder. If your account has no e-mail address, ask your hospital's administrator to reset your password.",
+    "Nouveau mot de passe": "New password",
+    "Choisissez un nouveau mot de passe pour votre compte.": "Choose a new password for your account.",
+    "Enregistrer le mot de passe": "Save password",
+    "Lien invalide": "Invalid link",
+    "Ce lien de réinitialisation n'est plus valable (il expire au bout d'une heure et ne sert qu'une fois).": "This reset link is no longer valid (it expires after one hour and can only be used once).",
+    "Demander un nouveau lien": "Request a new link",
+    "Votre mot de passe a été mis à jour. Vous pouvez maintenant vous connecter.": "Your password has been updated. You can now sign in.",
+    "Kènèya Sô — réinitialisation de votre mot de passe": "Kènèya Sô — reset your password",
+    "Bonjour,": "Hello,",
+    "Vous (ou quelqu'un d'autre) avez demandé la réinitialisation du mot de passe du compte de %(nom)s sur Kènèya Sô.": "You (or someone else) requested a password reset for the account of %(nom)s on Kènèya Sô.",
+    "Pour choisir un nouveau mot de passe, ouvrez ce lien (valable une heure) :": "To choose a new password, open this link (valid for one hour):",
+    "Votre identifiant de connexion : %(username)s": "Your username: %(username)s",
+    "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement ce message : votre mot de passe reste inchangé.": "If you did not make this request, simply ignore this message: your password remains unchanged.",
+})
