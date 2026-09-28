@@ -192,8 +192,7 @@ class PlansEtLimitesTests(TestCase):
         self.client.login(username="adm", password="x")
         url = reverse("admin:accounts_utilisateur_add")
         reponse = self.client.post(url, {
-            "username": "u3", "password1": "UnMotDePasseSolide2026!",
-            "password2": "UnMotDePasseSolide2026!", "role": "MEDECIN",
+            "username": "u3", "email": "u3@hopital.ml", "role": "MEDECIN",
             "langue_preferee": "fr"})
         self.assertEqual(reponse.status_code, 200)  # formulaire réaffiché avec l'erreur
         self.assertContains(reponse, "limite d")
@@ -203,8 +202,7 @@ class PlansEtLimitesTests(TestCase):
         Utilisateur.tous.filter(username="u2").update(is_active=False)
         self.client.login(username="adm", password="x")
         self.client.post(reverse("admin:accounts_utilisateur_add"), {
-            "username": "u3", "password1": "UnMotDePasseSolide2026!",
-            "password2": "UnMotDePasseSolide2026!", "role": "MEDECIN",
+            "username": "u3", "email": "u3@hopital.ml", "role": "MEDECIN",
             "langue_preferee": "fr"})
         nouveau = Utilisateur.tous.get(username="u3")
         self.assertEqual(nouveau.etablissement_id, self.etab.pk)

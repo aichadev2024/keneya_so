@@ -17,6 +17,7 @@ urlpatterns = [
          name="password_reset_confirm"),
     path("reinitialisation/termine/", views.NouveauMotDePasseTermineView.as_view(),
          name="password_reset_complete"),
+    path("invitation/<uidb64>/<token>/", views.InvitationView.as_view(), name="invitation"),
     path("inscription/", views.InscriptionHopitalView.as_view(), name="inscription_hopital"),
     path("premiere-configuration/", views.PremiereConfigurationView.as_view(),
          name="premiere_configuration"),

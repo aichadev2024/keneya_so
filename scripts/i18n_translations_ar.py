@@ -1144,3 +1144,25 @@ TRADUCTIONS.update({
     "Votre identifiant de connexion : %(username)s": "اسم المستخدم الخاص بك: %(username)s",
     "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement ce message : votre mot de passe reste inchangé.": "إذا لم تكن أنت صاحب هذا الطلب، فتجاهل هذه الرسالة: كلمة مرورك لم تتغير.",
 })
+
+
+# Invitation du personnel par e-mail
+TRADUCTIONS.update({
+    "Invitation envoyée à %(e)s.": "تم إرسال الدعوة إلى %(e)s.",
+    "Renvoyer l'invitation (identifiant + lien de connexion)": "إعادة إرسال الدعوة (اسم المستخدم + رابط الدخول)",
+    "« %(u)s » n'a pas d'adresse e-mail.": "«%(u)s» ليس لديه عنوان بريد إلكتروني.",
+    "« %(u)s » est désactivé.": "«%(u)s» معطّل.",
+    "Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard.": "تم إنشاء الحساب «%(u)s»، لكن تعذّر إرسال بريد الدعوة. استخدم إجراء «إعادة إرسال الدعوة» لاحقًا.",
+    "Un e-mail avec l'identifiant et un lien de première connexion y sera envoyé.": "سيُرسل إليه بريد يتضمن اسم المستخدم ورابط أول تسجيل دخول.",
+    "Bonjour %(nom)s,": "مرحبًا %(nom)s،",
+    "Un compte Kènèya Sô vient d'être créé pour vous à « %(hopital)s ».": "تم للتو إنشاء حساب كِنيا سو لك في «%(hopital)s».",
+    "Votre identifiant de connexion :": "اسم المستخدم الخاص بك:",
+    "Votre rôle :": "دورك:",
+    "Pour activer votre compte, ouvrez ce lien et choisissez votre mot de passe : vous serez connecté(e) directement.": "لتفعيل حسابك، افتح هذا الرابط واختر كلمة مرورك: ستُسجَّل دخولك مباشرة.",
+    "Ce lien est valable %(validite_jours)s jours et ne sert qu'une fois. Ensuite, vous vous connecterez ici avec votre identifiant et votre mot de passe :": "هذا الرابط صالح لمدة %(validite_jours)s أيام ويُستخدم مرة واحدة فقط. بعد ذلك ستسجّل دخولك هنا باسم المستخدم وكلمة المرور:",
+    "Si vous ne connaissez pas cet hôpital, ignorez simplement ce message.": "إذا كنت لا تعرف هذا المستشفى، فتجاهل هذه الرسالة.",
+    "Votre accès à Kènèya Sô — %(hopital)s": "دخولك إلى كِنيا سو — %(hopital)s",
+    "Bienvenue sur Kènèya Sô": "مرحبًا بك في كِنيا سو",
+    "Choisissez votre mot de passe pour activer votre compte : vous serez connecté(e) directement.": "اختر كلمة مرورك لتفعيل حسابك: ستُسجَّل دخولك مباشرة.",
+    "Activer mon compte": "تفعيل حسابي",
+})

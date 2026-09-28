@@ -1,8 +1,14 @@
-from django.contrib import admin
+import logging
+
+from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
+from .forms import CreationPersonnelForm
+from .invitations import envoyer_invitation
 from .models import Utilisateur
+
+logger = logging.getLogger(__name__)
 
 
 def _est_plateforme(request) -> bool:
@@ -48,12 +54,49 @@ class UtilisateurAdmin(UserAdmin):
                        "langue_preferee"),
         }),
     )
-    add_fieldsets = UserAdmin.add_fieldsets + (
+    add_form = CreationPersonnelForm
+    add_fieldsets = (
+        (None, {"classes": ("wide",),
+                "fields": ("username", "first_name", "last_name", "email")}),
         (_("Profil métier Kènèya Sô"), {
             "fields": ("etablissement", "role", "matricule", "telephone", "specialite",
                        "langue_preferee"),
         }),
     )
+    actions = ["renvoyer_invitation"]
+
+    def _inviter(self, request, utilisateur) -> bool:
+        try:
+            envoyer_invitation(utilisateur, request)
+        except Exception:  # SMTP indisponible, adresse refusée…
+            logger.exception("Échec d'envoi de l'invitation à %s", utilisateur.pk)
+            self.message_user(
+                request,
+                _("Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard.")
+                % {"u": utilisateur.username}, messages.WARNING)
+            return False
+        self.message_user(
+            request, _("Invitation envoyée à %(e)s.") % {"e": utilisateur.email}, messages.SUCCESS)
+        return True
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if not change:
+            self._inviter(request, obj)
+
+    @admin.action(description=_("Renvoyer l'invitation (identifiant + lien de connexion)"))
+    def renvoyer_invitation(self, request, queryset):
+        for utilisateur in queryset:
+            if not utilisateur.email:
+                self.message_user(
+                    request, _("« %(u)s » n'a pas d'adresse e-mail.") % {"u": utilisateur.username},
+                    messages.ERROR)
+            elif not utilisateur.is_active:
+                self.message_user(
+                    request, _("« %(u)s » est désactivé.") % {"u": utilisateur.username},
+                    messages.ERROR)
+            else:
+                self._inviter(request, utilisateur)
 
     @admin.display(description=_("nom complet"))
     def get_full_name(self, obj):

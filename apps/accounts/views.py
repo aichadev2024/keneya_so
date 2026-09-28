@@ -15,6 +15,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
 
+from .invitations import generateur_invitation
 from .forms import (
     ConnexionForm, DemandeReinitialisationForm, InscriptionHopitalForm,
     NouveauMotDePasseForm, PremiereConfigurationForm,
@@ -93,6 +94,7 @@ class NouveauMotDePasseView(auth_views.PasswordResetConfirmView):
     form_class = NouveauMotDePasseForm
     success_url = reverse_lazy("accounts:password_reset_complete")
     post_reset_login = False
+    description_audit = "Mot de passe réinitialisé par lien e-mail"
 
     def form_valid(self, form):
         reponse = super().form_valid(form)
@@ -104,10 +106,22 @@ class NouveauMotDePasseView(auth_views.PasswordResetConfirmView):
         from .signals import _ip
         HistoriqueAction.enregistrer(
             utilisateur=utilisateur, action=HistoriqueAction.Action.MODIFICATION,
-            objet=utilisateur, description="Mot de passe réinitialisé par lien e-mail",
+            objet=utilisateur, description=self.description_audit,
             adresse_ip=_ip(self.request),
         )
         return reponse
+
+
+class InvitationView(NouveauMotDePasseView):
+    """Première connexion d'un membre du personnel invité : il choisit son mot de passe
+    puis est connecté directement (lien reçu par e-mail, valable 7 jours, usage unique)."""
+
+    token_generator = generateur_invitation
+    post_reset_login = True
+    post_reset_login_backend = "django.contrib.auth.backends.ModelBackend"
+    success_url = reverse_lazy("core:dashboard")
+    description_audit = "Compte activé : mot de passe choisi via le lien d'invitation"
+    extra_context = {"invitation": True}
 
 
 class NouveauMotDePasseTermineView(auth_views.PasswordResetCompleteView):
