@@ -25,9 +25,11 @@
     <input type="hidden" name="next" value="{{ next }}">
     <button type="submit" class="btn btn-primary w-100 py-2">{% translate "Se connecter" %}</button>
   </form>
+  {% if INSCRIPTION_LIBRE %}
   <p class="text-center small mt-3 mb-0">
     {% translate "Votre hôpital n'est pas encore inscrit ?" %}
     <a href="{% url 'accounts:inscription_hopital' %}">{% translate "Essai gratuit" %}</a>
   </p>
+  {% endif %}
 </div>
 {% endblock %}

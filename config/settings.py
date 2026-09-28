@@ -131,6 +131,7 @@ TEMPLATES = [
                 "apps.core.context_processors.notifications",
                 "apps.core.context_processors.navigation",
                 "apps.core.context_processors.abonnement",
+                "apps.core.context_processors.plateforme",
             ],
         },
     },
@@ -298,6 +299,14 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGINS = env("DJANGO_CORS_ALLOWED_ORIGINS")
+
+# Inscription libre-service des hôpitaux (page /comptes/inscription/ + boutons de la
+# vitrine). Désactivée par défaut : les hôpitaux clients sont créés par le
+# propriétaire de la plateforme depuis l'administration (Établissements → Ajouter).
+INSCRIPTION_LIBRE = env.bool("DJANGO_INSCRIPTION_LIBRE", default=False)
+
+# Adresse affichée sur la vitrine pour « Nous contacter » (vide = bouton masqué).
+CONTACT_EMAIL = env("DJANGO_CONTACT_EMAIL", default="")
 
 # Durée de la période d'essai offerte à un nouvel hôpital inscrit (SaaS).
 ESSAI_DUREE_JOURS = env.int("DJANGO_ESSAI_DUREE_JOURS", default=30)

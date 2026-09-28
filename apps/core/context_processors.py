@@ -52,3 +52,11 @@ def abonnement(request):
         return {}
     etab = user.etablissement
     return {"etablissement_courant": etab, "jours_essai_restants": etab.jours_essai_restants}
+
+
+def plateforme(request):
+    """Réglages publics de la plateforme (vitrine, page de connexion)."""
+    from django.conf import settings
+
+    return {"INSCRIPTION_LIBRE": settings.INSCRIPTION_LIBRE,
+            "CONTACT_EMAIL": settings.CONTACT_EMAIL}
