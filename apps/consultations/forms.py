@@ -51,7 +51,10 @@ class LigneOrdonnanceForm(forms.ModelForm):
             "instructions": forms.TextInput(attrs=_INPUT),
         }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, utilisateur=None, **kwargs):
         super().__init__(*args, **kwargs)
         from apps.pharmacie.models import Medicament
-        self.fields["medicament"].queryset = Medicament.objects.filter(actif=True)
+
+        from .services import medicaments_prescriptibles
+        self.fields["medicament"].queryset = medicaments_prescriptibles(
+            utilisateur, Medicament.objects.filter(actif=True))

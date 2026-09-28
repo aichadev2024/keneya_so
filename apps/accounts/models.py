@@ -38,6 +38,7 @@ class Utilisateur(AbstractUser):
         RADIOLOGUE = "RADIOLOGUE", _("Radiologue / agent d'imagerie")
         AGENT_ACCUEIL = "AGENT_ACCUEIL", _("Agent d'accueil")
         COMPTABLE = "COMPTABLE", _("Comptable")
+        SAGE_FEMME = "SAGE_FEMME", _("Sage-femme")
         # Personnel du bloc opératoire (CDC section 5.2)
         CHIRURGIEN = "CHIRURGIEN", _("Chirurgien(ne)")
         ANESTHESISTE = "ANESTHESISTE", _("Médecin anesthésiste-réanimateur")

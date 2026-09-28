@@ -1,0 +1,5 @@
+<div class="form-check">
+  {{ champ }}
+  <label class="form-check-label" for="{{ champ.id_for_label }}">{{ champ.label }}</label>
+  {% if champ.errors %}<div class="text-danger small">{{ champ.errors }}</div>{% endif %}
+</div>

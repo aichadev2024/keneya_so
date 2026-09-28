@@ -1161,3 +1161,9 @@ TRADUCTIONS.update({
     "Contactez-nous : nous ouvrons l'espace de votre établissement et formons votre équipe.": "Contact us: we set up your facility's workspace and train your team.",
     "Déjà client ?": "Already a customer?",
 })
+
+
+# Module Maternité (sage-femme)
+from i18n_maternite_en import TRADUCTIONS_MATERNITE  # noqa: E402
+
+TRADUCTIONS.update(TRADUCTIONS_MATERNITE)

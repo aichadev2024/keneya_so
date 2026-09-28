@@ -25,6 +25,9 @@
   <div class="d-flex gap-2">
     {% if perms.consultations.add_consultation %}
       <a class="btn btn-primary" href="{% url 'consultations:creer' patient.pk %}">{% translate "Nouvelle consultation" %}</a>
+      {% if patient.sexe == "F" and perms.maternite.view_dossiergrossesse %}
+        <a class="btn btn-outline-primary" href="{% url 'maternite:dossier_nouveau' patient.pk %}"><i class="bi bi-heart-pulse"></i> {% translate "Dossier de grossesse" %}</a>
+      {% endif %}
     {% endif %}
     {% if perms.hospitalisation.add_hospitalisation %}
       <a class="btn btn-outline-primary" href="{% url 'hospitalisation:admettre' patient.pk %}">{% translate "Admettre" %}</a>

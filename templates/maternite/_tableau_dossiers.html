@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Patiente" %}</th><th>{% translate "Terme" %}</th>
+      <th>{% translate "Accouchement prévu" %}</th><th>{% translate "Prochain rendez-vous" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for d in liste %}
+        <tr>
+          <td>{{ d.patient.nom_complet }}<div class="small text-body-secondary"><code>{{ d.patient.numero_dossier }}</code></div></td>
+          <td>{{ d.terme_texte }}</td>
+          <td>{{ d.date_prevue_accouchement|date:"d/m/Y" }}</td>
+          <td>{% if d.prochain_rdv %}{{ d.prochain_rdv|date:"d/m/Y" }}{% else %}—{% endif %}</td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'maternite:dossier' d.pk %}">{% translate "Ouvrir" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5" class="text-center text-body-secondary py-3">{{ vide }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

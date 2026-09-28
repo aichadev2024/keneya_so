@@ -30,6 +30,14 @@ class ConnexionView(auth_views.LoginView):
     authentication_form = ConnexionForm
     redirect_authenticated_user = True
 
+    def get_default_redirect_url(self):
+        # La sage-femme arrive directement dans son espace Maternité.
+        u = self.request.user
+        if u.is_authenticated and u.role == Utilisateur.Role.SAGE_FEMME \
+                and u.has_perm("maternite.view_dossiergrossesse"):
+            return str(reverse_lazy("maternite:accueil"))
+        return super().get_default_redirect_url()
+
 
 class DeconnexionView(auth_views.LogoutView):
     next_page = reverse_lazy("accounts:login")

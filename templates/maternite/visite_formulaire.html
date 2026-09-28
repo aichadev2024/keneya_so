@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Consultation prénatale" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-1">
+  {% if form.instance.pk %}{% blocktranslate with n=form.instance.numero %}Modifier la CPN {{ n }}{% endblocktranslate %}
+  {% else %}{% translate "Nouvelle consultation prénatale" %}{% endif %}
+</h1>
+<p class="text-body-secondary">
+  {{ dossier.patient.nom_complet }} — <code>{{ dossier.reference }}</code> ·
+  {% if dossier.statut == "EN_COURS" %}{{ dossier.terme_texte }} · {% endif %}
+  {% translate "Accouchement prévu" %} {{ dossier.date_prevue_accouchement|date:"d/m/Y" }}
+</p>
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Constantes" %}</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.poids_kg %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.tension_systolique %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.tension_diastolique %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.temperature_c %}</div>
+    </div>
+  </div></div>
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Examen obstétrical" %}</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.hauteur_uterine_cm %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.bruits_coeur_foetal %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.frequence_bcf %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.presentation %}</div>
+      <div class="col-12">{% include "maternite/_case.html" with champ=form.oedemes %}</div>
+    </div>
+  </div></div>
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Examens et dépistages" %}</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.albuminurie %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.glycosurie %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.hemoglobine_g_dl %}</div>
+      <div class="col-6 col-md-3"></div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.depistage_vih %}</div>
+      <div class="col-6 col-md-3">{% include "maternite/_champ.html" with champ=form.depistage_syphilis %}</div>
+    </div>
+    {% if perms.laboratoire.add_demandeexamen %}
+      <p class="small text-body-secondary mt-3 mb-0">{% translate "Pour d'autres analyses (groupe sanguin, glycémie, ECBU, échographie…), utilisez « Demander un examen » après l'enregistrement." %}</p>
+    {% endif %}
+  </div></div>
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Prévention et soins de la visite" %}</h2>
+    <div class="row g-2">
+      <div class="col-md-6">{% include "maternite/_case.html" with champ=form.tpi_sp_donne %}</div>
+      <div class="col-md-6">{% include "maternite/_case.html" with champ=form.fer_acide_folique_donne %}</div>
+      <div class="col-md-6">{% include "maternite/_case.html" with champ=form.vat_donne %}</div>
+      <div class="col-md-6">{% include "maternite/_case.html" with champ=form.moustiquaire_remise %}</div>
+    </div>
+  </div></div>
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <div class="row g-3">
+      <div class="col-12">{% include "maternite/_champ.html" with champ=form.observations %}</div>
+      <div class="col-md-4">{% include "maternite/_champ.html" with champ=form.prochain_rdv %}</div>
+    </div>
+  </div></div>
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary">{% translate "Enregistrer la consultation" %}</button>
+    <a class="btn btn-outline-secondary" href="{% if form.instance.pk %}{% url 'maternite:visite' form.instance.pk %}{% else %}{% url 'maternite:dossier' dossier.pk %}{% endif %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

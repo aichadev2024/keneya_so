@@ -130,6 +130,9 @@ def _raccourcis_pour(utilisateur):
         raccourcis.append({"libelle": _("Consultations"),
                            "url_name": "consultations:liste",
                            "icone": "bi-clipboard2-pulse", "couleur": "indigo"})
+    if utilisateur.has_perm("maternite.view_dossiergrossesse"):
+        raccourcis.append({"libelle": _("Maternité"), "url_name": "maternite:accueil",
+                           "icone": "bi-heart-pulse-fill", "couleur": "rose"})
     if utilisateur.has_perm("hospitalisation.view_hospitalisation"):
         raccourcis.append({"libelle": _("Hospitalisation"),
                            "url_name": "hospitalisation:occupation",

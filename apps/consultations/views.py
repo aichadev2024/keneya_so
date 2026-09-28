@@ -188,7 +188,7 @@ class OrdonnanceDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailVi
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx["alertes"] = alertes_prescription(self.object)
-        ctx["form_ligne"] = LigneOrdonnanceForm()
+        ctx["form_ligne"] = LigneOrdonnanceForm(utilisateur=self.request.user)
         ctx["peut_modifier"] = (
             self.object.modifiable
             and self.request.user.has_perm("consultations.change_ordonnance")
@@ -205,7 +205,7 @@ def ligne_ajouter(request, pk):
     if not ordonnance.modifiable:
         messages.error(request, _("Cette ordonnance n'est plus modifiable."))
         return redirect("consultations:ordonnance", pk=pk)
-    form = LigneOrdonnanceForm(request.POST)
+    form = LigneOrdonnanceForm(request.POST, utilisateur=request.user)
     if form.is_valid():
         ligne = form.save(commit=False)
         ligne.ordonnance = ordonnance
