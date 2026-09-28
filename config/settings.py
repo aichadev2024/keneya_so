@@ -34,6 +34,12 @@ env = environ.Env(
     DJANGO_CORS_ALLOWED_ORIGINS=(list, []),
     DJANGO_PROXIES_DE_CONFIANCE=(int, 0),
     DJANGO_SETUP_TOKEN=(str, ""),
+    DJANGO_EMAIL_HOST=(str, ""),
+    DJANGO_EMAIL_PORT=(int, 587),
+    DJANGO_EMAIL_HOST_USER=(str, ""),
+    DJANGO_EMAIL_HOST_PASSWORD=(str, ""),
+    DJANGO_EMAIL_USE_TLS=(bool, True),
+    DJANGO_DEFAULT_FROM_EMAIL=(str, "Kènèya Sô <no-reply@keneya-so.local>"),
 )
 
 environ.Env.read_env(BASE_DIR / ".env")
@@ -163,6 +169,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+# Lien de réinitialisation du mot de passe : valable 1 heure (3 jours par défaut
+# chez Django, trop long pour un lien qui donne accès à un dossier médical).
+PASSWORD_RESET_TIMEOUT = 60 * 60
 
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "core:dashboard"
@@ -325,3 +335,23 @@ LOGGING = {
         "keneya": {"handlers": ["console"], "level": "DEBUG" if DEBUG else "INFO", "propagate": False},
     },
 }
+
+# --------------------------------------------------------------------------- #
+# E-mail (réinitialisation du mot de passe)
+# --------------------------------------------------------------------------- #
+# Sans serveur SMTP configuré (DJANGO_EMAIL_HOST vide), les e-mails sont écrits
+# dans la console / les journaux du serveur : pratique en développement, mais en
+# production les utilisateurs ne les recevraient pas — configurez un SMTP.
+EMAIL_HOST = env("DJANGO_EMAIL_HOST")
+if TESTING:
+    EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+elif EMAIL_HOST:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_PORT = env("DJANGO_EMAIL_PORT")
+EMAIL_HOST_USER = env("DJANGO_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("DJANGO_EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = env("DJANGO_EMAIL_USE_TLS")
+EMAIL_TIMEOUT = 10
+DEFAULT_FROM_EMAIL = env("DJANGO_DEFAULT_FROM_EMAIL")

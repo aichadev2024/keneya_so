@@ -1,0 +1,16 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% translate "Vérifiez vos e-mails" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <h1 class="mb-1">{% translate "Vérifiez vos e-mails" %}</h1>
+  <p class="text-body-secondary mb-3">
+    {% translate "Si un compte correspond à cette adresse, un lien de réinitialisation vient de lui être envoyé. Il est valable une heure." %}
+  </p>
+  <p class="small text-body-secondary">
+    {% translate "Rien reçu ? Vérifiez vos courriers indésirables. Si votre compte n'a pas d'adresse e-mail, demandez à l'administrateur de votre hôpital de réinitialiser votre mot de passe." %}
+  </p>
+  <a class="btn btn-primary w-100 py-2" href="{% url 'accounts:login' %}">{% translate "Retour à la connexion" %}</a>
+</div>
+{% endblock %}

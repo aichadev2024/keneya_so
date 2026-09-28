@@ -1,0 +1,11 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% translate "Mot de passe modifié" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <h1 class="mb-1">{% translate "Mot de passe modifié" %}</h1>
+  <p class="text-body-secondary mb-4">{% translate "Votre mot de passe a été mis à jour. Vous pouvez maintenant vous connecter." %}</p>
+  <a class="btn btn-primary w-100 py-2" href="{% url 'accounts:login' %}">{% translate "Se connecter" %}</a>
+</div>
+{% endblock %}

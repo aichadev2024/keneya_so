@@ -21,6 +21,7 @@
       <label class="form-label" for="{{ form.password.id_for_label }}">{% translate "Mot de passe" %}</label>
       {{ form.password }}
     </div>
+    <p class="text-end small mb-3"><a href="{% url 'accounts:password_reset' %}">{% translate "Mot de passe oublié ?" %}</a></p>
     <input type="hidden" name="next" value="{{ next }}">
     <button type="submit" class="btn btn-primary w-100 py-2">{% translate "Se connecter" %}</button>
   </form>

@@ -95,7 +95,7 @@ def _corps_vers_msgid(corps: str) -> str:
 
 
 def extraire_gabarits(entrees: dict) -> None:
-    for fichier in _fichiers("*.html"):
+    for fichier in [*_fichiers("*.html"), *_fichiers("*.txt")]:
         texte = fichier.read_text(encoding="utf-8")
 
         for m in RE_TPL_TRANSLATE.finditer(texte):
