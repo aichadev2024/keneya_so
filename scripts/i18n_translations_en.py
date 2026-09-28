@@ -1125,3 +1125,25 @@ TRADUCTIONS.update({
     "Votre identifiant de connexion : %(username)s": "Your username: %(username)s",
     "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement ce message : votre mot de passe reste inchangé.": "If you did not make this request, simply ignore this message: your password remains unchanged.",
 })
+
+
+# Invitation du personnel par e-mail
+TRADUCTIONS.update({
+    "Invitation envoyée à %(e)s.": "Invitation sent to %(e)s.",
+    "Renvoyer l'invitation (identifiant + lien de connexion)": "Resend the invitation (username + sign-in link)",
+    "« %(u)s » n'a pas d'adresse e-mail.": "“%(u)s” has no e-mail address.",
+    "« %(u)s » est désactivé.": "“%(u)s” is deactivated.",
+    "Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard.": "The account “%(u)s” was created, but the invitation e-mail could not be sent. Use the “Resend the invitation” action later.",
+    "Un e-mail avec l'identifiant et un lien de première connexion y sera envoyé.": "An e-mail with the username and a first sign-in link will be sent there.",
+    "Bonjour %(nom)s,": "Hello %(nom)s,",
+    "Un compte Kènèya Sô vient d'être créé pour vous à « %(hopital)s ».": "A Kènèya Sô account has just been created for you at “%(hopital)s”.",
+    "Votre identifiant de connexion :": "Your username:",
+    "Votre rôle :": "Your role:",
+    "Pour activer votre compte, ouvrez ce lien et choisissez votre mot de passe : vous serez connecté(e) directement.": "To activate your account, open this link and choose your password: you will be signed in directly.",
+    "Ce lien est valable %(validite_jours)s jours et ne sert qu'une fois. Ensuite, vous vous connecterez ici avec votre identifiant et votre mot de passe :": "This link is valid for %(validite_jours)s days and can only be used once. After that, you will sign in here with your username and password:",
+    "Si vous ne connaissez pas cet hôpital, ignorez simplement ce message.": "If you do not know this hospital, simply ignore this message.",
+    "Votre accès à Kènèya Sô — %(hopital)s": "Your access to Kènèya Sô — %(hopital)s",
+    "Bienvenue sur Kènèya Sô": "Welcome to Kènèya Sô",
+    "Choisissez votre mot de passe pour activer votre compte : vous serez connecté(e) directement.": "Choose your password to activate your account: you will be signed in directly.",
+    "Activer mon compte": "Activate my account",
+})

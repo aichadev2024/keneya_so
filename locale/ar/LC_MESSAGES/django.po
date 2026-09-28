@@ -9,67 +9,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 
-#: apps/accounts/admin.py:46 apps/accounts/admin.py:52
+#: apps/accounts/admin.py:52 apps/accounts/admin.py:61
 msgid "Profil métier Kènèya Sô"
 msgstr "الملف المهني في كِنيا سو"
 
-#: apps/accounts/admin.py:58
+#: apps/accounts/admin.py:75
+msgid ""
+"Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être "
+"envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard."
+msgstr ""
+"تم إنشاء الحساب «%(u)s»، لكن تعذّر إرسال بريد الدعوة. استخدم إجراء «إعادة "
+"إرسال الدعوة» لاحقًا."
+
+#: apps/accounts/admin.py:79
+msgid "Invitation envoyée à %(e)s."
+msgstr "تم إرسال الدعوة إلى %(e)s."
+
+#: apps/accounts/admin.py:87
+msgid "Renvoyer l'invitation (identifiant + lien de connexion)"
+msgstr "إعادة إرسال الدعوة (اسم المستخدم + رابط الدخول)"
+
+#: apps/accounts/admin.py:92
+msgid "« %(u)s » n'a pas d'adresse e-mail."
+msgstr "«%(u)s» ليس لديه عنوان بريد إلكتروني."
+
+#: apps/accounts/admin.py:96
+msgid "« %(u)s » est désactivé."
+msgstr "«%(u)s» معطّل."
+
+#: apps/accounts/admin.py:101
 msgid "nom complet"
 msgstr "الاسم الكامل"
 
-#: apps/accounts/forms.py:21 templates/registration/login.html:17
+#: apps/accounts/forms.py:23 templates/registration/login.html:17
 msgid "Identifiant"
 msgstr "اسم المستخدم"
 
-#: apps/accounts/forms.py:24 apps/accounts/forms.py:69 apps/core/tests.py:28
+#: apps/accounts/forms.py:26 apps/accounts/forms.py:71 apps/core/tests.py:28
 #: templates/registration/login.html:21
 msgid "Mot de passe"
 msgstr "كلمة المرور"
 
-#: apps/accounts/forms.py:28
+#: apps/accounts/forms.py:30
 msgid "Identifiant ou mot de passe incorrect."
 msgstr "اسم المستخدم أو كلمة المرور غير صحيحة."
 
-#: apps/accounts/forms.py:29
+#: apps/accounts/forms.py:31
 msgid "Ce compte est désactivé. Contactez l'administrateur."
 msgstr "هذا الحساب معطّل. يرجى الاتصال بالمسؤول."
 
-#: apps/accounts/forms.py:44 apps/accounts/forms.py:45
+#: apps/accounts/forms.py:46 apps/accounts/forms.py:47
 msgid "Jeton d'installation"
 msgstr "رمز التثبيت"
 
-#: apps/accounts/forms.py:64
+#: apps/accounts/forms.py:66
 msgid "Nom de l'hôpital"
 msgstr "اسم المستشفى"
 
-#: apps/accounts/forms.py:65 apps/patients/views.py:49
+#: apps/accounts/forms.py:67 apps/patients/views.py:49
 msgid "Prénom"
 msgstr "الاسم الأول"
 
-#: apps/accounts/forms.py:66 apps/patients/views.py:49
+#: apps/accounts/forms.py:68 apps/patients/views.py:49
 #: templates/patients/detail.html:76 templates/patients/liste.html:39
 msgid "Nom"
 msgstr "الاسم"
 
-#: apps/accounts/forms.py:67 apps/accounts/forms.py:118
+#: apps/accounts/forms.py:69 apps/accounts/forms.py:120
 msgid "Adresse e-mail"
 msgstr "البريد الإلكتروني"
 
-#: apps/accounts/forms.py:68
+#: apps/accounts/forms.py:70
 msgid "Identifiant de connexion"
 msgstr "اسم مستخدم الدخول"
 
-#: apps/accounts/forms.py:71
+#: apps/accounts/forms.py:73
 msgid "Confirmation du mot de passe"
 msgstr "تأكيد كلمة المرور"
 
-#: apps/accounts/forms.py:87
+#: apps/accounts/forms.py:89
 msgid "Cet identifiant est déjà utilisé."
 msgstr "اسم المستخدم هذا مستعمل بالفعل."
 
-#: apps/accounts/forms.py:100
+#: apps/accounts/forms.py:102
 msgid "Les deux mots de passe ne correspondent pas."
 msgstr "كلمتا المرور غير متطابقتين."
+
+#: apps/accounts/forms.py:151
+msgid ""
+"Un e-mail avec l'identifiant et un lien de première connexion y sera envoyé."
+msgstr "سيُرسل إليه بريد يتضمن اسم المستخدم ورابط أول تسجيل دخول."
 
 #: apps/accounts/models.py:33
 msgid "Administrateur"
@@ -170,23 +199,23 @@ msgstr "مستخدم"
 msgid "utilisateurs"
 msgstr "المستخدمون"
 
-#: apps/accounts/views.py:137
+#: apps/accounts/views.py:151
 msgid "Jeton d'installation incorrect."
 msgstr "رمز التثبيت غير صحيح."
 
-#: apps/accounts/views.py:142
+#: apps/accounts/views.py:156
 msgid "Un compte administrateur existe déjà."
 msgstr "يوجد بالفعل حساب مسؤول."
 
-#: apps/accounts/views.py:157
+#: apps/accounts/views.py:171
 msgid "Compte administrateur créé. Vous pouvez vous connecter."
 msgstr "تم إنشاء حساب المسؤول. يمكنكم الآن تسجيل الدخول."
 
-#: apps/accounts/views.py:182
+#: apps/accounts/views.py:196
 msgid "Trop d'inscriptions depuis cette adresse. Réessayez plus tard."
 msgstr "عدد كبير من عمليات التسجيل من هذا العنوان. أعيدوا المحاولة لاحقًا."
 
-#: apps/accounts/views.py:194
+#: apps/accounts/views.py:208
 msgid "Bienvenue ! Votre hôpital est créé, votre période d'essai commence."
 msgstr "مرحبًا بكم! تم إنشاء مستشفاكم وبدأت فترتكم التجريبية."
 
@@ -4480,6 +4509,46 @@ msgstr "تجربة مجانية دون بطاقة مصرفية. ستكونون �
 msgid "Créer mon espace hôpital"
 msgstr "إنشاء مساحة مستشفاي"
 
+#: templates/registration/invitation_email.txt:1
+msgid "Bonjour %(nom)s,"
+msgstr "مرحبًا %(nom)s،"
+
+#: templates/registration/invitation_email.txt:3
+msgid "Un compte Kènèya Sô vient d'être créé pour vous à « %(hopital)s »."
+msgstr "تم للتو إنشاء حساب كِنيا سو لك في «%(hopital)s»."
+
+#: templates/registration/invitation_email.txt:5
+msgid "Votre identifiant de connexion :"
+msgstr "اسم المستخدم الخاص بك:"
+
+#: templates/registration/invitation_email.txt:6
+msgid "Votre rôle :"
+msgstr "دورك:"
+
+#: templates/registration/invitation_email.txt:8
+msgid ""
+"Pour activer votre compte, ouvrez ce lien et choisissez votre mot de passe :"
+" vous serez connecté(e) directement."
+msgstr ""
+"لتفعيل حسابك، افتح هذا الرابط واختر كلمة مرورك: ستُسجَّل دخولك مباشرة."
+
+#: templates/registration/invitation_email.txt:11
+msgid ""
+"Ce lien est valable %(validite_jours)s jours et ne sert qu'une fois. "
+"Ensuite, vous vous connecterez ici avec votre identifiant et votre mot de "
+"passe :"
+msgstr ""
+"هذا الرابط صالح لمدة %(validite_jours)s أيام ويُستخدم مرة واحدة فقط. بعد ذلك"
+" ستسجّل دخولك هنا باسم المستخدم وكلمة المرور:"
+
+#: templates/registration/invitation_email.txt:14
+msgid "Si vous ne connaissez pas cet hôpital, ignorez simplement ce message."
+msgstr "إذا كنت لا تعرف هذا المستشفى، فتجاهل هذه الرسالة."
+
+#: templates/registration/invitation_objet.txt:1
+msgid "Votre accès à Kènèya Sô — %(hopital)s"
+msgstr "دخولك إلى كِنيا سو — %(hopital)s"
+
 #: templates/registration/login.html:8
 msgid "Accédez à votre espace de travail."
 msgstr "ادخلوا إلى مساحة عملكم."
@@ -4547,23 +4616,37 @@ msgid "Retour à la connexion"
 msgstr "العودة إلى تسجيل الدخول"
 
 #: templates/registration/mot_de_passe_nouveau.html:3
-#: templates/registration/mot_de_passe_nouveau.html:8
+#: templates/registration/mot_de_passe_nouveau.html:12
 msgid "Nouveau mot de passe"
 msgstr "كلمة مرور جديدة"
 
 #: templates/registration/mot_de_passe_nouveau.html:9
+msgid "Bienvenue sur Kènèya Sô"
+msgstr "مرحبًا بك في كِنيا سو"
+
+#: templates/registration/mot_de_passe_nouveau.html:10
+msgid ""
+"Choisissez votre mot de passe pour activer votre compte : vous serez "
+"connecté(e) directement."
+msgstr "اختر كلمة مرورك لتفعيل حسابك: ستُسجَّل دخولك مباشرة."
+
+#: templates/registration/mot_de_passe_nouveau.html:13
 msgid "Choisissez un nouveau mot de passe pour votre compte."
 msgstr "اختر كلمة مرور جديدة لحسابك."
 
-#: templates/registration/mot_de_passe_nouveau.html:25
+#: templates/registration/mot_de_passe_nouveau.html:30
+msgid "Activer mon compte"
+msgstr "تفعيل حسابي"
+
+#: templates/registration/mot_de_passe_nouveau.html:30
 msgid "Enregistrer le mot de passe"
 msgstr "حفظ كلمة المرور"
 
-#: templates/registration/mot_de_passe_nouveau.html:28
+#: templates/registration/mot_de_passe_nouveau.html:33
 msgid "Lien invalide"
 msgstr "رابط غير صالح"
 
-#: templates/registration/mot_de_passe_nouveau.html:30
+#: templates/registration/mot_de_passe_nouveau.html:35
 msgid ""
 "Ce lien de réinitialisation n'est plus valable (il expire au bout d'une "
 "heure et ne sert qu'une fois)."
@@ -4571,7 +4654,7 @@ msgstr ""
 "لم يعد رابط إعادة التعيين هذا صالحًا (ينتهي بعد ساعة ويُستخدم مرة واحدة "
 "فقط)."
 
-#: templates/registration/mot_de_passe_nouveau.html:32
+#: templates/registration/mot_de_passe_nouveau.html:37
 msgid "Demander un nouveau lien"
 msgstr "طلب رابط جديد"
 

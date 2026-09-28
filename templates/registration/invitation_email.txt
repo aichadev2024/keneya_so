@@ -1,0 +1,17 @@
+{% load i18n %}{% autoescape off %}{% blocktranslate with nom=utilisateur.get_full_name|default:utilisateur.get_username %}Bonjour {{ nom }},{% endblocktranslate %}
+
+{% blocktranslate %}Un compte Kènèya Sô vient d'être créé pour vous à « {{ hopital }} ».{% endblocktranslate %}
+
+{% translate "Votre identifiant de connexion :" %} {{ utilisateur.get_username }}
+{% translate "Votre rôle :" %} {{ utilisateur.get_role_display }}
+
+{% translate "Pour activer votre compte, ouvrez ce lien et choisissez votre mot de passe : vous serez connecté(e) directement." %}
+{{ lien }}
+
+{% blocktranslate %}Ce lien est valable {{ validite_jours }} jours et ne sert qu'une fois. Ensuite, vous vous connecterez ici avec votre identifiant et votre mot de passe :{% endblocktranslate %}
+{{ lien_connexion }}
+
+{% translate "Si vous ne connaissez pas cet hôpital, ignorez simplement ce message." %}
+
+— Kènèya Sô
+{% endautoescape %}

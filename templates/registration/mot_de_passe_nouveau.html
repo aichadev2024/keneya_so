@@ -5,8 +5,13 @@
 {% block content %}
 <div class="auth-card">
   {% if validlink %}
-    <h1 class="mb-1">{% translate "Nouveau mot de passe" %}</h1>
-    <p class="text-body-secondary mb-4">{% translate "Choisissez un nouveau mot de passe pour votre compte." %}</p>
+    {% if invitation %}
+      <h1 class="mb-1">{% translate "Bienvenue sur Kènèya Sô" %}</h1>
+      <p class="text-body-secondary mb-4">{% translate "Choisissez votre mot de passe pour activer votre compte : vous serez connecté(e) directement." %}</p>
+    {% else %}
+      <h1 class="mb-1">{% translate "Nouveau mot de passe" %}</h1>
+      <p class="text-body-secondary mb-4">{% translate "Choisissez un nouveau mot de passe pour votre compte." %}</p>
+    {% endif %}
 
     {% if form.non_field_errors %}
       <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
@@ -22,7 +27,7 @@
           {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
         </div>
       {% endfor %}
-      <button type="submit" class="btn btn-primary w-100 py-2">{% translate "Enregistrer le mot de passe" %}</button>
+      <button type="submit" class="btn btn-primary w-100 py-2">{% if invitation %}{% translate "Activer mon compte" %}{% else %}{% translate "Enregistrer le mot de passe" %}{% endif %}</button>
     </form>
   {% else %}
     <h1 class="mb-1">{% translate "Lien invalide" %}</h1>

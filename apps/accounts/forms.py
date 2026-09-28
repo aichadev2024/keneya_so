@@ -1,5 +1,7 @@
 """Formulaires d'authentification stylés Bootstrap (CDC 7.3 — ergonomie)."""
 
+import secrets
+
 from django import forms
 from django.contrib.auth import get_user_model, password_validation
 from django.contrib.auth.forms import (
@@ -128,3 +130,30 @@ class NouveauMotDePasseForm(SetPasswordForm):
         for champ in self.fields.values():
             champ.widget.attrs["class"] = "form-control"
         self.fields["new_password1"].widget.attrs["autofocus"] = True
+
+
+class CreationPersonnelForm(forms.ModelForm):
+    """Création d'un membre du personnel : l'adresse e-mail est obligatoire.
+
+    Aucun mot de passe n'est saisi : la personne reçoit par e-mail un lien pour
+    le choisir elle-même (voir ``apps.accounts.invitations``). En attendant,
+    le compte porte un mot de passe aléatoire que personne ne connaît.
+    """
+
+    class Meta:
+        model = Utilisateur
+        fields = ("username", "first_name", "last_name", "email", "etablissement", "role",
+                  "matricule", "telephone", "specialite", "langue_preferee")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].required = True
+        self.fields["email"].help_text = _("Un e-mail avec l'identifiant et un lien de première connexion y sera envoyé.")
+
+    def save(self, commit=True):
+        utilisateur = super().save(commit=False)
+        utilisateur.set_password(secrets.token_urlsafe(32))
+        if commit:
+            utilisateur.save()
+            self.save_m2m()
+        return utilisateur
