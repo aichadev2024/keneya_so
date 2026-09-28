@@ -21,13 +21,13 @@ from django.db.models import Max
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
 
 
-class Service(models.Model):
+class Service(TenantOwnedModel):
     """Unité d'hospitalisation de l'établissement."""
 
-    nom = models.CharField(_("nom"), max_length=120, unique=True)
+    nom = models.CharField(_("nom"), max_length=120)
     code = models.CharField(_("code"), max_length=12, blank=True)
     description = models.CharField(_("description"), max_length=255, blank=True)
     responsable = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
@@ -39,6 +39,7 @@ class Service(models.Model):
         verbose_name = _("service")
         verbose_name_plural = _("services")
         ordering = ["nom"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "nom"], name="service_nom_par_etablissement")]
 
     def __str__(self) -> str:
         return self.nom
@@ -68,7 +69,7 @@ class Service(models.Model):
         return round(100 * self.nb_lits_occupes / total) if total else 0
 
 
-class Chambre(models.Model):
+class Chambre(TenantOwnedModel):
     class Type(models.TextChoices):
         INDIVIDUELLE = "INDIVIDUELLE", _("Individuelle")
         DOUBLE = "DOUBLE", _("Double")
@@ -93,7 +94,7 @@ class Chambre(models.Model):
         return f"{self.service.nom} — {_('chambre')} {self.numero}"
 
 
-class Lit(models.Model):
+class Lit(TenantOwnedModel):
     class Statut(models.TextChoices):
         DISPONIBLE = "DISPONIBLE", _("Disponible")
         NETTOYAGE = "NETTOYAGE", _("En nettoyage")
@@ -137,7 +138,7 @@ class Lit(models.Model):
         return self.statut == self.Statut.DISPONIBLE and not self.est_occupe
 
 
-class Hospitalisation(TimeStampedModel):
+class Hospitalisation(TenantOwnedModel, TimeStampedModel):
     """Séjour d'un patient, de l'admission à la sortie (CDC 4.4)."""
 
     class Statut(models.TextChoices):
@@ -151,7 +152,7 @@ class Hospitalisation(TimeStampedModel):
         CONTRE_AVIS = "CONTRE_AVIS", _("Sortie contre avis médical")
         DECES = "DECES", _("Décès")
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True, editable=False)
+    reference = models.CharField(_("référence"), max_length=20, editable=False)
     patient = models.ForeignKey("patients.Patient", on_delete=models.PROTECT,
                                 related_name="hospitalisations", verbose_name=_("patient"))
     service = models.ForeignKey(Service, on_delete=models.PROTECT,
@@ -192,6 +193,7 @@ class Hospitalisation(TimeStampedModel):
                 fields=["lit"], condition=models.Q(statut="EN_COURS"),
                 name="un_seul_sejour_en_cours_par_lit",
             ),
+            models.UniqueConstraint(fields=["etablissement", "reference"], name="hospitalisation_reference_par_etablissement"),
         ]
 
     def __str__(self) -> str:
@@ -219,7 +221,7 @@ class Hospitalisation(TimeStampedModel):
         return max((fin.date() - self.date_admission.date()).days, 0)
 
 
-class MouvementLit(models.Model):
+class MouvementLit(TenantOwnedModel):
     """Trace d'un changement de lit au cours d'un séjour (CDC 7.4 — traçabilité)."""
 
     hospitalisation = models.ForeignKey(Hospitalisation, on_delete=models.CASCADE,
@@ -242,7 +244,7 @@ class MouvementLit(models.Model):
         return f"{self.hospitalisation.reference} : {self.lit_precedent} → {self.lit_nouveau}"
 
 
-class NoteSuivi(models.Model):
+class NoteSuivi(TenantOwnedModel):
     """Note de suivi quotidien : soin infirmier ou observation médicale (CDC 4.4)."""
 
     class Type(models.TextChoices):

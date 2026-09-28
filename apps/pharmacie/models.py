@@ -23,7 +23,7 @@ from django.db.models import Sum
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
 
 
 class FormeGalenique(models.TextChoices):
@@ -39,10 +39,10 @@ class FormeGalenique(models.TextChoices):
     AUTRE = "AUTRE", _("Autre")
 
 
-class Medicament(TimeStampedModel):
+class Medicament(TenantOwnedModel, TimeStampedModel):
     """Fiche catalogue d'un médicament."""
 
-    code = models.CharField(_("code"), max_length=30, blank=True, unique=True, null=True,
+    code = models.CharField(_("code"), max_length=30, blank=True, null=True,
                             help_text=_("Code interne ou code-barres, facultatif."))
     denomination = models.CharField(_("dénomination (DCI)"), max_length=200)
     dosage = models.CharField(_("dosage"), max_length=60, blank=True,
@@ -67,6 +67,7 @@ class Medicament(TimeStampedModel):
         verbose_name_plural = _("médicaments")
         ordering = ["denomination", "dosage"]
         indexes = [models.Index(fields=["denomination"])]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "code"], name="medicament_code_par_etablissement")]
 
     def __str__(self) -> str:
         base = self.denomination
@@ -100,7 +101,7 @@ class Medicament(TimeStampedModel):
         ).exists()
 
 
-class LotMedicament(models.Model):
+class LotMedicament(TenantOwnedModel):
     """Lot physique d'un médicament, avec sa date de péremption."""
 
     medicament = models.ForeignKey(Medicament, on_delete=models.CASCADE,
@@ -129,7 +130,7 @@ class LotMedicament(models.Model):
         return self.date_peremption < date.today()
 
 
-class MouvementStock(models.Model):
+class MouvementStock(TenantOwnedModel):
     """Trace d'une variation de stock (CDC 4.5 — entrées, sorties, ajustements)."""
 
     class Type(models.TextChoices):
@@ -169,7 +170,7 @@ class MouvementStock(models.Model):
         return self.quantite if self.type in self.ENTREES else -self.quantite
 
 
-class InteractionMedicamenteuse(models.Model):
+class InteractionMedicamenteuse(TenantOwnedModel):
     """Interaction connue entre deux médicaments (CDC 4.3 — alerte non bloquante)."""
 
     class Gravite(models.TextChoices):
@@ -211,7 +212,7 @@ class InteractionMedicamenteuse(models.Model):
         return cls.objects.filter(medicament_a_id=a, medicament_b_id=b).first()
 
 
-class Dispensation(TimeStampedModel):
+class Dispensation(TenantOwnedModel, TimeStampedModel):
     """Délivrance d'une ordonnance transmise à la pharmacie (CDC 4.5)."""
 
     class Statut(models.TextChoices):
@@ -245,7 +246,7 @@ class Dispensation(TimeStampedModel):
         return self.ordonnance.patient
 
 
-class LigneDispensation(models.Model):
+class LigneDispensation(TenantOwnedModel):
     """Quantité effectivement délivrée pour une ligne d'ordonnance, sur un lot donné."""
 
     dispensation = models.ForeignKey(Dispensation, on_delete=models.CASCADE,

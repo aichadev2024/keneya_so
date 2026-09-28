@@ -24,12 +24,12 @@ from django.db.models import Max
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
 
 TEMPS_NETTOYAGE_DEFAUT_MIN = 30  # CDC 5.4 : temps tampon paramétrable, défaut 30 min
 
 
-class SalleOperatoire(models.Model):
+class SalleOperatoire(TenantOwnedModel):
     class Statut(models.TextChoices):
         DISPONIBLE = "DISPONIBLE", _("Disponible")
         MAINTENANCE = "MAINTENANCE", _("En maintenance")
@@ -42,7 +42,7 @@ class SalleOperatoire(models.Model):
         MAINTENANCE = "MAINTENANCE", _("En maintenance")
         HORS_SERVICE = "HORS_SERVICE", _("Hors service")
 
-    nom = models.CharField(_("nom"), max_length=80, unique=True)
+    nom = models.CharField(_("nom"), max_length=80)
     code = models.CharField(_("code"), max_length=12, blank=True)
     equipement = models.TextField(_("équipement disponible"), blank=True)
     capacite = models.PositiveSmallIntegerField(_("capacité (interventions simultanées)"),
@@ -59,6 +59,7 @@ class SalleOperatoire(models.Model):
         verbose_name = _("salle opératoire")
         verbose_name_plural = _("salles opératoires")
         ordering = ["nom"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "nom"], name="salleoperatoire_nom_par_etablissement")]
 
     def __str__(self) -> str:
         return self.nom
@@ -100,14 +101,14 @@ class SalleOperatoire(models.Model):
         return self.actif and self.statut == self.Statut.DISPONIBLE
 
 
-class MaterielBloc(models.Model):
+class MaterielBloc(TenantOwnedModel):
     class Sterilisation(models.TextChoices):
         STERILISE = "STERILISE", _("Stérilisé")
         EN_STERILISATION = "EN_STERILISATION", _("En stérilisation")
         NON_STERILISE = "NON_STERILISE", _("Non stérilisé")
         PERIME = "PERIME", _("Péremption de stérilité dépassée")
 
-    designation = models.CharField(_("désignation"), max_length=150, unique=True)
+    designation = models.CharField(_("désignation"), max_length=150)
     reference = models.CharField(_("référence"), max_length=60, blank=True)
     quantite_disponible = models.PositiveIntegerField(_("quantité disponible"), default=0)
     quantite_totale = models.PositiveIntegerField(_("quantité totale"), default=0)
@@ -122,6 +123,7 @@ class MaterielBloc(models.Model):
         verbose_name = _("matériel de bloc")
         verbose_name_plural = _("matériels de bloc")
         ordering = ["designation"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "designation"], name="materielbloc_designation_par_etablissement")]
 
     def __str__(self) -> str:
         return self.designation
@@ -135,8 +137,8 @@ class MaterielBloc(models.Model):
         )
 
 
-class TypeIntervention(models.Model):
-    libelle = models.CharField(_("libellé de l'acte"), max_length=150, unique=True)
+class TypeIntervention(TenantOwnedModel):
+    libelle = models.CharField(_("libellé de l'acte"), max_length=150)
     specialite = models.CharField(_("spécialité"), max_length=100, blank=True)
     duree_standard_min = models.PositiveSmallIntegerField(_("durée standard (minutes)"),
                                                           default=60)
@@ -149,12 +151,13 @@ class TypeIntervention(models.Model):
         verbose_name = _("type d'intervention")
         verbose_name_plural = _("types d'intervention")
         ordering = ["libelle"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "libelle"], name="typeintervention_libelle_par_etablissement")]
 
     def __str__(self) -> str:
         return self.libelle
 
 
-class MaterielRequis(models.Model):
+class MaterielRequis(TenantOwnedModel):
     """Matériel requis pour un type d'intervention (CDC 5.3.4)."""
 
     type_intervention = models.ForeignKey(TypeIntervention, on_delete=models.CASCADE,
@@ -175,7 +178,7 @@ class MaterielRequis(models.Model):
         return f"{self.materiel} ×{self.quantite}"
 
 
-class Intervention(TimeStampedModel):
+class Intervention(TenantOwnedModel, TimeStampedModel):
     class Urgence(models.TextChoices):
         PROGRAMMEE = "PROGRAMMEE", _("Programmée")
         URGENTE = "URGENTE", _("Urgente")
@@ -191,7 +194,7 @@ class Intervention(TimeStampedModel):
 
     STATUTS_ACTIFS = {Statut.PLANIFIEE, Statut.EN_COURS}
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True, editable=False)
+    reference = models.CharField(_("référence"), max_length=20, editable=False)
     patient = models.ForeignKey("patients.Patient", on_delete=models.PROTECT,
                                 related_name="interventions", verbose_name=_("patient"))
     type_intervention = models.ForeignKey(TypeIntervention, on_delete=models.PROTECT,
@@ -256,6 +259,7 @@ class Intervention(TimeStampedModel):
             models.Index(fields=["statut", "date_heure_debut_prevue"]),
             models.Index(fields=["salle", "date_heure_debut_prevue"]),
         ]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="intervention_reference_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.reference} — {self.patient.nom_complet}"
@@ -304,7 +308,7 @@ class Intervention(TimeStampedModel):
         ).exists()
 
 
-class MembreEquipe(models.Model):
+class MembreEquipe(TenantOwnedModel):
     class Role(models.TextChoices):
         CHIRURGIEN = "CHIRURGIEN", _("Chirurgien")
         CHIRURGIEN_AIDE = "CHIRURGIEN_AIDE", _("Chirurgien aide")
@@ -333,7 +337,7 @@ class MembreEquipe(models.Model):
         return f"{self.utilisateur.get_full_name() or self.utilisateur} — {self.get_role_display()}"
 
 
-class EtapeChecklist(models.Model):
+class EtapeChecklist(TenantOwnedModel):
     """Checklist sécurité type OMS à trois temps (CDC 5.3.5)."""
 
     class Temps(models.TextChoices):
@@ -366,7 +370,7 @@ class EtapeChecklist(models.Model):
         return f"{self.get_temps_display()} — {'OK' if self.valide else '...'}"
 
 
-class CompteRenduOperatoire(TimeStampedModel):
+class CompteRenduOperatoire(TenantOwnedModel, TimeStampedModel):
     """CR opératoire rédigé par le chirurgien, rattaché au dossier (CDC 5.3.6)."""
 
     intervention = models.OneToOneField(Intervention, on_delete=models.CASCADE,
@@ -395,7 +399,7 @@ class CompteRenduOperatoire(TimeStampedModel):
         return self.intervention.patient
 
 
-class IndisponibiliteSalle(models.Model):
+class IndisponibiliteSalle(TenantOwnedModel):
     """Historique de maintenance / indisponibilité d'une salle (CDC 5.3.2)."""
 
     class Motif(models.TextChoices):

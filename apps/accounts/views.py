@@ -50,7 +50,7 @@ class PremiereConfigurationView(FormView):
     success_url = reverse_lazy("accounts:login")
 
     def dispatch(self, request, *args, **kwargs):
-        if not settings.SETUP_TOKEN or Utilisateur.objects.filter(is_superuser=True).exists():
+        if not settings.SETUP_TOKEN or Utilisateur.tous.filter(is_superuser=True).exists():
             raise Http404
         return super().dispatch(request, *args, **kwargs)
 
@@ -60,7 +60,7 @@ class PremiereConfigurationView(FormView):
             return self.form_invalid(form)
 
         with transaction.atomic():
-            if Utilisateur.objects.select_for_update().filter(is_superuser=True).exists():
+            if Utilisateur.tous.select_for_update().filter(is_superuser=True).exists():
                 form.add_error(None, _("Un compte administrateur existe déjà."))
                 return self.form_invalid(form)
             utilisateur = form.save(commit=False)

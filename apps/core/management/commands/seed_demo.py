@@ -23,7 +23,8 @@ from apps.bloc_operatoire.models import (
     SalleOperatoire,
     TypeIntervention,
 )
-from apps.core.models import ParametresSysteme
+from apps.core.models import Etablissement, ParametresSysteme
+from apps.core.tenancy import pour_etablissement
 from apps.facturation.models import Tarif
 from apps.laboratoire.models import Categorie, TypeExamen
 from apps.hospitalisation.models import Chambre, Hospitalisation, Lit, Service
@@ -36,7 +37,7 @@ Utilisateur = get_user_model()
 MOT_DE_PASSE_DEMO = "demo1234"
 
 COMPTES = [
-    ("admin", "Aïssata", "KEÏTA", Utilisateur.Role.ADMIN, True),
+    ("admin", "Aïssata", "KEÏTA", Utilisateur.Role.ADMIN, False),
     ("accueil", "Fatoumata", "SANGARÉ", Utilisateur.Role.AGENT_ACCUEIL, False),
     ("medecin", "Ibrahima", "TRAORÉ", Utilisateur.Role.MEDECIN, False),
     ("infirmier", "Salif", "DIALLO", Utilisateur.Role.INFIRMIER, False),
@@ -77,12 +78,30 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self, *args, **options):
+        etab, _cree = Etablissement.objects.get_or_create(
+            slug="demo",
+            defaults={"nom": "Hôpital de démonstration", "statut": Etablissement.Statut.ACTIF},
+        )
+        with pour_etablissement(etab):
+            self._charger()
+        # Compte du propriétaire de la plateforme (sans établissement) : gère les hôpitaux.
+        plateforme, cree = Utilisateur.tous.get_or_create(
+            username="plateforme",
+            defaults={"is_superuser": True, "is_staff": True, "role": Utilisateur.Role.ADMIN,
+                      "first_name": "Propriétaire", "last_name": "PLATEFORME"},
+        )
+        if cree:
+            plateforme.set_password(MOT_DE_PASSE_DEMO)
+            plateforme.save()
+            self.stdout.write(self.style.SUCCESS("  + compte plateforme (super-administrateur)"))
+
+    def _charger(self):
         params = ParametresSysteme.charger()
         params.langues_actives = ["fr", "en", "ar", "bm", "ff", "snk"]
         params.save()
 
         for username, prenom, nom, role, superuser in COMPTES:
-            u, cree = Utilisateur.objects.get_or_create(
+            u, cree = Utilisateur.tous.get_or_create(
                 username=username,
                 defaults={
                     "first_name": prenom, "last_name": nom, "role": role,
@@ -109,7 +128,7 @@ class Command(BaseCommand):
                 f"  + patient {p.numero_dossier} — {p.nom_complet}"
             ))
 
-        admin = Utilisateur.objects.filter(username="admin").first()
+        admin = Utilisateur.tous.filter(username="admin").first()
         for deno, dosage, forme, unite, seuil, stock in MEDICAMENTS:
             med, cree = Medicament.objects.get_or_create(
                 denomination=deno, dosage=dosage,
@@ -185,7 +204,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f"  + type d'acte {libelle}"))
 
         patient = Patient.objects.filter(nom="Maïga", prenom="Hawa").first()
-        chirurgien = Utilisateur.objects.filter(username="chirurgien").first()
+        chirurgien = Utilisateur.tous.filter(username="chirurgien").first()
         type_appendice = TypeIntervention.objects.filter(
             libelle="Appendicectomie").first()
         if patient and chirurgien and type_appendice and not Intervention.objects.filter(
@@ -267,7 +286,7 @@ class Command(BaseCommand):
             "Chirurgie": {"chambres": 2, "lits_par_chambre": 2},
             "Maternité": {"chambres": 2, "lits_par_chambre": 3},
         }
-        medecin = Utilisateur.objects.filter(username="medecin").first()
+        medecin = Utilisateur.tous.filter(username="medecin").first()
         for nom, conf in plan.items():
             service, cree = Service.objects.get_or_create(nom=nom)
             if cree:

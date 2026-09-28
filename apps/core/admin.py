@@ -1,7 +1,17 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import HistoriqueAction, Notification, ParametresSysteme
+from .models import Etablissement, HistoriqueAction, Notification, ParametresSysteme
+
+
+@admin.register(Etablissement)
+class EtablissementAdmin(admin.ModelAdmin):
+    """Gestion des hôpitaux clients — réservée au super-administrateur de la plateforme."""
+
+    list_display = ("nom", "slug", "statut", "essai_jusqu_au", "cree_le")
+    list_filter = ("statut",)
+    search_fields = ("nom", "slug")
+    prepopulated_fields = {"slug": ("nom",)}
 
 
 @admin.register(Notification)

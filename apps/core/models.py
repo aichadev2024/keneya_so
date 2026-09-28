@@ -13,6 +13,78 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from .tenancy import TenantManager, etablissement_pour_creation
+
+
+class Etablissement(models.Model):
+    """Un hôpital / établissement client de la plateforme (le « locataire » du SaaS)."""
+
+    class Statut(models.TextChoices):
+        ESSAI = "ESSAI", _("Période d'essai")
+        ACTIF = "ACTIF", _("Actif")
+        SUSPENDU = "SUSPENDU", _("Suspendu")
+
+    nom = models.CharField(_("nom"), max_length=200)
+    slug = models.SlugField(_("identifiant court"), max_length=60, unique=True)
+    statut = models.CharField(_("statut"), max_length=10, choices=Statut.choices,
+                              default=Statut.ESSAI)
+    essai_jusqu_au = models.DateField(_("fin de la période d'essai"), null=True, blank=True)
+    cree_le = models.DateTimeField(_("créé le"), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("établissement")
+        verbose_name_plural = _("établissements")
+        ordering = ["nom"]
+
+    def __str__(self) -> str:
+        return self.nom
+
+    @property
+    def utilisable(self) -> bool:
+        return self.statut != self.Statut.SUSPENDU
+
+    @classmethod
+    def defaut(cls) -> "Etablissement":
+        """Établissement historique/par défaut (code exécuté hors requête : commandes, tests)."""
+        etab = cls.objects.order_by("pk").first()
+        if etab is None:
+            etab = cls.objects.create(nom="Établissement principal", slug="principal",
+                                      statut=cls.Statut.ACTIF)
+        return etab
+
+
+class TenantOwnedModel(models.Model):
+    """Base abstraite : donnée appartenant à un établissement, filtrée automatiquement."""
+
+    etablissement = models.ForeignKey(
+        "core.Etablissement", on_delete=models.PROTECT, related_name="+",
+        editable=False, verbose_name=_("établissement"),
+    )
+
+    objects = TenantManager()
+
+    class Meta:
+        abstract = True
+
+    def _etablissement_du_parent(self):
+        """Un objet créé sous un parent déjà rattaché (patient, consultation…) hérite
+        de son établissement, quel que soit le contexte courant (signaux, tâches)."""
+        for champ in self._meta.concrete_fields:
+            if not (champ.many_to_one and champ.name != "etablissement"):
+                continue
+            if getattr(self, champ.attname) is None:
+                continue
+            etab = getattr(getattr(self, champ.name, None), "etablissement_id", None)
+            if etab:
+                return etab
+        return None
+
+    def save(self, *args, **kwargs):
+        if self.etablissement_id is None:
+            self.etablissement_id = (self._etablissement_du_parent()
+                                     or etablissement_pour_creation())
+        super().save(*args, **kwargs)
+
 
 class TimeStampedModel(models.Model):
     """Base abstraite : dates de création/modification et auteurs associés."""
@@ -41,8 +113,8 @@ class TimeStampedModel(models.Model):
         ordering = ["-cree_le"]
 
 
-class ParametresSysteme(models.Model):
-    """Paramètres généraux de l'établissement — enregistrement unique (singleton)."""
+class ParametresSysteme(TenantOwnedModel):
+    """Paramètres généraux d'un établissement — un seul enregistrement par établissement."""
 
     nom_etablissement = models.CharField(_("nom de l'établissement"), max_length=200,
                                          default="Kènèya Sô")
@@ -61,17 +133,19 @@ class ParametresSysteme(models.Model):
     class Meta:
         verbose_name = _("paramètres système")
         verbose_name_plural = _("paramètres système")
+        constraints = [
+            models.UniqueConstraint(fields=["etablissement"], name="parametres_un_par_etablissement"),
+        ]
 
     def __str__(self) -> str:
         return self.nom_etablissement
 
-    def save(self, *args, **kwargs):
-        self.pk = 1  # force le singleton
-        super().save(*args, **kwargs)
-
     @classmethod
     def charger(cls) -> "ParametresSysteme":
-        obj, _created = cls.objects.get_or_create(pk=1)
+        """Paramètres de l'établissement courant (créés au besoin)."""
+        obj = cls.objects.first()
+        if obj is None:
+            obj = cls.objects.create()
         return obj
 
 
@@ -89,6 +163,12 @@ class HistoriqueAction(models.Model):
         CONNEXION = "CONNEXION", _("Connexion")
         DECONNEXION = "DECONNEXION", _("Déconnexion")
         AUTRE = "AUTRE", _("Autre")
+
+    etablissement = models.ForeignKey(
+        "core.Etablissement", on_delete=models.PROTECT, related_name="+",
+        null=True, blank=True, editable=False, verbose_name=_("établissement"),
+    )
+    objects = TenantManager()
 
     utilisateur = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -128,7 +208,13 @@ class HistoriqueAction(models.Model):
         if objet is not None:
             objet_type = objet.__class__.__name__
             objet_id = str(getattr(objet, "pk", ""))
+        etab_id = getattr(utilisateur, "etablissement_id", None)
+        if etab_id is None:
+            from .tenancy import contexte_courant
+            ctx = contexte_courant()
+            etab_id = ctx if isinstance(ctx, int) else None
         return cls.objects.create(
+            etablissement_id=etab_id,
             utilisateur=utilisateur,
             action=action,
             objet_type=objet_type,
@@ -139,7 +225,7 @@ class HistoriqueAction(models.Model):
         )
 
 
-class Notification(models.Model):
+class Notification(TenantOwnedModel):
     """Notification interne à un utilisateur (résultats disponibles, affectations…)."""
 
     destinataire = models.ForeignKey(
@@ -165,5 +251,6 @@ class Notification(models.Model):
     def notifier(cls, *, destinataire, titre, message="", url=""):
         if destinataire is None:
             return None
-        return cls.objects.create(destinataire=destinataire, titre=titre,
+        return cls.objects.create(etablissement_id=destinataire.etablissement_id,
+                                  destinataire=destinataire, titre=titre,
                                   message=message, url=url)

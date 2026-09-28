@@ -21,7 +21,7 @@ from django.db.models import Max
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
 
 
 class Categorie(models.TextChoices):
@@ -29,8 +29,8 @@ class Categorie(models.TextChoices):
     IMAGERIE = "IMAGERIE", _("Imagerie médicale")
 
 
-class TypeExamen(models.Model):
-    code = models.CharField(_("code"), max_length=30, unique=True)
+class TypeExamen(TenantOwnedModel):
+    code = models.CharField(_("code"), max_length=30)
     libelle = models.CharField(_("libellé"), max_length=150)
     categorie = models.CharField(_("catégorie"), max_length=10,
                                  choices=Categorie.choices)
@@ -47,12 +47,13 @@ class TypeExamen(models.Model):
         verbose_name = _("type d'examen")
         verbose_name_plural = _("types d'examen")
         ordering = ["categorie", "libelle"]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "code"], name="typeexamen_code_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.libelle} ({self.get_categorie_display()})"
 
 
-class DemandeExamen(TimeStampedModel):
+class DemandeExamen(TenantOwnedModel, TimeStampedModel):
     class Priorite(models.TextChoices):
         ROUTINE = "ROUTINE", _("Routine")
         URGENT = "URGENT", _("Urgent")
@@ -64,7 +65,7 @@ class DemandeExamen(TimeStampedModel):
         VALIDEE = "VALIDEE", _("Validée")
         ANNULEE = "ANNULEE", _("Annulée")
 
-    reference = models.CharField(_("référence"), max_length=20, unique=True,
+    reference = models.CharField(_("référence"), max_length=20, 
                                  editable=False)
     patient = models.ForeignKey("patients.Patient", on_delete=models.PROTECT,
                                 related_name="demandes_examen", verbose_name=_("patient"))
@@ -99,6 +100,7 @@ class DemandeExamen(TimeStampedModel):
             models.Index(fields=["categorie", "statut", "-date_demande"]),
             models.Index(fields=["patient", "-date_demande"]),
         ]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "reference"], name="demandeexamen_reference_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.reference} — {self.patient.nom_complet}"
@@ -126,7 +128,7 @@ class DemandeExamen(TimeStampedModel):
         )
 
 
-class LigneExamen(models.Model):
+class LigneExamen(TenantOwnedModel):
     demande = models.ForeignKey(DemandeExamen, on_delete=models.CASCADE,
                                 related_name="lignes", verbose_name=_("demande"))
     type_examen = models.ForeignKey(TypeExamen, on_delete=models.PROTECT,
@@ -154,7 +156,7 @@ class LigneExamen(models.Model):
         super().save(*args, **kwargs)
 
 
-class Resultat(models.Model):
+class Resultat(TenantOwnedModel):
     class Interpretation(models.TextChoices):
         NORMAL = "NORMAL", _("Normal")
         BAS = "BAS", _("Anormal — bas")

@@ -103,6 +103,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",  # doit rester après AuthenticationMiddleware
+    "apps.core.tenancy.EtablissementMiddleware",  # isolation multi-établissements (SaaS)
 ]
 
 ROOT_URLCONF = "config.urls"

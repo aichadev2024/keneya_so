@@ -9,9 +9,21 @@ les permissions sont recalculées à chaque migration (voir ``roles.py`` et
 
 from __future__ import annotations
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from apps.core.tenancy import HORS_REQUETE, TenantQuerySet, contexte_courant
+
+
+class UtilisateurScopeManager(UserManager.from_queryset(TenantQuerySet)):
+    """Utilisateurs de l'établissement courant uniquement (listes, sélecteurs, API).
+
+    Le gestionnaire par défaut (``tous``) reste non filtré : l'authentification
+    doit pouvoir retrouver un compte avant qu'aucun établissement ne soit actif.
+    """
+
+    use_in_migrations = False
 
 
 class Utilisateur(AbstractUser):
@@ -41,11 +53,20 @@ class Utilisateur(AbstractUser):
         FF = "ff", _("Peulh (fulfulde)")
         SNK = "snk", _("Soninké")
 
+    etablissement = models.ForeignKey(
+        "core.Etablissement", on_delete=models.PROTECT, related_name="utilisateurs",
+        null=True, blank=True, verbose_name=_("établissement"),
+        help_text=_("Vide pour un super-administrateur de la plateforme."),
+    )
+
+    tous = UserManager()  # défaut : non filtré (authentification, administration plateforme)
+    objects = UtilisateurScopeManager()
+
     role = models.CharField(
         _("rôle"), max_length=32, choices=Role.choices, blank=True,
         help_text=_("Détermine les fonctions et les données accessibles (RBAC)."),
     )
-    matricule = models.CharField(_("matricule"), max_length=40, blank=True, unique=True,
+    matricule = models.CharField(_("matricule"), max_length=40, blank=True, 
                                  null=True)
     telephone = models.CharField(_("téléphone"), max_length=40, blank=True)
     specialite = models.CharField(_("spécialité"), max_length=120, blank=True)
@@ -58,6 +79,18 @@ class Utilisateur(AbstractUser):
     class Meta(AbstractUser.Meta):
         verbose_name = _("utilisateur")
         verbose_name_plural = _("utilisateurs")
+        constraints = [models.UniqueConstraint(fields=["etablissement", "matricule"], name="utilisateur_matricule_par_etablissement")]
+
+    def save(self, *args, **kwargs):
+        # Un compte non super-administrateur appartient toujours à un établissement.
+        if self.etablissement_id is None and not self.is_superuser:
+            ctx = contexte_courant()
+            if isinstance(ctx, int):
+                self.etablissement_id = ctx
+            elif ctx is HORS_REQUETE:
+                from apps.core.models import Etablissement
+                self.etablissement_id = Etablissement.defaut().pk
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         nom_complet = self.get_full_name()

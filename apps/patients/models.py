@@ -15,7 +15,8 @@ from django.db import models
 from django.db.models import Max
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel
+from apps.core.models import TenantOwnedModel, TimeStampedModel
+from apps.core.tenancy import gestionnaire_pour
 
 PREFIXE_DOSSIER = "KS"
 
@@ -49,7 +50,7 @@ class PatientQuerySet(models.QuerySet):
         )
 
 
-class Patient(TimeStampedModel):
+class Patient(TenantOwnedModel, TimeStampedModel):
     class Sexe(models.TextChoices):
         MASCULIN = "M", _("Masculin")
         FEMININ = "F", _("Féminin")
@@ -62,7 +63,7 @@ class Patient(TimeStampedModel):
         AUTRE = "AUTRE", _("Autre")
 
     numero_dossier = models.CharField(
-        _("numéro de dossier"), max_length=20, unique=True, editable=False,
+        _("numéro de dossier"), max_length=20, editable=False,
         help_text=_("Identifiant unique du patient, attribué automatiquement."),
     )
     nom = models.CharField(_("nom"), max_length=100)
@@ -105,7 +106,7 @@ class Patient(TimeStampedModel):
         help_text=_("Décochez pour archiver le dossier sans le supprimer."),
     )
 
-    objects = PatientQuerySet.as_manager()
+    objects = gestionnaire_pour(PatientQuerySet)
 
     class Meta:
         verbose_name = _("patient")
@@ -115,6 +116,7 @@ class Patient(TimeStampedModel):
             models.Index(fields=["nom", "prenom"]),
             models.Index(fields=["telephone"]),
         ]
+        constraints = [models.UniqueConstraint(fields=["etablissement", "numero_dossier"], name="patient_numero_dossier_par_etablissement")]
 
     def __str__(self) -> str:
         return f"{self.numero_dossier} — {self.nom.upper()} {self.prenom}"
@@ -153,7 +155,7 @@ class Patient(TimeStampedModel):
         )
 
 
-class DossierMedical(TimeStampedModel):
+class DossierMedical(TenantOwnedModel, TimeStampedModel):
     """Informations médicales de fond du patient (CDC 4.2)."""
 
     patient = models.OneToOneField(
@@ -181,7 +183,7 @@ class DossierMedical(TimeStampedModel):
         return _("Dossier médical de %(p)s") % {"p": self.patient.nom_complet}
 
 
-class Allergie(models.Model):
+class Allergie(TenantOwnedModel):
     class Type(models.TextChoices):
         MEDICAMENTEUSE = "MEDICAMENTEUSE", _("Médicamenteuse")
         ALIMENTAIRE = "ALIMENTAIRE", _("Alimentaire")
