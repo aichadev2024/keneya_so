@@ -178,6 +178,17 @@ code { color: var(--ks-accent-dark); background: var(--ks-a-teal-bg); padding: .
 
 .sidebar-brand .brand-mark { width: 32px; height: 32px; flex-shrink: 0; }
 .sidebar-brand .brand-name { font-weight: 700; font-size: 1.1rem; color: #fff; line-height: 1.15; }
+.sidebar-brand .brand-text { min-width: 0; }
+/* Nom de l'hôpital connecté : sur deux lignes au plus, coupé proprement au-delà. */
+.sidebar-brand .brand-hopital {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+}
 .sidebar-brand .brand-tag { display: block; font-size: .68rem; font-weight: 500; color: rgba(255, 255, 255, .55); letter-spacing: .04em; text-transform: uppercase; }
 
 .sidebar-nav {
