@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}CPN {{ visite.numero }} — {{ dossier.patient.nom_complet }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'maternite:accueil' %}">{% translate "Maternité" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'maternite:dossier' dossier.pk %}">{{ dossier.patient.nom_complet }}</a></li>
+  <li class="breadcrumb-item active">CPN {{ visite.numero }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+  <div>
+    <h1 class="h3 mb-1">{% blocktranslate with n=visite.numero %}Consultation prénatale n° {{ n }}{% endblocktranslate %}
+      <span class="badge text-bg-{% if consultation.statut == 'CLOTUREE' %}success{% else %}warning{% endif %}">{{ consultation.get_statut_display }}</span>
+    </h1>
+    <div class="text-body-secondary">
+      {{ dossier.patient.nom_complet }} · {{ consultation.date_consultation|date:"d/m/Y H:i" }} ·
+      {{ visite.terme_sa }} SA · {{ consultation.praticien.get_full_name|default:"—" }}
+    </div>
+  </div>
+  <div class="d-flex gap-2 flex-wrap">
+    {% if modifiable and perms.maternite.change_consultationprenatale %}
+      <a class="btn btn-outline-secondary" href="{% url 'maternite:visite_modifier' visite.pk %}">{% translate "Modifier" %}</a>
+    {% endif %}
+    {% if perms.laboratoire.add_demandeexamen %}
+      <a class="btn btn-outline-primary" href="{% url 'laboratoire:demander' dossier.patient.pk %}?consultation={{ consultation.pk }}">{% translate "Demander un examen" %}</a>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'consultations:detail' consultation.pk %}">{% translate "Prescrire / clôturer" %}</a>
+  </div>
+</div>
+
+{% include "maternite/_alertes.html" with alertes=alertes %}
+
+{% with c=visite.constantes %}
+<div class="row g-3 mb-3">
+  <div class="col-md-6"><div class="card shadow-sm h-100"><div class="card-body">
+    <h2 class="h6">{% translate "Constantes" %}</h2>
+    <dl class="row mb-0">
+      <dt class="col-6">{% translate "Poids" %}</dt><dd class="col-6">{% if c.poids_kg %}{{ c.poids_kg }} kg{% else %}—{% endif %}</dd>
+      <dt class="col-6">{% translate "Tension artérielle" %}</dt><dd class="col-6">{% if c.tension_systolique %}{{ c.tension_systolique }}/{{ c.tension_diastolique|default:"?" }} mmHg{% else %}—{% endif %}</dd>
+      <dt class="col-6">{% translate "Température" %}</dt><dd class="col-6">{% if c.temperature_c %}{{ c.temperature_c }} °C{% else %}—{% endif %}</dd>
+    </dl>
+  </div></div></div>
+  <div class="col-md-6"><div class="card shadow-sm h-100"><div class="card-body">
+    <h2 class="h6">{% translate "Examen obstétrical" %}</h2>
+    <dl class="row mb-0">
+      <dt class="col-6">{% translate "Hauteur utérine" %}</dt><dd class="col-6">{% if visite.hauteur_uterine_cm %}{{ visite.hauteur_uterine_cm }} cm{% else %}—{% endif %}</dd>
+      <dt class="col-6">{% translate "Bruits du cœur fœtal" %}</dt><dd class="col-6">{{ visite.get_bruits_coeur_foetal_display }}{% if visite.frequence_bcf %} ({{ visite.frequence_bcf }} bpm){% endif %}</dd>
+      <dt class="col-6">{% translate "Présentation" %}</dt><dd class="col-6">{{ visite.get_presentation_display }}</dd>
+      <dt class="col-6">{% translate "Œdèmes" %}</dt><dd class="col-6">{% if visite.oedemes %}{% translate "Oui" %}{% else %}{% translate "Non" %}{% endif %}</dd>
+    </dl>
+  </div></div></div>
+</div>
+{% endwith %}
+
+<div class="row g-3 mb-3">
+  <div class="col-md-6"><div class="card shadow-sm h-100"><div class="card-body">
+    <h2 class="h6">{% translate "Examens et dépistages" %}</h2>
+    <dl class="row mb-0">
+      <dt class="col-6">{% translate "Albuminurie" %}</dt><dd class="col-6">{{ visite.get_albuminurie_display }}</dd>
+      <dt class="col-6">{% translate "Glycosurie" %}</dt><dd class="col-6">{{ visite.get_glycosurie_display }}</dd>
+      <dt class="col-6">{% translate "Hémoglobine" %}</dt><dd class="col-6">{% if visite.hemoglobine_g_dl %}{{ visite.hemoglobine_g_dl }} g/dL{% else %}—{% endif %}</dd>
+      <dt class="col-6">{% translate "VIH" %}</dt><dd class="col-6">{{ visite.get_depistage_vih_display }}</dd>
+      <dt class="col-6">{% translate "Syphilis" %}</dt><dd class="col-6">{{ visite.get_depistage_syphilis_display }}</dd>
+    </dl>
+  </div></div></div>
+  <div class="col-md-6"><div class="card shadow-sm h-100"><div class="card-body">
+    <h2 class="h6">{% translate "Prévention et soins de la visite" %}</h2>
+    <ul class="list-unstyled mb-0">
+      <li><i class="bi {% if visite.tpi_sp_donne %}bi-check-circle-fill text-success{% else %}bi-dash-circle text-body-secondary{% endif %}"></i> {% translate "SP donnée (prévention du paludisme)" %}</li>
+      <li><i class="bi {% if visite.fer_acide_folique_donne %}bi-check-circle-fill text-success{% else %}bi-dash-circle text-body-secondary{% endif %}"></i> {% translate "Fer / acide folique donné" %}</li>
+      <li><i class="bi {% if visite.vat_donne %}bi-check-circle-fill text-success{% else %}bi-dash-circle text-body-secondary{% endif %}"></i> {% translate "Vaccin antitétanique administré" %}</li>
+      <li><i class="bi {% if visite.moustiquaire_remise %}bi-check-circle-fill text-success{% else %}bi-dash-circle text-body-secondary{% endif %}"></i> {% translate "Moustiquaire imprégnée remise" %}</li>
+    </ul>
+  </div></div></div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="h6">{% translate "Observations et conseils donnés" %}</h2>
+    <p style="white-space:pre-line">{{ visite.observations|default:"—" }}</p>
+    <p class="mb-0"><strong>{% translate "Prochain rendez-vous" %} :</strong> {% if visite.prochain_rdv %}{{ visite.prochain_rdv|date:"d/m/Y" }}{% else %}—{% endif %}</p>
+  </div>
+</div>
+{% endblock %}

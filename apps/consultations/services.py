@@ -15,6 +15,18 @@ NIVEAU_ATTENTION = "warning"
 NIVEAU_DANGER = "danger"
 
 
+def medicaments_prescriptibles(utilisateur, queryset):
+    """Restreint un queryset de médicaments à ceux que l'utilisateur peut prescrire.
+
+    Une sage-femme ne prescrit que les médicaments que l'hôpital lui autorise
+    (``Medicament.prescriptible_sage_femme``) ; les autres rôles prescripteurs n'ont
+    pas de limite.
+    """
+    if getattr(utilisateur, "role", None) == "SAGE_FEMME":
+        return queryset.filter(prescriptible_sage_femme=True)
+    return queryset
+
+
 def _mots(texte: str) -> set[str]:
     return {m for m in texte.lower().replace("-", " ").split() if len(m) >= 4}
 

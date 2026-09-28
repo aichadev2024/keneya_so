@@ -19,7 +19,7 @@ Role = Utilisateur.Role
 APPS_GEREES = {
     "core", "accounts", "patients", "consultations", "pharmacie",
     "hospitalisation", "bloc_operatoire", "laboratoire", "facturation",
-    "assurances", "auth",  # "auth" : gestion des utilisateurs/groupes par l'admin
+    "assurances", "maternite", "auth",  # "auth" : gestion des utilisateurs/groupes par l'admin
 }
 
 _LECTURE_PATIENT = [
@@ -195,6 +195,18 @@ _FACTURATION_COMPTABLE = _ASSURANCE_LECTURE + [
     "assurances.change_patientassure",
 ]
 
+# Maternité : dossier de grossesse et consultations prénatales
+_MATERNITE_LECTURE = [
+    "maternite.view_dossiergrossesse",
+    "maternite.view_consultationprenatale",
+]
+_MATERNITE_SUIVI = _MATERNITE_LECTURE + [
+    "maternite.add_dossiergrossesse",
+    "maternite.change_dossiergrossesse",
+    "maternite.add_consultationprenatale",
+    "maternite.change_consultationprenatale",
+]
+
 PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     Role.ADMIN: ["*"],
     Role.AGENT_ACCUEIL: [
@@ -204,10 +216,14 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.view_dossiermedical",
         "facturation.view_facture",
     ] + _HOSPIT_ADMISSION + _ASSURANCE_ADHESION,
-    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _LABO_PRESCRIRE + [
+    Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _LABO_PRESCRIRE + _MATERNITE_SUIVI + [
         "bloc_operatoire.view_intervention",
         "bloc_operatoire.view_compterenduoperatoire",
     ],
+    # La sage-femme suit la grossesse et prescrit dans la limite des médicaments que
+    # l'hôpital lui autorise (Medicament.prescriptible_sage_femme).
+    Role.SAGE_FEMME: (_SUIVI_MEDICAL + _PRESCRIRE + _LABO_PRESCRIRE + _MATERNITE_SUIVI
+                      + _HOSPIT_LECTURE + ["patients.add_patient"]),
     Role.CHIRURGIEN: (_SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _BLOC_CHIRURGIEN
                       + _LABO_PRESCRIRE),
     Role.ANESTHESISTE: _LECTURE_PATIENT + [
@@ -217,7 +233,7 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     ] + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST + [
         "bloc_operatoire.change_intervention",  # validation de la faisabilité anesthésique
     ],
-    Role.INFIRMIER: (_LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT
+    Role.INFIRMIER: (_LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT + _MATERNITE_LECTURE
                      + ["laboratoire.view_demandeexamen", "laboratoire.view_resultat"]),
     Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"]
     + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST,

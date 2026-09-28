@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ dossier.patient.nom_complet }} — {% translate "Grossesse" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'maternite:accueil' %}">{% translate "Maternité" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'maternite:dossiers' %}">{% translate "Dossiers" %}</a></li>
+  <li class="breadcrumb-item active">{{ dossier.reference }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ dossier.patient.nom_complet }}
+      <span class="badge text-bg-{% if dossier.statut == 'EN_COURS' %}primary{% elif dossier.statut == 'TERMINEE' %}success{% else %}secondary{% endif %}">{{ dossier.get_statut_display }}</span>
+    </h1>
+    <div class="text-body-secondary">
+      <code>{{ dossier.reference }}</code> ·
+      <a href="{% url 'patients:detail' dossier.patient.pk %}"><code>{{ dossier.patient.numero_dossier }}</code></a>
+      {% if dossier.patient.age is not None %}· {% blocktranslate with a=dossier.patient.age %}{{ a }} ans{% endblocktranslate %}{% endif %}
+      · {% translate "Groupe" %} {{ dossier.patient.get_groupe_sanguin_display }}
+    </div>
+  </div>
+  <div class="d-flex gap-2 flex-wrap">
+    {% if dossier.statut == "EN_COURS" %}
+      {% if perms.maternite.add_consultationprenatale and perms.consultations.add_consultation %}
+        <a class="btn btn-primary" href="{% url 'maternite:visite_nouvelle' dossier.pk %}"><i class="bi bi-plus-lg"></i> {% translate "Nouvelle consultation prénatale" %}</a>
+      {% endif %}
+      {% if perms.maternite.change_dossiergrossesse %}
+        <a class="btn btn-outline-secondary" href="{% url 'maternite:dossier_modifier' dossier.pk %}">{% translate "Modifier" %}</a>
+        <a class="btn btn-outline-secondary" href="{% url 'maternite:dossier_terminer' dossier.pk %}">{% translate "Clôturer la grossesse" %}</a>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% include "maternite/_alertes.html" with alertes=alertes %}
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Terme" %}</div>
+    <div class="fs-4 fw-bold">{% if dossier.statut == "EN_COURS" %}{{ dossier.terme_texte }}{% else %}—{% endif %}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Accouchement prévu" %}</div>
+    <div class="fs-4 fw-bold">{{ dossier.date_prevue_accouchement|date:"d/m/Y" }}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Dernières règles" %}</div>
+    <div class="fs-4 fw-bold">{{ dossier.date_dernieres_regles|date:"d/m/Y" }}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Prochain rendez-vous" %}</div>
+    <div class="fs-4 fw-bold">{% if dossier.prochain_rdv %}{{ dossier.prochain_rdv|date:"d/m/Y" }}{% else %}—{% endif %}</div>
+  </div></div></div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-6"><div class="card shadow-sm h-100"><div class="card-body">
+    <h2 class="h6">{% translate "Antécédents obstétricaux" %}</h2>
+    <p class="mb-2"><strong>{% translate "Gestité" %}</strong> G{{ dossier.gestite }} · <strong>{% translate "Parité" %}</strong> P{{ dossier.parite }}</p>
+    <p class="mb-0" style="white-space:pre-line">{{ dossier.antecedents|default:"—" }}</p>
+  </div></div></div>
+  <div class="col-md-6"><div class="card shadow-sm h-100"><div class="card-body">
+    <h2 class="h6">{% translate "Facteurs de risque identifiés" %}</h2>
+    <p class="mb-0" style="white-space:pre-line">{{ dossier.facteurs_risque|default:"—" }}</p>
+  </div></div></div>
+</div>
+
+{% if dossier.statut != "EN_COURS" %}
+<div class="card shadow-sm mb-4"><div class="card-body">
+  <h2 class="h6">{% translate "Issue de la grossesse" %}</h2>
+  <p class="mb-1"><strong>{{ dossier.get_statut_display }}</strong> — {{ dossier.date_fin|date:"d/m/Y" }}</p>
+  <p class="mb-0" style="white-space:pre-line">{{ dossier.issue|default:"—" }}</p>
+</div></div>
+{% endif %}
+
+<div class="card shadow-sm">
+  <div class="card-header fw-semibold">{% translate "Consultations prénatales" %}</div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead><tr>
+        <th>{% translate "N°" %}</th><th>{% translate "Date" %}</th><th>{% translate "Terme" %}</th>
+        <th>{% translate "Prochain rendez-vous" %}</th><th>{% translate "Statut" %}</th><th></th>
+      </tr></thead>
+      <tbody>
+        {% for v in visites %}
+          <tr>
+            <td>CPN {{ v.numero }}</td>
+            <td>{{ v.consultation.date_consultation|date:"d/m/Y H:i" }}</td>
+            <td>{{ v.terme_sa }} SA</td>
+            <td>{% if v.prochain_rdv %}{{ v.prochain_rdv|date:"d/m/Y" }}{% else %}—{% endif %}</td>
+            <td><span class="badge text-bg-{% if v.consultation.statut == 'CLOTUREE' %}success{% else %}warning{% endif %}">{{ v.consultation.get_statut_display }}</span></td>
+            <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'maternite:visite' v.pk %}">{% translate "Ouvrir" %}</a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucune consultation prénatale pour l'instant." %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

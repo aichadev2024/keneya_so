@@ -13,7 +13,7 @@ class MedicamentForm(forms.ModelForm):
     class Meta:
         model = Medicament
         fields = ["denomination", "dosage", "forme", "unite", "seuil_alerte", "code",
-                  "actif"]
+                  "actif", "prescriptible_sage_femme"]
         widgets = {
             "denomination": forms.TextInput(attrs=_INPUT),
             "dosage": forms.TextInput(attrs=_INPUT),

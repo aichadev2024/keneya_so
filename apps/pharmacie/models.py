@@ -61,6 +61,9 @@ class Medicament(TenantOwnedModel, TimeStampedModel):
         help_text=_("Utilisé pour la facturation des dispensations (CDC 4.8)."),
     )
     actif = models.BooleanField(_("actif"), default=True)
+    prescriptible_sage_femme = models.BooleanField(
+        _("prescriptible par une sage-femme"), default=False,
+        help_text=_("Cochez pour les médicaments qu'une sage-femme peut prescrire (fer, acide folique, SP, paracétamol…)."))
 
     class Meta:
         verbose_name = _("médicament")

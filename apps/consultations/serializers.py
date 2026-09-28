@@ -36,6 +36,16 @@ class LigneOrdonnanceSerializer(serializers.ModelSerializer):
         fields = ["id", "medicament", "medicament_libelle", "posologie", "duree_jours",
                   "quantite_prescrite", "instructions", "quantite_dispensee"]
 
+    def validate_medicament(self, medicament):
+        from .services import medicaments_prescriptibles
+
+        utilisateur = getattr(self.context.get("request"), "user", None)
+        if not medicaments_prescriptibles(
+                utilisateur, type(medicament).objects.filter(pk=medicament.pk)).exists():
+            raise serializers.ValidationError(
+                "Ce médicament n'est pas prescriptible par une sage-femme.")
+        return medicament
+
 
 class OrdonnanceSerializer(serializers.ModelSerializer):
     lignes = LigneOrdonnanceSerializer(many=True)

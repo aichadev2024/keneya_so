@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Dossier de grossesse" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-1">
+  {% if form.instance.pk %}{% translate "Modifier le dossier de grossesse" %}{% else %}{% translate "Ouvrir un dossier de grossesse" %}{% endif %}
+</h1>
+<p class="text-body-secondary">{{ patient.nom_complet }} — <code>{{ patient.numero_dossier }}</code></p>
+
+<form method="post" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="row g-3">
+    {% for field in form %}
+      <div class="{% if field.name == 'antecedents' or field.name == 'facteurs_risque' %}col-12{% else %}col-md-4{% endif %}">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+        {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <p class="small text-body-secondary mt-3 mb-3">
+    {% translate "Le terme et la date prévue d'accouchement (dernières règles + 280 jours) sont calculés automatiquement." %}
+  </p>
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary">{% translate "Enregistrer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% if form.instance.pk %}{% url 'maternite:dossier' form.instance.pk %}{% else %}{% url 'patients:detail' patient.pk %}{% endif %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

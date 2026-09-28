@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if alertes %}
+  <div class="mb-3" role="region" aria-label="{% translate 'Signes de danger' %}">
+    {% for a in alertes %}
+      <div class="alert alert-{{ a.niveau }} py-2 mb-2 d-flex gap-2 align-items-start">
+        <i class="bi {% if a.niveau == 'danger' %}bi-exclamation-octagon-fill{% elif a.niveau == 'warning' %}bi-exclamation-triangle-fill{% else %}bi-info-circle-fill{% endif %} mt-1" aria-hidden="true"></i>
+        <span>{{ a.message }}</span>
+      </div>
+    {% endfor %}
+    <div class="small text-body-secondary">{% translate "Aide à la décision : ne remplace pas le jugement clinique." %}</div>
+  </div>
+{% endif %}

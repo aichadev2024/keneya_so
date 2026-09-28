@@ -69,7 +69,7 @@ msgid "Prénom"
 msgstr ""
 
 #: apps/accounts/forms.py:68 apps/patients/views.py:49
-#: templates/patients/detail.html:76 templates/patients/liste.html:39
+#: templates/patients/detail.html:79 templates/patients/liste.html:39
 msgid "Nom"
 msgstr ""
 
@@ -130,90 +130,94 @@ msgstr ""
 msgid "Comptable"
 msgstr ""
 
-#: apps/accounts/models.py:42
-msgid "Chirurgien(ne)"
+#: apps/accounts/models.py:41
+msgid "Sage-femme"
 msgstr ""
 
 #: apps/accounts/models.py:43
-msgid "Médecin anesthésiste-réanimateur"
+msgid "Chirurgien(ne)"
 msgstr ""
 
 #: apps/accounts/models.py:44
-msgid "Infirmier(ère) de bloc opératoire (IBODE)"
+msgid "Médecin anesthésiste-réanimateur"
 msgstr ""
 
 #: apps/accounts/models.py:45
-msgid "Agent de stérilisation"
+msgid "Infirmier(ère) de bloc opératoire (IBODE)"
 msgstr ""
 
 #: apps/accounts/models.py:46
+msgid "Agent de stérilisation"
+msgstr ""
+
+#: apps/accounts/models.py:47
 msgid "Agent de programmation / cadre de bloc"
 msgstr ""
 
-#: apps/accounts/models.py:58 apps/core/models.py:60 apps/core/models.py:113
+#: apps/accounts/models.py:59 apps/core/models.py:60 apps/core/models.py:113
 #: apps/core/models.py:221
 msgid "établissement"
 msgstr ""
 
-#: apps/accounts/models.py:59
+#: apps/accounts/models.py:60
 msgid "Vide pour un super-administrateur de la plateforme."
 msgstr ""
 
-#: apps/accounts/models.py:66 apps/bloc_operatoire/forms.py:94
+#: apps/accounts/models.py:67 apps/bloc_operatoire/forms.py:94
 #: apps/bloc_operatoire/models.py:325
 msgid "rôle"
 msgstr ""
 
-#: apps/accounts/models.py:67
+#: apps/accounts/models.py:68
 msgid "Détermine les fonctions et les données accessibles (RBAC)."
 msgstr ""
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:70
 msgid "matricule"
 msgstr ""
 
-#: apps/accounts/models.py:71 apps/assurances/models.py:42
+#: apps/accounts/models.py:72 apps/assurances/models.py:42
 #: apps/core/models.py:175 apps/patients/models.py:81
 msgid "téléphone"
 msgstr ""
 
-#: apps/accounts/models.py:72 apps/bloc_operatoire/models.py:142
+#: apps/accounts/models.py:73 apps/bloc_operatoire/models.py:142
 msgid "spécialité"
 msgstr ""
 
-#: apps/accounts/models.py:73
+#: apps/accounts/models.py:74
 msgid "langue préférée"
 msgstr ""
 
-#: apps/accounts/models.py:77
+#: apps/accounts/models.py:78
 msgid "adresse électronique"
 msgstr ""
 
-#: apps/accounts/models.py:80 apps/core/models.py:231
+#: apps/accounts/models.py:81 apps/core/models.py:231
 msgid "utilisateur"
 msgstr ""
 
-#: apps/accounts/models.py:81
+#: apps/accounts/models.py:82
 msgid "utilisateurs"
 msgstr ""
 
-#: apps/accounts/views.py:151
+#: apps/accounts/views.py:159
 msgid "Jeton d'installation incorrect."
 msgstr ""
 
-#: apps/accounts/views.py:156
+#: apps/accounts/views.py:164
 msgid "Un compte administrateur existe déjà."
 msgstr ""
 
-#: apps/accounts/views.py:171
+#: apps/accounts/views.py:179
 msgid "Compte administrateur créé. Vous pouvez vous connecter."
 msgstr ""
 
-#: apps/accounts/views.py:198
+#: apps/accounts/views.py:206
 msgid "Trop d'inscriptions depuis cette adresse. Réessayez plus tard."
 msgstr ""
 
-#: apps/accounts/views.py:210
+#: apps/accounts/views.py:218
 msgid "Bienvenue ! Votre hôpital est créé, votre période d'essai commence."
 msgstr ""
 
@@ -268,7 +272,7 @@ msgstr ""
 
 #: apps/assurances/models.py:38 apps/hospitalisation/models.py:81
 #: apps/hospitalisation/models.py:259 apps/patients/models.py:203
-#: apps/pharmacie/models.py:149
+#: apps/pharmacie/models.py:152
 msgid "type"
 msgstr ""
 
@@ -391,7 +395,8 @@ msgstr ""
 #: apps/bloc_operatoire/models.py:197 apps/consultations/models.py:45
 #: apps/consultations/models.py:140 apps/facturation/models.py:87
 #: apps/facturation/models.py:241 apps/hospitalisation/models.py:155
-#: apps/laboratoire/models.py:68 apps/pharmacie/models.py:152
+#: apps/laboratoire/models.py:68 apps/maternite/models.py:44
+#: apps/pharmacie/models.py:155
 msgid "référence"
 msgstr ""
 
@@ -404,7 +409,7 @@ msgstr ""
 #: apps/consultations/models.py:148 apps/core/models.py:51
 #: apps/facturation/models.py:97 apps/hospitalisation/models.py:106
 #: apps/hospitalisation/models.py:174 apps/laboratoire/models.py:90
-#: apps/pharmacie/models.py:231
+#: apps/maternite/models.py:58 apps/pharmacie/models.py:234
 msgid "statut"
 msgstr ""
 
@@ -449,7 +454,9 @@ msgstr ""
 #: templates/bloc_operatoire/liste.html:30
 #: templates/consultations/liste.html:29 templates/facturation/impayes.html:13
 #: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
-#: templates/laboratoire/liste.html:37 templates/patients/detail.html:138
+#: templates/laboratoire/liste.html:37
+#: templates/maternite/dossier_liste.html:30
+#: templates/patients/detail.html:141
 msgid "Référence"
 msgstr ""
 
@@ -477,7 +484,10 @@ msgstr ""
 #: templates/bloc_operatoire/liste.html:33
 #: templates/consultations/liste.html:31 templates/facturation/liste.html:38
 #: templates/hospitalisation/liste.html:34 templates/laboratoire/liste.html:39
-#: templates/patients/detail.html:140
+#: templates/maternite/dossier_detail.html:84
+#: templates/maternite/dossier_liste.html:17
+#: templates/maternite/dossier_liste.html:31
+#: templates/patients/detail.html:143
 #: templates/pharmacie/dispensations.html:21
 msgid "Statut"
 msgstr ""
@@ -544,8 +554,8 @@ msgstr ""
 
 #: apps/bloc_operatoire/forms.py:64 apps/facturation/models.py:253
 #: apps/facturation/models.py:288 apps/hospitalisation/models.py:234
-#: apps/hospitalisation/models.py:269 apps/pharmacie/models.py:157
-#: apps/pharmacie/models.py:261
+#: apps/hospitalisation/models.py:269 apps/pharmacie/models.py:160
+#: apps/pharmacie/models.py:264
 msgid "date"
 msgstr ""
 
@@ -715,7 +725,7 @@ msgid "types d'intervention"
 msgstr ""
 
 #: apps/bloc_operatoire/models.py:167 apps/facturation/models.py:209
-#: apps/pharmacie/admin.py:65 apps/pharmacie/models.py:150
+#: apps/pharmacie/admin.py:65 apps/pharmacie/models.py:153
 msgid "quantité"
 msgstr ""
 
@@ -749,7 +759,7 @@ msgstr ""
 
 #: apps/bloc_operatoire/models.py:190 apps/consultations/models.py:41
 #: apps/hospitalisation/models.py:145 apps/laboratoire/models.py:63
-#: apps/pharmacie/models.py:220
+#: apps/maternite/models.py:40 apps/pharmacie/models.py:223
 msgid "En cours"
 msgstr ""
 
@@ -764,7 +774,7 @@ msgstr ""
 #: apps/bloc_operatoire/models.py:193 apps/consultations/models.py:43
 #: apps/consultations/models.py:138 apps/facturation/models.py:85
 #: apps/hospitalisation/models.py:147 apps/laboratoire/models.py:66
-#: apps/pharmacie/models.py:223 templates/facturation/detail.html:90
+#: apps/pharmacie/models.py:226 templates/facturation/detail.html:90
 #: templates/laboratoire/detail.html:39
 msgid "Annulée"
 msgstr ""
@@ -980,7 +990,7 @@ msgid "Travaux"
 msgstr ""
 
 #: apps/bloc_operatoire/models.py:413 apps/hospitalisation/forms.py:52
-#: apps/hospitalisation/models.py:233 apps/pharmacie/models.py:151
+#: apps/hospitalisation/models.py:233 apps/pharmacie/models.py:154
 msgid "motif"
 msgstr ""
 
@@ -1072,7 +1082,7 @@ msgstr ""
 
 #: apps/bloc_operatoire/views.py:212 apps/consultations/views.py:32
 #: templates/bloc_operatoire/indicateurs.html:66
-#: templates/consultations/liste.html:31 templates/patients/detail.html:139
+#: templates/consultations/liste.html:31 templates/patients/detail.html:142
 msgid "Praticien"
 msgstr ""
 
@@ -1085,7 +1095,7 @@ msgstr ""
 #: apps/pharmacie/views.py:218 templates/bloc_operatoire/detail.html:40
 #: templates/consultations/detail.html:44
 #: templates/consultations/liste.html:30
-#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:139
+#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:142
 #: templates/pharmacie/medicament_detail.html:58
 #: templates/pharmacie/mouvements.html:25
 msgid "Motif"
@@ -1190,7 +1200,8 @@ msgid "conduite à tenir / traitement"
 msgstr ""
 
 #: apps/consultations/models.py:63 apps/consultations/models.py:83
-#: apps/consultations/models.py:143 templates/laboratoire/demande.html:9
+#: apps/consultations/models.py:143 apps/maternite/models.py:158
+#: templates/laboratoire/demande.html:9
 msgid "consultation"
 msgstr ""
 
@@ -1198,7 +1209,7 @@ msgstr ""
 msgid "consultations"
 msgstr ""
 
-#: apps/consultations/models.py:84
+#: apps/consultations/models.py:84 apps/maternite/forms.py:79
 msgid "poids (kg)"
 msgstr ""
 
@@ -1207,14 +1218,15 @@ msgid "taille (cm)"
 msgstr ""
 
 #: apps/consultations/models.py:88 apps/hospitalisation/models.py:262
+#: apps/maternite/forms.py:88
 msgid "température (°C)"
 msgstr ""
 
-#: apps/consultations/models.py:90
+#: apps/consultations/models.py:90 apps/maternite/forms.py:82
 msgid "TA systolique (mmHg)"
 msgstr ""
 
-#: apps/consultations/models.py:92
+#: apps/consultations/models.py:92 apps/maternite/forms.py:85
 msgid "TA diastolique (mmHg)"
 msgstr ""
 
@@ -1279,7 +1291,7 @@ msgid "notes au pharmacien"
 msgstr ""
 
 #: apps/consultations/models.py:154 apps/consultations/models.py:188
-#: apps/pharmacie/models.py:227
+#: apps/pharmacie/models.py:230
 msgid "ordonnance"
 msgstr ""
 
@@ -1288,8 +1300,8 @@ msgid "ordonnances"
 msgstr ""
 
 #: apps/consultations/models.py:191 apps/pharmacie/forms.py:31
-#: apps/pharmacie/models.py:66 apps/pharmacie/models.py:108
-#: apps/pharmacie/models.py:146
+#: apps/pharmacie/models.py:69 apps/pharmacie/models.py:111
+#: apps/pharmacie/models.py:149
 msgid "médicament"
 msgstr ""
 
@@ -1341,7 +1353,9 @@ msgid "Consultations"
 msgstr ""
 
 #: apps/consultations/views.py:31 apps/pharmacie/views.py:217
-#: templates/consultations/liste.html:29 templates/patients/detail.html:138
+#: templates/consultations/liste.html:29
+#: templates/maternite/dossier_detail.html:83
+#: templates/patients/detail.html:141
 #: templates/pharmacie/dispensation_detail.html:79
 #: templates/pharmacie/medicament_detail.html:57
 #: templates/pharmacie/mouvements.html:23
@@ -1545,7 +1559,7 @@ msgstr ""
 msgid "Connexion"
 msgstr ""
 
-#: apps/core/models.py:216 templates/base.html:76
+#: apps/core/models.py:216 templates/base.html:81
 msgid "Déconnexion"
 msgstr ""
 
@@ -1613,7 +1627,7 @@ msgstr ""
 msgid "notifications"
 msgstr ""
 
-#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:32
+#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:37
 #: templates/core/dashboard.html:3
 msgid "Tableau de bord"
 msgstr ""
@@ -1700,7 +1714,7 @@ msgstr ""
 msgid "Interventions terminées"
 msgstr ""
 
-#: apps/core/views.py:94 apps/core/views.py:153
+#: apps/core/views.py:94 apps/core/views.py:156
 #: templates/core/statistiques.html:57
 #: templates/pharmacie/dispensations.html:3
 #: templates/pharmacie/dispensation_detail.html:7
@@ -1723,39 +1737,47 @@ msgstr ""
 msgid "Patients"
 msgstr ""
 
-#: apps/core/views.py:134 apps/facturation/models.py:40
+#: apps/core/views.py:134 templates/maternite/accueil.html:3
+#: templates/maternite/accueil.html:8
+#: templates/maternite/dossier_detail.html:7
+#: templates/maternite/dossier_liste.html:7
+#: templates/maternite/visite_detail.html:7
+msgid "Maternité"
+msgstr ""
+
+#: apps/core/views.py:137 apps/facturation/models.py:40
 #: templates/core/vitrine.html:103
 msgid "Hospitalisation"
 msgstr ""
 
-#: apps/core/views.py:138 templates/bloc_operatoire/detail.html:7
+#: apps/core/views.py:141 templates/bloc_operatoire/detail.html:7
 #: templates/core/vitrine.html:73 templates/core/vitrine.html:108
 msgid "Bloc opératoire"
 msgstr ""
 
-#: apps/core/views.py:142 templates/laboratoire/detail.html:7
+#: apps/core/views.py:145 templates/laboratoire/detail.html:7
 #: templates/laboratoire/liste.html:3
 msgid "Analyses & imagerie"
 msgstr ""
 
-#: apps/core/views.py:146 templates/core/vitrine.html:74
+#: apps/core/views.py:149 templates/core/vitrine.html:74
 #: templates/core/vitrine.html:118
 msgid "Facturation"
 msgstr ""
 
-#: apps/core/views.py:149
+#: apps/core/views.py:152
 msgid "Bordereaux assurance"
 msgstr ""
 
-#: apps/core/views.py:157
+#: apps/core/views.py:160
 msgid "Pharmacie — stock"
 msgstr ""
 
-#: apps/core/views.py:161
+#: apps/core/views.py:164
 msgid "Statistiques"
 msgstr ""
 
-#: apps/core/views.py:164
+#: apps/core/views.py:167
 msgid "Administration"
 msgstr ""
 
@@ -1786,7 +1808,7 @@ msgstr ""
 #: apps/facturation/forms.py:25 apps/facturation/models.py:256
 #: apps/facturation/models.py:291 apps/laboratoire/forms.py:75
 #: apps/laboratoire/forms.py:86 apps/laboratoire/models.py:179
-#: apps/pharmacie/models.py:234 templates/laboratoire/detail.html:87
+#: apps/pharmacie/models.py:237 templates/laboratoire/detail.html:87
 msgid "commentaire"
 msgstr ""
 
@@ -1958,7 +1980,7 @@ msgid "paiements"
 msgstr ""
 
 #: apps/facturation/models.py:281 apps/patients/views.py:50
-#: templates/patients/detail.html:60 templates/patients/detail.html:78
+#: templates/patients/detail.html:63 templates/patients/detail.html:81
 #: templates/patients/liste.html:42
 msgid "Téléphone"
 msgstr ""
@@ -2084,7 +2106,7 @@ msgstr ""
 #: apps/hospitalisation/forms.py:24 apps/hospitalisation/models.py:111
 #: apps/hospitalisation/models.py:120 apps/hospitalisation/models.py:161
 #: templates/hospitalisation/detail.html:18
-#: templates/hospitalisation/liste.html:41 templates/patients/detail.html:48
+#: templates/hospitalisation/liste.html:41 templates/patients/detail.html:51
 msgid "lit"
 msgstr ""
 
@@ -2526,15 +2548,363 @@ msgstr ""
 msgid "Demande annulée."
 msgstr ""
 
+#: apps/maternite/forms.py:35
+msgid "La date des dernières règles ne peut pas être dans le futur."
+msgstr ""
+
+#: apps/maternite/forms.py:38
+msgid ""
+"Cette date est trop ancienne pour une grossesse en cours (plus de 43 "
+"semaines)."
+msgstr ""
+
+#: apps/maternite/forms.py:45
+msgid ""
+"La parité doit être inférieure à la gestité (la grossesse actuelle compte "
+"dans la gestité)."
+msgstr ""
+
+#: apps/maternite/forms.py:70
+msgid "La date de fin ne peut pas être dans le futur."
+msgstr ""
+
+#: apps/maternite/forms.py:72
+msgid "La date de fin ne peut pas précéder les dernières règles."
+msgstr ""
+
+#: apps/maternite/forms.py:130
+msgid "Le prochain rendez-vous ne peut pas être dans le passé."
+msgstr ""
+
+#: apps/maternite/forms.py:132
+msgid "Le prochain rendez-vous est trop éloigné (plus de 4 mois)."
+msgstr ""
+
+#: apps/maternite/forms.py:139
+msgid "La tension diastolique doit être inférieure à la systolique."
+msgstr ""
+
+#: apps/maternite/models.py:41
+msgid "Terminée (accouchement)"
+msgstr ""
+
+#: apps/maternite/models.py:42
+msgid "Interrompue (fausse couche, IVG médicale…)"
+msgstr ""
+
+#: apps/maternite/models.py:46
+msgid "patiente"
+msgstr ""
+
+#: apps/maternite/models.py:47
+msgid "date des dernières règles (1er jour)"
+msgstr ""
+
+#: apps/maternite/models.py:49
+msgid "gestité"
+msgstr ""
+
+#: apps/maternite/models.py:50
+msgid "Nombre total de grossesses, celle-ci comprise."
+msgstr ""
+
+#: apps/maternite/models.py:52
+msgid "parité"
+msgstr ""
+
+#: apps/maternite/models.py:53
+msgid "Nombre d'accouchements antérieurs (au-delà de 22 semaines)."
+msgstr ""
+
+#: apps/maternite/models.py:55
+msgid "antécédents obstétricaux et médicaux"
+msgstr ""
+
+#: apps/maternite/models.py:56
+msgid "Césarienne, hémorragie, pré-éclampsie, diabète, drépanocytose, VIH…"
+msgstr ""
+
+#: apps/maternite/models.py:57
+msgid "facteurs de risque identifiés"
+msgstr ""
+
+#: apps/maternite/models.py:60
+msgid "date de fin de grossesse"
+msgstr ""
+
+#: apps/maternite/models.py:61
+msgid "issue de la grossesse"
+msgstr ""
+
+#: apps/maternite/models.py:62 apps/maternite/models.py:190
+msgid "prochain rendez-vous"
+msgstr ""
+
+#: apps/maternite/models.py:66
+msgid "suivi par"
+msgstr ""
+
+#: apps/maternite/models.py:69 apps/maternite/models.py:156
+msgid "dossier de grossesse"
+msgstr ""
+
+#: apps/maternite/models.py:70
+msgid "dossiers de grossesse"
+msgstr ""
+
+#: apps/maternite/models.py:132
+msgid "Non recherchés"
+msgstr ""
+
+#: apps/maternite/models.py:133
+msgid "Présents"
+msgstr ""
+
+#: apps/maternite/models.py:134
+msgid "Absents"
+msgstr ""
+
+#: apps/maternite/models.py:137
+msgid "Non déterminée"
+msgstr ""
+
+#: apps/maternite/models.py:138
+msgid "Céphalique"
+msgstr ""
+
+#: apps/maternite/models.py:139
+msgid "Siège"
+msgstr ""
+
+#: apps/maternite/models.py:140
+msgid "Transverse"
+msgstr ""
+
+#: apps/maternite/models.py:143 apps/maternite/models.py:151
+msgid "Non fait"
+msgstr ""
+
+#: apps/maternite/models.py:144 apps/maternite/models.py:152
+msgid "Négatif"
+msgstr ""
+
+#: apps/maternite/models.py:145
+msgid "Traces"
+msgstr ""
+
+#: apps/maternite/models.py:153
+msgid "Positif"
+msgstr ""
+
+#: apps/maternite/models.py:159
+msgid "n° de visite"
+msgstr ""
+
+#: apps/maternite/models.py:160
+msgid "terme (SA)"
+msgstr ""
+
+#: apps/maternite/models.py:162
+msgid "hauteur utérine (cm)"
+msgstr ""
+
+#: apps/maternite/models.py:165
+msgid "bruits du cœur fœtal"
+msgstr ""
+
+#: apps/maternite/models.py:167
+msgid "fréquence cardiaque fœtale (bpm)"
+msgstr ""
+
+#: apps/maternite/models.py:169
+msgid "présentation"
+msgstr ""
+
+#: apps/maternite/models.py:172
+msgid "œdèmes (visage ou mains)"
+msgstr ""
+
+#: apps/maternite/models.py:173
+msgid "albuminurie"
+msgstr ""
+
+#: apps/maternite/models.py:175
+msgid "glycosurie"
+msgstr ""
+
+#: apps/maternite/models.py:177
+msgid "hémoglobine (g/dL)"
+msgstr ""
+
+#: apps/maternite/models.py:179
+msgid "dépistage VIH"
+msgstr ""
+
+#: apps/maternite/models.py:181
+msgid "dépistage syphilis"
+msgstr ""
+
+#: apps/maternite/models.py:184 templates/maternite/visite_detail.html:71
+msgid "SP donnée (prévention du paludisme)"
+msgstr ""
+
+#: apps/maternite/models.py:185
+msgid "fer / acide folique donné"
+msgstr ""
+
+#: apps/maternite/models.py:186
+msgid "vaccin antitétanique administré"
+msgstr ""
+
+#: apps/maternite/models.py:187
+msgid "moustiquaire imprégnée remise"
+msgstr ""
+
+#: apps/maternite/models.py:189
+msgid "observations et conseils donnés"
+msgstr ""
+
+#: apps/maternite/models.py:193
+msgid "consultation prénatale"
+msgstr ""
+
+#: apps/maternite/models.py:194
+msgid "consultations prénatales"
+msgstr ""
+
+#: apps/maternite/services.py:51
+msgid ""
+"Tension élevée avec albuminurie : suspicion de pré-éclampsie. Orienter "
+"d'urgence vers un médecin ou la structure de référence."
+msgstr ""
+
+#: apps/maternite/services.py:53
+msgid "Hypertension sévère (≥ 160/110). Orienter d'urgence vers un médecin."
+msgstr ""
+
+#: apps/maternite/services.py:55
+msgid ""
+"Tension élevée (≥ 140/90) : recontrôler après repos, rechercher albuminurie "
+"et œdèmes, avis médical."
+msgstr ""
+
+#: apps/maternite/services.py:57
+msgid ""
+"Albuminurie ≥ ++ : rechercher une infection urinaire ou une pré-éclampsie."
+msgstr ""
+
+#: apps/maternite/services.py:61
+msgid "Anémie sévère (Hb < 7 g/dL) : référer, envisager une transfusion."
+msgstr ""
+
+#: apps/maternite/services.py:63
+msgid ""
+"Anémie (Hb < 11 g/dL) : fer + acide folique, rechercher paludisme et "
+"parasitoses, contrôle de l'hémoglobine."
+msgstr ""
+
+#: apps/maternite/services.py:66
+msgid ""
+"Bruits du cœur fœtal absents : suspicion de mort fœtale in utero. Référer "
+"pour échographie."
+msgstr ""
+
+#: apps/maternite/services.py:68
+msgid ""
+"Fréquence cardiaque fœtale hors de 110–160 bpm : recontrôler, avis médical "
+"si elle persiste."
+msgstr ""
+
+#: apps/maternite/services.py:72
+msgid ""
+"Présentation non céphalique à terme : avis médical pour le choix du mode "
+"d'accouchement."
+msgstr ""
+
+#: apps/maternite/services.py:76
+msgid "Fièvre (≥ 38 °C) : rechercher paludisme et infection urinaire."
+msgstr ""
+
+#: apps/maternite/services.py:79
+msgid "Glycosurie positive : dépister un diabète gestationnel (glycémie)."
+msgstr ""
+
+#: apps/maternite/services.py:81
+msgid ""
+"Œdèmes du visage ou des mains : surveiller la tension et l'albuminurie."
+msgstr ""
+
+#: apps/maternite/services.py:84
+msgid ""
+"Dépistage VIH positif : prise en charge PTME, orienter vers le service de "
+"référence."
+msgstr ""
+
+#: apps/maternite/services.py:86
+msgid ""
+"Dépistage de la syphilis positif : traitement de la patiente et du "
+"partenaire."
+msgstr ""
+
+#: apps/maternite/services.py:98
+msgid ""
+"Date prévue d'accouchement dépassée : avis médical, surveillance du terme "
+"dépassé."
+msgstr ""
+
+#: apps/maternite/services.py:100
+msgid "Rendez-vous manqué : relancer la patiente."
+msgstr ""
+
+#: apps/maternite/views.py:93
+msgid "Un dossier de grossesse ne peut concerner qu'une patiente."
+msgstr ""
+
+#: apps/maternite/views.py:97
+msgid "Cette patiente a déjà une grossesse en cours."
+msgstr ""
+
+#: apps/maternite/views.py:116
+msgid "Dossier de grossesse ouvert."
+msgstr ""
+
+#: apps/maternite/views.py:150
+msgid "Dossier mis à jour."
+msgstr ""
+
+#: apps/maternite/views.py:173
+msgid "Cette grossesse est déjà clôturée."
+msgstr ""
+
+#: apps/maternite/views.py:180
+msgid "Suivi de grossesse clôturé."
+msgstr ""
+
+#: apps/maternite/views.py:206
+msgid "Cette grossesse est clôturée : plus de nouvelle visite."
+msgstr ""
+
+#: apps/maternite/views.py:224
+msgid "Consultation prénatale enregistrée."
+msgstr ""
+
+#: apps/maternite/views.py:244
+msgid "La consultation est clôturée : elle n'est plus modifiable."
+msgstr ""
+
+#: apps/maternite/views.py:253
+msgid "Consultation prénatale mise à jour."
+msgstr ""
+
 #: apps/patients/admin.py:36
 msgid "Identité"
 msgstr ""
 
-#: apps/patients/admin.py:41 templates/patients/detail.html:57
+#: apps/patients/admin.py:41 templates/patients/detail.html:60
 msgid "Coordonnées"
 msgstr ""
 
-#: apps/patients/admin.py:44 templates/patients/detail.html:73
+#: apps/patients/admin.py:44 templates/patients/detail.html:76
 msgid "Personne à prévenir"
 msgstr ""
 
@@ -2714,7 +3084,7 @@ msgstr ""
 msgid "Légère"
 msgstr ""
 
-#: apps/patients/models.py:195 apps/pharmacie/models.py:178
+#: apps/patients/models.py:195 apps/pharmacie/models.py:181
 msgid "Modérée"
 msgstr ""
 
@@ -2754,7 +3124,7 @@ msgstr ""
 msgid "Âge"
 msgstr ""
 
-#: apps/patients/views.py:50 templates/patients/detail.html:62
+#: apps/patients/views.py:50 templates/patients/detail.html:65
 #: templates/patients/liste.html:43
 msgid "Ville"
 msgstr ""
@@ -2787,7 +3157,7 @@ msgstr ""
 msgid "périmé"
 msgstr ""
 
-#: apps/pharmacie/forms.py:34 apps/pharmacie/models.py:109
+#: apps/pharmacie/forms.py:34 apps/pharmacie/models.py:112
 msgid "numéro de lot"
 msgstr ""
 
@@ -2795,15 +3165,15 @@ msgstr ""
 msgid "quantité reçue"
 msgstr ""
 
-#: apps/pharmacie/forms.py:39 apps/pharmacie/models.py:112
+#: apps/pharmacie/forms.py:39 apps/pharmacie/models.py:115
 msgid "date de péremption"
 msgstr ""
 
-#: apps/pharmacie/forms.py:43 apps/pharmacie/models.py:113
+#: apps/pharmacie/forms.py:43 apps/pharmacie/models.py:116
 msgid "date de réception"
 msgstr ""
 
-#: apps/pharmacie/forms.py:46 apps/pharmacie/models.py:114
+#: apps/pharmacie/forms.py:46 apps/pharmacie/models.py:117
 msgid "fournisseur"
 msgstr ""
 
@@ -2891,131 +3261,141 @@ msgstr ""
 msgid "Utilisé pour la facturation des dispensations (CDC 4.8)."
 msgstr ""
 
-#: apps/pharmacie/models.py:67
+#: apps/pharmacie/models.py:65
+msgid "prescriptible par une sage-femme"
+msgstr ""
+
+#: apps/pharmacie/models.py:66
+msgid ""
+"Cochez pour les médicaments qu'une sage-femme peut prescrire (fer, acide "
+"folique, SP, paracétamol…)."
+msgstr ""
+
+#: apps/pharmacie/models.py:70
 msgid "médicaments"
 msgstr ""
 
-#: apps/pharmacie/models.py:110
+#: apps/pharmacie/models.py:113
 msgid "quantité restante"
 msgstr ""
 
-#: apps/pharmacie/models.py:111
+#: apps/pharmacie/models.py:114
 msgid "quantité initiale"
 msgstr ""
 
-#: apps/pharmacie/models.py:117
+#: apps/pharmacie/models.py:120
 msgid "lot de médicament"
 msgstr ""
 
-#: apps/pharmacie/models.py:118
+#: apps/pharmacie/models.py:121
 msgid "lots de médicaments"
 msgstr ""
 
-#: apps/pharmacie/models.py:137
+#: apps/pharmacie/models.py:140
 msgid "Entrée (réception)"
 msgstr ""
 
-#: apps/pharmacie/models.py:138
+#: apps/pharmacie/models.py:141
 msgid "Sortie (dispensation)"
 msgstr ""
 
-#: apps/pharmacie/models.py:139
+#: apps/pharmacie/models.py:142
 msgid "Ajustement positif (inventaire)"
 msgstr ""
 
-#: apps/pharmacie/models.py:140
+#: apps/pharmacie/models.py:143
 msgid "Ajustement négatif (inventaire, casse)"
 msgstr ""
 
-#: apps/pharmacie/models.py:141
+#: apps/pharmacie/models.py:144
 msgid "Retrait pour péremption"
 msgstr ""
 
-#: apps/pharmacie/models.py:148
+#: apps/pharmacie/models.py:151
 msgid "lot"
 msgstr ""
 
-#: apps/pharmacie/models.py:153
+#: apps/pharmacie/models.py:156
 msgid "Ex. : n° de dispensation."
 msgstr ""
 
-#: apps/pharmacie/models.py:156
+#: apps/pharmacie/models.py:159
 msgid "opérateur"
 msgstr ""
 
-#: apps/pharmacie/models.py:160
+#: apps/pharmacie/models.py:163
 msgid "mouvement de stock"
 msgstr ""
 
-#: apps/pharmacie/models.py:161
+#: apps/pharmacie/models.py:164
 msgid "mouvements de stock"
 msgstr ""
 
-#: apps/pharmacie/models.py:177
+#: apps/pharmacie/models.py:180
 msgid "Mineure"
 msgstr ""
 
-#: apps/pharmacie/models.py:179
+#: apps/pharmacie/models.py:182
 msgid "Majeure"
 msgstr ""
 
-#: apps/pharmacie/models.py:180
+#: apps/pharmacie/models.py:183
 msgid "Association contre-indiquée"
 msgstr ""
 
-#: apps/pharmacie/models.py:186
+#: apps/pharmacie/models.py:189
 msgid "gravité"
 msgstr ""
 
-#: apps/pharmacie/models.py:188
+#: apps/pharmacie/models.py:191
 msgid "description / conduite à tenir"
 msgstr ""
 
-#: apps/pharmacie/models.py:191
+#: apps/pharmacie/models.py:194
 msgid "interaction médicamenteuse"
 msgstr ""
 
-#: apps/pharmacie/models.py:192
+#: apps/pharmacie/models.py:195
 msgid "interactions médicamenteuses"
 msgstr ""
 
-#: apps/pharmacie/models.py:219
+#: apps/pharmacie/models.py:222
 msgid "En attente"
 msgstr ""
 
-#: apps/pharmacie/models.py:221
+#: apps/pharmacie/models.py:224
 msgid "Complète"
 msgstr ""
 
-#: apps/pharmacie/models.py:222
+#: apps/pharmacie/models.py:225
 msgid "Partielle"
 msgstr ""
 
-#: apps/pharmacie/models.py:230
+#: apps/pharmacie/models.py:233
 msgid "pharmacien"
 msgstr ""
 
-#: apps/pharmacie/models.py:233
+#: apps/pharmacie/models.py:236
 msgid "date de délivrance"
 msgstr ""
 
-#: apps/pharmacie/models.py:237
+#: apps/pharmacie/models.py:240
 msgid "dispensation"
 msgstr ""
 
-#: apps/pharmacie/models.py:238
+#: apps/pharmacie/models.py:241
 msgid "dispensations"
 msgstr ""
 
-#: apps/pharmacie/models.py:260
+#: apps/pharmacie/models.py:263
 msgid "quantité délivrée"
 msgstr ""
 
-#: apps/pharmacie/models.py:264
+#: apps/pharmacie/models.py:267
 msgid "ligne de dispensation"
 msgstr ""
 
-#: apps/pharmacie/models.py:265
+#: apps/pharmacie/models.py:268
 msgid "lignes de dispensation"
 msgstr ""
 
@@ -3090,27 +3470,27 @@ msgstr ""
 msgid "Aucun lot périmé à retirer."
 msgstr ""
 
-#: config/settings.py:193 apps/accounts/models.py:49
+#: config/settings.py:194 apps/accounts/models.py:50
 msgid "Français"
 msgstr ""
 
-#: config/settings.py:194 apps/accounts/models.py:50
+#: config/settings.py:195 apps/accounts/models.py:51
 msgid "Anglais"
 msgstr ""
 
-#: config/settings.py:195 apps/accounts/models.py:51
+#: config/settings.py:196 apps/accounts/models.py:52
 msgid "Arabe"
 msgstr ""
 
-#: config/settings.py:196 apps/accounts/models.py:52
+#: config/settings.py:197 apps/accounts/models.py:53
 msgid "Bambara"
 msgstr ""
 
-#: config/settings.py:197 apps/accounts/models.py:53
+#: config/settings.py:198 apps/accounts/models.py:54
 msgid "Peulh (fulfulde)"
 msgstr ""
 
-#: config/settings.py:198 apps/accounts/models.py:54
+#: config/settings.py:199 apps/accounts/models.py:55
 msgid "Soninké"
 msgstr ""
 
@@ -3138,7 +3518,10 @@ msgstr ""
 #: templates/consultations/liste.html:42 templates/core/notifications.html:24
 #: templates/facturation/impayes.html:25 templates/facturation/liste.html:50
 #: templates/hospitalisation/liste.html:45 templates/laboratoire/liste.html:50
-#: templates/patients/detail.html:150 templates/patients/liste.html:58
+#: templates/maternite/dossier_detail.html:94
+#: templates/maternite/dossier_liste.html:41
+#: templates/maternite/_tableau_dossiers.html:15
+#: templates/patients/detail.html:153 templates/patients/liste.html:58
 #: templates/pharmacie/medicaments.html:55
 msgid "Ouvrir"
 msgstr ""
@@ -3159,7 +3542,7 @@ msgstr ""
 msgid "plafond"
 msgstr ""
 
-#: templates/assurances/liste.html:30 templates/patients/detail.html:122
+#: templates/assurances/liste.html:30 templates/patients/detail.html:125
 msgid "inactif"
 msgstr ""
 
@@ -3184,6 +3567,7 @@ msgstr ""
 #: templates/consultations/constantes.html:19
 #: templates/consultations/formulaire.html:23
 #: templates/laboratoire/detail.html:96
+#: templates/maternite/dossier_formulaire.html:28
 #: templates/patients/dossier_formulaire.html:19
 #: templates/patients/formulaire.html:26
 #: templates/pharmacie/medicament_formulaire.html:23
@@ -3198,6 +3582,9 @@ msgstr ""
 #: templates/facturation/detail.html:83
 #: templates/hospitalisation/admission.html:28
 #: templates/laboratoire/demande.html:40
+#: templates/maternite/dossier_formulaire.html:29
+#: templates/maternite/dossier_terminer.html:21
+#: templates/maternite/visite_formulaire.html:75
 #: templates/patients/dossier_formulaire.html:20
 #: templates/patients/formulaire.html:28
 #: templates/pharmacie/entree_stock.html:19
@@ -3205,29 +3592,29 @@ msgstr ""
 msgid "Annuler"
 msgstr ""
 
-#: templates/base.html:26 templates/base.html:100
+#: templates/base.html:30 templates/base.html:105
 #: templates/core/vitrine.html:52 templates/core/vitrine.html:176
 msgid "Gestion hospitalière"
 msgstr ""
 
-#: templates/base.html:34
+#: templates/base.html:39
 msgid "Modules"
 msgstr ""
 
-#: templates/base.html:47
+#: templates/base.html:52
 msgid "Menu"
 msgstr ""
 
-#: templates/base.html:51 templates/core/notifications.html:3
+#: templates/base.html:56 templates/core/notifications.html:3
 #: templates/core/notifications.html:7
 msgid "Notifications"
 msgstr ""
 
-#: templates/base.html:61 templates/core/vitrine.html:32
+#: templates/base.html:66 templates/core/vitrine.html:32
 msgid "Changer de langue"
 msgstr ""
 
-#: templates/base.html:87
+#: templates/base.html:92
 msgid "Période d'essai : %(n)s jour restant."
 msgid_plural "Période d'essai : %(n)s jours restants."
 msgstr[0] ""
@@ -3443,13 +3830,15 @@ msgstr ""
 
 #: templates/bloc_operatoire/liste.html:20 templates/facturation/liste.html:25
 #: templates/hospitalisation/liste.html:20
+#: templates/maternite/dossier_liste.html:18
 msgid "Tous les statuts"
 msgstr ""
 
 #: templates/bloc_operatoire/liste.html:24
 #: templates/consultations/liste.html:16 templates/facturation/liste.html:29
 #: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:31
-#: templates/patients/liste.html:22 templates/pharmacie/medicaments.html:22
+#: templates/maternite/dossier_liste.html:24 templates/patients/liste.html:22
+#: templates/pharmacie/medicaments.html:22
 msgid "Rechercher"
 msgstr ""
 
@@ -3499,11 +3888,15 @@ msgstr ""
 #: templates/consultations/constantes.html:3
 #: templates/consultations/constantes.html:6
 #: templates/consultations/detail.html:56
+#: templates/maternite/visite_detail.html:38
+#: templates/maternite/visite_formulaire.html:21
 msgid "Constantes"
 msgstr ""
 
-#: templates/consultations/detail.html:24 templates/patients/detail.html:39
-#: templates/patients/detail.html:89 templates/patients/formulaire.html:7
+#: templates/consultations/detail.html:24
+#: templates/maternite/dossier_detail.html:30
+#: templates/maternite/visite_detail.html:24 templates/patients/detail.html:42
+#: templates/patients/detail.html:92 templates/patients/formulaire.html:7
 #: templates/pharmacie/medicament_detail.html:26
 #: templates/pharmacie/medicament_formulaire.html:7
 msgid "Modifier"
@@ -3514,6 +3907,7 @@ msgid "Clôturer"
 msgstr ""
 
 #: templates/consultations/detail.html:30
+#: templates/maternite/visite_detail.html:27
 msgid "Demander un examen"
 msgstr ""
 
@@ -3551,6 +3945,7 @@ msgid "IMC"
 msgstr ""
 
 #: templates/consultations/detail.html:67
+#: templates/maternite/visite_detail.html:42
 msgid "Température"
 msgstr ""
 
@@ -4005,7 +4400,7 @@ msgid "Ce patient a déjà un séjour en cours."
 msgstr ""
 
 #: templates/hospitalisation/admission.html:27
-#: templates/patients/detail.html:30
+#: templates/patients/detail.html:33
 msgid "Admettre"
 msgstr ""
 
@@ -4215,6 +4610,318 @@ msgstr ""
 msgid "Aucun résultat validé."
 msgstr ""
 
+#: templates/maternite/_alertes.html:3
+msgid "Signes de danger"
+msgstr ""
+
+#: templates/maternite/_alertes.html:10
+msgid "Aide à la décision : ne remplace pas le jugement clinique."
+msgstr ""
+
+#: templates/maternite/accueil.html:9
+msgid "Suivi prénatal : qui recevoir, qui relancer, qui va accoucher."
+msgstr ""
+
+#: templates/maternite/accueil.html:12
+msgid "Tous les dossiers"
+msgstr ""
+
+#: templates/maternite/accueil.html:14
+msgid "Ouvrir une grossesse"
+msgstr ""
+
+#: templates/maternite/accueil.html:23
+msgid "Grossesses suivies"
+msgstr ""
+
+#: templates/maternite/accueil.html:28
+msgid "Rendez-vous aujourd'hui"
+msgstr ""
+
+#: templates/maternite/accueil.html:33
+msgid "À relancer (rendez-vous manqué)"
+msgstr ""
+
+#: templates/maternite/accueil.html:38
+msgid "Accouchements prévus sous 30 jours"
+msgstr ""
+
+#: templates/maternite/accueil.html:43
+msgid "Rendez-vous d'aujourd'hui"
+msgstr ""
+
+#: templates/maternite/accueil.html:44
+msgid "Aucun rendez-vous aujourd'hui."
+msgstr ""
+
+#: templates/maternite/accueil.html:50
+msgid "À relancer : rendez-vous manqués"
+msgstr ""
+
+#: templates/maternite/accueil.html:56
+msgid "Rendez-vous des 7 prochains jours"
+msgstr ""
+
+#: templates/maternite/accueil.html:57
+msgid "Aucun rendez-vous prévu cette semaine."
+msgstr ""
+
+#: templates/maternite/accueil.html:62
+msgid "Accouchements prévus dans les 30 jours"
+msgstr ""
+
+#: templates/maternite/accueil.html:63
+msgid "Aucun accouchement prévu prochainement."
+msgstr ""
+
+#: templates/maternite/accueil.html:69
+msgid "Date prévue d'accouchement dépassée"
+msgstr ""
+
+#: templates/maternite/accueil.html:76
+msgid "Sans rendez-vous programmé"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:3
+msgid "Grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:8
+#: templates/maternite/dossier_liste.html:8
+msgid "Dossiers"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:20
+#: templates/patients/detail.html:21
+msgid "%(a)s ans"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:21
+#: templates/patients/detail.html:22
+msgid "Groupe"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:27
+#: templates/maternite/visite_formulaire.html:8
+msgid "Nouvelle consultation prénatale"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:31
+#: templates/maternite/dossier_terminer.html:3
+msgid "Clôturer la grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:41
+#: templates/maternite/dossier_detail.html:83
+#: templates/maternite/dossier_liste.html:30
+#: templates/maternite/_tableau_dossiers.html:5
+msgid "Terme"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:45
+#: templates/maternite/dossier_liste.html:31
+#: templates/maternite/visite_formulaire.html:13
+#: templates/maternite/_tableau_dossiers.html:6
+msgid "Accouchement prévu"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:49
+msgid "Dernières règles"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:53
+#: templates/maternite/dossier_detail.html:84
+#: templates/maternite/visite_detail.html:83
+#: templates/maternite/_tableau_dossiers.html:6
+msgid "Prochain rendez-vous"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:60
+msgid "Antécédents obstétricaux"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:61
+msgid "Gestité"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:61
+msgid "Parité"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:65
+msgid "Facteurs de risque identifiés"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:72
+msgid "Issue de la grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:79
+msgid "Consultations prénatales"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:83
+msgid "N°"
+msgstr ""
+
+#: templates/maternite/dossier_detail.html:97
+msgid "Aucune consultation prénatale pour l'instant."
+msgstr ""
+
+#: templates/maternite/dossier_formulaire.html:3
+#: templates/patients/detail.html:29
+msgid "Dossier de grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_formulaire.html:7
+msgid "Modifier le dossier de grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_formulaire.html:7
+msgid "Ouvrir un dossier de grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_formulaire.html:25
+msgid ""
+"Le terme et la date prévue d'accouchement (dernières règles + 280 jours) "
+"sont calculés automatiquement."
+msgstr ""
+
+#: templates/maternite/dossier_liste.html:3
+#: templates/maternite/dossier_liste.html:10
+msgid "Dossiers de grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_liste.html:14
+msgid "Nom, n° de dossier, référence…"
+msgstr ""
+
+#: templates/maternite/dossier_liste.html:30
+#: templates/maternite/_tableau_dossiers.html:5
+msgid "Patiente"
+msgstr ""
+
+#: templates/maternite/dossier_liste.html:44
+msgid "Aucun dossier de grossesse."
+msgstr ""
+
+#: templates/maternite/dossier_terminer.html:6
+msgid "Clôturer le suivi de grossesse"
+msgstr ""
+
+#: templates/maternite/dossier_terminer.html:20
+msgid "Clôturer le suivi"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:14
+msgid "Consultation prénatale n° %(n)s"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:29
+msgid "Prescrire / clôturer"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:40
+msgid "Poids"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:41
+msgid "Tension artérielle"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:46
+#: templates/maternite/visite_formulaire.html:31
+msgid "Examen obstétrical"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:48
+msgid "Hauteur utérine"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:49
+msgid "Bruits du cœur fœtal"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:50
+msgid "Présentation"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:51
+msgid "Œdèmes"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:51
+msgid "Oui"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:51
+msgid "Non"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:59
+#: templates/maternite/visite_formulaire.html:42
+msgid "Examens et dépistages"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:61
+msgid "Albuminurie"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:62
+msgid "Glycosurie"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:63
+msgid "Hémoglobine"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:64
+msgid "VIH"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:65
+msgid "Syphilis"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:69
+#: templates/maternite/visite_formulaire.html:57
+msgid "Prévention et soins de la visite"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:72
+msgid "Fer / acide folique donné"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:73
+msgid "Vaccin antitétanique administré"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:74
+msgid "Moustiquaire imprégnée remise"
+msgstr ""
+
+#: templates/maternite/visite_detail.html:81
+msgid "Observations et conseils donnés"
+msgstr ""
+
+#: templates/maternite/visite_formulaire.html:3
+msgid "Consultation prénatale"
+msgstr ""
+
+#: templates/maternite/visite_formulaire.html:7
+msgid "Modifier la CPN %(n)s"
+msgstr ""
+
+#: templates/maternite/visite_formulaire.html:52
+msgid ""
+"Pour d'autres analyses (groupe sanguin, glycémie, ECBU, échographie…), "
+"utilisez « Demander un examen » après l'enregistrement."
+msgstr ""
+
+#: templates/maternite/visite_formulaire.html:74
+msgid "Enregistrer la consultation"
+msgstr ""
+
 #: templates/patients/detail.html:16
 msgid "Archivé"
 msgstr ""
@@ -4223,97 +4930,89 @@ msgstr ""
 msgid "âge inconnu"
 msgstr ""
 
-#: templates/patients/detail.html:21
-msgid "%(a)s ans"
-msgstr ""
-
-#: templates/patients/detail.html:22
-msgid "Groupe"
-msgstr ""
-
-#: templates/patients/detail.html:33
+#: templates/patients/detail.html:36
 msgid "Demander une intervention"
 msgstr ""
 
-#: templates/patients/detail.html:36
+#: templates/patients/detail.html:39
 msgid "Ajouter une assurance"
 msgstr ""
 
-#: templates/patients/detail.html:47
+#: templates/patients/detail.html:50
 msgid "Patient hospitalisé — %(s)s"
 msgstr ""
 
-#: templates/patients/detail.html:61
+#: templates/patients/detail.html:64
 msgid "Adresse"
 msgstr ""
 
-#: templates/patients/detail.html:63
+#: templates/patients/detail.html:66
 msgid "Date de naissance"
 msgstr ""
 
-#: templates/patients/detail.html:64
+#: templates/patients/detail.html:67
 msgid "estimée"
 msgstr ""
 
-#: templates/patients/detail.html:65
+#: templates/patients/detail.html:68
 msgid "Lieu de naissance"
 msgstr ""
 
-#: templates/patients/detail.html:66
+#: templates/patients/detail.html:69
 msgid "Profession"
 msgstr ""
 
-#: templates/patients/detail.html:77
+#: templates/patients/detail.html:80
 msgid "Lien"
 msgstr ""
 
-#: templates/patients/detail.html:87
+#: templates/patients/detail.html:90
 #: templates/patients/dossier_formulaire.html:3
 #: templates/patients/dossier_formulaire.html:6
 msgid "Dossier médical"
 msgstr ""
 
-#: templates/patients/detail.html:95
+#: templates/patients/detail.html:98
 msgid "Antécédents médicaux"
 msgstr ""
 
-#: templates/patients/detail.html:96
+#: templates/patients/detail.html:99
 msgid "Antécédents chirurgicaux"
 msgstr ""
 
-#: templates/patients/detail.html:97
+#: templates/patients/detail.html:100
 msgid "Antécédents familiaux"
 msgstr ""
 
-#: templates/patients/detail.html:98
+#: templates/patients/detail.html:101
 msgid "Traitements en cours"
 msgstr ""
 
-#: templates/patients/detail.html:99
+#: templates/patients/detail.html:102
 msgid "Habitudes de vie"
 msgstr ""
 
-#: templates/patients/detail.html:100
+#: templates/patients/detail.html:103
 msgid "Observations"
 msgstr ""
 
-#: templates/patients/detail.html:101
+#: templates/patients/detail.html:104
 msgid "Allergies"
 msgstr ""
 
-#: templates/patients/detail.html:116
+#: templates/patients/detail.html:119
 msgid "Couvertures d'assurance"
 msgstr ""
 
-#: templates/patients/detail.html:125
+#: templates/patients/detail.html:128
 msgid "Aucune couverture enregistrée."
 msgstr ""
 
-#: templates/patients/detail.html:135
+#: templates/patients/detail.html:138
 msgid "Historique des consultations"
 msgstr ""
 
-#: templates/patients/detail.html:153
+#: templates/patients/detail.html:156
 msgid "Aucune consultation enregistrée."
 msgstr ""
 

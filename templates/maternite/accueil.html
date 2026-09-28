@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Maternité" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-4">
+  <div>
+    <h1 class="h3 mb-1">{% translate "Maternité" %}</h1>
+    <p class="text-body-secondary mb-0">{% translate "Suivi prénatal : qui recevoir, qui relancer, qui va accoucher." %}</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a class="btn btn-outline-primary" href="{% url 'maternite:dossiers' %}">{% translate "Tous les dossiers" %}</a>
+    {% if perms.patients.view_patient %}
+      <a class="btn btn-primary" href="{% url 'patients:liste' %}">{% translate "Ouvrir une grossesse" %}</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <span class="icon-chip icon-chip-rose icon-chip-sm mb-2"><i class="bi bi-heart-pulse-fill"></i></span>
+    <div class="fs-3 fw-bold">{{ nb_en_cours }}</div>
+    <div class="small text-body-secondary">{% translate "Grossesses suivies" %}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <span class="icon-chip icon-chip-teal icon-chip-sm mb-2"><i class="bi bi-calendar-check"></i></span>
+    <div class="fs-3 fw-bold">{{ rdv_aujourdhui.count }}</div>
+    <div class="small text-body-secondary">{% translate "Rendez-vous aujourd'hui" %}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <span class="icon-chip icon-chip-ambre icon-chip-sm mb-2"><i class="bi bi-telephone-outbound"></i></span>
+    <div class="fs-3 fw-bold">{{ rdv_manques.count }}</div>
+    <div class="small text-body-secondary">{% translate "À relancer (rendez-vous manqué)" %}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <span class="icon-chip icon-chip-indigo icon-chip-sm mb-2"><i class="bi bi-hospital"></i></span>
+    <div class="fs-3 fw-bold">{{ accouchements_proches.count }}</div>
+    <div class="small text-body-secondary">{% translate "Accouchements prévus sous 30 jours" %}</div>
+  </div></div></div>
+</div>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-semibold">{% translate "Rendez-vous d'aujourd'hui" %}</div>
+  {% translate "Aucun rendez-vous aujourd'hui." as vide %}
+  {% include "maternite/_tableau_dossiers.html" with liste=rdv_aujourdhui vide=vide %}
+</div>
+
+{% if rdv_manques %}
+<div class="card shadow-sm border-warning mb-4">
+  <div class="card-header fw-semibold"><i class="bi bi-telephone-outbound"></i> {% translate "À relancer : rendez-vous manqués" %}</div>
+  {% include "maternite/_tableau_dossiers.html" with liste=rdv_manques vide="" %}
+</div>
+{% endif %}
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-semibold">{% translate "Rendez-vous des 7 prochains jours" %}</div>
+  {% translate "Aucun rendez-vous prévu cette semaine." as vide2 %}
+  {% include "maternite/_tableau_dossiers.html" with liste=rdv_semaine vide=vide2 %}
+</div>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-semibold">{% translate "Accouchements prévus dans les 30 jours" %}</div>
+  {% translate "Aucun accouchement prévu prochainement." as vide3 %}
+  {% include "maternite/_tableau_dossiers.html" with liste=accouchements_proches vide=vide3 %}
+</div>
+
+{% if dpa_depassee %}
+<div class="card shadow-sm border-danger mb-4">
+  <div class="card-header fw-semibold"><i class="bi bi-exclamation-triangle-fill"></i> {% translate "Date prévue d'accouchement dépassée" %}</div>
+  {% include "maternite/_tableau_dossiers.html" with liste=dpa_depassee vide="" %}
+</div>
+{% endif %}
+
+{% if sans_rdv %}
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-semibold">{% translate "Sans rendez-vous programmé" %}</div>
+  {% include "maternite/_tableau_dossiers.html" with liste=sans_rdv vide="" %}
+</div>
+{% endif %}
+{% endblock %}

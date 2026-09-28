@@ -42,6 +42,7 @@ urlpatterns += i18n_patterns(
     path("facturation/", include("apps.facturation.urls")),
     path("assurances/", include("apps.assurances.urls")),
     path("laboratoire/", include("apps.laboratoire.urls")),
+    path("maternite/", include("apps.maternite.urls")),
     prefix_default_language=True,
 )
 
