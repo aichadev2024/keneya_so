@@ -5,14 +5,16 @@ import secrets
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import views as auth_views
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
+from django.core.cache import cache
+from django.shortcuts import redirect
 from django.db import transaction
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
 
-from .forms import ConnexionForm, PremiereConfigurationForm
+from .forms import ConnexionForm, InscriptionHopitalForm, PremiereConfigurationForm
 
 Utilisateur = get_user_model()
 
@@ -78,3 +80,40 @@ class PremiereConfigurationView(FormView):
         messages.success(self.request,
                          _("Compte administrateur créé. Vous pouvez vous connecter."))
         return super().form_valid(form)
+
+
+class InscriptionHopitalView(FormView):
+    """Inscription en libre-service d'un hôpital (SaaS) : essai gratuit, sans carte bancaire."""
+
+    template_name = "registration/inscription_hopital.html"
+    form_class = InscriptionHopitalForm
+
+    # Limite anti-abus : au plus N inscriptions par adresse IP et par heure.
+    MAX_PAR_HEURE = 5
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("core:dashboard")
+        return super().dispatch(request, *args, **kwargs)
+
+    def _cle(self):
+        from .signals import _ip
+        return f"inscription:{_ip(self.request) or 'inconnue'}"
+
+    def form_valid(self, form):
+        cle = self._cle()
+        if cache.get(cle, 0) >= self.MAX_PAR_HEURE:
+            form.add_error(None, _("Trop d'inscriptions depuis cette adresse. Réessayez plus tard."))
+            return self.form_invalid(form)
+        cache.set(cle, cache.get(cle, 0) + 1, 3600)
+
+        from apps.core.onboarding import inscrire_hopital
+        d = form.cleaned_data
+        _etab, admin = inscrire_hopital(
+            nom_hopital=d["nom_hopital"], prenom=d["prenom"], nom=d["nom"],
+            email=d["email"], username=d["username"], password=d["password1"],
+            adresse_ip=self.request.META.get("REMOTE_ADDR"),
+        )
+        login(self.request, admin, backend="django.contrib.auth.backends.ModelBackend")
+        messages.success(self.request, _("Bienvenue ! Votre hôpital est créé, votre période d'essai commence."))
+        return redirect("core:dashboard")

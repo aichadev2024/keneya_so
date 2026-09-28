@@ -58,7 +58,8 @@ def synchroniser_groupes_de_roles(sender, **kwargs):
             # permissions globaux (partagés entre tous les hôpitaux) ni la gestion
             # des établissements (réservée au super-administrateur de la plateforme).
             perms = [p for cle, p in toutes.items()
-                     if not cle.startswith("auth.") and not cle.endswith("_etablissement")]
+                     if not cle.startswith("auth.")
+                     and not cle.endswith(("_etablissement", "_plan"))]
         else:
             perms = [toutes[c] for c in codenames if c in toutes]
             manquantes = [c for c in codenames if c not in toutes]

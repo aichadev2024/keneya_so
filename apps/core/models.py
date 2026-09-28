@@ -16,6 +16,28 @@ from django.utils.translation import gettext_lazy as _
 from .tenancy import TenantManager, etablissement_pour_creation
 
 
+class Plan(models.Model):
+    """Formule d'abonnement proposée aux hôpitaux (limites et tarif)."""
+
+    code = models.SlugField(_("code"), max_length=30, unique=True)
+    nom = models.CharField(_("nom"), max_length=80)
+    prix_mensuel = models.DecimalField(
+        _("prix mensuel (FCFA)"), max_digits=10, decimal_places=0, null=True, blank=True,
+        help_text=_("Vide = à définir."))
+    max_utilisateurs = models.PositiveIntegerField(
+        _("utilisateurs maximum"), null=True, blank=True,
+        help_text=_("Vide = illimité."))
+    actif = models.BooleanField(_("proposé à l'inscription"), default=True)
+
+    class Meta:
+        verbose_name = _("plan d'abonnement")
+        verbose_name_plural = _("plans d'abonnement")
+        ordering = ["prix_mensuel", "nom"]
+
+    def __str__(self) -> str:
+        return self.nom
+
+
 class Etablissement(models.Model):
     """Un hôpital / établissement client de la plateforme (le « locataire » du SaaS)."""
 
@@ -29,6 +51,9 @@ class Etablissement(models.Model):
     statut = models.CharField(_("statut"), max_length=10, choices=Statut.choices,
                               default=Statut.ESSAI)
     essai_jusqu_au = models.DateField(_("fin de la période d'essai"), null=True, blank=True)
+    plan = models.ForeignKey(Plan, on_delete=models.PROTECT, null=True, blank=True,
+                             related_name="etablissements", verbose_name=_("plan"),
+                             help_text=_("Vide = aucune limite."))
     cree_le = models.DateTimeField(_("créé le"), auto_now_add=True)
 
     class Meta:
@@ -40,8 +65,35 @@ class Etablissement(models.Model):
         return self.nom
 
     @property
-    def utilisable(self) -> bool:
-        return self.statut != self.Statut.SUSPENDU
+    def limite_utilisateurs(self):
+        return self.plan.max_utilisateurs if self.plan_id else None
+
+    def places_utilisateurs_restantes(self):
+        """Nombre de comptes actifs encore créables (None = illimité)."""
+        limite = self.limite_utilisateurs
+        if limite is None:
+            return None
+        from django.contrib.auth import get_user_model
+        utilises = get_user_model().tous.filter(etablissement=self, is_active=True).count()
+        return max(limite - utilises, 0)
+
+    @property
+    def essai_termine(self) -> bool:
+        return (self.statut == self.Statut.ESSAI and self.essai_jusqu_au is not None
+                and self.essai_jusqu_au < timezone.localdate())
+
+    @property
+    def acces_autorise(self) -> bool:
+        """Les utilisateurs de cet établissement peuvent-ils utiliser la plateforme ?"""
+        if self.statut == self.Statut.SUSPENDU:
+            return False
+        return not self.essai_termine
+
+    @property
+    def jours_essai_restants(self):
+        if self.statut != self.Statut.ESSAI or self.essai_jusqu_au is None:
+            return None
+        return max((self.essai_jusqu_au - timezone.localdate()).days, 0)
 
     @classmethod
     def defaut(cls) -> "Etablissement":

@@ -1,0 +1,35 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% translate "Inscrire mon hôpital" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <h1 class="mb-1">{% translate "Inscrire mon hôpital" %}</h1>
+  <p class="text-body-secondary mb-4">
+    {% blocktranslate %}Essai gratuit, sans carte bancaire. Vous serez l'administrateur de votre établissement.{% endblocktranslate %}
+  </p>
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      {% if field.name == "site_web" %}
+        <div style="position:absolute;left:-9999px" aria-hidden="true">{{ field }}</div>
+      {% else %}
+        <div class="mb-3">
+          <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary w-100 py-2">{% translate "Créer mon espace hôpital" %}</button>
+  </form>
+  <p class="text-center small mt-3 mb-0">
+    {% translate "Déjà inscrit ?" %} <a href="{% url 'accounts:login' %}">{% translate "Se connecter" %}</a>
+  </p>
+</div>
+{% endblock %}

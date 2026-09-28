@@ -43,3 +43,12 @@ def notifications(request):
         "notifications_non_lues": Notification.objects.filter(
             destinataire=user, lu=False).count(),
     }
+
+
+def abonnement(request):
+    """Établissement courant et jours d'essai restants (bandeau d'information)."""
+    user = getattr(request, "user", None)
+    if not user or not user.is_authenticated or not user.etablissement_id:
+        return {}
+    etab = user.etablissement
+    return {"etablissement_courant": etab, "jours_essai_restants": etab.jours_essai_restants}

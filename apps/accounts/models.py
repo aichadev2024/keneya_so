@@ -81,6 +81,20 @@ class Utilisateur(AbstractUser):
         verbose_name_plural = _("utilisateurs")
         constraints = [models.UniqueConstraint(fields=["etablissement", "matricule"], name="utilisateur_matricule_par_etablissement")]
 
+    def clean(self):
+        super().clean()
+        if self._state.adding and not self.is_superuser:
+            ctx = contexte_courant()
+            etab_id = self.etablissement_id or (ctx if isinstance(ctx, int) else None)
+            if etab_id:
+                from django.core.exceptions import ValidationError
+                from apps.core.models import Etablissement
+                restantes = Etablissement.objects.get(pk=etab_id).places_utilisateurs_restantes()
+                if restantes is not None and restantes <= 0:
+                    raise ValidationError(_(
+                        "La limite d'utilisateurs de votre plan est atteinte. "
+                        "Contactez-nous pour changer de formule."))
+
     def save(self, *args, **kwargs):
         # Un compte non super-administrateur appartient toujours à un établissement.
         if self.etablissement_id is None and not self.is_superuser:

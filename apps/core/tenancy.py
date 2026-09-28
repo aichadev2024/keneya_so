@@ -146,24 +146,49 @@ def gestionnaire_pour(queryset_class):
 
 
 class EtablissementMiddleware:
-    """Pose le contexte d'établissement de chaque requête (après l'authentification)."""
+    """Pose le contexte d'établissement de chaque requête (après l'authentification)
+    et bloque l'accès d'un établissement suspendu ou dont l'essai est terminé."""
+
+    # Toujours accessibles, même sans abonnement actif : se déconnecter, changer de langue.
+    CHEMINS_LIBRES = ("/comptes/deconnexion/", "/i18n/")
 
     def __init__(self, get_response):
         self.get_response = get_response
 
+    def _est_libre(self, chemin: str) -> bool:
+        return chemin.startswith("/i18n/") or chemin.rstrip("/").endswith("/comptes/deconnexion")
+
     def __call__(self, request):
         utilisateur = getattr(request, "user", None)
+        etablissement = None
         if utilisateur is not None and utilisateur.is_authenticated:
             if utilisateur.etablissement_id:
                 valeur = utilisateur.etablissement_id
+                etablissement = utilisateur.etablissement
             elif utilisateur.is_superuser:
                 valeur = TOUS
             else:
                 valeur = AUCUN
         else:
             valeur = AUCUN
+
+        if (etablissement is not None and not etablissement.acces_autorise
+                and not self._est_libre(request.path)):
+            return self._refuser(request, etablissement)
+
         jeton = _courant.set(valeur)
         try:
             return self.get_response(request)
         finally:
             _courant.reset(jeton)
+
+    def _refuser(self, request, etablissement):
+        from django.http import JsonResponse
+        from django.shortcuts import render
+
+        if request.path.startswith("/api/"):
+            return JsonResponse(
+                {"detail": "Abonnement inactif : période d'essai terminée ou compte suspendu."},
+                status=403)
+        return render(request, "core/abonnement_inactif.html",
+                      {"etablissement": etablissement}, status=403)
