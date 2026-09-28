@@ -17,7 +17,7 @@
     {% csrf_token %}
     {% for field in form %}
       {% if field.name == "site_web" %}
-        <div style="position:absolute;left:-9999px" aria-hidden="true">{{ field }}</div>
+        <div class="champ-piege" aria-hidden="true">{{ field }}</div>
       {% else %}
         <div class="mb-3">
           <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>

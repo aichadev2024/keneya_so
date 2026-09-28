@@ -15,7 +15,7 @@
   <div class="col-lg-6">
     <div class="card shadow-sm h-100">
       <div class="card-header">{% translate "Taux d'occupation des salles" %}</div>
-      <table class="table mb-0">
+      <div class="table-responsive"><table class="table mb-0">
         <thead><tr><th>{% translate "Salle" %}</th><th class="text-end">{% translate "Interv." %}</th>
           <th class="text-end">{% translate "Heures" %}</th><th class="text-end">{% translate "Taux" %}</th></tr></thead>
         <tbody>
@@ -25,7 +25,7 @@
               <td class="text-end">{{ r.taux_occupation_pct }} %</td></tr>
           {% empty %}<tr><td colspan="4" class="text-body-secondary text-center py-3">—</td></tr>{% endfor %}
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -49,26 +49,26 @@
   <div class="col-lg-6">
     <div class="card shadow-sm h-100">
       <div class="card-header">{% translate "Durée moyenne par type d'acte" %}</div>
-      <table class="table mb-0">
+      <div class="table-responsive"><table class="table mb-0">
         <thead><tr><th>{% translate "Acte" %}</th><th class="text-end">{% translate "N" %}</th><th class="text-end">{% translate "Durée moy." %}</th></tr></thead>
         <tbody>
           {% for r in tb.duree_par_type %}<tr><td>{{ r.type }}</td><td class="text-end">{{ r.interventions }}</td><td class="text-end">{{ r.duree_moyenne_min }} min</td></tr>
           {% empty %}<tr><td colspan="3" class="text-body-secondary text-center py-3">—</td></tr>{% endfor %}
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
   <div class="col-lg-6">
     <div class="card shadow-sm h-100">
       <div class="card-header">{% translate "Durée moyenne par praticien" %}</div>
-      <table class="table mb-0">
+      <div class="table-responsive"><table class="table mb-0">
         <thead><tr><th>{% translate "Praticien" %}</th><th class="text-end">{% translate "N" %}</th><th class="text-end">{% translate "Durée moy." %}</th></tr></thead>
         <tbody>
           {% for r in tb.duree_par_praticien %}<tr><td>{{ r.praticien }}</td><td class="text-end">{{ r.interventions }}</td><td class="text-end">{{ r.duree_moyenne_min }} min</td></tr>
           {% empty %}<tr><td colspan="3" class="text-body-secondary text-center py-3">—</td></tr>{% endfor %}
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 </div>

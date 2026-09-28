@@ -136,3 +136,23 @@
   .lp-feature-grid { grid-template-columns: 1fr; }
   .lp-why-grid { grid-template-columns: 1fr; }
 }
+
+
+@media (max-width: 575.98px) {
+  .lp-nav { padding: .65rem .75rem; gap: .5rem; }
+  .lp-nav-brand { font-size: 1rem; min-width: 0; }
+  .lp-nav .form-select { max-width: 6.2rem; font-size: .8rem; padding-inline-end: 1.5rem; }
+  .lp-hero { padding: 3rem 1rem 3.5rem; }
+  .lp-section { padding: 3rem 1rem; }
+  .lp-cta { margin-inline: 1rem; padding: 2rem 1.25rem; }
+  .lp-hero-cta .btn { width: 100%; }
+}
+
+.lp-nav .btn { white-space: nowrap; }
+.lp-nav-nom { white-space: nowrap; }
+@media (max-width: 575.98px) {
+  .lp-nav .btn { padding-inline: .7rem; font-size: .85rem; }
+}
+@media (max-width: 379.98px) {
+  .lp-nav-nom { display: none; }
+}

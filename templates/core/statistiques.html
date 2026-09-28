@@ -16,7 +16,7 @@
   <div class="col-lg-4">
     <div class="card shadow-sm h-100">
       <div class="card-header">{% translate "Fréquentation" %}</div>
-      <table class="table mb-0">
+      <div class="table-responsive"><table class="table mb-0">
         <tbody>
           <tr><td>{% translate "Patients actifs" %}</td><td class="text-end fw-semibold">{{ tb.frequentation.patients_total }}</td></tr>
           <tr><td>{% translate "Nouveaux patients" %}</td><td class="text-end">{{ tb.frequentation.nouveaux_patients }}</td></tr>
@@ -27,14 +27,14 @@
           <tr><td>{% translate "Examens demandés" %}</td><td class="text-end">{{ tb.frequentation.examens_demandes }}</td></tr>
           <tr><td>{% translate "Examens validés" %}</td><td class="text-end">{{ tb.frequentation.examens_valides }}</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
   <div class="col-lg-4">
     <div class="card shadow-sm h-100">
       <div class="card-header">{% translate "Chiffre d'affaires" %}</div>
-      <table class="table mb-0">
+      <div class="table-responsive"><table class="table mb-0">
         <tbody>
           <tr><td>{% translate "Factures émises" %}</td><td class="text-end">{{ tb.chiffre_affaires.nb_factures }}</td></tr>
           <tr><td>{% translate "Montant facturé" %}</td><td class="text-end fw-semibold">{{ tb.chiffre_affaires.montant_facture|floatformat:0 }}</td></tr>
@@ -43,21 +43,21 @@
           <tr><td>{% translate "Encaissé sur la période" %}</td><td class="text-end text-success">{{ tb.chiffre_affaires.encaisse_periode|floatformat:0 }}</td></tr>
           <tr><td>{% translate "Total des impayés (en cours)" %}</td><td class="text-end text-danger">{{ tb.chiffre_affaires.impayes_total|floatformat:0 }}</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
   <div class="col-lg-4">
     <div class="card shadow-sm h-100">
       <div class="card-header">{% translate "Activité par module" %}</div>
-      <table class="table mb-0">
+      <div class="table-responsive"><table class="table mb-0">
         <tbody>
           <tr><td>{% translate "Interventions demandées" %}</td><td class="text-end">{{ tb.activite.interventions }}</td></tr>
           <tr><td>{% translate "Interventions terminées" %}</td><td class="text-end">{{ tb.activite.interventions_terminees }}</td></tr>
           <tr><td>{% translate "Dispensations" %}</td><td class="text-end">{{ tb.activite.dispensations }}</td></tr>
           <tr><td>{% translate "Médicaments sous le seuil" %}</td><td class="text-end {% if tb.activite.medicaments_en_alerte %}text-danger{% endif %}">{{ tb.activite.medicaments_en_alerte }}</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 </div>
