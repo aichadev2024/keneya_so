@@ -1147,3 +1147,17 @@ TRADUCTIONS.update({
     "Choisissez votre mot de passe pour activer votre compte : vous serez connecté(e) directement.": "Choose your password to activate your account: you will be signed in directly.",
     "Activer mon compte": "Activate my account",
 })
+
+
+# Création d'un hôpital par le propriétaire ; vitrine sans inscription libre
+TRADUCTIONS.update({
+    "Prénom de l'administrateur": "Administrator's first name",
+    "Nom de l'administrateur": "Administrator's last name",
+    "E-mail de l'administrateur": "Administrator's e-mail",
+    "L'invitation et le lien de connexion y seront envoyés.": "The invitation and sign-in link will be sent there.",
+    "Premier administrateur de l'hôpital": "Hospital's first administrator",
+    "L'hôpital est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Dans Utilisateurs, utilisez l'action « Renvoyer l'invitation ».": "The hospital was created, but the invitation e-mail could not be sent. In Users, use the “Resend the invitation” action.",
+    "Nous contacter": "Contact us",
+    "Contactez-nous : nous ouvrons l'espace de votre établissement et formons votre équipe.": "Contact us: we set up your facility's workspace and train your team.",
+    "Déjà client ?": "Already a customer?",
+})

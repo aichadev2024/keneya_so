@@ -1166,3 +1166,17 @@ TRADUCTIONS.update({
     "Choisissez votre mot de passe pour activer votre compte : vous serez connecté(e) directement.": "اختر كلمة مرورك لتفعيل حسابك: ستُسجَّل دخولك مباشرة.",
     "Activer mon compte": "تفعيل حسابي",
 })
+
+
+# Création d'un hôpital par le propriétaire ; vitrine sans inscription libre
+TRADUCTIONS.update({
+    "Prénom de l'administrateur": "الاسم الأول للمسؤول",
+    "Nom de l'administrateur": "اسم عائلة المسؤول",
+    "E-mail de l'administrateur": "البريد الإلكتروني للمسؤول",
+    "L'invitation et le lien de connexion y seront envoyés.": "ستُرسل إليه الدعوة ورابط الدخول.",
+    "Premier administrateur de l'hôpital": "أول مسؤول في المستشفى",
+    "L'hôpital est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Dans Utilisateurs, utilisez l'action « Renvoyer l'invitation ».": "تم إنشاء المستشفى، لكن تعذّر إرسال بريد الدعوة. في قسم المستخدمين، استخدم إجراء «إعادة إرسال الدعوة».",
+    "Nous contacter": "اتصل بنا",
+    "Contactez-nous : nous ouvrons l'espace de votre établissement et formons votre équipe.": "اتصل بنا: نفتح مساحة منشأتك ونكوّن فريقك.",
+    "Déjà client ?": "هل أنت عميل بالفعل؟",
+})

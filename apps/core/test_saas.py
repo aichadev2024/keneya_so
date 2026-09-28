@@ -4,7 +4,7 @@ from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.core.models import Etablissement
@@ -24,6 +24,7 @@ def donnees(**over):
     return d
 
 
+@override_settings(INSCRIPTION_LIBRE=True)
 class InscriptionHopitalTests(TestCase):
     def setUp(self):
         cache.clear()
@@ -207,6 +208,7 @@ class PlansEtLimitesTests(TestCase):
         nouveau = Utilisateur.tous.get(username="u3")
         self.assertEqual(nouveau.etablissement_id, self.etab.pk)
 
+    @override_settings(INSCRIPTION_LIBRE=True)
     def test_l_inscription_attribue_le_plan_d_essai(self):
         cache.clear()
         self.client.post(reverse("accounts:inscription_hopital"), donnees())

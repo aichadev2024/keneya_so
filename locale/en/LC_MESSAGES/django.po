@@ -21,7 +21,7 @@ msgstr ""
 "The account “%(u)s” was created, but the invitation e-mail could not be "
 "sent. Use the “Resend the invitation” action later."
 
-#: apps/accounts/admin.py:79
+#: apps/accounts/admin.py:79 apps/core/admin.py:99
 msgid "Invitation envoyée à %(e)s."
 msgstr "Invitation sent to %(e)s."
 
@@ -79,7 +79,7 @@ msgstr "Name"
 msgid "Adresse e-mail"
 msgstr "Email address"
 
-#: apps/accounts/forms.py:70
+#: apps/accounts/forms.py:70 apps/core/admin.py:29
 msgid "Identifiant de connexion"
 msgstr "Login username"
 
@@ -87,7 +87,7 @@ msgstr "Login username"
 msgid "Confirmation du mot de passe"
 msgstr "Confirm password"
 
-#: apps/accounts/forms.py:89
+#: apps/accounts/forms.py:89 apps/core/admin.py:38
 msgid "Cet identifiant est déjà utilisé."
 msgstr "This username is already taken."
 
@@ -212,11 +212,11 @@ msgstr "An administrator account already exists."
 msgid "Compte administrateur créé. Vous pouvez vous connecter."
 msgstr "Administrator account created. You can now sign in."
 
-#: apps/accounts/views.py:196
+#: apps/accounts/views.py:198
 msgid "Trop d'inscriptions depuis cette adresse. Réessayez plus tard."
 msgstr "Too many sign-ups from this address. Please try again later."
 
-#: apps/accounts/views.py:208
+#: apps/accounts/views.py:210
 msgid "Bienvenue ! Votre hôpital est créé, votre période d'essai commence."
 msgstr ""
 "Welcome! Your hospital has been created and your trial period has started."
@@ -1341,7 +1341,7 @@ msgstr "prescription lines"
 #: apps/consultations/views.py:27 apps/core/views.py:76 apps/core/views.py:130
 #: templates/consultations/detail.html:7 templates/consultations/liste.html:3
 #: templates/consultations/liste.html:7 templates/core/statistiques.html:23
-#: templates/core/vitrine.html:83
+#: templates/core/vitrine.html:93
 msgid "Consultations"
 msgstr "Consultations"
 
@@ -1397,7 +1397,35 @@ msgstr "Prescription sent to pharmacy."
 msgid "Consultation clôturée."
 msgstr "Consultation closed."
 
-#: apps/core/admin.py:94 apps/core/models.py:243
+#: apps/core/admin.py:25
+msgid "Prénom de l'administrateur"
+msgstr "Administrator's first name"
+
+#: apps/core/admin.py:26
+msgid "Nom de l'administrateur"
+msgstr "Administrator's last name"
+
+#: apps/core/admin.py:27
+msgid "E-mail de l'administrateur"
+msgstr "Administrator's e-mail"
+
+#: apps/core/admin.py:28
+msgid "L'invitation et le lien de connexion y seront envoyés."
+msgstr "The invitation and sign-in link will be sent there."
+
+#: apps/core/admin.py:67
+msgid "Premier administrateur de l'hôpital"
+msgstr "Hospital's first administrator"
+
+#: apps/core/admin.py:95
+msgid ""
+"L'hôpital est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Dans "
+"Utilisateurs, utilisez l'action « Renvoyer l'invitation »."
+msgstr ""
+"The hospital was created, but the invitation e-mail could not be sent. In "
+"Users, use the “Resend the invitation” action."
+
+#: apps/core/admin.py:171 apps/core/models.py:243
 msgid "journal d'audit"
 msgstr "audit log"
 
@@ -1696,19 +1724,19 @@ msgid "Statistiques générales"
 msgstr "General statistics"
 
 #: apps/core/views.py:127 apps/patients/views.py:45
-#: templates/core/vitrine.html:61 templates/core/vitrine.html:78
+#: templates/core/vitrine.html:71 templates/core/vitrine.html:88
 #: templates/patients/detail.html:8 templates/patients/liste.html:3
 #: templates/patients/liste.html:7
 msgid "Patients"
 msgstr "Patients"
 
 #: apps/core/views.py:134 apps/facturation/models.py:40
-#: templates/core/vitrine.html:93
+#: templates/core/vitrine.html:103
 msgid "Hospitalisation"
 msgstr "Inpatient care"
 
 #: apps/core/views.py:138 templates/bloc_operatoire/detail.html:7
-#: templates/core/vitrine.html:63 templates/core/vitrine.html:98
+#: templates/core/vitrine.html:73 templates/core/vitrine.html:108
 msgid "Bloc opératoire"
 msgstr "Operating theatre"
 
@@ -1717,8 +1745,8 @@ msgstr "Operating theatre"
 msgid "Analyses & imagerie"
 msgstr "Lab & imaging"
 
-#: apps/core/views.py:146 templates/core/vitrine.html:64
-#: templates/core/vitrine.html:108
+#: apps/core/views.py:146 templates/core/vitrine.html:74
+#: templates/core/vitrine.html:118
 msgid "Facturation"
 msgstr "Billing"
 
@@ -2521,7 +2549,7 @@ msgstr "Emergency contact"
 msgid "Informations complémentaires"
 msgstr "Additional information"
 
-#: apps/patients/admin.py:51 templates/core/vitrine.html:142
+#: apps/patients/admin.py:51 templates/core/vitrine.html:152
 msgid "Traçabilité"
 msgstr "Traceability"
 
@@ -3069,27 +3097,27 @@ msgstr "%(n)d expired unit(s) removed from stock."
 msgid "Aucun lot périmé à retirer."
 msgstr "No expired batch to remove."
 
-#: config/settings.py:192 apps/accounts/models.py:49
+#: config/settings.py:193 apps/accounts/models.py:49
 msgid "Français"
 msgstr "French"
 
-#: config/settings.py:193 apps/accounts/models.py:50
+#: config/settings.py:194 apps/accounts/models.py:50
 msgid "Anglais"
 msgstr "English"
 
-#: config/settings.py:194 apps/accounts/models.py:51
+#: config/settings.py:195 apps/accounts/models.py:51
 msgid "Arabe"
 msgstr "Arabic"
 
-#: config/settings.py:195 apps/accounts/models.py:52
+#: config/settings.py:196 apps/accounts/models.py:52
 msgid "Bambara"
 msgstr "Bambara"
 
-#: config/settings.py:196 apps/accounts/models.py:53
+#: config/settings.py:197 apps/accounts/models.py:53
 msgid "Peulh (fulfulde)"
 msgstr "Fula (Fulfulde)"
 
-#: config/settings.py:197 apps/accounts/models.py:54
+#: config/settings.py:198 apps/accounts/models.py:54
 msgid "Soninké"
 msgstr "Soninke"
 
@@ -3128,7 +3156,7 @@ msgstr "Open"
 msgid "Aucun bordereau."
 msgstr "No statement."
 
-#: templates/assurances/liste.html:3 templates/core/vitrine.html:113
+#: templates/assurances/liste.html:3 templates/core/vitrine.html:123
 msgid "Assurances"
 msgstr "Insurers"
 
@@ -3187,7 +3215,7 @@ msgid "Annuler"
 msgstr "Cancel"
 
 #: templates/base.html:26 templates/base.html:100
-#: templates/core/vitrine.html:48 templates/core/vitrine.html:161
+#: templates/core/vitrine.html:52 templates/core/vitrine.html:176
 msgid "Gestion hospitalière"
 msgstr "Hospital management"
 
@@ -3722,22 +3750,23 @@ msgstr ""
 "Kènèya Sô brings patients, pharmacy, inpatient care, the operating theatre, "
 "the lab, billing and insurance together in one platform."
 
-#: templates/core/vitrine.html:40 templates/core/vitrine.html:153
+#: templates/core/vitrine.html:41 templates/core/vitrine.html:44
+#: templates/core/vitrine.html:63 templates/core/vitrine.html:168
 #: templates/registration/inscription_hopital.html:32
 #: templates/registration/login.html:26
 #: templates/registration/mot_de_passe_termine.html:9
 msgid "Se connecter"
 msgstr "Log in"
 
-#: templates/core/vitrine.html:41 templates/registration/login.html:30
+#: templates/core/vitrine.html:42 templates/registration/login.html:31
 msgid "Essai gratuit"
 msgstr "Free trial"
 
-#: templates/core/vitrine.html:49
+#: templates/core/vitrine.html:53
 msgid "Toute la vie de l'hôpital, dans un seul outil."
 msgstr "Everything your hospital does, in one tool."
 
-#: templates/core/vitrine.html:51
+#: templates/core/vitrine.html:55
 msgid ""
 "Kènèya Sô centralise les patients, les consultations, la pharmacie, "
 "l'hospitalisation, le bloc opératoire, le laboratoire et la facturation — "
@@ -3747,41 +3776,45 @@ msgstr ""
 "care, the operating theatre, the lab and billing — with access controlled by"
 " each staff member's role."
 
-#: templates/core/vitrine.html:54
+#: templates/core/vitrine.html:59
 #: templates/registration/inscription_hopital.html:3
 #: templates/registration/inscription_hopital.html:7
 msgid "Inscrire mon hôpital"
 msgstr "Register my hospital"
 
-#: templates/core/vitrine.html:55
+#: templates/core/vitrine.html:61 templates/core/vitrine.html:166
+msgid "Nous contacter"
+msgstr "Contact us"
+
+#: templates/core/vitrine.html:65
 msgid "Découvrir les fonctionnalités"
 msgstr "Explore the features"
 
-#: templates/core/vitrine.html:61
+#: templates/core/vitrine.html:71
 msgid "Dossiers médicaux"
 msgstr "Medical records"
 
-#: templates/core/vitrine.html:62 templates/core/vitrine.html:88
+#: templates/core/vitrine.html:72 templates/core/vitrine.html:98
 msgid "Pharmacie"
 msgstr "Pharmacy"
 
-#: templates/core/vitrine.html:62
+#: templates/core/vitrine.html:72
 msgid "Stock en temps réel"
 msgstr "Real-time stock"
 
-#: templates/core/vitrine.html:63
+#: templates/core/vitrine.html:73
 msgid "Planification"
 msgstr "Scheduling"
 
-#: templates/core/vitrine.html:64
+#: templates/core/vitrine.html:74
 msgid "Automatique"
 msgstr "Automatic"
 
-#: templates/core/vitrine.html:72
+#: templates/core/vitrine.html:82
 msgid "Un module par métier de l'hôpital"
 msgstr "One module for every hospital role"
 
-#: templates/core/vitrine.html:73
+#: templates/core/vitrine.html:83
 msgid ""
 "Chaque service retrouve ses outils, sans se marcher dessus — les accès sont "
 "définis par rôle."
@@ -3789,101 +3822,106 @@ msgstr ""
 "Every department gets its own tools, without stepping on each other's toes —"
 " access is defined by role."
 
-#: templates/core/vitrine.html:79
+#: templates/core/vitrine.html:89
 msgid ""
 "Dossiers médicaux, allergies et antécédents centralisés pour chaque patient."
 msgstr "Medical records, allergies and history centralised for every patient."
 
-#: templates/core/vitrine.html:84
+#: templates/core/vitrine.html:94
 msgid ""
 "Constantes, diagnostic et ordonnances avec alertes d'allergie et "
 "d'interaction."
 msgstr ""
 "Vitals, diagnosis and prescriptions with allergy and interaction alerts."
 
-#: templates/core/vitrine.html:89
+#: templates/core/vitrine.html:99
 msgid "Stock par lots (FEFO), dispensation et alertes de péremption."
 msgstr "Batch-tracked stock (FEFO), dispensing and expiry alerts."
 
-#: templates/core/vitrine.html:94
+#: templates/core/vitrine.html:104
 msgid "Occupation des lits en temps réel, admission, suivi quotidien, sortie."
 msgstr "Real-time bed occupancy, admission, daily follow-up, discharge."
 
-#: templates/core/vitrine.html:99
+#: templates/core/vitrine.html:109
 msgid ""
 "Planification sans conflit, checklist sécurité, comptes-rendus opératoires."
 msgstr "Conflict-free scheduling, safety checklist, operative reports."
 
-#: templates/core/vitrine.html:103
+#: templates/core/vitrine.html:113
 msgid "Laboratoire & imagerie"
 msgstr "Lab & imaging"
 
-#: templates/core/vitrine.html:104
+#: templates/core/vitrine.html:114
 msgid ""
 "Demandes d'examen, résultats et notification automatique du prescripteur."
 msgstr ""
 "Test requests, results and automatic notification of the requesting "
 "clinician."
 
-#: templates/core/vitrine.html:109
+#: templates/core/vitrine.html:119
 msgid "Factures générées automatiquement à la clôture de chaque acte."
 msgstr "Invoices generated automatically when each procedure is closed."
 
-#: templates/core/vitrine.html:114
+#: templates/core/vitrine.html:124
 msgid "Contrats, taux de couverture et bordereaux par organisme."
 msgstr "Contracts, coverage rates and settlement statements per insurer."
 
-#: templates/core/vitrine.html:122
+#: templates/core/vitrine.html:132
 msgid "Conçu pour un usage hospitalier sérieux"
 msgstr "Built for serious hospital use"
 
-#: templates/core/vitrine.html:127
+#: templates/core/vitrine.html:137
 msgid "Accès par rôle"
 msgstr "Role-based access"
 
-#: templates/core/vitrine.html:128
+#: templates/core/vitrine.html:138
 msgid "Chaque utilisateur ne voit que ce qui concerne son métier."
 msgstr "Each user only sees what concerns their role."
 
-#: templates/core/vitrine.html:132
+#: templates/core/vitrine.html:142
 msgid "Multilingue"
 msgstr "Multilingual"
 
-#: templates/core/vitrine.html:133
+#: templates/core/vitrine.html:143
 msgid "Français, anglais, arabe et langues nationales."
 msgstr "French, English, Arabic and national languages."
 
-#: templates/core/vitrine.html:137
+#: templates/core/vitrine.html:147
 msgid "Exports PDF/Excel"
 msgstr "PDF/Excel exports"
 
-#: templates/core/vitrine.html:138
+#: templates/core/vitrine.html:148
 msgid "Sur tous les modules, pour le suivi et le reporting."
 msgstr "Across every module, for tracking and reporting."
 
-#: templates/core/vitrine.html:143
+#: templates/core/vitrine.html:153
 msgid "Journal d'audit sur les actions sensibles."
 msgstr "Audit log for sensitive actions."
 
-#: templates/core/vitrine.html:150
+#: templates/core/vitrine.html:160
 msgid "Prête à organiser votre hôpital ?"
 msgstr "Ready to organise your hospital?"
 
-#: templates/core/vitrine.html:151
+#: templates/core/vitrine.html:162
 msgid ""
 "Créez l'espace de votre établissement en quelques minutes : essai gratuit, "
 "sans carte bancaire."
 msgstr ""
 "Set up your facility's workspace in minutes: free trial, no credit card."
 
-#: templates/core/vitrine.html:152
+#: templates/core/vitrine.html:163
 msgid "Commencer l'essai gratuit"
 msgstr "Start the free trial"
 
-#: templates/core/vitrine.html:153
-#: templates/registration/inscription_hopital.html:32
-msgid "Déjà inscrit ?"
-msgstr "Already registered?"
+#: templates/core/vitrine.html:165
+msgid ""
+"Contactez-nous : nous ouvrons l'espace de votre établissement et formons "
+"votre équipe."
+msgstr "Contact us: we set up your facility's workspace and train your team."
+
+#: templates/core/vitrine.html:168
+msgid "Déjà client ?"
+msgstr "Already a customer?"
 
 #: templates/facturation/detail.html:16
 msgid "En retard"
@@ -4512,6 +4550,10 @@ msgstr ""
 msgid "Créer mon espace hôpital"
 msgstr "Create my hospital workspace"
 
+#: templates/registration/inscription_hopital.html:32
+msgid "Déjà inscrit ?"
+msgstr "Already registered?"
+
 #: templates/registration/invitation_email.txt:1
 msgid "Bonjour %(nom)s,"
 msgstr "Hello %(nom)s,"
@@ -4561,7 +4603,7 @@ msgstr "Access your workspace."
 msgid "Mot de passe oublié ?"
 msgstr "Forgot your password?"
 
-#: templates/registration/login.html:29
+#: templates/registration/login.html:30
 msgid "Votre hôpital n'est pas encore inscrit ?"
 msgstr "Is your hospital not registered yet?"
 

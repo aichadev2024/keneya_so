@@ -182,6 +182,8 @@ class InscriptionHopitalView(FormView):
     MAX_PAR_HEURE = 5
 
     def dispatch(self, request, *args, **kwargs):
+        if not settings.INSCRIPTION_LIBRE:
+            raise Http404  # les hôpitaux sont créés par le propriétaire de la plateforme
         if request.user.is_authenticated:
             return redirect("core:dashboard")
         return super().dispatch(request, *args, **kwargs)
