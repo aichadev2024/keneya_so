@@ -3,7 +3,7 @@
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{% block title %}Kènèya Sô{% endblock %}</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316294f'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z' fill='%230d9488'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <body>
 <div class="app-shell" id="appShell">
   <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-  <aside class="app-sidebar">
+  <aside class="app-sidebar" id="appSidebar">
     <div class="sidebar-brand">
       <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="64" height="64" rx="14" fill="#0d9488"/>
@@ -44,7 +44,7 @@
 
   <div class="app-main">
     <header class="app-topbar">
-      <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="{% translate 'Menu' %}">
+      <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="{% translate 'Menu' %}" aria-expanded="false" aria-controls="appSidebar">
         <i class="bi bi-list"></i>
       </button>
       <div class="flex-grow-1"></div>
@@ -105,9 +105,17 @@
     var shell = document.getElementById("appShell");
     var toggle = document.getElementById("sidebarToggle");
     var backdrop = document.getElementById("sidebarBackdrop");
-    function close() { shell.classList.remove("sidebar-open"); }
-    if (toggle) toggle.addEventListener("click", function () { shell.classList.toggle("sidebar-open"); });
+    function close() { shell.classList.remove("sidebar-open"); document.body.classList.remove("sidebar-locked"); }
+    function bascule() {
+      var ouvert = shell.classList.toggle("sidebar-open");
+      document.body.classList.toggle("sidebar-locked", ouvert);
+      if (toggle) toggle.setAttribute("aria-expanded", String(ouvert));
+    }
+    if (toggle) toggle.addEventListener("click", bascule);
     if (backdrop) backdrop.addEventListener("click", close);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    // Repasser en grand écran referme le tiroir (sinon le fond resterait verrouillé).
+    window.matchMedia("(min-width: 992px)").addEventListener("change", close);
   })();
 </script>
 

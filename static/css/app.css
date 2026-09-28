@@ -399,6 +399,7 @@ dl.row dd {
   flex: 0 0 100% !important;
   max-width: 100% !important;
   margin-bottom: 0;
+  margin-inline-start: 0; /* RTL : la marge par défaut du navigateur est logique, celle de Bootstrap physique */
 }
 dl.row dt:first-child { margin-top: 0; }
 
@@ -555,3 +556,129 @@ dl.row dt:first-child { margin-top: 0; }
 }
 .password-toggle:hover { background: var(--ks-border); color: var(--ks-text); }
 .password-toggle:focus-visible { outline: 2px solid var(--ks-accent); outline-offset: 1px; }
+
+
+/* ==========================================================================
+   Adaptation à tous les appareils (téléphone étroit → très grand écran)
+   ========================================================================== */
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, svg, video, canvas { max-width: 100%; }
+input[type="file"] { max-width: 100%; }
+.form-control, .form-select { min-width: 0; }
+
+/* Très grands écrans : le contenu reste centré et de largeur lisible. */
+.app-content { margin-inline: auto; }
+
+/* Encoches (iPhone, Android) : ne rien coller sous la barre système. */
+.app-topbar { padding-top: max(.65rem, env(safe-area-inset-top)); }
+.app-sidebar { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+
+/* En-têtes de page (titre + actions) et barres d'outils : passent à la ligne
+   au lieu de déborder de l'écran. S'applique à tous les gabarits existants. */
+.app-content .d-flex.justify-content-between { flex-wrap: wrap; gap: .75rem; }
+.app-content .d-flex.gap-2, .app-content .d-flex.gap-3 { flex-wrap: wrap; }
+.app-content h1, .app-content h2, .app-content h3 { overflow-wrap: anywhere; }
+.app-content .card-body, .app-content dd { overflow-wrap: anywhere; }
+.table-responsive .table td, .table-responsive .table th { min-width: 4.5rem; }
+
+/* Menu latéral en tiroir : largeur bornée, défilement interne, verrou du fond. */
+.app-sidebar { max-width: 85vw; overscroll-behavior: contain; }
+body.sidebar-locked { overflow: hidden; }
+
+/* Filtres en ligne (ex. select .w-auto) : pleine largeur sur téléphone. */
+@media (max-width: 575.98px) {
+  .app-topbar { padding-inline: .75rem; gap: .5rem; }
+  .app-topbar .form-select { max-width: 6.5rem; padding-inline-end: 1.5rem; font-size: .8rem; }
+  .app-topbar .border-start { padding-inline-start: 0 !important; border: 0 !important; }
+  .app-content { padding: .9rem .75rem; }
+  .app-footer { padding: 1rem .75rem; }
+  .app-content h1, .app-content .h3 { font-size: 1.3rem; }
+  .app-content .form-select.w-auto, .app-content .form-control.w-auto { width: 100% !important; }
+  /* En-tête de page : le titre prend toute la largeur, les actions passent dessous. */
+  .app-content > .d-flex.justify-content-between { flex-direction: column; align-items: stretch !important; }
+  .app-content .d-flex.justify-content-between > .d-flex { width: 100%; }
+  .app-content .d-flex.justify-content-between > .d-flex > .btn { flex: 1 1 auto; }
+  .stat-card .stat-value { font-size: 1.4rem; }
+  .dash-hero { padding: 1.25rem; }
+  .dash-hero-title { font-size: 1.3rem; }
+  .modal-dialog { margin: .5rem; }
+}
+
+/* Tablettes : deux colonnes de cartes restent lisibles, marges réduites. */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .app-content { padding: 1.25rem; }
+}
+
+/* Écrans tactiles : cibles d'au moins 44 px et champs sans zoom automatique iOS. */
+@media (pointer: coarse) {
+  .btn, .form-control, .form-select { min-height: 2.75rem; }
+  .btn-sm { min-height: 2.5rem; padding-inline: .8rem; }
+  input, select, textarea { font-size: 1rem !important; }
+  .sidebar-link { padding-block: .72rem; }
+  .password-toggle { width: 2.6rem; height: 2.6rem; }
+  .pagination .page-link { min-width: 2.5rem; min-height: 2.5rem; display: inline-flex; align-items: center; justify-content: center; }
+  .bell-btn, .sidebar-toggle { min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* Paysage sur téléphone (peu de hauteur) : en-tête de menu compact. */
+@media (max-height: 480px) and (orientation: landscape) {
+  .sidebar-brand { padding: .6rem 1rem; }
+  .sidebar-link { padding-block: .4rem; }
+  .auth-panel { align-items: flex-start; padding-block: 1.25rem; }
+}
+
+/* Impression (dossiers, factures) : pas de menu ni de barre. */
+@media print {
+  .app-sidebar, .app-topbar, .app-footer, .sidebar-backdrop, .btn, .pagination { display: none !important; }
+  .app-main { margin: 0 !important; }
+  .app-content { padding: 0; max-width: none; animation: none; }
+  .card { box-shadow: none; border-color: #ccc; break-inside: avoid; }
+}
+
+/* Mouvement réduit : pas d'animations superflues. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+/* Tableaux → cartes sur téléphone (static/js/app.js pose data-label sur chaque cellule) :
+   chaque ligne devient une carte « libellé : valeur », lisible sans défilement latéral. */
+@media (max-width: 575.98px) {
+  .table-cards thead { display: none; }
+  .table-cards, .table-cards tbody, .table-cards tr, .table-cards td { display: block; width: 100%; }
+  .table-cards { border: 0; }
+  .table-cards tbody tr {
+    background: var(--ks-surface);
+    border: 1px solid var(--ks-border);
+    border-radius: var(--ks-radius);
+    padding: .4rem .9rem;
+    margin-bottom: .75rem;
+    box-shadow: var(--ks-shadow-sm);
+  }
+  .table-cards td {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    padding: .4rem 0 !important; border: 0 !important; text-align: end; min-width: 0;
+    overflow-wrap: anywhere; background: transparent !important;
+  }
+  .table-cards td + td { border-top: 1px dashed var(--ks-border) !important; }
+  .table-cards td::before {
+    content: attr(data-label);
+    flex-shrink: 0; max-width: 45%; text-align: start;
+    font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .03em;
+    color: var(--ks-text-muted);
+  }
+  .table-cards td[data-label=""]::before, .table-cards td:not([data-label])::before { display: none; }
+  .table-cards td[data-label=""] { justify-content: flex-end; }
+  .table-cards td[colspan] { justify-content: center; text-align: center; }
+  .card > .table-responsive { border-radius: var(--ks-radius); }
+  .card:has(> .table-responsive > .table-cards) { background: transparent; border: 0; box-shadow: none; }
+}
+
+
+/* Champ piège à robots : invisible mais en place (un décalage hors écran, lui,
+   rendrait la page défilable de ~10 000 px en lecture droite-à-gauche). */
+.champ-piege {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; opacity: 0; pointer-events: none;
+}

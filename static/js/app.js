@@ -26,3 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+// Tableaux avec en-tête : sur téléphone, chaque ligne s'affiche comme une carte
+// (voir .table-cards dans app.css). On recopie ici le libellé de colonne dans
+// chaque cellule ; les tableaux sans en-tête (clé/valeur) restent inchangés.
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".table-responsive > table.table").forEach(function (table) {
+    var entetes = table.querySelectorAll("thead th");
+    if (!entetes.length || table.classList.contains("no-cards")) return;
+    var libelles = Array.prototype.map.call(entetes, function (th) { return th.textContent.trim(); });
+    table.querySelectorAll("tbody tr").forEach(function (ligne) {
+      var i = 0;
+      Array.prototype.forEach.call(ligne.children, function (cellule) {
+        if (cellule.tagName !== "TD") return;
+        cellule.setAttribute("data-label", libelles[i] || "");
+        i += cellule.colSpan || 1;
+      });
+    });
+    table.classList.add("table-cards");
+  });
+});

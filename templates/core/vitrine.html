@@ -3,7 +3,7 @@
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Kènèya Sô — {% translate "Plateforme de gestion hospitalière" %}</title>
   <meta name="description" content="{% translate 'Kènèya Sô centralise patients, pharmacie, hospitalisation, bloc opératoire, laboratoire, facturation et assurances dans une seule plateforme.' %}">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316294f'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z' fill='%230d9488'/%3E%3C/svg%3E">
@@ -22,7 +22,7 @@
       <rect width="64" height="64" rx="14" fill="#16294f"/>
       <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
     </svg>
-    Kènèya Sô
+    <span class="lp-nav-nom">Kènèya Sô</span>
   </a>
   <div class="d-flex align-items-center gap-2">
     <form action="{% url 'set_language' %}" method="post" class="d-flex m-0">
