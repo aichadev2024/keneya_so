@@ -8,6 +8,8 @@ Modèles transverses du socle Kènèya Sô.
 
 from __future__ import annotations
 
+from datetime import timedelta
+
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -94,6 +96,15 @@ class Etablissement(models.Model):
         if self.statut != self.Statut.ESSAI or self.essai_jusqu_au is None:
             return None
         return max((self.essai_jusqu_au - timezone.localdate()).days, 0)
+
+    def prolonger_essai(self, jours: int = 30) -> None:
+        """Repousse la fin d'essai de ``jours`` à partir d'aujourd'hui ou de la fin actuelle
+        si elle est plus tardive, et repasse l'établissement en essai (utile après une
+        suspension)."""
+        depart = max(self.essai_jusqu_au or timezone.localdate(), timezone.localdate())
+        self.essai_jusqu_au = depart + timedelta(days=jours)
+        self.statut = self.Statut.ESSAI
+        self.save(update_fields=["essai_jusqu_au", "statut"])
 
     @classmethod
     def defaut(cls) -> "Etablissement":

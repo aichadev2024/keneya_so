@@ -8,6 +8,8 @@ puis la connecte directement.
 
 from __future__ import annotations
 
+import logging
+
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
@@ -66,3 +68,15 @@ def envoyer_invitation(utilisateur, request) -> None:
         sujet = " ".join(render_to_string("registration/invitation_objet.txt", contexte).split())
         corps = render_to_string("registration/invitation_email.txt", contexte)
     send_mail(sujet, corps, None, [utilisateur.email])
+
+
+def tenter_invitation(utilisateur, request) -> bool:
+    """Comme ``envoyer_invitation``, mais n'échoue jamais : journalise et renvoie False si
+    l'envoi a échoué (SMTP indisponible, adresse refusée…) au lieu de laisser l'exception
+    remonter — le compte reste créé, l'appelant décide comment prévenir l'utilisateur."""
+    try:
+        envoyer_invitation(utilisateur, request)
+    except Exception:
+        logging.getLogger(__name__).exception("Échec d'envoi de l'invitation à %s", utilisateur.pk)
+        return False
+    return True

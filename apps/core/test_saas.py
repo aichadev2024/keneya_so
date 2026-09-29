@@ -320,13 +320,15 @@ class ConsoleProprietaireEcranTests(TestCase):
         reponse = self.client.get(reverse("core:dashboard"))
         self.assertNotContains(reponse, "prochains jours")
 
-    def test_les_raccourcis_pointent_vers_le_socle_commun_de_l_admin(self):
+    def test_les_raccourcis_pointent_vers_les_ecrans_dedies_du_socle_commun(self):
         reponse = self.client.get(reverse("core:dashboard"))
-        self.assertContains(reponse, reverse("admin:core_etablissement_changelist"))
-        self.assertContains(reponse, reverse("admin:core_etablissement_add"))
-        self.assertContains(reponse, reverse("admin:core_plan_changelist"))
-        self.assertContains(reponse, reverse("admin:accounts_utilisateur_changelist"))
-        self.assertContains(reponse, reverse("admin:core_historiqueaction_changelist"))
+        self.assertContains(reponse, reverse("core:proprietaire_etablissements"))
+        self.assertContains(reponse, reverse("core:proprietaire_etablissement_creer"))
+        self.assertContains(reponse, reverse("core:proprietaire_plans"))
+        self.assertContains(reponse, reverse("core:proprietaire_utilisateurs"))
+        self.assertContains(reponse, reverse("core:proprietaire_journal"))
+        # L'admin Django reste accessible en secours, sans être mis en avant.
+        self.assertContains(reponse, reverse("admin:index"))
 
 
 class AdminSocleCommunProprietaireTests(TestCase):

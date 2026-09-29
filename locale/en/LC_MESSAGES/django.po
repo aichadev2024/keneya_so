@@ -9,11 +9,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/accounts/admin.py:51 apps/accounts/admin.py:60
+#: apps/accounts/admin.py:47 apps/accounts/admin.py:56
 msgid "Profil métier Kènèya Sô"
 msgstr "Kènèya Sô role profile"
 
-#: apps/accounts/admin.py:74
+#: apps/accounts/admin.py:66 apps/core/admin.py:54
+#: apps/core/views_proprietaire.py:246 apps/core/views_proprietaire.py:282
+msgid "Invitation envoyée à %(e)s."
+msgstr "Invitation sent to %(e)s."
+
+#: apps/accounts/admin.py:70
 msgid ""
 "Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être "
 "envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard."
@@ -21,23 +26,19 @@ msgstr ""
 "The account “%(u)s” was created, but the invitation e-mail could not be "
 "sent. Use the “Resend the invitation” action later."
 
-#: apps/accounts/admin.py:78 apps/core/admin.py:99
-msgid "Invitation envoyée à %(e)s."
-msgstr "Invitation sent to %(e)s."
-
-#: apps/accounts/admin.py:86
+#: apps/accounts/admin.py:79
 msgid "Renvoyer l'invitation (identifiant + lien de connexion)"
 msgstr "Resend the invitation (username + sign-in link)"
 
-#: apps/accounts/admin.py:91
+#: apps/accounts/admin.py:84 apps/core/views_proprietaire.py:278
 msgid "« %(u)s » n'a pas d'adresse e-mail."
 msgstr "“%(u)s” has no e-mail address."
 
-#: apps/accounts/admin.py:95
+#: apps/accounts/admin.py:88 apps/core/views_proprietaire.py:280
 msgid "« %(u)s » est désactivé."
 msgstr "“%(u)s” is deactivated."
 
-#: apps/accounts/admin.py:100
+#: apps/accounts/admin.py:93
 msgid "nom complet"
 msgstr "full name"
 
@@ -72,6 +73,10 @@ msgstr "First name"
 
 #: apps/accounts/forms.py:68 apps/patients/views.py:49
 #: templates/patients/detail.html:79 templates/patients/liste.html:39
+#: templates/core/proprietaire/etablissements.html:31
+#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/plans.html:21
+#: templates/core/proprietaire/utilisateurs.html:36
 msgid "Nom"
 msgstr "Name"
 
@@ -79,7 +84,7 @@ msgstr "Name"
 msgid "Adresse e-mail"
 msgstr "Email address"
 
-#: apps/accounts/forms.py:70 apps/core/admin.py:29
+#: apps/accounts/forms.py:70 apps/core/forms.py:35
 msgid "Identifiant de connexion"
 msgstr "Login username"
 
@@ -87,7 +92,7 @@ msgstr "Login username"
 msgid "Confirmation du mot de passe"
 msgstr "Confirm password"
 
-#: apps/accounts/forms.py:89 apps/core/admin.py:38
+#: apps/accounts/forms.py:89 apps/core/forms.py:56 apps/core/forms.py:118
 msgid "Cet identifiant est déjà utilisé."
 msgstr "This username is already taken."
 
@@ -157,8 +162,8 @@ msgstr "Sterilisation technician"
 msgid "Agent de programmation / cadre de bloc"
 msgstr "OR scheduling officer / theatre manager"
 
-#: apps/accounts/models.py:59 apps/core/models.py:60 apps/core/models.py:113
-#: apps/core/models.py:221
+#: apps/accounts/models.py:59 apps/core/models.py:62 apps/core/models.py:124
+#: apps/core/models.py:232
 msgid "établissement"
 msgstr "facility"
 
@@ -180,7 +185,7 @@ msgid "matricule"
 msgstr "staff ID"
 
 #: apps/accounts/models.py:72 apps/assurances/models.py:42
-#: apps/core/models.py:175 apps/patients/models.py:81
+#: apps/core/models.py:186 apps/patients/models.py:81
 msgid "téléphone"
 msgstr "phone"
 
@@ -196,7 +201,7 @@ msgstr "preferred language"
 msgid "adresse électronique"
 msgstr "email address"
 
-#: apps/accounts/models.py:81 apps/core/models.py:231
+#: apps/accounts/models.py:81 apps/core/models.py:242
 msgid "utilisateur"
 msgstr "user"
 
@@ -254,7 +259,7 @@ msgid "ONG / organisme humanitaire"
 msgstr "NGO / humanitarian organisation"
 
 #: apps/assurances/models.py:34 apps/bloc_operatoire/models.py:318
-#: apps/bloc_operatoire/models.py:409 apps/core/models.py:217
+#: apps/bloc_operatoire/models.py:409 apps/core/models.py:228
 #: apps/facturation/models.py:35 apps/facturation/models.py:44
 #: apps/hospitalisation/models.py:255 apps/patients/models.py:63
 #: apps/patients/models.py:191 apps/pharmacie/models.py:39
@@ -262,13 +267,13 @@ msgid "Autre"
 msgstr "Other"
 
 #: apps/assurances/models.py:36 apps/bloc_operatoire/models.py:45
-#: apps/core/models.py:23 apps/core/models.py:49
+#: apps/core/models.py:25 apps/core/models.py:51
 #: apps/hospitalisation/models.py:30 apps/patients/models.py:69
 msgid "nom"
 msgstr "last name"
 
 #: apps/assurances/models.py:37 apps/bloc_operatoire/models.py:46
-#: apps/core/models.py:22 apps/facturation/models.py:48
+#: apps/core/models.py:24 apps/facturation/models.py:48
 #: apps/hospitalisation/models.py:31 apps/laboratoire/models.py:33
 #: apps/pharmacie/models.py:45
 msgid "code"
@@ -280,7 +285,7 @@ msgstr "code"
 msgid "type"
 msgstr "type"
 
-#: apps/assurances/models.py:40 apps/core/models.py:174
+#: apps/assurances/models.py:40 apps/core/models.py:185
 #: apps/patients/models.py:82
 msgid "adresse"
 msgstr "address"
@@ -289,7 +294,7 @@ msgstr "address"
 msgid "interlocuteur"
 msgstr "contact person"
 
-#: apps/assurances/models.py:43 apps/core/models.py:176
+#: apps/assurances/models.py:43 apps/core/models.py:187
 msgid "courriel"
 msgstr "email"
 
@@ -410,7 +415,7 @@ msgstr "generated on"
 
 #: apps/assurances/models.py:172 apps/bloc_operatoire/models.py:54
 #: apps/bloc_operatoire/models.py:227 apps/consultations/models.py:59
-#: apps/consultations/models.py:148 apps/core/models.py:51
+#: apps/consultations/models.py:148 apps/core/models.py:53
 #: apps/facturation/models.py:97 apps/hospitalisation/models.py:106
 #: apps/hospitalisation/models.py:174 apps/laboratoire/models.py:90
 #: apps/maternite/models.py:58 apps/pharmacie/models.py:234
@@ -493,6 +498,8 @@ msgstr "Amount"
 #: templates/maternite/dossier_liste.html:31
 #: templates/patients/detail.html:143
 #: templates/pharmacie/dispensations.html:21
+#: templates/core/proprietaire/etablissements.html:18
+#: templates/core/proprietaire/etablissements.html:31
 msgid "Statut"
 msgstr "Status"
 
@@ -716,7 +723,7 @@ msgid "durée standard (minutes)"
 msgstr "standard duration (minutes)"
 
 #: apps/bloc_operatoire/models.py:145 apps/bloc_operatoire/models.py:417
-#: apps/core/models.py:236 apps/hospitalisation/models.py:32
+#: apps/core/models.py:247 apps/hospitalisation/models.py:32
 #: apps/hospitalisation/models.py:261
 msgid "description"
 msgstr "description"
@@ -1364,6 +1371,7 @@ msgstr "Consultations"
 #: templates/pharmacie/dispensation_detail.html:79
 #: templates/pharmacie/medicament_detail.html:57
 #: templates/pharmacie/mouvements.html:23
+#: templates/core/proprietaire/journal.html:30
 msgid "Date"
 msgstr "Date"
 
@@ -1411,27 +1419,12 @@ msgstr "Prescription sent to pharmacy."
 msgid "Consultation clôturée."
 msgstr "Consultation closed."
 
-#: apps/core/admin.py:25
-msgid "Prénom de l'administrateur"
-msgstr "Administrator's first name"
-
-#: apps/core/admin.py:26
-msgid "Nom de l'administrateur"
-msgstr "Administrator's last name"
-
-#: apps/core/admin.py:27
-msgid "E-mail de l'administrateur"
-msgstr "Administrator's e-mail"
-
-#: apps/core/admin.py:28
-msgid "L'invitation et le lien de connexion y seront envoyés."
-msgstr "The invitation and sign-in link will be sent there."
-
-#: apps/core/admin.py:67
+#: apps/core/admin.py:40
+#: templates/core/proprietaire/etablissement_creer.html:27
 msgid "Premier administrateur de l'hôpital"
 msgstr "Hospital's first administrator"
 
-#: apps/core/admin.py:95
+#: apps/core/admin.py:59
 msgid ""
 "L'hôpital est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Dans "
 "Utilisateurs, utilisez l'action « Renvoyer l'invitation »."
@@ -1439,199 +1432,221 @@ msgstr ""
 "The hospital was created, but the invitation e-mail could not be sent. In "
 "Users, use the “Resend the invitation” action."
 
-#: apps/core/admin.py:171 apps/core/models.py:243
+#: apps/core/admin.py:128 apps/core/models.py:254
 msgid "journal d'audit"
 msgstr "audit log"
 
-#: apps/core/models.py:25
+#: apps/core/forms.py:28
+msgid "Prénom de l'administrateur"
+msgstr "Administrator's first name"
+
+#: apps/core/forms.py:30
+msgid "Nom de l'administrateur"
+msgstr "Administrator's last name"
+
+#: apps/core/forms.py:33
+msgid "E-mail de l'administrateur"
+msgstr "Administrator's e-mail"
+
+#: apps/core/forms.py:34
+msgid "L'invitation et le lien de connexion y seront envoyés."
+msgstr "The invitation and sign-in link will be sent there."
+
+#: apps/core/forms.py:96
+msgid "— Choisir l'hôpital —"
+msgstr "— Choose the hospital —"
+
+#: apps/core/models.py:27
 msgid "prix mensuel (FCFA)"
 msgstr "monthly price (FCFA)"
 
-#: apps/core/models.py:26
+#: apps/core/models.py:28
 msgid "Vide = à définir."
 msgstr "Empty = to be defined."
 
-#: apps/core/models.py:28
+#: apps/core/models.py:30
 msgid "utilisateurs maximum"
 msgstr "maximum users"
 
-#: apps/core/models.py:29
+#: apps/core/models.py:31
 msgid "Vide = illimité."
 msgstr "Empty = unlimited."
 
-#: apps/core/models.py:30
+#: apps/core/models.py:32
 msgid "proposé à l'inscription"
 msgstr "offered at sign-up"
 
-#: apps/core/models.py:33
+#: apps/core/models.py:35
 msgid "plan d'abonnement"
 msgstr "subscription plan"
 
-#: apps/core/models.py:34
+#: apps/core/models.py:36
 msgid "plans d'abonnement"
 msgstr "subscription plans"
 
-#: apps/core/models.py:45
+#: apps/core/models.py:47
 msgid "Période d'essai"
 msgstr "Trial period"
 
-#: apps/core/models.py:46 templates/facturation/tarifs.html:12
+#: apps/core/models.py:48 templates/facturation/tarifs.html:12
+#: templates/core/proprietaire/etablissement_detail.html:71
+#: templates/core/proprietaire/utilisateurs.html:37
 msgid "Actif"
 msgstr "Active"
 
-#: apps/core/models.py:47
+#: apps/core/models.py:49
 msgid "Suspendu"
 msgstr "Suspended"
 
-#: apps/core/models.py:50
+#: apps/core/models.py:52
 msgid "identifiant court"
 msgstr "short identifier"
 
-#: apps/core/models.py:53
+#: apps/core/models.py:55
 msgid "fin de la période d'essai"
 msgstr "trial period end"
 
-#: apps/core/models.py:55
+#: apps/core/models.py:57
 msgid "plan"
 msgstr "plan"
 
-#: apps/core/models.py:56
+#: apps/core/models.py:58
 msgid "Vide = aucune limite."
 msgstr "Empty = no limit."
 
-#: apps/core/models.py:57 apps/core/models.py:144
+#: apps/core/models.py:59 apps/core/models.py:155
 msgid "créé le"
 msgstr "created on"
 
-#: apps/core/models.py:61
+#: apps/core/models.py:63
 msgid "établissements"
 msgstr "facilities"
 
-#: apps/core/models.py:145
+#: apps/core/models.py:156
 msgid "modifié le"
 msgstr "updated on"
 
-#: apps/core/models.py:152
+#: apps/core/models.py:163
 msgid "créé par"
 msgstr "created by"
 
-#: apps/core/models.py:160
+#: apps/core/models.py:171
 msgid "modifié par"
 msgstr "updated by"
 
-#: apps/core/models.py:171
+#: apps/core/models.py:182
 msgid "nom de l'établissement"
 msgstr "facility name"
 
-#: apps/core/models.py:173
+#: apps/core/models.py:184
 msgid "logo"
 msgstr "logo"
 
-#: apps/core/models.py:177
+#: apps/core/models.py:188
 msgid "fuseau horaire"
 msgstr "time zone"
 
-#: apps/core/models.py:180
+#: apps/core/models.py:191
 msgid "langues actives"
 msgstr "active languages"
 
-#: apps/core/models.py:182
+#: apps/core/models.py:193
 msgid "Codes des langues proposées dans l'interface, ex. [\"fr\", \"bm\"]."
 msgstr "Language codes offered in the interface, e.g. [\"fr\", \"bm\"]."
 
-#: apps/core/models.py:186 apps/core/models.py:187
+#: apps/core/models.py:197 apps/core/models.py:198
 msgid "paramètres système"
 msgstr "system settings"
 
-#: apps/core/models.py:211
+#: apps/core/models.py:222
 msgid "Création"
 msgstr "Creation"
 
-#: apps/core/models.py:212
+#: apps/core/models.py:223
 msgid "Modification"
 msgstr "Update"
 
-#: apps/core/models.py:213 apps/facturation/models.py:30
+#: apps/core/models.py:224 apps/facturation/models.py:30
 #: apps/facturation/models.py:39 templates/consultations/formulaire.html:3
 #: templates/consultations/ordonnance_formulaire.html:7
 msgid "Consultation"
 msgstr "View"
 
-#: apps/core/models.py:214
+#: apps/core/models.py:225
 msgid "Suppression"
 msgstr "Deletion"
 
-#: apps/core/models.py:215 templates/registration/login.html:3
+#: apps/core/models.py:226 templates/registration/login.html:3
 #: templates/registration/login.html:7
 msgid "Connexion"
 msgstr "Login"
 
-#: apps/core/models.py:216 templates/base.html:81
-#: templates/core/console_proprietaire.html:46
+#: apps/core/models.py:227 templates/base.html:81
+#: templates/core/proprietaire/_base.html:46
 msgid "Déconnexion"
 msgstr "Logout"
 
-#: apps/core/models.py:233
+#: apps/core/models.py:244
 msgid "action"
 msgstr "action"
 
-#: apps/core/models.py:234
+#: apps/core/models.py:245
 msgid "type d'objet"
 msgstr "object type"
 
-#: apps/core/models.py:235
+#: apps/core/models.py:246
 msgid "identifiant de l'objet"
 msgstr "object ID"
 
-#: apps/core/models.py:237
+#: apps/core/models.py:248
 msgid "adresse IP"
 msgstr "IP address"
 
-#: apps/core/models.py:238
+#: apps/core/models.py:249
 msgid "données complémentaires"
 msgstr "additional data"
 
-#: apps/core/models.py:239
+#: apps/core/models.py:250
 msgid "horodatage"
 msgstr "timestamp"
 
-#: apps/core/models.py:242
+#: apps/core/models.py:253
 msgid "entrée du journal d'audit"
 msgstr "audit log entry"
 
-#: apps/core/models.py:251
+#: apps/core/models.py:262
 msgid "système"
 msgstr "system"
 
-#: apps/core/models.py:285
+#: apps/core/models.py:296
 msgid "destinataire"
 msgstr "recipient"
 
-#: apps/core/models.py:287
+#: apps/core/models.py:298
 msgid "titre"
 msgstr "title"
 
-#: apps/core/models.py:288
+#: apps/core/models.py:299
 msgid "message"
 msgstr "message"
 
-#: apps/core/models.py:289
+#: apps/core/models.py:300
 msgid "lien"
 msgstr "link"
 
-#: apps/core/models.py:290
+#: apps/core/models.py:301
 msgid "lu"
 msgstr "read"
 
-#: apps/core/models.py:291
+#: apps/core/models.py:302
 msgid "créée le"
 msgstr "created on"
 
-#: apps/core/models.py:294
+#: apps/core/models.py:305
 msgid "notification"
 msgstr "notification"
 
-#: apps/core/models.py:295
+#: apps/core/models.py:306
 msgid "notifications"
 msgstr "notifications"
 
@@ -1788,6 +1803,50 @@ msgstr "Statistics"
 #: apps/core/views.py:195
 msgid "Administration"
 msgstr "Administration"
+
+#: apps/core/views_proprietaire.py:112
+msgid "Hôpital créé. Invitation envoyée à %(e)s."
+msgstr "Hospital created. Invitation sent to %(e)s."
+
+#: apps/core/views_proprietaire.py:130
+msgid "Établissement mis à jour."
+msgstr "Hospital updated."
+
+#: apps/core/views_proprietaire.py:144
+msgid "Abonnement activé : accès sans limite de date."
+msgstr "Subscription activated: access with no end date."
+
+#: apps/core/views_proprietaire.py:154
+msgid "Accès suspendu."
+msgstr "Access suspended."
+
+#: apps/core/views_proprietaire.py:163
+msgid "Essai prolongé de 30 jours."
+msgstr "Trial extended by 30 days."
+
+#: apps/core/views_proprietaire.py:186
+msgid "Plan créé."
+msgstr "Plan created."
+
+#: apps/core/views_proprietaire.py:197
+msgid "Plan mis à jour."
+msgstr "Plan updated."
+
+#: apps/core/views_proprietaire.py:266
+msgid "Compte mis à jour."
+msgstr "Account updated."
+
+#: apps/core/views_proprietaire.py:284
+msgid "L'envoi de l'invitation a échoué. Réessayez plus tard."
+msgstr "The invitation could not be sent. Try again later."
+
+#: apps/core/views_proprietaire.py:295
+msgid "« %(u)s » réactivé(e)."
+msgstr "“%(u)s” reactivated."
+
+#: apps/core/views_proprietaire.py:297
+msgid "« %(u)s » désactivé(e)."
+msgstr "“%(u)s” deactivated."
 
 #: apps/facturation/admin.py:44
 msgid "en retard"
@@ -3549,6 +3608,7 @@ msgstr ""
 #: templates/maternite/_tableau_dossiers.html:15
 #: templates/patients/detail.html:153 templates/patients/liste.html:58
 #: templates/pharmacie/medicaments.html:55
+#: templates/core/proprietaire/etablissements.html:44
 msgid "Ouvrir"
 msgstr "Open"
 
@@ -3597,6 +3657,9 @@ msgstr "Attach an insurance plan"
 #: templates/patients/dossier_formulaire.html:19
 #: templates/patients/formulaire.html:26
 #: templates/pharmacie/medicament_formulaire.html:23
+#: templates/core/proprietaire/etablissement_modifier.html:22
+#: templates/core/proprietaire/plan_formulaire.html:28
+#: templates/core/proprietaire/utilisateur_formulaire.html:30
 msgid "Enregistrer"
 msgstr "Save"
 
@@ -3615,6 +3678,10 @@ msgstr "Save"
 #: templates/patients/formulaire.html:28
 #: templates/pharmacie/entree_stock.html:19
 #: templates/pharmacie/medicament_formulaire.html:24
+#: templates/core/proprietaire/etablissement_creer.html:39
+#: templates/core/proprietaire/etablissement_modifier.html:23
+#: templates/core/proprietaire/plan_formulaire.html:29
+#: templates/core/proprietaire/utilisateur_formulaire.html:31
 msgid "Annuler"
 msgstr "Cancel"
 
@@ -3636,8 +3703,8 @@ msgstr "Menu"
 msgid "Notifications"
 msgstr "Notifications"
 
-#: templates/base.html:66 templates/core/console_proprietaire.html:32
-#: templates/core/vitrine.html:32
+#: templates/base.html:66 templates/core/vitrine.html:32
+#: templates/core/proprietaire/_base.html:32
 msgid "Changer de langue"
 msgstr "Change language"
 
@@ -3858,6 +3925,7 @@ msgstr "Reference, patient, procedure…"
 #: templates/bloc_operatoire/liste.html:20 templates/facturation/liste.html:25
 #: templates/hospitalisation/liste.html:20
 #: templates/maternite/dossier_liste.html:18
+#: templates/core/proprietaire/etablissements.html:19
 msgid "Tous les statuts"
 msgstr "All statuses"
 
@@ -3866,6 +3934,9 @@ msgstr "All statuses"
 #: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:31
 #: templates/maternite/dossier_liste.html:24 templates/patients/liste.html:22
 #: templates/pharmacie/medicaments.html:22
+#: templates/core/proprietaire/etablissements.html:25
+#: templates/core/proprietaire/journal.html:24
+#: templates/core/proprietaire/utilisateurs.html:30
 msgid "Rechercher"
 msgstr "Search"
 
@@ -3927,6 +3998,12 @@ msgstr "Vital signs"
 #: templates/patients/detail.html:92 templates/patients/formulaire.html:7
 #: templates/pharmacie/medicament_detail.html:26
 #: templates/pharmacie/medicament_formulaire.html:7
+#: templates/core/proprietaire/etablissement_detail.html:19
+#: templates/core/proprietaire/etablissement_detail.html:80
+#: templates/core/proprietaire/etablissement_modifier.html:3
+#: templates/core/proprietaire/etablissement_modifier.html:9
+#: templates/core/proprietaire/plans.html:34
+#: templates/core/proprietaire/utilisateurs.html:61
 msgid "Modifier"
 msgstr "Edit"
 
@@ -4112,84 +4189,104 @@ msgstr "Contact the Kènèya Sô team to activate or renew your subscription."
 msgid "Se déconnecter"
 msgstr "Sign out"
 
-#: templates/core/console_proprietaire.html:7
-#: templates/core/console_proprietaire.html:25
-msgid "Console propriétaire"
-msgstr "Owner console"
-
-#: templates/core/console_proprietaire.html:66 templates/core/dashboard.html:9
+#: templates/core/console_proprietaire.html:8 templates/core/dashboard.html:9
 msgid "Bonjour, %(prenom)s"
 msgstr "Hello, %(prenom)s"
 
-#: templates/core/console_proprietaire.html:67
+#: templates/core/console_proprietaire.html:9
 msgid "Vos hôpitaux clients, en un coup d'œil."
 msgstr "Your client hospitals, at a glance."
 
-#: templates/core/console_proprietaire.html:70
+#: templates/core/console_proprietaire.html:12
+#: templates/core/proprietaire/etablissements.html:9
+#: templates/core/proprietaire/etablissement_creer.html:3
+#: templates/core/proprietaire/etablissement_creer.html:8
+#: templates/core/proprietaire/etablissement_creer.html:10
 msgid "Créer un hôpital"
 msgstr "Create a hospital"
 
-#: templates/core/console_proprietaire.html:77
+#: templates/core/console_proprietaire.html:19
 msgid "%(n)s essai se termine dans les 7 prochains jours."
 msgid_plural "%(n)s essais se terminent dans les 7 prochains jours."
 msgstr[0] "%(n)s trial ends within the next 7 days."
 msgstr[1] "%(n)s trials end within the next 7 days."
 
-#: templates/core/console_proprietaire.html:78
+#: templates/core/console_proprietaire.html:20
 msgid "Voir"
 msgstr "View"
 
-#: templates/core/console_proprietaire.html:86
+#: templates/core/console_proprietaire.html:28
 msgid "Hôpitaux clients"
 msgstr "Client hospitals"
 
-#: templates/core/console_proprietaire.html:91
+#: templates/core/console_proprietaire.html:33
 msgid "En période d'essai"
 msgstr "On trial"
 
-#: templates/core/console_proprietaire.html:96
+#: templates/core/console_proprietaire.html:38
 msgid "Actifs"
 msgstr "Active"
 
-#: templates/core/console_proprietaire.html:101
+#: templates/core/console_proprietaire.html:43
 msgid "Suspendus"
 msgstr "Suspended"
 
-#: templates/core/console_proprietaire.html:105
+#: templates/core/console_proprietaire.html:47
 msgid "Gérer la plateforme"
 msgstr "Manage the platform"
 
-#: templates/core/console_proprietaire.html:111
+#: templates/core/console_proprietaire.html:53
+#: templates/core/proprietaire/etablissements.html:3
+#: templates/core/proprietaire/etablissements.html:7
+#: templates/core/proprietaire/etablissement_creer.html:7
+#: templates/core/proprietaire/etablissement_detail.html:7
+#: templates/core/proprietaire/etablissement_modifier.html:7
 msgid "Établissements"
 msgstr "Hospitals"
 
-#: templates/core/console_proprietaire.html:112
+#: templates/core/console_proprietaire.html:54
 msgid "Vos clients"
 msgstr "Your clients"
 
-#: templates/core/console_proprietaire.html:121
+#: templates/core/console_proprietaire.html:63
+#: templates/core/proprietaire/plans.html:3
+#: templates/core/proprietaire/plans.html:8
+#: templates/core/proprietaire/plans.html:12
+#: templates/core/proprietaire/plan_formulaire.html:7
 msgid "Plans d'abonnement"
 msgstr "Subscription plans"
 
-#: templates/core/console_proprietaire.html:122
+#: templates/core/console_proprietaire.html:64
 msgid "Prix, limites"
 msgstr "Prices, limits"
 
-#: templates/core/console_proprietaire.html:131
+#: templates/core/console_proprietaire.html:73
+#: templates/core/proprietaire/etablissements.html:32
+#: templates/core/proprietaire/utilisateurs.html:3
+#: templates/core/proprietaire/utilisateurs.html:8
+#: templates/core/proprietaire/utilisateurs.html:12
+#: templates/core/proprietaire/utilisateur_formulaire.html:7
 msgid "Utilisateurs"
 msgstr "Users"
 
-#: templates/core/console_proprietaire.html:132
+#: templates/core/console_proprietaire.html:74
 msgid "Tous les hôpitaux"
 msgstr "All hospitals"
 
-#: templates/core/console_proprietaire.html:141
+#: templates/core/console_proprietaire.html:83
+#: templates/core/proprietaire/journal.html:3
+#: templates/core/proprietaire/journal.html:8
+#: templates/core/proprietaire/journal.html:10
 msgid "Journal d'audit"
 msgstr "Audit log"
 
-#: templates/core/console_proprietaire.html:142
+#: templates/core/console_proprietaire.html:84
 msgid "Qui a fait quoi"
 msgstr "Who did what"
+
+#: templates/core/console_proprietaire.html:92
+msgid "Administration avancée"
+msgstr "Advanced administration"
 
 #: templates/core/dashboard.html:10
 msgid "Voici vos modules disponibles."
@@ -4217,6 +4314,220 @@ msgstr "Mark as read"
 #: templates/core/notifications.html:33
 msgid "Aucune notification."
 msgstr "No notification."
+
+#: templates/core/proprietaire/etablissement_creer.html:17
+msgid "Hôpital"
+msgstr "Hospital"
+
+#: templates/core/proprietaire/etablissement_creer.html:28
+msgid ""
+"Il recevra un e-mail avec son identifiant et un lien pour choisir son mot de"
+" passe : vous ne transmettez jamais de mot de passe."
+msgstr ""
+"They will receive an e-mail with their username and a link to choose their "
+"password: you never hand over a password."
+
+#: templates/core/proprietaire/etablissement_creer.html:38
+msgid "Créer l'hôpital"
+msgstr "Create the hospital"
+
+#: templates/core/proprietaire/etablissement_detail.html:33
+msgid "Utilisateurs actifs"
+msgstr "Active users"
+
+#: templates/core/proprietaire/etablissement_detail.html:37
+msgid "Places restantes"
+msgstr "Places remaining"
+
+#: templates/core/proprietaire/etablissement_detail.html:38
+#: templates/core/proprietaire/plans.html:31
+msgid "Illimité"
+msgstr "Unlimited"
+
+#: templates/core/proprietaire/etablissement_detail.html:46
+msgid "Activer l'abonnement"
+msgstr "Activate subscription"
+
+#: templates/core/proprietaire/etablissement_detail.html:52
+msgid "Suspendre l'accès"
+msgstr "Suspend access"
+
+#: templates/core/proprietaire/etablissement_detail.html:57
+msgid "Prolonger l'essai de 30 jours"
+msgstr "Extend the trial by 30 days"
+
+#: templates/core/proprietaire/etablissement_detail.html:62
+msgid "Personnel"
+msgstr "Staff"
+
+#: templates/core/proprietaire/etablissement_detail.html:64
+#: templates/core/proprietaire/utilisateurs.html:14
+#: templates/core/proprietaire/utilisateur_formulaire.html:3
+#: templates/core/proprietaire/utilisateur_formulaire.html:10
+msgid "Ajouter un utilisateur"
+msgstr "Add a user"
+
+#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/utilisateurs.html:36
+msgid "Rôle"
+msgstr "Role"
+
+#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/utilisateurs.html:37
+msgid "E-mail"
+msgstr "E-mail"
+
+#: templates/core/proprietaire/etablissement_detail.html:83
+#: templates/core/proprietaire/utilisateurs.html:66
+msgid "Aucun utilisateur."
+msgstr "No users."
+
+#: templates/core/proprietaire/etablissement_modifier.html:11
+msgid "Modifier l'hôpital"
+msgstr "Edit the hospital"
+
+#: templates/core/proprietaire/etablissements.html:15
+msgid "Nom de l’hôpital…"
+msgstr "Hospital name…"
+
+#: templates/core/proprietaire/etablissements.html:31
+#: templates/core/proprietaire/etablissement_detail.html:25
+msgid "Plan"
+msgstr "Plan"
+
+#: templates/core/proprietaire/etablissements.html:32
+#: templates/core/proprietaire/etablissement_detail.html:29
+msgid "Fin d'essai"
+msgstr "Trial ends"
+
+#: templates/core/proprietaire/etablissements.html:33
+#: templates/core/proprietaire/etablissement_detail.html:16
+msgid "Créé le"
+msgstr "Created on"
+
+#: templates/core/proprietaire/etablissements.html:47
+msgid "Aucun établissement."
+msgstr "No hospitals."
+
+#: templates/core/proprietaire/journal.html:7
+#: templates/core/proprietaire/plans.html:7
+#: templates/core/proprietaire/utilisateurs.html:7
+#: templates/core/proprietaire/_base.html:7
+#: templates/core/proprietaire/_base.html:25
+msgid "Console propriétaire"
+msgstr "Owner console"
+
+#: templates/core/proprietaire/journal.html:14
+msgid "Description, identifiant, utilisateur…"
+msgstr "Description, ID, user…"
+
+#: templates/core/proprietaire/journal.html:17
+#: templates/core/proprietaire/journal.html:31
+msgid "Action"
+msgstr "Action"
+
+#: templates/core/proprietaire/journal.html:18
+msgid "Toutes les actions"
+msgstr "All actions"
+
+#: templates/core/proprietaire/journal.html:30
+msgid "Utilisateur"
+msgstr "User"
+
+#: templates/core/proprietaire/journal.html:30
+#: templates/core/proprietaire/utilisateurs.html:23
+#: templates/core/proprietaire/utilisateurs.html:36
+msgid "Établissement"
+msgstr "Hospital"
+
+#: templates/core/proprietaire/journal.html:31
+msgid "Description"
+msgstr "Description"
+
+#: templates/core/proprietaire/journal.html:31
+msgid "Adresse IP"
+msgstr "IP address"
+
+#: templates/core/proprietaire/journal.html:44
+msgid "Aucune entrée."
+msgstr "No entries."
+
+#: templates/core/proprietaire/plan_formulaire.html:3
+#: templates/core/proprietaire/plan_formulaire.html:10
+msgid "Modifier le plan"
+msgstr "Edit the plan"
+
+#: templates/core/proprietaire/plans.html:14
+#: templates/core/proprietaire/plan_formulaire.html:3
+#: templates/core/proprietaire/plan_formulaire.html:8
+#: templates/core/proprietaire/plan_formulaire.html:10
+msgid "Nouveau plan"
+msgstr "New plan"
+
+#: templates/core/proprietaire/plans.html:21
+msgid "Prix mensuel"
+msgstr "Monthly price"
+
+#: templates/core/proprietaire/plans.html:22
+msgid "Utilisateurs maximum"
+msgstr "Maximum users"
+
+#: templates/core/proprietaire/plans.html:22
+msgid "Proposé à l'inscription"
+msgstr "Offered at sign-up"
+
+#: templates/core/proprietaire/plans.html:23
+msgid "Hôpitaux"
+msgstr "Hospitals"
+
+#: templates/core/proprietaire/plans.html:30
+msgid "À définir"
+msgstr "To be set"
+
+#: templates/core/proprietaire/plans.html:37
+msgid "Aucun plan."
+msgstr "No plans."
+
+#: templates/core/proprietaire/utilisateur_formulaire.html:3
+#: templates/core/proprietaire/utilisateur_formulaire.html:10
+msgid "Modifier un utilisateur"
+msgstr "Edit a user"
+
+#: templates/core/proprietaire/utilisateur_formulaire.html:8
+msgid "Ajouter"
+msgstr "Add"
+
+#: templates/core/proprietaire/utilisateur_formulaire.html:12
+msgid ""
+"La personne recevra un e-mail avec son identifiant et un lien pour choisir "
+"son mot de passe."
+msgstr ""
+"The person will receive an e-mail with their username and a link to choose "
+"their password."
+
+#: templates/core/proprietaire/utilisateurs.html:20
+msgid "Nom, identifiant, e-mail…"
+msgstr "Name, username, e-mail…"
+
+#: templates/core/proprietaire/utilisateurs.html:24
+msgid "Tous les établissements"
+msgstr "All hospitals"
+
+#: templates/core/proprietaire/utilisateurs.html:43
+msgid "Propriétaire de la plateforme"
+msgstr "Platform owner"
+
+#: templates/core/proprietaire/utilisateurs.html:52
+msgid "Renvoyer l’invitation"
+msgstr "Resend the invitation"
+
+#: templates/core/proprietaire/utilisateurs.html:57
+msgid "Désactiver"
+msgstr "Deactivate"
+
+#: templates/core/proprietaire/utilisateurs.html:57
+msgid "Réactiver"
+msgstr "Reactivate"
 
 #: templates/core/statistiques.html:12
 msgid "30 derniers jours"
@@ -4498,6 +4809,7 @@ msgid "Modifiable via l'interface d'administration."
 msgstr "Editable via the admin site."
 
 #: templates/facturation/tarifs.html:10
+#: templates/core/proprietaire/plans.html:21
 msgid "Code"
 msgstr "Code"
 
@@ -4973,10 +5285,16 @@ msgid "Œdèmes"
 msgstr "Oedema"
 
 #: templates/maternite/visite_detail.html:51
+#: templates/core/proprietaire/etablissement_detail.html:79
+#: templates/core/proprietaire/plans.html:32
+#: templates/core/proprietaire/utilisateurs.html:46
 msgid "Oui"
 msgstr "Yes"
 
 #: templates/maternite/visite_detail.html:51
+#: templates/core/proprietaire/etablissement_detail.html:79
+#: templates/core/proprietaire/plans.html:32
+#: templates/core/proprietaire/utilisateurs.html:46
 msgid "Non"
 msgstr "No"
 

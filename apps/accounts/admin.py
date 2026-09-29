@@ -1,14 +1,10 @@
-import logging
-
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
 from .forms import CreationPersonnelForm
-from .invitations import envoyer_invitation
+from .invitations import tenter_invitation
 from .models import Utilisateur
-
-logger = logging.getLogger(__name__)
 
 
 def _est_plateforme(request) -> bool:
@@ -65,18 +61,15 @@ class UtilisateurAdmin(UserAdmin):
     actions = ["renvoyer_invitation"]
 
     def _inviter(self, request, utilisateur) -> bool:
-        try:
-            envoyer_invitation(utilisateur, request)
-        except Exception:  # SMTP indisponible, adresse refusée…
-            logger.exception("Échec d'envoi de l'invitation à %s", utilisateur.pk)
+        if tenter_invitation(utilisateur, request):
             self.message_user(
-                request,
-                _("Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard.")
-                % {"u": utilisateur.username}, messages.WARNING)
-            return False
+                request, _("Invitation envoyée à %(e)s.") % {"e": utilisateur.email}, messages.SUCCESS)
+            return True
         self.message_user(
-            request, _("Invitation envoyée à %(e)s.") % {"e": utilisateur.email}, messages.SUCCESS)
-        return True
+            request,
+            _("Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard.")
+            % {"u": utilisateur.username}, messages.WARNING)
+        return False
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)

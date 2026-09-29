@@ -68,3 +68,29 @@ def inscrire_hopital(*, nom_hopital: str, prenom: str, nom: str, email: str,
         description=f"Inscription de l'hôpital « {nom_hopital} » (essai {settings.ESSAI_DUREE_JOURS} j)",
     )
     return etab, admin
+
+
+@transaction.atomic
+def creer_hopital_client(form, *, request):
+    """Crée un hôpital à l'initiative du propriétaire, à partir d'un ``CreationHopitalForm``
+    déjà validé (``forms.is_valid()``) : établissement + premier administrateur invité par
+    e-mail. Utilisé à la fois par l'admin Django et par la console propriétaire.
+
+    Renvoie ``(etablissement, administrateur, invitation_envoyee)``.
+    """
+    from apps.accounts.invitations import tenter_invitation
+
+    etab = form.save(commit=False)
+    etab.slug = slug_unique(etab.nom)
+    if etab.statut == Etablissement.Statut.ESSAI and not etab.essai_jusqu_au:
+        etab.essai_jusqu_au = date.today() + timedelta(days=settings.ESSAI_DUREE_JOURS)
+    etab.save()
+
+    d = form.cleaned_data
+    admin = initialiser_etablissement(
+        etab, prenom=d["admin_prenom"], nom=d["admin_nom"], email=d["admin_email"],
+        username=d["admin_username"], utilisateur_journal=request.user,
+        description=f"Hôpital « {etab.nom} » créé par le propriétaire de la plateforme",
+    )
+    invitation_envoyee = tenter_invitation(admin, request)
+    return etab, admin, invitation_envoyee
