@@ -693,3 +693,21 @@ body.sidebar-locked { overflow: hidden; }
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip-path: inset(50%); white-space: nowrap; opacity: 0; pointer-events: none;
 }
+
+
+/* ==========================================================================
+   Console propriétaire — écran du super-administrateur de la plateforme.
+   Volontairement sans barre latérale (il n'a aucun module clinique) : une
+   page simple, un fil d'en-tête léger puis le contenu centré.
+   ========================================================================== */
+.owner-shell { min-height: 100vh; background: var(--ks-bg); }
+.owner-topbar {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+  padding: 1rem 1.5rem; background: var(--ks-surface); border-bottom: 1px solid var(--ks-border);
+}
+.owner-topbar .brand-mark { width: 30px; height: 30px; flex-shrink: 0; }
+.owner-topbar-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: inherit; margin-inline-end: auto; }
+.owner-topbar-brand strong { display: block; font-weight: 700; color: var(--ks-text); line-height: 1.15; }
+.owner-topbar-brand span { display: block; font-size: .72rem; color: var(--ks-text-muted); letter-spacing: .02em; }
+.owner-main { max-width: 62rem; margin-inline: auto; padding: 2rem 1.5rem 3rem; }
+@media (max-width: 575.98px) { .owner-topbar { padding: .85rem 1rem; } .owner-main { padding: 1.5rem 1rem 2.5rem; } }

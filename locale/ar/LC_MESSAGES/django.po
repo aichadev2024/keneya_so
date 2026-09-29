@@ -9,11 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 
-#: apps/accounts/admin.py:52 apps/accounts/admin.py:61
+#: apps/accounts/admin.py:51 apps/accounts/admin.py:60
 msgid "Profil métier Kènèya Sô"
 msgstr "الملف المهني في كِنيا سو"
 
-#: apps/accounts/admin.py:75
+#: apps/accounts/admin.py:74
 msgid ""
 "Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être "
 "envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard."
@@ -21,23 +21,23 @@ msgstr ""
 "تم إنشاء الحساب «%(u)s»، لكن تعذّر إرسال بريد الدعوة. استخدم إجراء «إعادة "
 "إرسال الدعوة» لاحقًا."
 
-#: apps/accounts/admin.py:79 apps/core/admin.py:99
+#: apps/accounts/admin.py:78 apps/core/admin.py:99
 msgid "Invitation envoyée à %(e)s."
 msgstr "تم إرسال الدعوة إلى %(e)s."
 
-#: apps/accounts/admin.py:87
+#: apps/accounts/admin.py:86
 msgid "Renvoyer l'invitation (identifiant + lien de connexion)"
 msgstr "إعادة إرسال الدعوة (اسم المستخدم + رابط الدخول)"
 
-#: apps/accounts/admin.py:92
+#: apps/accounts/admin.py:91
 msgid "« %(u)s » n'a pas d'adresse e-mail."
 msgstr "«%(u)s» ليس لديه عنوان بريد إلكتروني."
 
-#: apps/accounts/admin.py:96
+#: apps/accounts/admin.py:95
 msgid "« %(u)s » est désactivé."
 msgstr "«%(u)s» معطّل."
 
-#: apps/accounts/admin.py:101
+#: apps/accounts/admin.py:100
 msgid "nom complet"
 msgstr "الاسم الكامل"
 
@@ -467,7 +467,7 @@ msgstr "المرجع"
 msgid "Assurance"
 msgstr "التأمين"
 
-#: apps/assurances/views.py:65 apps/core/views.py:105
+#: apps/assurances/views.py:65 apps/core/views.py:133
 #: templates/assurances/bordereaux.html:38
 #: templates/bloc_operatoire/indicateurs.html:11
 #: templates/core/statistiques.html:11
@@ -515,7 +515,7 @@ msgstr "الفاتورة"
 msgid "Patient"
 msgstr "المريض"
 
-#: apps/assurances/views.py:96 apps/core/views.py:86
+#: apps/assurances/views.py:96 apps/core/views.py:114
 #: templates/assurances/bordereau_detail.html:24
 #: templates/core/statistiques.html:41 templates/facturation/detail.html:57
 msgid "Part assurance"
@@ -1347,10 +1347,10 @@ msgstr "سطر الوصفة"
 msgid "lignes d'ordonnance"
 msgstr "سطور الوصفة"
 
-#: apps/consultations/views.py:27 apps/core/views.py:76 apps/core/views.py:130
-#: templates/consultations/detail.html:7 templates/consultations/liste.html:3
-#: templates/consultations/liste.html:7 templates/core/statistiques.html:23
-#: templates/core/vitrine.html:93
+#: apps/consultations/views.py:27 apps/core/views.py:104
+#: apps/core/views.py:158 templates/consultations/detail.html:7
+#: templates/consultations/liste.html:3 templates/consultations/liste.html:7
+#: templates/core/statistiques.html:23 templates/core/vitrine.html:93
 msgid "Consultations"
 msgstr "الاستشارات"
 
@@ -1564,6 +1564,7 @@ msgid "Connexion"
 msgstr "تسجيل الدخول"
 
 #: apps/core/models.py:216 templates/base.html:81
+#: templates/core/console_proprietaire.html:46
 msgid "Déconnexion"
 msgstr "تسجيل الخروج"
 
@@ -1636,112 +1637,112 @@ msgstr "الإشعارات"
 msgid "Tableau de bord"
 msgstr "لوحة التحكم"
 
-#: apps/core/views.py:73 templates/core/statistiques.html:18
+#: apps/core/views.py:101 templates/core/statistiques.html:18
 msgid "Fréquentation"
 msgstr "الإقبال"
 
-#: apps/core/views.py:73 apps/core/views.py:83 apps/core/views.py:91
+#: apps/core/views.py:101 apps/core/views.py:111 apps/core/views.py:119
 msgid "Indicateur"
 msgstr "المؤشر"
 
-#: apps/core/views.py:73 apps/core/views.py:91
+#: apps/core/views.py:101 apps/core/views.py:119
 msgid "Valeur"
 msgstr "القيمة"
 
-#: apps/core/views.py:74 templates/core/statistiques.html:21
+#: apps/core/views.py:102 templates/core/statistiques.html:21
 msgid "Patients actifs"
 msgstr "المرضى النشطون"
 
-#: apps/core/views.py:75 templates/core/statistiques.html:22
+#: apps/core/views.py:103 templates/core/statistiques.html:22
 msgid "Nouveaux patients"
 msgstr "المرضى الجدد"
 
-#: apps/core/views.py:77 templates/core/statistiques.html:24
+#: apps/core/views.py:105 templates/core/statistiques.html:24
 msgid "Admissions"
 msgstr "الإدخالات"
 
-#: apps/core/views.py:78 templates/core/statistiques.html:25
+#: apps/core/views.py:106 templates/core/statistiques.html:25
 msgid "Sorties"
 msgstr "الخروجات"
 
-#: apps/core/views.py:79 templates/core/statistiques.html:26
+#: apps/core/views.py:107 templates/core/statistiques.html:26
 msgid "Taux d'occupation des lits"
 msgstr "نسبة إشغال الأسرّة"
 
-#: apps/core/views.py:80 templates/core/statistiques.html:27
+#: apps/core/views.py:108 templates/core/statistiques.html:27
 msgid "Examens demandés"
 msgstr "الفحوصات المطلوبة"
 
-#: apps/core/views.py:81 templates/core/statistiques.html:28
+#: apps/core/views.py:109 templates/core/statistiques.html:28
 msgid "Examens validés"
 msgstr "الفحوصات المؤكَّدة"
 
-#: apps/core/views.py:83 templates/core/statistiques.html:36
+#: apps/core/views.py:111 templates/core/statistiques.html:36
 msgid "Chiffre d'affaires"
 msgstr "رقم الأعمال"
 
-#: apps/core/views.py:83
+#: apps/core/views.py:111
 msgid "Montant (FCFA)"
 msgstr "المبلغ (فرنك أفريقي)"
 
-#: apps/core/views.py:84 templates/core/statistiques.html:39
+#: apps/core/views.py:112 templates/core/statistiques.html:39
 msgid "Factures émises"
 msgstr "الفواتير الصادرة"
 
-#: apps/core/views.py:85 templates/core/statistiques.html:40
+#: apps/core/views.py:113 templates/core/statistiques.html:40
 msgid "Montant facturé"
 msgstr "المبلغ المفوتر"
 
-#: apps/core/views.py:87 apps/facturation/views.py:45
+#: apps/core/views.py:115 apps/facturation/views.py:45
 #: templates/core/statistiques.html:42 templates/facturation/detail.html:58
 #: templates/facturation/liste.html:37
 msgid "Part patient"
 msgstr "حصة المريض"
 
-#: apps/core/views.py:88 templates/core/statistiques.html:43
+#: apps/core/views.py:116 templates/core/statistiques.html:43
 msgid "Encaissé sur la période"
 msgstr "المحصَّل خلال الفترة"
 
-#: apps/core/views.py:89 templates/core/statistiques.html:44
+#: apps/core/views.py:117 templates/core/statistiques.html:44
 msgid "Total des impayés (en cours)"
 msgstr "إجمالي غير المسدد (جاري)"
 
-#: apps/core/views.py:91 templates/core/statistiques.html:52
+#: apps/core/views.py:119 templates/core/statistiques.html:52
 msgid "Activité par module"
 msgstr "النشاط حسب الوحدة"
 
-#: apps/core/views.py:92 templates/core/statistiques.html:55
+#: apps/core/views.py:120 templates/core/statistiques.html:55
 msgid "Interventions demandées"
 msgstr "العمليات المطلوبة"
 
-#: apps/core/views.py:93 templates/core/statistiques.html:56
+#: apps/core/views.py:121 templates/core/statistiques.html:56
 msgid "Interventions terminées"
 msgstr "العمليات المنتهية"
 
-#: apps/core/views.py:94 apps/core/views.py:156
+#: apps/core/views.py:122 apps/core/views.py:184
 #: templates/core/statistiques.html:57
 #: templates/pharmacie/dispensations.html:3
 #: templates/pharmacie/dispensation_detail.html:7
 msgid "Dispensations"
 msgstr "الصرف الدوائي"
 
-#: apps/core/views.py:95 templates/core/statistiques.html:58
+#: apps/core/views.py:123 templates/core/statistiques.html:58
 msgid "Médicaments sous le seuil"
 msgstr "الأدوية دون العتبة"
 
-#: apps/core/views.py:103 templates/core/statistiques.html:3
+#: apps/core/views.py:131 templates/core/statistiques.html:3
 #: templates/core/statistiques.html:7
 msgid "Statistiques générales"
 msgstr "الإحصائيات العامة"
 
-#: apps/core/views.py:127 apps/patients/views.py:45
+#: apps/core/views.py:155 apps/patients/views.py:45
 #: templates/core/vitrine.html:71 templates/core/vitrine.html:88
 #: templates/patients/detail.html:8 templates/patients/liste.html:3
 #: templates/patients/liste.html:7
 msgid "Patients"
 msgstr "المرضى"
 
-#: apps/core/views.py:134 templates/maternite/accueil.html:3
+#: apps/core/views.py:162 templates/maternite/accueil.html:3
 #: templates/maternite/accueil.html:8
 #: templates/maternite/dossier_detail.html:7
 #: templates/maternite/dossier_liste.html:7
@@ -1749,39 +1750,39 @@ msgstr "المرضى"
 msgid "Maternité"
 msgstr "الأمومة"
 
-#: apps/core/views.py:137 apps/facturation/models.py:40
+#: apps/core/views.py:165 apps/facturation/models.py:40
 #: templates/core/vitrine.html:103
 msgid "Hospitalisation"
 msgstr "الإيواء"
 
-#: apps/core/views.py:141 templates/bloc_operatoire/detail.html:7
+#: apps/core/views.py:169 templates/bloc_operatoire/detail.html:7
 #: templates/core/vitrine.html:73 templates/core/vitrine.html:108
 msgid "Bloc opératoire"
 msgstr "غرفة العمليات"
 
-#: apps/core/views.py:145 templates/laboratoire/detail.html:7
+#: apps/core/views.py:173 templates/laboratoire/detail.html:7
 #: templates/laboratoire/liste.html:3
 msgid "Analyses & imagerie"
 msgstr "التحاليل والتصوير"
 
-#: apps/core/views.py:149 templates/core/vitrine.html:74
+#: apps/core/views.py:177 templates/core/vitrine.html:74
 #: templates/core/vitrine.html:118
 msgid "Facturation"
 msgstr "الفوترة"
 
-#: apps/core/views.py:152
+#: apps/core/views.py:180
 msgid "Bordereaux assurance"
 msgstr "كشوف التأمين"
 
-#: apps/core/views.py:160
+#: apps/core/views.py:188
 msgid "Pharmacie — stock"
 msgstr "الصيدلية — المخزون"
 
-#: apps/core/views.py:164
+#: apps/core/views.py:192
 msgid "Statistiques"
 msgstr "الإحصائيات"
 
-#: apps/core/views.py:167
+#: apps/core/views.py:195
 msgid "Administration"
 msgstr "الإدارة"
 
@@ -3629,7 +3630,8 @@ msgstr "القائمة"
 msgid "Notifications"
 msgstr "الإشعارات"
 
-#: templates/base.html:66 templates/core/vitrine.html:32
+#: templates/base.html:66 templates/core/console_proprietaire.html:32
+#: templates/core/vitrine.html:32
 msgid "Changer de langue"
 msgstr "تغيير اللغة"
 
@@ -4105,9 +4107,88 @@ msgstr "تواصلوا مع فريق كِنيا سو لتفعيل اشتراكك
 msgid "Se déconnecter"
 msgstr "تسجيل الخروج"
 
-#: templates/core/dashboard.html:9
+#: templates/core/console_proprietaire.html:7
+#: templates/core/console_proprietaire.html:25
+msgid "Console propriétaire"
+msgstr "لوحة المالك"
+
+#: templates/core/console_proprietaire.html:66 templates/core/dashboard.html:9
 msgid "Bonjour, %(prenom)s"
 msgstr "مرحبًا، %(prenom)s"
+
+#: templates/core/console_proprietaire.html:67
+msgid "Vos hôpitaux clients, en un coup d'œil."
+msgstr "مستشفياتك العميلة، في لمحة واحدة."
+
+#: templates/core/console_proprietaire.html:70
+msgid "Créer un hôpital"
+msgstr "إنشاء مستشفى"
+
+#: templates/core/console_proprietaire.html:77
+msgid "%(n)s essai se termine dans les 7 prochains jours."
+msgid_plural "%(n)s essais se terminent dans les 7 prochains jours."
+msgstr[0] "لا تجربة تنتهي خلال 7 أيام"
+msgstr[1] "تجربة واحدة تنتهي خلال 7 أيام"
+msgstr[2] "تجربتان تنتهيان خلال 7 أيام"
+msgstr[3] "%(n)s تجارب تنتهي خلال 7 أيام"
+msgstr[4] "%(n)s تجربة تنتهي خلال 7 أيام"
+msgstr[5] "%(n)s تجربة تنتهي خلال 7 أيام"
+
+#: templates/core/console_proprietaire.html:78
+msgid "Voir"
+msgstr "عرض"
+
+#: templates/core/console_proprietaire.html:86
+msgid "Hôpitaux clients"
+msgstr "المستشفيات العميلة"
+
+#: templates/core/console_proprietaire.html:91
+msgid "En période d'essai"
+msgstr "فترة تجريبية"
+
+#: templates/core/console_proprietaire.html:96
+msgid "Actifs"
+msgstr "نشطة"
+
+#: templates/core/console_proprietaire.html:101
+msgid "Suspendus"
+msgstr "معلّقة"
+
+#: templates/core/console_proprietaire.html:105
+msgid "Gérer la plateforme"
+msgstr "إدارة المنصة"
+
+#: templates/core/console_proprietaire.html:111
+msgid "Établissements"
+msgstr "المستشفيات"
+
+#: templates/core/console_proprietaire.html:112
+msgid "Vos clients"
+msgstr "عملاؤك"
+
+#: templates/core/console_proprietaire.html:121
+msgid "Plans d'abonnement"
+msgstr "خطط الاشتراك"
+
+#: templates/core/console_proprietaire.html:122
+msgid "Prix, limites"
+msgstr "الأسعار والحدود"
+
+#: templates/core/console_proprietaire.html:131
+msgid "Utilisateurs"
+msgstr "المستخدمون"
+
+#: templates/core/console_proprietaire.html:132
+msgid "Tous les hôpitaux"
+msgstr "كل المستشفيات"
+
+#: templates/core/console_proprietaire.html:141
+msgid "Journal d'audit"
+msgstr "سجل التدقيق"
+
+#: templates/core/console_proprietaire.html:142
+msgid "Qui a fait quoi"
+msgstr "من فعل ماذا"
 
 #: templates/core/dashboard.html:10
 msgid "Voici vos modules disponibles."

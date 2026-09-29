@@ -113,6 +113,11 @@ class Utilisateur(AbstractUser):
         return f"{base} — {self.get_role_display()}" if self.role else base
 
     @property
+    def est_plateforme(self) -> bool:
+        """Propriétaire de la plateforme : super-utilisateur sans établissement (aucun hôpital)."""
+        return self.is_superuser and self.etablissement_id is None
+
+    @property
     def est_personnel_bloc(self) -> bool:
         return self.role in {
             self.Role.CHIRURGIEN, self.Role.ANESTHESISTE, self.Role.IBODE,

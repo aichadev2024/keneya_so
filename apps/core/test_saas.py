@@ -265,10 +265,103 @@ class NomDeLHopitalDansLeMenuTests(TestCase):
         self.assertIn("Clinique Bon Secours", marque)
         self.assertNotIn("Gestion hospitalière", marque)
 
-    def test_le_proprietaire_sans_hopital_garde_la_marque_de_la_plateforme(self):
+    def test_le_proprietaire_sans_hopital_n_a_pas_de_menu_lateral(self):
+        # Il n'a aucun module clinique : sa console n'a pas de barre latérale.
         Utilisateur.tous.create_superuser("proprio", "p@k.ml", "x")
         self.client.login(username="proprio", password="x")
         page = self.client.get(reverse("core:dashboard")).content.decode()
-        marque = page[page.index('class="sidebar-brand"'):page.index('class="sidebar-nav"')]
-        self.assertIn("Gestion hospitalière", marque)
+        self.assertNotIn('class="sidebar-brand"', page)
+        self.assertNotIn('class="app-sidebar"', page)
+        self.assertIn("Kènèya", page)
+        self.assertIn("Console propriétaire", page)
+
+
+class ConsoleProprietaireEcranTests(TestCase):
+    """L'écran d'accueil du propriétaire : chiffres de la plateforme et accès au socle commun."""
+
+    def setUp(self):
+        Utilisateur.tous.create_superuser("proprio", "p@k.ml", "x")
+        self.client.login(username="proprio", password="x")
+        Etablissement.objects.create(nom="Actif A", slug="actif-a", statut="ACTIF")
+        Etablissement.objects.create(nom="Essai A", slug="essai-a", statut="ESSAI",
+                                     essai_jusqu_au=date.today() + timedelta(days=20))
+        Etablissement.objects.create(nom="Essai bientôt fini", slug="essai-b", statut="ESSAI",
+                                     essai_jusqu_au=date.today() + timedelta(days=3))
+        Etablissement.objects.create(nom="Suspendu A", slug="suspendu-a", statut="SUSPENDU")
+
+    def test_un_utilisateur_d_hopital_garde_le_tableau_de_bord_habituel(self):
+        etab = Etablissement.objects.create(nom="Hôpital ordinaire", slug="hopital-ordinaire",
+                                            statut="ACTIF")
+        u = Utilisateur(username="adm", role=Utilisateur.Role.ADMIN, etablissement=etab)
+        u.set_password("x")
+        u.save()
+        self.client.logout()
+        self.client.login(username="adm", password="x")
+        reponse = self.client.get(reverse("core:dashboard"))
+        self.assertTemplateUsed(reponse, "core/dashboard.html")
+        self.assertTemplateNotUsed(reponse, "core/console_proprietaire.html")
+
+    def test_le_proprietaire_voit_sa_propre_console(self):
+        reponse = self.client.get(reverse("core:dashboard"))
+        self.assertTemplateUsed(reponse, "core/console_proprietaire.html")
+
+    def test_les_chiffres_de_la_plateforme_sont_justes(self):
+        stats = self.client.get(reverse("core:dashboard")).context["stats"]
+        self.assertEqual(stats["total"], 4)
+        self.assertEqual(stats["actifs"], 1)
+        self.assertEqual(stats["essai"], 2)
+        self.assertEqual(stats["suspendus"], 1)
+        self.assertEqual(stats["essais_expirant"], 1)  # seul « Essai bientôt fini » est sous 7 jours
+
+    def test_l_alerte_d_essais_qui_expirent_ne_s_affiche_que_s_il_y_en_a(self):
+        reponse = self.client.get(reverse("core:dashboard"))
+        self.assertContains(reponse, "se termine dans les 7 prochains jours")
+        Etablissement.objects.filter(slug="essai-b").update(essai_jusqu_au=date.today() + timedelta(days=20))
+        reponse = self.client.get(reverse("core:dashboard"))
+        self.assertNotContains(reponse, "prochains jours")
+
+    def test_les_raccourcis_pointent_vers_le_socle_commun_de_l_admin(self):
+        reponse = self.client.get(reverse("core:dashboard"))
+        self.assertContains(reponse, reverse("admin:core_etablissement_changelist"))
+        self.assertContains(reponse, reverse("admin:core_etablissement_add"))
+        self.assertContains(reponse, reverse("admin:core_plan_changelist"))
+        self.assertContains(reponse, reverse("admin:accounts_utilisateur_changelist"))
+        self.assertContains(reponse, reverse("admin:core_historiqueaction_changelist"))
+
+
+class AdminSocleCommunProprietaireTests(TestCase):
+    """Dans /admin/, le propriétaire ne voit que le socle commun de la plateforme."""
+
+    def setUp(self):
+        Utilisateur.tous.create_superuser("proprio", "p@k.ml", "x")
+        self.client.login(username="proprio", password="x")
+
+    def test_seuls_les_modeles_du_socle_commun_apparaissent(self):
+        page = self.client.get(reverse("admin:index"))
+        self.assertContains(page, "Établissements")
+        self.assertContains(page, "Plans d")
+        self.assertContains(page, "Utilisateurs")
+        self.assertContains(page, "Journal d&#x27;audit")
+        self.assertNotContains(page, "Patients")
+        self.assertNotContains(page, "Médicaments")
+        self.assertNotContains(page, "Consultations")
+        self.assertNotContains(page, "Notifications")
+        self.assertNotContains(page, "Paramètres système")
+        self.assertNotContains(page, "Groupes")
+
+    def test_un_administrateur_d_hopital_garde_la_liste_complete(self):
+        etab = Etablissement.objects.create(nom="Hôpital X", slug="hopital-x", statut="ACTIF")
+        adm = Utilisateur(username="adm", role=Utilisateur.Role.ADMIN, etablissement=etab)
+        adm.set_password("x")
+        adm.save()
+        self.client.logout()
+        self.client.login(username="adm", password="x")
+        page = self.client.get(reverse("admin:index"))
+        self.assertContains(page, "Patients")
+        self.assertContains(page, "Médicaments")
+
+    def test_l_acces_direct_par_url_reste_possible_pour_depanner(self):
+        # La navigation est simplifiée, pas verrouillée : utile en cas de dépannage.
+        reponse = self.client.get(reverse("admin:patients_patient_changelist"))
+        self.assertEqual(reponse.status_code, 200)
 

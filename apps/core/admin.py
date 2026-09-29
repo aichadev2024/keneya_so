@@ -169,3 +169,38 @@ class HistoriqueActionAdmin(admin.ModelAdmin):
 
     class Meta:
         verbose_name = _("journal d'audit")
+
+
+# --------------------------------------------------------------------------- #
+# Le propriétaire de la plateforme (super-utilisateur sans établissement) n'a
+# besoin, dans /admin/, que du « socle commun » : établissements, plans,
+# utilisateurs et journal d'audit. Le reste (patients, pharmacie, bloc
+# opératoire…) appartient à un hôpital précis et n'a rien à faire ici — ça
+# alourdit son écran pour rien. On filtre donc la liste des applications
+# affichée, sans toucher aux permissions : un accès direct par URL reste
+# possible pour dépanner, seule la navigation est simplifiée.
+# --------------------------------------------------------------------------- #
+_MODELES_SOCLE_COMMUN = {
+    "core": {"Etablissement", "Plan", "HistoriqueAction"},
+    "accounts": {"Utilisateur"},
+}
+_app_list_defaut = admin.site.get_app_list
+
+
+def _app_list_proprietaire(request, app_label=None):
+    app_list = _app_list_defaut(request, app_label)
+    if not request.user.is_authenticated or not request.user.est_plateforme:
+        return app_list
+    filtree = []
+    for app in app_list:
+        autorises = _MODELES_SOCLE_COMMUN.get(app["app_label"])
+        if not autorises:
+            continue
+        modeles = [m for m in app["models"] if m["object_name"] in autorises]
+        if modeles:
+            app["models"] = modeles
+            filtree.append(app)
+    return filtree
+
+
+admin.site.get_app_list = _app_list_proprietaire

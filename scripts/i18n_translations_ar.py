@@ -1186,3 +1186,40 @@ TRADUCTIONS.update({
 from i18n_maternite_ar import TRADUCTIONS_MATERNITE  # noqa: E402
 
 TRADUCTIONS.update(TRADUCTIONS_MATERNITE)
+
+
+# Console propriétaire (super-administrateur de la plateforme)
+TRADUCTIONS.update({
+    "Console propriétaire": "لوحة المالك",
+    "Vos hôpitaux clients, en un coup d'œil.": "مستشفياتك العميلة، في لمحة واحدة.",
+    "Créer un hôpital": "إنشاء مستشفى",
+    "Voir": "عرض",
+    "Hôpitaux clients": "المستشفيات العميلة",
+    "En période d'essai": "فترة تجريبية",
+    "Actifs": "نشطة",
+    "Suspendus": "معلّقة",
+    "Gérer la plateforme": "إدارة المنصة",
+    "Établissements": "المستشفيات",
+    "Vos clients": "عملاؤك",
+    "Prix, limites": "الأسعار والحدود",
+    "Tous les hôpitaux": "كل المستشفيات",
+    "Qui a fait quoi": "من فعل ماذا",
+})
+
+TRADUCTIONS_PLURIEL[
+    ("%(n)s essai se termine dans les 7 prochains jours.",
+     "%(n)s essais se terminent dans les 7 prochains jours.")
+] = (
+    "لا تجربة تنتهي خلال 7 أيام",       # zero
+    "تجربة واحدة تنتهي خلال 7 أيام",     # one
+    "تجربتان تنتهيان خلال 7 أيام",       # two
+    "%(n)s تجارب تنتهي خلال 7 أيام",     # few (3-10)
+    "%(n)s تجربة تنتهي خلال 7 أيام",     # many (11-99)
+    "%(n)s تجربة تنتهي خلال 7 أيام",     # other
+)
+
+TRADUCTIONS.update({
+    "Plans d'abonnement": "خطط الاشتراك",
+    "Utilisateurs": "المستخدمون",
+    "Journal d'audit": "سجل التدقيق",
+})

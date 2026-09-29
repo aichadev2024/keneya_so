@@ -13,8 +13,7 @@ logger = logging.getLogger(__name__)
 
 def _est_plateforme(request) -> bool:
     """Super-administrateur de la plateforme (n'appartient à aucun hôpital)."""
-    u = request.user
-    return u.is_superuser and u.etablissement_id is None
+    return request.user.est_plateforme
 
 
 # Champs qu'un administrateur d'hôpital ne doit jamais pouvoir modifier : ils
