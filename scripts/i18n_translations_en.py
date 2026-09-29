@@ -1167,3 +1167,33 @@ TRADUCTIONS.update({
 from i18n_maternite_en import TRADUCTIONS_MATERNITE  # noqa: E402
 
 TRADUCTIONS.update(TRADUCTIONS_MATERNITE)
+
+
+# Console propriétaire (super-administrateur de la plateforme)
+TRADUCTIONS.update({
+    "Console propriétaire": "Owner console",
+    "Vos hôpitaux clients, en un coup d'œil.": "Your client hospitals, at a glance.",
+    "Créer un hôpital": "Create a hospital",
+    "Voir": "View",
+    "Hôpitaux clients": "Client hospitals",
+    "En période d'essai": "On trial",
+    "Actifs": "Active",
+    "Suspendus": "Suspended",
+    "Gérer la plateforme": "Manage the platform",
+    "Établissements": "Hospitals",
+    "Vos clients": "Your clients",
+    "Prix, limites": "Prices, limits",
+    "Tous les hôpitaux": "All hospitals",
+    "Qui a fait quoi": "Who did what",
+})
+
+TRADUCTIONS_PLURIEL[
+    ("%(n)s essai se termine dans les 7 prochains jours.",
+     "%(n)s essais se terminent dans les 7 prochains jours.")
+] = ("%(n)s trial ends within the next 7 days.", "%(n)s trials end within the next 7 days.")
+
+TRADUCTIONS.update({
+    "Plans d'abonnement": "Subscription plans",
+    "Utilisateurs": "Users",
+    "Journal d'audit": "Audit log",
+})

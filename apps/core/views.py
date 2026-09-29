@@ -17,16 +17,44 @@ def dashboard(request):
     """
     Tableau de bord adapté au rôle de l'utilisateur connecté.
 
+    Le propriétaire de la plateforme (aucun hôpital) n'a aucun module clinique à
+    afficher : il a sa propre console, simple, sans le menu latéral des hôpitaux.
+
     Le contenu détaillé (indicateurs, raccourcis par module) sera enrichi au fil
     des phases du planning (CDC 11.2). Pour l'instant : point d'entrée unique
     après connexion, avec les accès disponibles dans le socle.
     """
     utilisateur = request.user
+    if utilisateur.est_plateforme:
+        return render(request, "core/console_proprietaire.html", {"stats": _stats_plateforme()})
     context = {
         "role_affiche": utilisateur.get_role_display() if utilisateur.role else None,
         "raccourcis": _raccourcis_pour(utilisateur),
     }
     return render(request, "core/dashboard.html", context)
+
+
+def _stats_plateforme() -> dict:
+    """Chiffres de la console propriétaire : vue d'ensemble des hôpitaux clients."""
+    from datetime import timedelta
+
+    from django.utils import timezone
+
+    from .models import Etablissement
+
+    aujourdhui = timezone.localdate()
+    qs = Etablissement.objects.all()
+    return {
+        "total": qs.count(),
+        "essai": qs.filter(statut=Etablissement.Statut.ESSAI).count(),
+        "actifs": qs.filter(statut=Etablissement.Statut.ACTIF).count(),
+        "suspendus": qs.filter(statut=Etablissement.Statut.SUSPENDU).count(),
+        "essais_expirant": qs.filter(
+            statut=Etablissement.Statut.ESSAI,
+            essai_jusqu_au__gte=aujourdhui,
+            essai_jusqu_au__lte=aujourdhui + timedelta(days=7),
+        ).count(),
+    }
 
 
 def accueil(request):
