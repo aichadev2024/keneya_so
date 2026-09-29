@@ -1,0 +1,88 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{{ etablissement.nom }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:proprietaire_etablissements' %}">{% translate "Établissements" %}</a></li>
+  <li class="breadcrumb-item active">{{ etablissement.nom }}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ etablissement.nom }}
+      <span class="badge text-bg-{% if etablissement.statut == 'ACTIF' %}success{% elif etablissement.statut == 'SUSPENDU' %}danger{% else %}warning{% endif %}">{{ etablissement.get_statut_display }}</span>
+    </h1>
+    <div class="text-body-secondary"><code>{{ etablissement.slug }}</code> · {% translate "Créé le" %} {{ etablissement.cree_le|date:"d/m/Y" }}</div>
+  </div>
+  <a class="btn btn-outline-secondary" href="{% url 'core:proprietaire_etablissement_modifier' etablissement.pk %}">
+    <i class="bi bi-pencil"></i> {% translate "Modifier" %}
+  </a>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Plan" %}</div>
+    <div class="fs-5 fw-bold">{{ etablissement.plan|default:"—" }}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Fin d'essai" %}</div>
+    <div class="fs-5 fw-bold">{% if etablissement.essai_jusqu_au %}{{ etablissement.essai_jusqu_au|date:"d/m/Y" }}{% else %}—{% endif %}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Utilisateurs actifs" %}</div>
+    <div class="fs-5 fw-bold">{{ utilisateurs.count }}{% if etablissement.limite_utilisateurs %} / {{ etablissement.limite_utilisateurs }}{% endif %}</div>
+  </div></div></div>
+  <div class="col-6 col-lg-3"><div class="card shadow-sm h-100"><div class="card-body">
+    <div class="small text-body-secondary">{% translate "Places restantes" %}</div>
+    <div class="fs-5 fw-bold">{% if places_restantes is None %}{% translate "Illimité" %}{% else %}{{ places_restantes }}{% endif %}</div>
+  </div></div></div>
+</div>
+
+<div class="card shadow-sm mb-4"><div class="card-body d-flex flex-wrap gap-2">
+  {% if etablissement.statut != "ACTIF" %}
+    <form method="post" action="{% url 'core:proprietaire_etablissement_activer' etablissement.pk %}">
+      {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <button class="btn btn-outline-success btn-sm"><i class="bi bi-check-circle"></i> {% translate "Activer l'abonnement" %}</button>
+    </form>
+  {% endif %}
+  {% if etablissement.statut != "SUSPENDU" %}
+    <form method="post" action="{% url 'core:proprietaire_etablissement_suspendre' etablissement.pk %}">
+      {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <button class="btn btn-outline-danger btn-sm"><i class="bi bi-pause-circle"></i> {% translate "Suspendre l'accès" %}</button>
+    </form>
+  {% endif %}
+  <form method="post" action="{% url 'core:proprietaire_etablissement_prolonger_essai' etablissement.pk %}">
+    {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <button class="btn btn-outline-warning btn-sm"><i class="bi bi-hourglass-split"></i> {% translate "Prolonger l'essai de 30 jours" %}</button>
+  </form>
+</div></div>
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <h2 class="h6 mb-0">{% translate "Personnel" %}</h2>
+  <a class="btn btn-sm btn-outline-primary" href="{% url 'core:proprietaire_utilisateur_creer' %}?etablissement={{ etablissement.pk }}">
+    <i class="bi bi-plus-lg"></i> {% translate "Ajouter un utilisateur" %}
+  </a>
+</div>
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Nom" %}</th><th>{% translate "Rôle" %}</th><th>{% translate "E-mail" %}</th>
+      <th>{% translate "Actif" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for u in utilisateurs %}
+        <tr>
+          <td>{{ u.get_full_name|default:u.username }}</td>
+          <td>{{ u.get_role_display|default:"—" }}</td>
+          <td>{{ u.email|default:"—" }}</td>
+          <td>{% if u.is_active %}<span class="badge text-bg-success">{% translate "Oui" %}</span>{% else %}<span class="badge text-bg-secondary">{% translate "Non" %}</span>{% endif %}</td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-secondary" href="{% url 'core:proprietaire_utilisateur_modifier' u.pk %}">{% translate "Modifier" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5" class="text-center text-body-secondary py-4">{% translate "Aucun utilisateur." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Journal d'audit" %}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% translate "Console propriétaire" %}</a></li>
+  <li class="breadcrumb-item active">{% translate "Journal d'audit" %}</li>
+</ol></nav>
+<h1 class="h3 mb-3">{% translate "Journal d'audit" %}</h1>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-sm-6 col-md-4">
+    <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="{% translate 'Description, identifiant, utilisateur…' %}">
+  </div>
+  <div class="col-sm-5 col-md-3">
+    <select name="action" class="form-select" onchange="this.form.submit()" aria-label="{% translate 'Action' %}">
+      <option value="">{% translate "Toutes les actions" %}</option>
+      {% for valeur, libelle in actions %}
+        <option value="{{ valeur }}"{% if valeur == action %} selected{% endif %}>{{ libelle }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto"><button class="btn btn-outline-primary">{% translate "Rechercher" %}</button></div>
+</form>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Date" %}</th><th>{% translate "Utilisateur" %}</th><th>{% translate "Établissement" %}</th>
+      <th>{% translate "Action" %}</th><th>{% translate "Description" %}</th><th>{% translate "Adresse IP" %}</th>
+    </tr></thead>
+    <tbody>
+      {% for entree in entrees %}
+        <tr>
+          <td>{{ entree.horodatage|date:"d/m/Y H:i" }}</td>
+          <td>{{ entree.utilisateur|default:"—" }}</td>
+          <td>{{ entree.etablissement.nom|default:"—" }}</td>
+          <td><span class="badge text-bg-light">{{ entree.get_action_display }}</span></td>
+          <td>{{ entree.description|default:"—" }}</td>
+          <td>{{ entree.adresse_ip|default:"—" }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucune entrée." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?q={{ q }}&action={{ action }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>{% endif %}
+    <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?q={{ q }}&action={{ action }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>{% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

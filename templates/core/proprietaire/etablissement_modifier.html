@@ -1,0 +1,26 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Modifier" %} — {{ object.nom }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:proprietaire_etablissements' %}">{% translate "Établissements" %}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'core:proprietaire_etablissement' object.pk %}">{{ object.nom }}</a></li>
+  <li class="breadcrumb-item active">{% translate "Modifier" %}</li>
+</ol></nav>
+<h1 class="h3 mb-3">{% translate "Modifier l'hôpital" %}</h1>
+
+<form method="post" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="row g-3">
+    {% for field in form %}
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=field %}</div>
+    {% endfor %}
+  </div>
+  <div class="d-flex gap-2 mt-3">
+    <button class="btn btn-primary">{% translate "Enregistrer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'core:proprietaire_etablissement' object.pk %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

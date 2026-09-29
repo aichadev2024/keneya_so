@@ -135,7 +135,7 @@ class InvitationPersonnelTests(TestCase):
     def test_echec_d_envoi_ne_bloque_pas_la_creation(self):
         from unittest import mock
 
-        with mock.patch("apps.accounts.admin.envoyer_invitation", side_effect=OSError("smtp")):
+        with mock.patch("apps.accounts.invitations.envoyer_invitation", side_effect=OSError("smtp")):
             reponse = self._creer()
         self.assertEqual(reponse.status_code, 302)
         self.assertTrue(Utilisateur.tous.filter(username="dr_keita").exists())

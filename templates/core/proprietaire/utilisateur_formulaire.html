@@ -1,0 +1,34 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{% if form.instance.pk %}{% translate "Modifier un utilisateur" %}{% else %}{% translate "Ajouter un utilisateur" %}{% endif %}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:proprietaire_utilisateurs' %}">{% translate "Utilisateurs" %}</a></li>
+  <li class="breadcrumb-item active">{% if form.instance.pk %}{{ form.instance.username }}{% else %}{% translate "Ajouter" %}{% endif %}</li>
+</ol></nav>
+<h1 class="h3 mb-1">{% if form.instance.pk %}{% translate "Modifier un utilisateur" %}{% else %}{% translate "Ajouter un utilisateur" %}{% endif %}</h1>
+{% if not form.instance.pk %}
+  <p class="text-body-secondary">{% translate "La personne recevra un e-mail avec son identifiant et un lien pour choisir son mot de passe." %}</p>
+{% endif %}
+
+<form method="post" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="row g-3">
+    {% for field in form %}
+      <div class="col-md-6">
+        {% if field.field.widget.input_type == "checkbox" %}
+          {% include "core/proprietaire/_case.html" with champ=field %}
+        {% else %}
+          {% include "core/proprietaire/_champ.html" with champ=field %}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="d-flex gap-2 mt-3">
+    <button class="btn btn-primary">{% translate "Enregistrer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'core:proprietaire_utilisateurs' %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

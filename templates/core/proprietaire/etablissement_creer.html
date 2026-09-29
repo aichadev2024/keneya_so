@@ -1,0 +1,42 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Créer un hôpital" %}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:proprietaire_etablissements' %}">{% translate "Établissements" %}</a></li>
+  <li class="breadcrumb-item active">{% translate "Créer un hôpital" %}</li>
+</ol></nav>
+<h1 class="h3 mb-3">{% translate "Créer un hôpital" %}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Hôpital" %}</h2>
+    <div class="row g-3">
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.nom %}</div>
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.plan %}</div>
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.statut %}</div>
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.essai_jusqu_au %}</div>
+    </div>
+  </div></div>
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Premier administrateur de l'hôpital" %}</h2>
+    <p class="small text-body-secondary">{% translate "Il recevra un e-mail avec son identifiant et un lien pour choisir son mot de passe : vous ne transmettez jamais de mot de passe." %}</p>
+    <div class="row g-3">
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.admin_prenom %}</div>
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.admin_nom %}</div>
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.admin_email %}</div>
+      <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.admin_username %}</div>
+    </div>
+  </div></div>
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary">{% translate "Créer l'hôpital" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'core:proprietaire_etablissements' %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

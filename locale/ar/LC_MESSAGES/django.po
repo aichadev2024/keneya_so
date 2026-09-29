@@ -9,11 +9,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 
-#: apps/accounts/admin.py:51 apps/accounts/admin.py:60
+#: apps/accounts/admin.py:47 apps/accounts/admin.py:56
 msgid "Profil métier Kènèya Sô"
 msgstr "الملف المهني في كِنيا سو"
 
-#: apps/accounts/admin.py:74
+#: apps/accounts/admin.py:66 apps/core/admin.py:54
+#: apps/core/views_proprietaire.py:246 apps/core/views_proprietaire.py:282
+msgid "Invitation envoyée à %(e)s."
+msgstr "تم إرسال الدعوة إلى %(e)s."
+
+#: apps/accounts/admin.py:70
 msgid ""
 "Le compte « %(u)s » est créé, mais l'e-mail d'invitation n'a pas pu être "
 "envoyé. Utilisez l'action « Renvoyer l'invitation » plus tard."
@@ -21,23 +26,19 @@ msgstr ""
 "تم إنشاء الحساب «%(u)s»، لكن تعذّر إرسال بريد الدعوة. استخدم إجراء «إعادة "
 "إرسال الدعوة» لاحقًا."
 
-#: apps/accounts/admin.py:78 apps/core/admin.py:99
-msgid "Invitation envoyée à %(e)s."
-msgstr "تم إرسال الدعوة إلى %(e)s."
-
-#: apps/accounts/admin.py:86
+#: apps/accounts/admin.py:79
 msgid "Renvoyer l'invitation (identifiant + lien de connexion)"
 msgstr "إعادة إرسال الدعوة (اسم المستخدم + رابط الدخول)"
 
-#: apps/accounts/admin.py:91
+#: apps/accounts/admin.py:84 apps/core/views_proprietaire.py:278
 msgid "« %(u)s » n'a pas d'adresse e-mail."
 msgstr "«%(u)s» ليس لديه عنوان بريد إلكتروني."
 
-#: apps/accounts/admin.py:95
+#: apps/accounts/admin.py:88 apps/core/views_proprietaire.py:280
 msgid "« %(u)s » est désactivé."
 msgstr "«%(u)s» معطّل."
 
-#: apps/accounts/admin.py:100
+#: apps/accounts/admin.py:93
 msgid "nom complet"
 msgstr "الاسم الكامل"
 
@@ -72,6 +73,10 @@ msgstr "الاسم الأول"
 
 #: apps/accounts/forms.py:68 apps/patients/views.py:49
 #: templates/patients/detail.html:79 templates/patients/liste.html:39
+#: templates/core/proprietaire/etablissements.html:31
+#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/plans.html:21
+#: templates/core/proprietaire/utilisateurs.html:36
 msgid "Nom"
 msgstr "الاسم"
 
@@ -79,7 +84,7 @@ msgstr "الاسم"
 msgid "Adresse e-mail"
 msgstr "البريد الإلكتروني"
 
-#: apps/accounts/forms.py:70 apps/core/admin.py:29
+#: apps/accounts/forms.py:70 apps/core/forms.py:35
 msgid "Identifiant de connexion"
 msgstr "اسم مستخدم الدخول"
 
@@ -87,7 +92,7 @@ msgstr "اسم مستخدم الدخول"
 msgid "Confirmation du mot de passe"
 msgstr "تأكيد كلمة المرور"
 
-#: apps/accounts/forms.py:89 apps/core/admin.py:38
+#: apps/accounts/forms.py:89 apps/core/forms.py:56 apps/core/forms.py:118
 msgid "Cet identifiant est déjà utilisé."
 msgstr "اسم المستخدم هذا مستعمل بالفعل."
 
@@ -156,8 +161,8 @@ msgstr "فني(ة) التعقيم"
 msgid "Agent de programmation / cadre de bloc"
 msgstr "مسؤول جدولة / منسق غرفة العمليات"
 
-#: apps/accounts/models.py:59 apps/core/models.py:60 apps/core/models.py:113
-#: apps/core/models.py:221
+#: apps/accounts/models.py:59 apps/core/models.py:62 apps/core/models.py:124
+#: apps/core/models.py:232
 msgid "établissement"
 msgstr "المؤسسة"
 
@@ -179,7 +184,7 @@ msgid "matricule"
 msgstr "الرقم الوظيفي"
 
 #: apps/accounts/models.py:72 apps/assurances/models.py:42
-#: apps/core/models.py:175 apps/patients/models.py:81
+#: apps/core/models.py:186 apps/patients/models.py:81
 msgid "téléphone"
 msgstr "الهاتف"
 
@@ -195,7 +200,7 @@ msgstr "اللغة المفضلة"
 msgid "adresse électronique"
 msgstr "البريد الإلكتروني"
 
-#: apps/accounts/models.py:81 apps/core/models.py:231
+#: apps/accounts/models.py:81 apps/core/models.py:242
 msgid "utilisateur"
 msgstr "مستخدم"
 
@@ -252,7 +257,7 @@ msgid "ONG / organisme humanitaire"
 msgstr "منظمة غير حكومية / إنسانية"
 
 #: apps/assurances/models.py:34 apps/bloc_operatoire/models.py:318
-#: apps/bloc_operatoire/models.py:409 apps/core/models.py:217
+#: apps/bloc_operatoire/models.py:409 apps/core/models.py:228
 #: apps/facturation/models.py:35 apps/facturation/models.py:44
 #: apps/hospitalisation/models.py:255 apps/patients/models.py:63
 #: apps/patients/models.py:191 apps/pharmacie/models.py:39
@@ -260,13 +265,13 @@ msgid "Autre"
 msgstr "أخرى"
 
 #: apps/assurances/models.py:36 apps/bloc_operatoire/models.py:45
-#: apps/core/models.py:23 apps/core/models.py:49
+#: apps/core/models.py:25 apps/core/models.py:51
 #: apps/hospitalisation/models.py:30 apps/patients/models.py:69
 msgid "nom"
 msgstr "اللقب"
 
 #: apps/assurances/models.py:37 apps/bloc_operatoire/models.py:46
-#: apps/core/models.py:22 apps/facturation/models.py:48
+#: apps/core/models.py:24 apps/facturation/models.py:48
 #: apps/hospitalisation/models.py:31 apps/laboratoire/models.py:33
 #: apps/pharmacie/models.py:45
 msgid "code"
@@ -278,7 +283,7 @@ msgstr "الرمز"
 msgid "type"
 msgstr "النوع"
 
-#: apps/assurances/models.py:40 apps/core/models.py:174
+#: apps/assurances/models.py:40 apps/core/models.py:185
 #: apps/patients/models.py:82
 msgid "adresse"
 msgstr "العنوان"
@@ -287,7 +292,7 @@ msgstr "العنوان"
 msgid "interlocuteur"
 msgstr "الشخص المسؤول"
 
-#: apps/assurances/models.py:43 apps/core/models.py:176
+#: apps/assurances/models.py:43 apps/core/models.py:187
 msgid "courriel"
 msgstr "البريد الإلكتروني"
 
@@ -408,7 +413,7 @@ msgstr "أُنشئ في"
 
 #: apps/assurances/models.py:172 apps/bloc_operatoire/models.py:54
 #: apps/bloc_operatoire/models.py:227 apps/consultations/models.py:59
-#: apps/consultations/models.py:148 apps/core/models.py:51
+#: apps/consultations/models.py:148 apps/core/models.py:53
 #: apps/facturation/models.py:97 apps/hospitalisation/models.py:106
 #: apps/hospitalisation/models.py:174 apps/laboratoire/models.py:90
 #: apps/maternite/models.py:58 apps/pharmacie/models.py:234
@@ -491,6 +496,8 @@ msgstr "المبلغ"
 #: templates/maternite/dossier_liste.html:31
 #: templates/patients/detail.html:143
 #: templates/pharmacie/dispensations.html:21
+#: templates/core/proprietaire/etablissements.html:18
+#: templates/core/proprietaire/etablissements.html:31
 msgid "Statut"
 msgstr "الحالة"
 
@@ -713,7 +720,7 @@ msgid "durée standard (minutes)"
 msgstr "المدة المعيارية (دقائق)"
 
 #: apps/bloc_operatoire/models.py:145 apps/bloc_operatoire/models.py:417
-#: apps/core/models.py:236 apps/hospitalisation/models.py:32
+#: apps/core/models.py:247 apps/hospitalisation/models.py:32
 #: apps/hospitalisation/models.py:261
 msgid "description"
 msgstr "الوصف"
@@ -1361,6 +1368,7 @@ msgstr "الاستشارات"
 #: templates/pharmacie/dispensation_detail.html:79
 #: templates/pharmacie/medicament_detail.html:57
 #: templates/pharmacie/mouvements.html:23
+#: templates/core/proprietaire/journal.html:30
 msgid "Date"
 msgstr "التاريخ"
 
@@ -1408,27 +1416,12 @@ msgstr "تم إرسال الوصفة إلى الصيدلية."
 msgid "Consultation clôturée."
 msgstr "تم إغلاق الاستشارة."
 
-#: apps/core/admin.py:25
-msgid "Prénom de l'administrateur"
-msgstr "الاسم الأول للمسؤول"
-
-#: apps/core/admin.py:26
-msgid "Nom de l'administrateur"
-msgstr "اسم عائلة المسؤول"
-
-#: apps/core/admin.py:27
-msgid "E-mail de l'administrateur"
-msgstr "البريد الإلكتروني للمسؤول"
-
-#: apps/core/admin.py:28
-msgid "L'invitation et le lien de connexion y seront envoyés."
-msgstr "ستُرسل إليه الدعوة ورابط الدخول."
-
-#: apps/core/admin.py:67
+#: apps/core/admin.py:40
+#: templates/core/proprietaire/etablissement_creer.html:27
 msgid "Premier administrateur de l'hôpital"
 msgstr "أول مسؤول في المستشفى"
 
-#: apps/core/admin.py:95
+#: apps/core/admin.py:59
 msgid ""
 "L'hôpital est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Dans "
 "Utilisateurs, utilisez l'action « Renvoyer l'invitation »."
@@ -1436,199 +1429,221 @@ msgstr ""
 "تم إنشاء المستشفى، لكن تعذّر إرسال بريد الدعوة. في قسم المستخدمين، استخدم "
 "إجراء «إعادة إرسال الدعوة»."
 
-#: apps/core/admin.py:171 apps/core/models.py:243
+#: apps/core/admin.py:128 apps/core/models.py:254
 msgid "journal d'audit"
 msgstr "سجل التدقيق"
 
-#: apps/core/models.py:25
+#: apps/core/forms.py:28
+msgid "Prénom de l'administrateur"
+msgstr "الاسم الأول للمسؤول"
+
+#: apps/core/forms.py:30
+msgid "Nom de l'administrateur"
+msgstr "اسم عائلة المسؤول"
+
+#: apps/core/forms.py:33
+msgid "E-mail de l'administrateur"
+msgstr "البريد الإلكتروني للمسؤول"
+
+#: apps/core/forms.py:34
+msgid "L'invitation et le lien de connexion y seront envoyés."
+msgstr "ستُرسل إليه الدعوة ورابط الدخول."
+
+#: apps/core/forms.py:96
+msgid "— Choisir l'hôpital —"
+msgstr "— اختر المستشفى —"
+
+#: apps/core/models.py:27
 msgid "prix mensuel (FCFA)"
 msgstr "السعر الشهري (فرنك إفريقي)"
 
-#: apps/core/models.py:26
+#: apps/core/models.py:28
 msgid "Vide = à définir."
 msgstr "فارغ = يُحدَّد لاحقًا."
 
-#: apps/core/models.py:28
+#: apps/core/models.py:30
 msgid "utilisateurs maximum"
 msgstr "الحد الأقصى للمستخدمين"
 
-#: apps/core/models.py:29
+#: apps/core/models.py:31
 msgid "Vide = illimité."
 msgstr "فارغ = غير محدود."
 
-#: apps/core/models.py:30
+#: apps/core/models.py:32
 msgid "proposé à l'inscription"
 msgstr "معروضة عند التسجيل"
 
-#: apps/core/models.py:33
+#: apps/core/models.py:35
 msgid "plan d'abonnement"
 msgstr "خطة اشتراك"
 
-#: apps/core/models.py:34
+#: apps/core/models.py:36
 msgid "plans d'abonnement"
 msgstr "خطط الاشتراك"
 
-#: apps/core/models.py:45
+#: apps/core/models.py:47
 msgid "Période d'essai"
 msgstr "فترة تجريبية"
 
-#: apps/core/models.py:46 templates/facturation/tarifs.html:12
+#: apps/core/models.py:48 templates/facturation/tarifs.html:12
+#: templates/core/proprietaire/etablissement_detail.html:71
+#: templates/core/proprietaire/utilisateurs.html:37
 msgid "Actif"
 msgstr "نشط"
 
-#: apps/core/models.py:47
+#: apps/core/models.py:49
 msgid "Suspendu"
 msgstr "موقوف"
 
-#: apps/core/models.py:50
+#: apps/core/models.py:52
 msgid "identifiant court"
 msgstr "المعرّف المختصر"
 
-#: apps/core/models.py:53
+#: apps/core/models.py:55
 msgid "fin de la période d'essai"
 msgstr "نهاية الفترة التجريبية"
 
-#: apps/core/models.py:55
+#: apps/core/models.py:57
 msgid "plan"
 msgstr "الخطة"
 
-#: apps/core/models.py:56
+#: apps/core/models.py:58
 msgid "Vide = aucune limite."
 msgstr "فارغ = بلا حدود."
 
-#: apps/core/models.py:57 apps/core/models.py:144
+#: apps/core/models.py:59 apps/core/models.py:155
 msgid "créé le"
 msgstr "أُنشئ في"
 
-#: apps/core/models.py:61
+#: apps/core/models.py:63
 msgid "établissements"
 msgstr "المؤسسات"
 
-#: apps/core/models.py:145
+#: apps/core/models.py:156
 msgid "modifié le"
 msgstr "عُدِّل في"
 
-#: apps/core/models.py:152
+#: apps/core/models.py:163
 msgid "créé par"
 msgstr "أنشأه"
 
-#: apps/core/models.py:160
+#: apps/core/models.py:171
 msgid "modifié par"
 msgstr "عدّله"
 
-#: apps/core/models.py:171
+#: apps/core/models.py:182
 msgid "nom de l'établissement"
 msgstr "اسم المؤسسة"
 
-#: apps/core/models.py:173
+#: apps/core/models.py:184
 msgid "logo"
 msgstr "الشعار"
 
-#: apps/core/models.py:177
+#: apps/core/models.py:188
 msgid "fuseau horaire"
 msgstr "المنطقة الزمنية"
 
-#: apps/core/models.py:180
+#: apps/core/models.py:191
 msgid "langues actives"
 msgstr "اللغات النشطة"
 
-#: apps/core/models.py:182
+#: apps/core/models.py:193
 msgid "Codes des langues proposées dans l'interface, ex. [\"fr\", \"bm\"]."
 msgstr "رموز اللغات المقترحة في الواجهة، مثال: [\"fr\", \"bm\"]."
 
-#: apps/core/models.py:186 apps/core/models.py:187
+#: apps/core/models.py:197 apps/core/models.py:198
 msgid "paramètres système"
 msgstr "إعدادات النظام"
 
-#: apps/core/models.py:211
+#: apps/core/models.py:222
 msgid "Création"
 msgstr "إنشاء"
 
-#: apps/core/models.py:212
+#: apps/core/models.py:223
 msgid "Modification"
 msgstr "تعديل"
 
-#: apps/core/models.py:213 apps/facturation/models.py:30
+#: apps/core/models.py:224 apps/facturation/models.py:30
 #: apps/facturation/models.py:39 templates/consultations/formulaire.html:3
 #: templates/consultations/ordonnance_formulaire.html:7
 msgid "Consultation"
 msgstr "اطّلاع"
 
-#: apps/core/models.py:214
+#: apps/core/models.py:225
 msgid "Suppression"
 msgstr "حذف"
 
-#: apps/core/models.py:215 templates/registration/login.html:3
+#: apps/core/models.py:226 templates/registration/login.html:3
 #: templates/registration/login.html:7
 msgid "Connexion"
 msgstr "تسجيل الدخول"
 
-#: apps/core/models.py:216 templates/base.html:81
-#: templates/core/console_proprietaire.html:46
+#: apps/core/models.py:227 templates/base.html:81
+#: templates/core/proprietaire/_base.html:46
 msgid "Déconnexion"
 msgstr "تسجيل الخروج"
 
-#: apps/core/models.py:233
+#: apps/core/models.py:244
 msgid "action"
 msgstr "الإجراء"
 
-#: apps/core/models.py:234
+#: apps/core/models.py:245
 msgid "type d'objet"
 msgstr "نوع العنصر"
 
-#: apps/core/models.py:235
+#: apps/core/models.py:246
 msgid "identifiant de l'objet"
 msgstr "معرّف العنصر"
 
-#: apps/core/models.py:237
+#: apps/core/models.py:248
 msgid "adresse IP"
 msgstr "عنوان IP"
 
-#: apps/core/models.py:238
+#: apps/core/models.py:249
 msgid "données complémentaires"
 msgstr "بيانات إضافية"
 
-#: apps/core/models.py:239
+#: apps/core/models.py:250
 msgid "horodatage"
 msgstr "الطابع الزمني"
 
-#: apps/core/models.py:242
+#: apps/core/models.py:253
 msgid "entrée du journal d'audit"
 msgstr "قيد في سجل التدقيق"
 
-#: apps/core/models.py:251
+#: apps/core/models.py:262
 msgid "système"
 msgstr "النظام"
 
-#: apps/core/models.py:285
+#: apps/core/models.py:296
 msgid "destinataire"
 msgstr "المستلم"
 
-#: apps/core/models.py:287
+#: apps/core/models.py:298
 msgid "titre"
 msgstr "العنوان"
 
-#: apps/core/models.py:288
+#: apps/core/models.py:299
 msgid "message"
 msgstr "الرسالة"
 
-#: apps/core/models.py:289
+#: apps/core/models.py:300
 msgid "lien"
 msgstr "الرابط"
 
-#: apps/core/models.py:290
+#: apps/core/models.py:301
 msgid "lu"
 msgstr "مقروء"
 
-#: apps/core/models.py:291
+#: apps/core/models.py:302
 msgid "créée le"
 msgstr "أُنشئت في"
 
-#: apps/core/models.py:294
+#: apps/core/models.py:305
 msgid "notification"
 msgstr "إشعار"
 
-#: apps/core/models.py:295
+#: apps/core/models.py:306
 msgid "notifications"
 msgstr "الإشعارات"
 
@@ -1785,6 +1800,50 @@ msgstr "الإحصائيات"
 #: apps/core/views.py:195
 msgid "Administration"
 msgstr "الإدارة"
+
+#: apps/core/views_proprietaire.py:112
+msgid "Hôpital créé. Invitation envoyée à %(e)s."
+msgstr "تم إنشاء المستشفى. أُرسلت الدعوة إلى %(e)s."
+
+#: apps/core/views_proprietaire.py:130
+msgid "Établissement mis à jour."
+msgstr "تم تحديث المستشفى."
+
+#: apps/core/views_proprietaire.py:144
+msgid "Abonnement activé : accès sans limite de date."
+msgstr "تم تفعيل الاشتراك: وصول بلا تاريخ انتهاء."
+
+#: apps/core/views_proprietaire.py:154
+msgid "Accès suspendu."
+msgstr "تم تعليق الوصول."
+
+#: apps/core/views_proprietaire.py:163
+msgid "Essai prolongé de 30 jours."
+msgstr "تم تمديد الفترة التجريبية 30 يومًا."
+
+#: apps/core/views_proprietaire.py:186
+msgid "Plan créé."
+msgstr "تم إنشاء الخطة."
+
+#: apps/core/views_proprietaire.py:197
+msgid "Plan mis à jour."
+msgstr "تم تحديث الخطة."
+
+#: apps/core/views_proprietaire.py:266
+msgid "Compte mis à jour."
+msgstr "تم تحديث الحساب."
+
+#: apps/core/views_proprietaire.py:284
+msgid "L'envoi de l'invitation a échoué. Réessayez plus tard."
+msgstr "تعذّر إرسال الدعوة. حاول مرة أخرى لاحقًا."
+
+#: apps/core/views_proprietaire.py:295
+msgid "« %(u)s » réactivé(e)."
+msgstr "تمت إعادة تفعيل «%(u)s»."
+
+#: apps/core/views_proprietaire.py:297
+msgid "« %(u)s » désactivé(e)."
+msgstr "تم تعطيل «%(u)s»."
 
 #: apps/facturation/admin.py:44
 msgid "en retard"
@@ -3543,6 +3602,7 @@ msgstr ""
 #: templates/maternite/_tableau_dossiers.html:15
 #: templates/patients/detail.html:153 templates/patients/liste.html:58
 #: templates/pharmacie/medicaments.html:55
+#: templates/core/proprietaire/etablissements.html:44
 msgid "Ouvrir"
 msgstr "فتح"
 
@@ -3591,6 +3651,9 @@ msgstr "ربط تأمين"
 #: templates/patients/dossier_formulaire.html:19
 #: templates/patients/formulaire.html:26
 #: templates/pharmacie/medicament_formulaire.html:23
+#: templates/core/proprietaire/etablissement_modifier.html:22
+#: templates/core/proprietaire/plan_formulaire.html:28
+#: templates/core/proprietaire/utilisateur_formulaire.html:30
 msgid "Enregistrer"
 msgstr "حفظ"
 
@@ -3609,6 +3672,10 @@ msgstr "حفظ"
 #: templates/patients/formulaire.html:28
 #: templates/pharmacie/entree_stock.html:19
 #: templates/pharmacie/medicament_formulaire.html:24
+#: templates/core/proprietaire/etablissement_creer.html:39
+#: templates/core/proprietaire/etablissement_modifier.html:23
+#: templates/core/proprietaire/plan_formulaire.html:29
+#: templates/core/proprietaire/utilisateur_formulaire.html:31
 msgid "Annuler"
 msgstr "إلغاء"
 
@@ -3630,8 +3697,8 @@ msgstr "القائمة"
 msgid "Notifications"
 msgstr "الإشعارات"
 
-#: templates/base.html:66 templates/core/console_proprietaire.html:32
-#: templates/core/vitrine.html:32
+#: templates/base.html:66 templates/core/vitrine.html:32
+#: templates/core/proprietaire/_base.html:32
 msgid "Changer de langue"
 msgstr "تغيير اللغة"
 
@@ -3856,6 +3923,7 @@ msgstr "المرجع، المريض، العملية…"
 #: templates/bloc_operatoire/liste.html:20 templates/facturation/liste.html:25
 #: templates/hospitalisation/liste.html:20
 #: templates/maternite/dossier_liste.html:18
+#: templates/core/proprietaire/etablissements.html:19
 msgid "Tous les statuts"
 msgstr "جميع الحالات"
 
@@ -3864,6 +3932,9 @@ msgstr "جميع الحالات"
 #: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:31
 #: templates/maternite/dossier_liste.html:24 templates/patients/liste.html:22
 #: templates/pharmacie/medicaments.html:22
+#: templates/core/proprietaire/etablissements.html:25
+#: templates/core/proprietaire/journal.html:24
+#: templates/core/proprietaire/utilisateurs.html:30
 msgid "Rechercher"
 msgstr "بحث"
 
@@ -3924,6 +3995,12 @@ msgstr "العلامات الحيوية"
 #: templates/patients/detail.html:92 templates/patients/formulaire.html:7
 #: templates/pharmacie/medicament_detail.html:26
 #: templates/pharmacie/medicament_formulaire.html:7
+#: templates/core/proprietaire/etablissement_detail.html:19
+#: templates/core/proprietaire/etablissement_detail.html:80
+#: templates/core/proprietaire/etablissement_modifier.html:3
+#: templates/core/proprietaire/etablissement_modifier.html:9
+#: templates/core/proprietaire/plans.html:34
+#: templates/core/proprietaire/utilisateurs.html:61
 msgid "Modifier"
 msgstr "تعديل"
 
@@ -4107,24 +4184,23 @@ msgstr "تواصلوا مع فريق كِنيا سو لتفعيل اشتراكك
 msgid "Se déconnecter"
 msgstr "تسجيل الخروج"
 
-#: templates/core/console_proprietaire.html:7
-#: templates/core/console_proprietaire.html:25
-msgid "Console propriétaire"
-msgstr "لوحة المالك"
-
-#: templates/core/console_proprietaire.html:66 templates/core/dashboard.html:9
+#: templates/core/console_proprietaire.html:8 templates/core/dashboard.html:9
 msgid "Bonjour, %(prenom)s"
 msgstr "مرحبًا، %(prenom)s"
 
-#: templates/core/console_proprietaire.html:67
+#: templates/core/console_proprietaire.html:9
 msgid "Vos hôpitaux clients, en un coup d'œil."
 msgstr "مستشفياتك العميلة، في لمحة واحدة."
 
-#: templates/core/console_proprietaire.html:70
+#: templates/core/console_proprietaire.html:12
+#: templates/core/proprietaire/etablissements.html:9
+#: templates/core/proprietaire/etablissement_creer.html:3
+#: templates/core/proprietaire/etablissement_creer.html:8
+#: templates/core/proprietaire/etablissement_creer.html:10
 msgid "Créer un hôpital"
 msgstr "إنشاء مستشفى"
 
-#: templates/core/console_proprietaire.html:77
+#: templates/core/console_proprietaire.html:19
 msgid "%(n)s essai se termine dans les 7 prochains jours."
 msgid_plural "%(n)s essais se terminent dans les 7 prochains jours."
 msgstr[0] "لا تجربة تنتهي خلال 7 أيام"
@@ -4134,61 +4210,82 @@ msgstr[3] "%(n)s تجارب تنتهي خلال 7 أيام"
 msgstr[4] "%(n)s تجربة تنتهي خلال 7 أيام"
 msgstr[5] "%(n)s تجربة تنتهي خلال 7 أيام"
 
-#: templates/core/console_proprietaire.html:78
+#: templates/core/console_proprietaire.html:20
 msgid "Voir"
 msgstr "عرض"
 
-#: templates/core/console_proprietaire.html:86
+#: templates/core/console_proprietaire.html:28
 msgid "Hôpitaux clients"
 msgstr "المستشفيات العميلة"
 
-#: templates/core/console_proprietaire.html:91
+#: templates/core/console_proprietaire.html:33
 msgid "En période d'essai"
 msgstr "فترة تجريبية"
 
-#: templates/core/console_proprietaire.html:96
+#: templates/core/console_proprietaire.html:38
 msgid "Actifs"
 msgstr "نشطة"
 
-#: templates/core/console_proprietaire.html:101
+#: templates/core/console_proprietaire.html:43
 msgid "Suspendus"
 msgstr "معلّقة"
 
-#: templates/core/console_proprietaire.html:105
+#: templates/core/console_proprietaire.html:47
 msgid "Gérer la plateforme"
 msgstr "إدارة المنصة"
 
-#: templates/core/console_proprietaire.html:111
+#: templates/core/console_proprietaire.html:53
+#: templates/core/proprietaire/etablissements.html:3
+#: templates/core/proprietaire/etablissements.html:7
+#: templates/core/proprietaire/etablissement_creer.html:7
+#: templates/core/proprietaire/etablissement_detail.html:7
+#: templates/core/proprietaire/etablissement_modifier.html:7
 msgid "Établissements"
 msgstr "المستشفيات"
 
-#: templates/core/console_proprietaire.html:112
+#: templates/core/console_proprietaire.html:54
 msgid "Vos clients"
 msgstr "عملاؤك"
 
-#: templates/core/console_proprietaire.html:121
+#: templates/core/console_proprietaire.html:63
+#: templates/core/proprietaire/plans.html:3
+#: templates/core/proprietaire/plans.html:8
+#: templates/core/proprietaire/plans.html:12
+#: templates/core/proprietaire/plan_formulaire.html:7
 msgid "Plans d'abonnement"
 msgstr "خطط الاشتراك"
 
-#: templates/core/console_proprietaire.html:122
+#: templates/core/console_proprietaire.html:64
 msgid "Prix, limites"
 msgstr "الأسعار والحدود"
 
-#: templates/core/console_proprietaire.html:131
+#: templates/core/console_proprietaire.html:73
+#: templates/core/proprietaire/etablissements.html:32
+#: templates/core/proprietaire/utilisateurs.html:3
+#: templates/core/proprietaire/utilisateurs.html:8
+#: templates/core/proprietaire/utilisateurs.html:12
+#: templates/core/proprietaire/utilisateur_formulaire.html:7
 msgid "Utilisateurs"
 msgstr "المستخدمون"
 
-#: templates/core/console_proprietaire.html:132
+#: templates/core/console_proprietaire.html:74
 msgid "Tous les hôpitaux"
 msgstr "كل المستشفيات"
 
-#: templates/core/console_proprietaire.html:141
+#: templates/core/console_proprietaire.html:83
+#: templates/core/proprietaire/journal.html:3
+#: templates/core/proprietaire/journal.html:8
+#: templates/core/proprietaire/journal.html:10
 msgid "Journal d'audit"
 msgstr "سجل التدقيق"
 
-#: templates/core/console_proprietaire.html:142
+#: templates/core/console_proprietaire.html:84
 msgid "Qui a fait quoi"
 msgstr "من فعل ماذا"
+
+#: templates/core/console_proprietaire.html:92
+msgid "Administration avancée"
+msgstr "الإدارة المتقدمة"
 
 #: templates/core/dashboard.html:10
 msgid "Voici vos modules disponibles."
@@ -4215,6 +4312,219 @@ msgstr "تحديد كمقروء"
 #: templates/core/notifications.html:33
 msgid "Aucune notification."
 msgstr "لا يوجد إشعار."
+
+#: templates/core/proprietaire/etablissement_creer.html:17
+msgid "Hôpital"
+msgstr "المستشفى"
+
+#: templates/core/proprietaire/etablissement_creer.html:28
+msgid ""
+"Il recevra un e-mail avec son identifiant et un lien pour choisir son mot de"
+" passe : vous ne transmettez jamais de mot de passe."
+msgstr ""
+"سيصله بريد إلكتروني يتضمن اسم المستخدم ورابطًا لاختيار كلمة المرور: أنت لا "
+"ترسل كلمة مرور أبدًا."
+
+#: templates/core/proprietaire/etablissement_creer.html:38
+msgid "Créer l'hôpital"
+msgstr "إنشاء المستشفى"
+
+#: templates/core/proprietaire/etablissement_detail.html:33
+msgid "Utilisateurs actifs"
+msgstr "المستخدمون النشطون"
+
+#: templates/core/proprietaire/etablissement_detail.html:37
+msgid "Places restantes"
+msgstr "الأماكن المتبقية"
+
+#: templates/core/proprietaire/etablissement_detail.html:38
+#: templates/core/proprietaire/plans.html:31
+msgid "Illimité"
+msgstr "غير محدود"
+
+#: templates/core/proprietaire/etablissement_detail.html:46
+msgid "Activer l'abonnement"
+msgstr "تفعيل الاشتراك"
+
+#: templates/core/proprietaire/etablissement_detail.html:52
+msgid "Suspendre l'accès"
+msgstr "تعليق الوصول"
+
+#: templates/core/proprietaire/etablissement_detail.html:57
+msgid "Prolonger l'essai de 30 jours"
+msgstr "تمديد الفترة التجريبية 30 يومًا"
+
+#: templates/core/proprietaire/etablissement_detail.html:62
+msgid "Personnel"
+msgstr "الطاقم"
+
+#: templates/core/proprietaire/etablissement_detail.html:64
+#: templates/core/proprietaire/utilisateurs.html:14
+#: templates/core/proprietaire/utilisateur_formulaire.html:3
+#: templates/core/proprietaire/utilisateur_formulaire.html:10
+msgid "Ajouter un utilisateur"
+msgstr "إضافة مستخدم"
+
+#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/utilisateurs.html:36
+msgid "Rôle"
+msgstr "الدور"
+
+#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/utilisateurs.html:37
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
+#: templates/core/proprietaire/etablissement_detail.html:83
+#: templates/core/proprietaire/utilisateurs.html:66
+msgid "Aucun utilisateur."
+msgstr "لا يوجد مستخدمون."
+
+#: templates/core/proprietaire/etablissement_modifier.html:11
+msgid "Modifier l'hôpital"
+msgstr "تعديل المستشفى"
+
+#: templates/core/proprietaire/etablissements.html:15
+msgid "Nom de l’hôpital…"
+msgstr "اسم المستشفى…"
+
+#: templates/core/proprietaire/etablissements.html:31
+#: templates/core/proprietaire/etablissement_detail.html:25
+msgid "Plan"
+msgstr "الخطة"
+
+#: templates/core/proprietaire/etablissements.html:32
+#: templates/core/proprietaire/etablissement_detail.html:29
+msgid "Fin d'essai"
+msgstr "نهاية الفترة التجريبية"
+
+#: templates/core/proprietaire/etablissements.html:33
+#: templates/core/proprietaire/etablissement_detail.html:16
+msgid "Créé le"
+msgstr "أُنشئ في"
+
+#: templates/core/proprietaire/etablissements.html:47
+msgid "Aucun établissement."
+msgstr "لا توجد مستشفيات."
+
+#: templates/core/proprietaire/journal.html:7
+#: templates/core/proprietaire/plans.html:7
+#: templates/core/proprietaire/utilisateurs.html:7
+#: templates/core/proprietaire/_base.html:7
+#: templates/core/proprietaire/_base.html:25
+msgid "Console propriétaire"
+msgstr "لوحة المالك"
+
+#: templates/core/proprietaire/journal.html:14
+msgid "Description, identifiant, utilisateur…"
+msgstr "الوصف، المعرّف، المستخدم…"
+
+#: templates/core/proprietaire/journal.html:17
+#: templates/core/proprietaire/journal.html:31
+msgid "Action"
+msgstr "الإجراء"
+
+#: templates/core/proprietaire/journal.html:18
+msgid "Toutes les actions"
+msgstr "كل الإجراءات"
+
+#: templates/core/proprietaire/journal.html:30
+msgid "Utilisateur"
+msgstr "المستخدم"
+
+#: templates/core/proprietaire/journal.html:30
+#: templates/core/proprietaire/utilisateurs.html:23
+#: templates/core/proprietaire/utilisateurs.html:36
+msgid "Établissement"
+msgstr "المستشفى"
+
+#: templates/core/proprietaire/journal.html:31
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/core/proprietaire/journal.html:31
+msgid "Adresse IP"
+msgstr "عنوان IP"
+
+#: templates/core/proprietaire/journal.html:44
+msgid "Aucune entrée."
+msgstr "لا توجد قيود."
+
+#: templates/core/proprietaire/plan_formulaire.html:3
+#: templates/core/proprietaire/plan_formulaire.html:10
+msgid "Modifier le plan"
+msgstr "تعديل الخطة"
+
+#: templates/core/proprietaire/plans.html:14
+#: templates/core/proprietaire/plan_formulaire.html:3
+#: templates/core/proprietaire/plan_formulaire.html:8
+#: templates/core/proprietaire/plan_formulaire.html:10
+msgid "Nouveau plan"
+msgstr "خطة جديدة"
+
+#: templates/core/proprietaire/plans.html:21
+msgid "Prix mensuel"
+msgstr "السعر الشهري"
+
+#: templates/core/proprietaire/plans.html:22
+msgid "Utilisateurs maximum"
+msgstr "الحد الأقصى للمستخدمين"
+
+#: templates/core/proprietaire/plans.html:22
+msgid "Proposé à l'inscription"
+msgstr "متاحة عند التسجيل"
+
+#: templates/core/proprietaire/plans.html:23
+msgid "Hôpitaux"
+msgstr "المستشفيات"
+
+#: templates/core/proprietaire/plans.html:30
+msgid "À définir"
+msgstr "لم يُحدَّد"
+
+#: templates/core/proprietaire/plans.html:37
+msgid "Aucun plan."
+msgstr "لا توجد خطط."
+
+#: templates/core/proprietaire/utilisateur_formulaire.html:3
+#: templates/core/proprietaire/utilisateur_formulaire.html:10
+msgid "Modifier un utilisateur"
+msgstr "تعديل مستخدم"
+
+#: templates/core/proprietaire/utilisateur_formulaire.html:8
+msgid "Ajouter"
+msgstr "إضافة"
+
+#: templates/core/proprietaire/utilisateur_formulaire.html:12
+msgid ""
+"La personne recevra un e-mail avec son identifiant et un lien pour choisir "
+"son mot de passe."
+msgstr ""
+"سيصل إلى الشخص بريد إلكتروني يتضمن اسم المستخدم ورابطًا لاختيار كلمة المرور."
+
+#: templates/core/proprietaire/utilisateurs.html:20
+msgid "Nom, identifiant, e-mail…"
+msgstr "الاسم، المعرّف، البريد الإلكتروني…"
+
+#: templates/core/proprietaire/utilisateurs.html:24
+msgid "Tous les établissements"
+msgstr "كل المستشفيات"
+
+#: templates/core/proprietaire/utilisateurs.html:43
+msgid "Propriétaire de la plateforme"
+msgstr "مالك المنصة"
+
+#: templates/core/proprietaire/utilisateurs.html:52
+msgid "Renvoyer l’invitation"
+msgstr "إعادة إرسال الدعوة"
+
+#: templates/core/proprietaire/utilisateurs.html:57
+msgid "Désactiver"
+msgstr "تعطيل"
+
+#: templates/core/proprietaire/utilisateurs.html:57
+msgid "Réactiver"
+msgstr "إعادة تفعيل"
 
 #: templates/core/statistiques.html:12
 msgid "30 derniers jours"
@@ -4495,6 +4805,7 @@ msgid "Modifiable via l'interface d'administration."
 msgstr "قابل للتعديل عبر لوحة الإدارة."
 
 #: templates/facturation/tarifs.html:10
+#: templates/core/proprietaire/plans.html:21
 msgid "Code"
 msgstr "الرمز"
 
@@ -4968,10 +5279,16 @@ msgid "Œdèmes"
 msgstr "الوذمات"
 
 #: templates/maternite/visite_detail.html:51
+#: templates/core/proprietaire/etablissement_detail.html:79
+#: templates/core/proprietaire/plans.html:32
+#: templates/core/proprietaire/utilisateurs.html:46
 msgid "Oui"
 msgstr "نعم"
 
 #: templates/maternite/visite_detail.html:51
+#: templates/core/proprietaire/etablissement_detail.html:79
+#: templates/core/proprietaire/plans.html:32
+#: templates/core/proprietaire/utilisateurs.html:46
 msgid "Non"
 msgstr "لا"
 

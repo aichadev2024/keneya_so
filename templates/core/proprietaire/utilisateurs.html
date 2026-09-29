@@ -1,0 +1,79 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Utilisateurs" %}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% translate "Console propriétaire" %}</a></li>
+  <li class="breadcrumb-item active">{% translate "Utilisateurs" %}</li>
+</ol></nav>
+
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+  <h1 class="h3 mb-0">{% translate "Utilisateurs" %}</h1>
+  <a class="btn btn-primary" href="{% url 'core:proprietaire_utilisateur_creer' %}{% if etablissement_id %}?etablissement={{ etablissement_id }}{% endif %}">
+    <i class="bi bi-plus-lg"></i> {% translate "Ajouter un utilisateur" %}
+  </a>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-sm-6 col-md-4">
+    <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="{% translate 'Nom, identifiant, e-mail…' %}">
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <select name="etablissement" class="form-select" onchange="this.form.submit()" aria-label="{% translate 'Établissement' %}">
+      <option value="">{% translate "Tous les établissements" %}</option>
+      {% for etab in etablissements %}
+        <option value="{{ etab.pk }}"{% if etablissement_id == etab.pk|stringformat:"s" %} selected{% endif %}>{{ etab.nom }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto"><button class="btn btn-outline-primary">{% translate "Rechercher" %}</button></div>
+</form>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Nom" %}</th><th>{% translate "Établissement" %}</th><th>{% translate "Rôle" %}</th>
+      <th>{% translate "E-mail" %}</th><th>{% translate "Actif" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for u in utilisateurs %}
+        <tr>
+          <td>{{ u.get_full_name|default:u.username }}<div class="small text-body-secondary">{{ u.username }}</div></td>
+          <td>{% if u.etablissement %}<a href="{% url 'core:proprietaire_etablissement' u.etablissement_id %}">{{ u.etablissement.nom }}</a>{% else %}<span class="text-body-secondary">{% translate "Propriétaire de la plateforme" %}</span>{% endif %}</td>
+          <td>{{ u.get_role_display|default:"—" }}</td>
+          <td>{{ u.email|default:"—" }}</td>
+          <td>{% if u.is_active %}<span class="badge text-bg-success">{% translate "Oui" %}</span>{% else %}<span class="badge text-bg-secondary">{% translate "Non" %}</span>{% endif %}</td>
+          <td class="text-end">
+            <div class="d-inline-flex gap-1">
+              {% if u.email %}
+                <form method="post" action="{% url 'core:proprietaire_utilisateur_renvoyer_invitation' u.pk %}">
+                  {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+                  <button class="btn btn-sm btn-outline-secondary" title="{% translate 'Renvoyer l’invitation' %}"><i class="bi bi-envelope"></i></button>
+                </form>
+              {% endif %}
+              <form method="post" action="{% url 'core:proprietaire_utilisateur_basculer_actif' u.pk %}">
+                {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button class="btn btn-sm btn-outline-secondary" title="{% if u.is_active %}{% translate 'Désactiver' %}{% else %}{% translate 'Réactiver' %}{% endif %}">
+                  <i class="bi {% if u.is_active %}bi-slash-circle{% else %}bi-check-circle{% endif %}"></i>
+                </button>
+              </form>
+              <a class="btn btn-sm btn-outline-secondary" href="{% url 'core:proprietaire_utilisateur_modifier' u.pk %}">{% translate "Modifier" %}</a>
+            </div>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucun utilisateur." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+  <nav class="mt-3"><ul class="pagination pagination-sm">
+    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?q={{ q }}&etablissement={{ etablissement_id }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>{% endif %}
+    <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?q={{ q }}&etablissement={{ etablissement_id }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>{% endif %}
+  </ul></nav>
+{% endif %}
+{% endblock %}

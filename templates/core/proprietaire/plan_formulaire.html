@@ -1,0 +1,32 @@
+{% extends "core/proprietaire/_base.html" %}
+{% load i18n %}
+{% block title %}{% if form.instance.pk %}{% translate "Modifier le plan" %}{% else %}{% translate "Nouveau plan" %}{% endif %}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'core:proprietaire_plans' %}">{% translate "Plans d'abonnement" %}</a></li>
+  <li class="breadcrumb-item active">{% if form.instance.pk %}{{ form.instance.nom }}{% else %}{% translate "Nouveau plan" %}{% endif %}</li>
+</ol></nav>
+<h1 class="h3 mb-3">{% if form.instance.pk %}{% translate "Modifier le plan" %}{% else %}{% translate "Nouveau plan" %}{% endif %}</h1>
+
+<form method="post" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="row g-3">
+    <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.nom %}</div>
+    <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.code %}</div>
+    <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.prix_mensuel %}</div>
+    <div class="col-md-6">{% include "core/proprietaire/_champ.html" with champ=form.max_utilisateurs %}</div>
+    <div class="col-12">
+      <div class="form-check">
+        {{ form.actif }}
+        <label class="form-check-label" for="{{ form.actif.id_for_label }}">{{ form.actif.label }}</label>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex gap-2 mt-3">
+    <button class="btn btn-primary">{% translate "Enregistrer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'core:proprietaire_plans' %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

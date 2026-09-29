@@ -1197,3 +1197,9 @@ TRADUCTIONS.update({
     "Utilisateurs": "Users",
     "Journal d'audit": "Audit log",
 })
+
+
+# Console propriétaire (écrans dédiés)
+from i18n_console_proprietaire_en import TRADUCTIONS_CONSOLE_PROPRIETAIRE  # noqa: E402
+
+TRADUCTIONS.update(TRADUCTIONS_CONSOLE_PROPRIETAIRE)
