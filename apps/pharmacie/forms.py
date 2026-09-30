@@ -24,6 +24,21 @@ class MedicamentForm(forms.ModelForm):
         }
 
 
+class ImportMedicamentsForm(forms.Form):
+    fichier = forms.FileField(
+        label=_("fichier Excel (.xlsx)"),
+        widget=forms.ClearableFileInput(attrs={"class": "form-control", "accept": ".xlsx"}),
+    )
+
+    def clean_fichier(self):
+        f = self.cleaned_data["fichier"]
+        if not f.name.lower().endswith(".xlsx"):
+            raise forms.ValidationError(_("Le fichier doit être au format Excel (.xlsx)."))
+        if f.size > 5 * 1024 * 1024:
+            raise forms.ValidationError(_("Fichier trop volumineux (5 Mo maximum)."))
+        return f
+
+
 class EntreeStockForm(forms.Form):
     """Réception d'un lot de médicament (CDC 4.5 — entrées de stock)."""
 

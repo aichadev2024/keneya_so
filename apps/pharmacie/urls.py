@@ -7,6 +7,8 @@ app_name = "pharmacie"
 urlpatterns = [
     path("", views.MedicamentListView.as_view(), name="medicaments"),
     path("nouveau/", views.MedicamentCreateView.as_view(), name="medicament_creer"),
+    path("importer/", views.MedicamentImportView.as_view(), name="medicament_importer"),
+    path("importer/modele.xlsx", views.modele_import_medicaments, name="medicament_import_modele"),
     path("<int:pk>/", views.MedicamentDetailView.as_view(), name="medicament"),
     path("<int:pk>/modifier/", views.MedicamentUpdateView.as_view(),
          name="medicament_modifier"),

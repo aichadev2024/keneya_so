@@ -156,6 +156,7 @@ _LABO_PRESCRIRE = [
 ]
 _LABO_EXECUTANT = [
     "laboratoire.view_typeexamen",
+    "laboratoire.add_typeexamen",
     "laboratoire.view_demandeexamen",
     "laboratoire.change_demandeexamen",
     "laboratoire.view_ligneexamen",

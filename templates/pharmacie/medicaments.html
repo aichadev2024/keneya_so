@@ -11,6 +11,7 @@
       <a class="btn btn-outline-primary" href="{% url 'pharmacie:entree_stock' %}">{% translate "Entrée de stock" %}</a>
     {% endif %}
     {% if perms.pharmacie.add_medicament %}
+      <a class="btn btn-outline-primary" href="{% url 'pharmacie:medicament_importer' %}">{% translate "Importer (Excel)" %}</a>
       <a class="btn btn-primary" href="{% url 'pharmacie:medicament_creer' %}">{% translate "Nouveau médicament" %}</a>
     {% endif %}
   </div>

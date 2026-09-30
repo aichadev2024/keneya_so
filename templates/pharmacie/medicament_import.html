@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Importer des médicaments" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Importer des médicaments" %}</h1>
+
+<div class="card card-body shadow-sm mb-3">
+  <p class="mb-2">
+    {% translate "Vous avez déjà la liste de vos médicaments dans un tableau (Excel, ou une autre pharmacie) ? Téléchargez le modèle, complétez-le, puis importez-le ici." %}
+  </p>
+  <p class="mb-0">
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'pharmacie:medicament_import_modele' %}">
+      <i class="bi bi-download"></i> {% translate "Télécharger le modèle Excel" %}
+    </a>
+  </p>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="mb-3">
+    <label class="form-label" for="{{ form.fichier.id_for_label }}">{{ form.fichier.label }}</label>
+    {{ form.fichier }}
+    {% if form.fichier.errors %}<div class="text-danger small">{{ form.fichier.errors }}</div>{% endif %}
+  </div>
+  <div class="mt-2 d-flex gap-2">
+    <button class="btn btn-primary">{% translate "Importer" %}</button>
+    <a class="btn btn-outline-secondary" href="{% url 'pharmacie:medicaments' %}">{% translate "Annuler" %}</a>
+  </div>
+</form>
+{% endblock %}

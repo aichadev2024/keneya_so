@@ -8,6 +8,21 @@ from .models import Categorie, Resultat, TypeExamen
 _INPUT = {"class": "form-control"}
 _SELECT = {"class": "form-select"}
 
+
+class ImportTypeExamenForm(forms.Form):
+    fichier = forms.FileField(
+        label=_("fichier Excel (.xlsx)"),
+        widget=forms.ClearableFileInput(attrs={"class": "form-control", "accept": ".xlsx"}),
+    )
+
+    def clean_fichier(self):
+        f = self.cleaned_data["fichier"]
+        if not f.name.lower().endswith(".xlsx"):
+            raise forms.ValidationError(_("Le fichier doit être au format Excel (.xlsx)."))
+        if f.size > 5 * 1024 * 1024:
+            raise forms.ValidationError(_("Fichier trop volumineux (5 Mo maximum)."))
+        return f
+
 # Pièces jointes de résultats (CDC 4.6) : whitelist d'extensions, taille plafonnée
 # et vérification de la signature binaire réelle du fichier (pas seulement son nom),
 # pour empêcher l'upload d'un fichier exécutable/HTML déguisé en PDF ou image.

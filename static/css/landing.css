@@ -22,7 +22,7 @@
 .lp-hero {
   position: relative;
   overflow: hidden;
-  padding: 5rem 1.5rem 6rem;
+  padding: 3.75rem 1.5rem 4.5rem;
   color: #fff;
   background:
     radial-gradient(circle at 12% 15%, rgba(13, 148, 136, .4), transparent 45%),
@@ -83,39 +83,51 @@
 .lp-preview-card b { display: block; font-size: .82rem; }
 .lp-preview-card small { color: var(--ks-text-muted); font-size: .7rem; }
 
-.lp-section { padding: 5rem 1.5rem; max-width: 1140px; margin-inline: auto; }
-.lp-section-head { text-align: center; max-width: 38rem; margin: 0 auto 3rem; }
-.lp-section-head h2 { font-size: clamp(1.6rem, 2.4vw, 2rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: .75rem; }
-.lp-section-head p { color: var(--ks-text-muted); font-size: 1.02rem; }
+.lp-section { padding: 4rem 1.5rem; max-width: 1140px; margin-inline: auto; }
+.lp-section-head { text-align: center; max-width: 38rem; margin: 0 auto 2.5rem; }
+.lp-section-head h2 { font-size: clamp(1.5rem, 2.2vw, 1.85rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: .6rem; }
+.lp-section-head p { color: var(--ks-text-muted); font-size: .98rem; }
 
-.lp-feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.lp-feature-grid { display: grid; grid-template-columns: 1fr; gap: .8rem; }
+@media (min-width: 576px) { .lp-feature-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .lp-feature-grid { grid-template-columns: repeat(3, 1fr); } }
 .lp-feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
   background: var(--ks-surface);
   border: 1px solid var(--ks-border);
   border-radius: var(--ks-radius);
-  padding: 1.5rem;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  padding: 1.05rem 1.15rem;
+  transition: box-shadow .15s ease, border-color .15s ease;
 }
-.lp-feature-card:hover { transform: translateY(-3px); box-shadow: var(--ks-shadow); border-color: var(--ks-accent); }
-.lp-feature-card .icon-chip { margin-bottom: 1rem; }
-.lp-feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .4rem; }
-.lp-feature-card p { color: var(--ks-text-muted); font-size: .87rem; margin-bottom: 0; line-height: 1.5; }
+.lp-feature-card:hover { box-shadow: var(--ks-shadow-sm); border-color: var(--ks-accent); }
+.lp-feature-card .icon-chip { margin-top: .1rem; }
+.lp-feature-card-body { min-width: 0; }
+.lp-feature-card h3 { font-size: .92rem; font-weight: 600; margin-bottom: .2rem; }
+.lp-feature-card p { color: var(--ks-text-muted); font-size: .82rem; margin-bottom: 0; line-height: 1.45; }
 
 .lp-why { background: var(--ks-surface); border-block: 1px solid var(--ks-border); }
-.lp-why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-.lp-why-item { text-align: center; }
-.lp-why-item .icon-chip { margin-inline: auto; margin-bottom: 1rem; }
-.lp-why-item h3 { font-size: .98rem; font-weight: 600; margin-bottom: .4rem; }
-.lp-why-item p { color: var(--ks-text-muted); font-size: .85rem; margin-bottom: 0; }
+.lp-why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+.lp-why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  text-align: left;
+  padding: .25rem 0;
+}
+.lp-why-item .icon-chip { margin-top: .1rem; }
+.lp-why-item h3 { font-size: .88rem; font-weight: 600; margin-bottom: .15rem; }
+.lp-why-item p { color: var(--ks-text-muted); font-size: .8rem; margin-bottom: 0; line-height: 1.4; }
 
 .lp-cta {
   position: relative;
   overflow: hidden;
-  margin: 0 1.5rem 5rem;
+  margin: 0 1.5rem 4rem;
   max-width: 1140px;
   margin-inline: auto;
   border-radius: var(--ks-radius-lg);
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   color: #fff;
   background: linear-gradient(120deg, var(--ks-primary) 0%, var(--ks-primary-dark) 100%);
@@ -129,14 +141,11 @@
 @media (max-width: 991.98px) {
   .lp-hero-inner { grid-template-columns: 1fr; }
   .lp-preview { display: none; }
-  .lp-feature-grid { grid-template-columns: repeat(2, 1fr); }
-  .lp-why-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
+  .lp-why-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem 1.25rem; }
 }
 @media (max-width: 575.98px) {
-  .lp-feature-grid { grid-template-columns: 1fr; }
   .lp-why-grid { grid-template-columns: 1fr; }
 }
-
 
 @media (max-width: 575.98px) {
   .lp-nav { padding: .65rem .75rem; gap: .5rem; }

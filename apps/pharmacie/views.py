@@ -10,10 +10,14 @@ from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, FormView, ListView, UpdateView
 
 from apps.core.exports import ExportableListMixin
+from apps.core.imports import (
+    ResultatImport, generer_modele_excel, lire_lignes_excel,
+    valeur_booleenne, valeur_entiere, valeur_texte,
+)
 from apps.core.models import HistoriqueAction
 
-from .forms import EntreeStockForm, MedicamentForm
-from .models import Dispensation, Medicament, MouvementStock
+from .forms import EntreeStockForm, ImportMedicamentsForm, MedicamentForm
+from .models import FormeGalenique, Medicament, MouvementStock, Dispensation
 from .services import ErreurStock, dispenser_ordonnance, enregistrer_entree, retirer_perimes
 
 
@@ -92,6 +96,79 @@ class MedicamentDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailVi
         ctx["lots"] = self.object.lots.all()
         ctx["mouvements"] = self.object.mouvements.select_related("utilisateur")[:20]
         return ctx
+
+
+_COLONNES_IMPORT_MEDICAMENTS = [
+    str(_("Dénomination *")), str(_("Dosage")), str(_("Forme galénique")),
+    str(_("Unité")), str(_("Seuil d'alerte")), str(_("Code")),
+    str(_("Actif (oui/non)")), str(_("Prescriptible sage-femme (oui/non)")),
+]
+
+
+def modele_import_medicaments(request):
+    exemple = ["Paracétamol", "500 mg", "Comprimé", "comprimé", 20, "", "oui", "oui"]
+    return generer_modele_excel(colonnes=_COLONNES_IMPORT_MEDICAMENTS, exemple=exemple,
+                                nom_fichier="modele-import-medicaments")
+
+
+class MedicamentImportView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+    """Import en masse depuis un fichier Excel (catalogue déjà tenu par l'hôpital)."""
+
+    permission_required = "pharmacie.add_medicament"
+    form_class = ImportMedicamentsForm
+    template_name = "pharmacie/medicament_import.html"
+    success_url = reverse_lazy("pharmacie:medicaments")
+
+    def form_valid(self, form):
+        _en_tetes, lignes = lire_lignes_excel(form.cleaned_data["fichier"])
+        forme_par_label = {str(libelle).lower(): cle for cle, libelle in FormeGalenique.choices}
+        codes_existants = set(
+            Medicament.objects.exclude(code="").exclude(code__isnull=True)
+            .values_list("code", flat=True)
+        )
+        resultat = ResultatImport()
+        for i, ligne in enumerate(lignes, start=2):
+            ligne = list(ligne) + [None] * (8 - len(ligne))
+            denomination = valeur_texte(ligne[0])
+            if not denomination:
+                resultat.erreurs.append(str(_("Ligne %(n)s : dénomination manquante, ignorée.")) % {"n": i})
+                continue
+            code = valeur_texte(ligne[5]) or None
+            if code and code in codes_existants:
+                resultat.ignores += 1
+                resultat.erreurs.append(
+                    str(_("Ligne %(n)s : code « %(code)s » déjà utilisé, ignorée.")) % {"n": i, "code": code})
+                continue
+            forme = forme_par_label.get(valeur_texte(ligne[2]).lower(), FormeGalenique.COMPRIME)
+            Medicament.objects.create(
+                denomination=denomination,
+                dosage=valeur_texte(ligne[1]),
+                forme=forme,
+                unite=valeur_texte(ligne[3]) or "unité",
+                seuil_alerte=valeur_entiere(ligne[4], 10),
+                code=code,
+                actif=valeur_booleenne(ligne[6], True),
+                prescriptible_sage_femme=valeur_booleenne(ligne[7], False),
+                cree_par=self.request.user,
+                modifie_par=self.request.user,
+            )
+            if code:
+                codes_existants.add(code)
+            resultat.crees += 1
+
+        if resultat.crees:
+            messages.success(
+                self.request,
+                str(_("%(n)s médicament(s) importé(s).")) % {"n": resultat.crees},
+            )
+        if resultat.erreurs:
+            apercu = "  ".join(resultat.erreurs[:8])
+            if resultat.total_erreurs > 8:
+                apercu += str(_(" … (%(n)s de plus)")) % {"n": resultat.total_erreurs - 8}
+            messages.warning(self.request, apercu)
+        if not resultat.crees and not resultat.erreurs:
+            messages.info(self.request, _("Le fichier ne contenait aucune ligne à importer."))
+        return super().form_valid(form)
 
 
 class EntreeStockView(LoginRequiredMixin, PermissionRequiredMixin, FormView):

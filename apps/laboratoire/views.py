@@ -11,10 +11,15 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
-from django.views.generic import DetailView, ListView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, FormView, ListView, TemplateView
 
 from apps.consultations.models import Consultation
 from apps.core.exports import ExportableListMixin
+from apps.core.imports import (
+    ResultatImport, generer_modele_excel, lire_lignes_excel,
+    valeur_booleenne, valeur_entiere, valeur_texte,
+)
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
@@ -22,10 +27,11 @@ from . import services
 from .forms import (
     AnnulationDemandeForm,
     DemandeExamenForm,
+    ImportTypeExamenForm,
     ResultatBiologieForm,
     ResultatImagerieForm,
 )
-from .models import Categorie, DemandeExamen, LigneExamen
+from .models import Categorie, DemandeExamen, LigneExamen, TypeExamen
 
 _CATEGORIE_PAR_ROLE = {"LABORANTIN": Categorie.BIOLOGIE, "RADIOLOGUE": Categorie.IMAGERIE}
 
@@ -247,3 +253,71 @@ def demande_annuler(request, pk):
         messages.error(request, str(exc)); return redirect("laboratoire:detail", pk=pk)
     messages.success(request, _("Demande annulée."))
     return redirect("laboratoire:detail", pk=pk)
+
+
+_COLONNES_IMPORT_TYPES_EXAMEN = [
+    str(_("Code *")), str(_("Libellé *")), str(_("Catégorie (biologie/imagerie)")),
+    str(_("Unité")), str(_("Valeurs de référence")), str(_("Délai de rendu (heures)")),
+    str(_("Actif (oui/non)")),
+]
+
+
+def modele_import_types_examen(request):
+    exemple = ["GLYC", "Glycémie à jeun", "biologie", "g/L", "0.70 - 1.10", 4, "oui"]
+    return generer_modele_excel(colonnes=_COLONNES_IMPORT_TYPES_EXAMEN, exemple=exemple,
+                                nom_fichier="modele-import-examens")
+
+
+class TypeExamenImportView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+    """Import en masse du référentiel d'examens depuis un fichier Excel."""
+
+    permission_required = "laboratoire.add_typeexamen"
+    form_class = ImportTypeExamenForm
+    template_name = "laboratoire/typeexamen_import.html"
+    success_url = reverse_lazy("laboratoire:liste")
+
+    def form_valid(self, form):
+        _en_tetes, lignes = lire_lignes_excel(form.cleaned_data["fichier"])
+        categorie_par_texte = {
+            "biologie": Categorie.BIOLOGIE, "imagerie": Categorie.IMAGERIE,
+            "analyse biologique": Categorie.BIOLOGIE, "imagerie médicale": Categorie.IMAGERIE,
+        }
+        codes_existants = set(TypeExamen.objects.values_list("code", flat=True))
+        resultat = ResultatImport()
+        for i, ligne in enumerate(lignes, start=2):
+            ligne = list(ligne) + [None] * (7 - len(ligne))
+            code = valeur_texte(ligne[0])
+            libelle = valeur_texte(ligne[1])
+            if not code or not libelle:
+                resultat.erreurs.append(
+                    str(_("Ligne %(n)s : code et libellé sont obligatoires, ignorée.")) % {"n": i})
+                continue
+            if code in codes_existants:
+                resultat.ignores += 1
+                resultat.erreurs.append(
+                    str(_("Ligne %(n)s : code « %(code)s » déjà utilisé, ignorée.")) % {"n": i, "code": code})
+                continue
+            categorie = categorie_par_texte.get(valeur_texte(ligne[2]).lower(), Categorie.BIOLOGIE)
+            TypeExamen.objects.create(
+                code=code, libelle=libelle, categorie=categorie,
+                unite=valeur_texte(ligne[3]),
+                valeurs_reference=valeur_texte(ligne[4]),
+                delai_rendu_heures=valeur_entiere(ligne[5], 24),
+                actif=valeur_booleenne(ligne[6], True),
+            )
+            codes_existants.add(code)
+            resultat.crees += 1
+
+        if resultat.crees:
+            messages.success(
+                self.request,
+                str(_("%(n)s type(s) d'examen importé(s).")) % {"n": resultat.crees},
+            )
+        if resultat.erreurs:
+            apercu = "  ".join(resultat.erreurs[:8])
+            if resultat.total_erreurs > 8:
+                apercu += str(_(" … (%(n)s de plus)")) % {"n": resultat.total_erreurs - 8}
+            messages.warning(self.request, apercu)
+        if not resultat.crees and not resultat.erreurs:
+            messages.info(self.request, _("Le fichier ne contenait aucune ligne à importer."))
+        return super().form_valid(form)
