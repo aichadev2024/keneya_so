@@ -9,6 +9,7 @@ django-axes==8.3.1          # verrouillage de compte après échecs de connexion
 drf-spectacular==0.30.0
 psycopg[binary]==3.3.5      # pilote PostgreSQL (base de données cible, CDC 8)
 Pillow==12.3.0              # ImageField (logo établissement, pièces jointes imagerie)
+django-storages[s3]==1.14.6  # médias sur Cloudflare R2 (API compatible S3)
 whitenoise==6.12.0          # service des fichiers statiques en production
 gunicorn==26.2.0            # serveur WSGI (déploiement Render/Railway, CDC 8)
 
