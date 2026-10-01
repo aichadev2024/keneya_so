@@ -49,6 +49,7 @@ COMPTES = [
     ("cadre_bloc", "Youssouf", "SANOGO", Utilisateur.Role.CADRE_BLOC, False),
     ("laborantin", "Bintou", "DOUMBIA", Utilisateur.Role.LABORANTIN, False),
     ("radiologue", "Seydou", "MAIGA", Utilisateur.Role.RADIOLOGUE, False),
+    ("sagefemme", "Awa", "KONÉ", Utilisateur.Role.SAGE_FEMME, False),
 ]
 
 PATIENTS = [

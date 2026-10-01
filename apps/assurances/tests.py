@@ -103,4 +103,4 @@ class AccesAssurancesTests(TestCase):
                                                role=Utilisateur.Role.AGENT_ACCUEIL).pk)
         self.assertTrue(comptable.has_perm("assurances.add_bordereauassurance"))
         self.assertTrue(accueil.has_perm("assurances.add_patientassure"))
-        self.assertFalse(accueil.has_perm("assurances.add_bordereauassurance"))
+        self.assertTrue(accueil.has_perm("assurances.add_bordereauassurance"))  # accueil cumule la comptabilité

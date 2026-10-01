@@ -216,26 +216,34 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "patients.view_patient",
         "patients.view_dossiermedical",
         "facturation.view_facture",
-    ] + _HOSPIT_ADMISSION + _ASSURANCE_ADHESION,
+    ] + _HOSPIT_ADMISSION + _ASSURANCE_ADHESION + _FACTURATION_COMPTABLE + _PHARMACIE + [
+        # L'agent d'accueil cumule accueil, facturation, pharmacie et comptabilité.
+        "consultations.view_consultation",
+        "hospitalisation.view_hospitalisation",
+        "bloc_operatoire.view_intervention",
+    ],
     Role.MEDECIN: _SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _LABO_PRESCRIRE + _MATERNITE_SUIVI + [
+        # Le médecin demande une intervention ; le chirurgien la réalise.
+        "bloc_operatoire.add_intervention",
         "bloc_operatoire.view_intervention",
         "bloc_operatoire.view_compterenduoperatoire",
+        "bloc_operatoire.view_salleoperatoire",
+        "bloc_operatoire.view_typeintervention",
     ],
-    # La sage-femme suit la grossesse et prescrit dans la limite des médicaments que
-    # l'hôpital lui autorise (Medicament.prescriptible_sage_femme).
+    # La sage-femme suit la grossesse, hospitalise et prescrit dans la limite des
+    # médicaments que l'hôpital lui autorise (Medicament.prescriptible_sage_femme).
     Role.SAGE_FEMME: (_SUIVI_MEDICAL + _PRESCRIRE + _LABO_PRESCRIRE + _MATERNITE_SUIVI
-                      + _HOSPIT_LECTURE + ["patients.add_patient"]),
+                      + _HOSPIT_MEDECIN + ["patients.add_patient"]),
     Role.CHIRURGIEN: (_SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _BLOC_CHIRURGIEN
                       + _LABO_PRESCRIRE),
-    Role.ANESTHESISTE: _LECTURE_PATIENT + [
-        "consultations.view_consultation",
-        "consultations.view_constantes",
-        "consultations.view_ordonnance",
-    ] + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST + [
+    # L'anesthésiste consulte, prescrit, demande des examens et participe aux interventions.
+    Role.ANESTHESISTE: (_SUIVI_MEDICAL + _PRESCRIRE + _LABO_PRESCRIRE + _HOSPIT_SOIGNANT
+                        + _BLOC_LECTURE + _BLOC_CHECKLIST + [
         "bloc_operatoire.change_intervention",  # validation de la faisabilité anesthésique
-    ],
-    Role.INFIRMIER: (_LECTURE_PATIENT + _RELEVER_CONSTANTES + _HOSPIT_SOIGNANT + _MATERNITE_LECTURE
-                     + ["laboratoire.view_demandeexamen", "laboratoire.view_resultat"]),
+    ]),
+    # L'infirmier consulte, prescrit, demande des examens et réalise les soins.
+    Role.INFIRMIER: (_LECTURE_PATIENT + _PRESCRIRE + _LABO_PRESCRIRE + _HOSPIT_SOIGNANT
+                     + _MATERNITE_LECTURE),
     Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"]
     + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST,
     Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,

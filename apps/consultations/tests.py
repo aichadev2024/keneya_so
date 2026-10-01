@@ -103,16 +103,16 @@ class AccesConsultationsTests(TestCase):
         r = self.client.get(reverse("consultations:creer", args=[self.patient.pk]))
         self.assertEqual(r.status_code, 200)
 
-    def test_agent_accueil_ne_voit_pas_les_consultations(self):
+    def test_agent_accueil_voit_les_consultations(self):
         Utilisateur.objects.create_user("acc", password="x",
                                         role=Utilisateur.Role.AGENT_ACCUEIL)
         self.client.login(username="acc", password="x")
         r = self.client.get(reverse("consultations:liste"))
-        self.assertEqual(r.status_code, 403)
+        self.assertEqual(r.status_code, 200)
 
-    def test_infirmier_peut_saisir_les_constantes_pas_creer_de_consultation(self):
+    def test_infirmier_peut_saisir_les_constantes_et_creer_de_consultation(self):
         inf = Utilisateur.objects.create_user("inf", password="x",
                                               role=Utilisateur.Role.INFIRMIER)
         inf = Utilisateur.objects.get(pk=inf.pk)
         self.assertTrue(inf.has_perm("consultations.change_constantes"))
-        self.assertFalse(inf.has_perm("consultations.add_consultation"))
+        self.assertTrue(inf.has_perm("consultations.add_consultation"))

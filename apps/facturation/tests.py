@@ -162,5 +162,5 @@ class AccesFacturationTests(BaseFacturation):
         self.assertTrue(comptable.has_perm("facturation.add_facture"))
         self.assertTrue(comptable.has_perm("facturation.add_paiement"))
         self.assertTrue(accueil.has_perm("facturation.view_facture"))
-        self.assertFalse(accueil.has_perm("facturation.add_facture"))
+        self.assertTrue(accueil.has_perm("facturation.add_facture"))  # accueil cumule la facturation
         self.assertFalse(medecin.has_perm("facturation.add_facture"))
