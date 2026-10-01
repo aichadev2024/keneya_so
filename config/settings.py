@@ -234,15 +234,15 @@ STORAGES = {
 
 # Médias (résultats de labo, logos…) sur Cloudflare R2 (API S3) dès que le bucket est
 # configuré ; sinon stockage disque local (développement, tests).
-R2_BUCKET = env("R2_BUCKET_NAME", default="")
+R2_BUCKET = env("DJANGO_R2_BUCKET_MEDIA", default="")
 if R2_BUCKET:
     STORAGES["default"] = {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "bucket_name": R2_BUCKET,
-            "endpoint_url": env("R2_ENDPOINT_URL"),
-            "access_key": env("R2_ACCESS_KEY_ID"),
-            "secret_key": env("R2_SECRET_ACCESS_KEY"),
+            "endpoint_url": env("DJANGO_R2_ENDPOINT_URL"),
+            "access_key": env("DJANGO_R2_ACCESS_KEY_ID"),
+            "secret_key": env("DJANGO_R2_SECRET_ACCESS_KEY"),
             "region_name": "auto",
             "signature_version": "s3v4",
             "addressing_style": "path",
