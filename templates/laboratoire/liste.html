@@ -8,6 +8,7 @@
   <div class="d-flex gap-2">
     {% include "core/_export_boutons.html" %}
     {% if perms.laboratoire.add_typeexamen %}
+      <a class="btn btn-outline-primary" href="{% url 'laboratoire:typeexamen_ajouter' %}">{% translate "Ajouter une analyse" %}</a>
       <a class="btn btn-outline-secondary" href="{% url 'laboratoire:typeexamen_importer' %}">{% translate "Importer le référentiel (Excel)" %}</a>
     {% endif %}
     <a class="btn btn-outline-secondary" href="{% url 'laboratoire:mes_resultats' %}">{% translate "Mes résultats validés" %}</a>

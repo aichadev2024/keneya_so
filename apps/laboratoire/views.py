@@ -12,7 +12,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, FormView, ListView, TemplateView
+from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView
 
 from apps.consultations.models import Consultation
 from apps.core.exports import ExportableListMixin
@@ -30,6 +30,7 @@ from .forms import (
     ImportTypeExamenForm,
     ResultatBiologieForm,
     ResultatImagerieForm,
+    TypeExamenForm,
 )
 from .models import Categorie, DemandeExamen, LigneExamen, TypeExamen
 
@@ -176,7 +177,7 @@ def saisir_resultat(request, pk, ligne_pk):
         messages.error(request, _("Action non autorisée.")); return redirect("laboratoire:detail", pk=pk)
 
     est_bio = demande.categorie == Categorie.BIOLOGIE
-    form = (ResultatBiologieForm(request.POST) if est_bio
+    form = (ResultatBiologieForm(request.POST, request.FILES) if est_bio
             else ResultatImagerieForm(request.POST, request.FILES))
     if not form.is_valid():
         messages.error(request, _("Formulaire de résultat invalide."))
@@ -186,7 +187,7 @@ def saisir_resultat(request, pk, ligne_pk):
         if est_bio:
             services.saisir_resultat(ligne=ligne, par=request.user, valeur=d["valeur"],
                                      interpretation=d["interpretation"],
-                                     commentaire=d["commentaire"])
+                                     commentaire=d["commentaire"], fichier=d.get("fichier"))
         else:
             services.saisir_resultat(ligne=ligne, par=request.user,
                                      compte_rendu=d["compte_rendu"],
@@ -266,6 +267,20 @@ def modele_import_types_examen(request):
     exemple = ["GLYC", "Glycémie à jeun", "biologie", "g/L", "0.70 - 1.10", 4, "oui"]
     return generer_modele_excel(colonnes=_COLONNES_IMPORT_TYPES_EXAMEN, exemple=exemple,
                                 nom_fichier="modele-import-examens")
+
+
+class TypeExamenCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    """Ajout d'une analyse / d'un examen au référentiel (un à la fois)."""
+
+    permission_required = "laboratoire.add_typeexamen"
+    form_class = TypeExamenForm
+    template_name = "laboratoire/typeexamen_form.html"
+    success_url = reverse_lazy("laboratoire:liste")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("Analyse ajoutée au référentiel."))
+        return response
 
 
 class TypeExamenImportView(LoginRequiredMixin, PermissionRequiredMixin, FormView):

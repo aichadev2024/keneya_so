@@ -58,6 +58,7 @@
               <span class="badge text-bg-{% if r.est_anormal %}danger{% elif r.interpretation == 'NORMAL' %}success{% else %}secondary{% endif %}">{{ r.get_interpretation_display }}</span>
             {% endif %}
           </p>
+          {% if r.fichier %}<a href="{% url 'laboratoire:telecharger_resultat' demande.pk ligne.pk %}" class="btn btn-sm btn-outline-secondary">{% translate "Pièce jointe" %}</a>{% endif %}
         {% else %}
           <p style="white-space:pre-wrap">{{ r.compte_rendu }}</p>
           {% if r.conclusion %}<p><strong>{% translate "Conclusion" %} :</strong> {{ r.conclusion }}</p>{% endif %}
@@ -74,7 +75,7 @@
           {% if demande.categorie == 'BIOLOGIE' %}
             <div class="row g-2">
               <div class="col-md-4"><input type="text" name="valeur" class="form-control form-control-sm"
-                     placeholder="{% translate 'valeur' %}" value="{{ r.valeur }}" required></div>
+                     placeholder="{% translate 'valeur' %}" value="{{ r.valeur }}"></div>
               <div class="col-md-4">
                 <select name="interpretation" class="form-select form-select-sm">
                   <option value="">{% translate "— auto —" %}</option>
@@ -84,8 +85,10 @@
                   <option value="ANORMAL">{% translate "Anormal" %}</option>
                 </select>
               </div>
-              <div class="col-md-3"><input type="text" name="commentaire" class="form-control form-control-sm" placeholder="{% translate 'commentaire' %}"></div>
-              <div class="col-md-1"><button class="btn btn-sm btn-primary w-100">OK</button></div>
+              <div class="col-md-4"><input type="text" name="commentaire" class="form-control form-control-sm" placeholder="{% translate 'commentaire' %}"></div>
+              <div class="col-md-8"><input type="file" name="fichier" accept=".pdf,.jpg,.jpeg,.png" class="form-control form-control-sm"
+                     title="{% translate 'pièce jointe (image / PDF)' %}"></div>
+              <div class="col-md-4"><button class="btn btn-sm btn-primary w-100">{% translate "Enregistrer" %}</button></div>
             </div>
           {% else %}
             <textarea name="compte_rendu" class="form-control form-control-sm mb-2" rows="3"

@@ -6,6 +6,8 @@ app_name = "laboratoire"
 
 urlpatterns = [
     path("", views.DemandeListView.as_view(), name="liste"),
+    path("types-examen/ajouter/", views.TypeExamenCreateView.as_view(),
+         name="typeexamen_ajouter"),
     path("types-examen/importer/", views.TypeExamenImportView.as_view(),
          name="typeexamen_importer"),
     path("types-examen/importer/modele.xlsx", views.modele_import_types_examen,

@@ -52,6 +52,31 @@ def _valider_piece_jointe(fichier):
     return fichier
 
 
+class TypeExamenForm(forms.ModelForm):
+    """Ajout d'une analyse / d'un examen au référentiel de l'établissement."""
+
+    class Meta:
+        model = TypeExamen
+        fields = ["code", "libelle", "categorie", "unite", "valeurs_reference",
+                  "delai_rendu_heures"]
+        widgets = {
+            "code": forms.TextInput(attrs=_INPUT),
+            "libelle": forms.TextInput(attrs=_INPUT),
+            "categorie": forms.Select(attrs=_SELECT),
+            "unite": forms.TextInput(attrs=_INPUT),
+            "valeurs_reference": forms.TextInput(attrs=_INPUT),
+            "delai_rendu_heures": forms.NumberInput(attrs={**_INPUT, "min": 1}),
+        }
+
+    def clean_code(self):
+        code = self.cleaned_data["code"].strip().upper()
+        # L'établissement n'est pas un champ du formulaire : l'unicité du code est
+        # donc vérifiée ici (le TypeExamen.objects est déjà filtré par établissement).
+        if TypeExamen.objects.filter(code=code).exists():
+            raise forms.ValidationError(_("Ce code existe déjà."))
+        return code
+
+
 class DemandeExamenForm(forms.Form):
     categorie = forms.ChoiceField(label=_("catégorie"), choices=Categorie.choices,
                                   widget=forms.Select(attrs=_SELECT))
@@ -81,7 +106,7 @@ class DemandeExamenForm(forms.Form):
 
 
 class ResultatBiologieForm(forms.Form):
-    valeur = forms.CharField(label=_("valeur mesurée"), max_length=120,
+    valeur = forms.CharField(label=_("valeur mesurée"), max_length=120, required=False,
                              widget=forms.TextInput(attrs=_INPUT))
     interpretation = forms.ChoiceField(
         label=_("interprétation"), required=False,
@@ -89,6 +114,20 @@ class ResultatBiologieForm(forms.Form):
         widget=forms.Select(attrs=_SELECT))
     commentaire = forms.CharField(label=_("commentaire"), max_length=255, required=False,
                                   widget=forms.TextInput(attrs=_INPUT))
+    fichier = forms.FileField(label=_("pièce jointe (image / PDF)"), required=False,
+                              widget=forms.ClearableFileInput(attrs={"class": "form-control"}))
+
+    def clean_fichier(self):
+        fichier = self.cleaned_data.get("fichier")
+        if fichier:
+            _valider_piece_jointe(fichier)
+        return fichier
+
+    def clean(self):
+        data = super().clean()
+        if not data.get("valeur") and not data.get("fichier"):
+            self.add_error("valeur", _("Saisissez une valeur ou joignez un fichier."))
+        return data
 
 
 class ResultatImagerieForm(forms.Form):
