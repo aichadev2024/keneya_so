@@ -1203,3 +1203,9 @@ TRADUCTIONS.update({
 from i18n_console_proprietaire_en import TRADUCTIONS_CONSOLE_PROPRIETAIRE  # noqa: E402
 
 TRADUCTIONS.update(TRADUCTIONS_CONSOLE_PROPRIETAIRE)
+
+
+# Spécialités, ajout d'analyse, imports Excel
+from i18n_specialites_en import TRADUCTIONS_SPECIALITES  # noqa: E402
+
+TRADUCTIONS.update(TRADUCTIONS_SPECIALITES)

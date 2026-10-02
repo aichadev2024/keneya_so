@@ -13,7 +13,7 @@ msgstr ""
 msgid "Profil métier Kènèya Sô"
 msgstr "Kènèya Sô role profile"
 
-#: apps/accounts/admin.py:66 apps/core/admin.py:54
+#: apps/accounts/admin.py:66 apps/core/admin.py:62
 #: apps/core/views_proprietaire.py:246 apps/core/views_proprietaire.py:282
 msgid "Invitation envoyée à %(e)s."
 msgstr "Invitation sent to %(e)s."
@@ -74,7 +74,7 @@ msgstr "First name"
 #: apps/accounts/forms.py:68 apps/patients/views.py:49
 #: templates/patients/detail.html:79 templates/patients/liste.html:39
 #: templates/core/proprietaire/etablissements.html:31
-#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/etablissement_detail.html:75
 #: templates/core/proprietaire/plans.html:21
 #: templates/core/proprietaire/utilisateurs.html:36
 msgid "Nom"
@@ -84,7 +84,7 @@ msgstr "Name"
 msgid "Adresse e-mail"
 msgstr "Email address"
 
-#: apps/accounts/forms.py:70 apps/core/forms.py:35
+#: apps/accounts/forms.py:70 apps/core/forms.py:52
 msgid "Identifiant de connexion"
 msgstr "Login username"
 
@@ -92,7 +92,7 @@ msgstr "Login username"
 msgid "Confirmation du mot de passe"
 msgstr "Confirm password"
 
-#: apps/accounts/forms.py:89 apps/core/forms.py:56 apps/core/forms.py:118
+#: apps/accounts/forms.py:89 apps/core/forms.py:74 apps/core/forms.py:138
 msgid "Cet identifiant est déjà utilisé."
 msgstr "This username is already taken."
 
@@ -162,8 +162,8 @@ msgstr "Sterilisation technician"
 msgid "Agent de programmation / cadre de bloc"
 msgstr "OR scheduling officer / theatre manager"
 
-#: apps/accounts/models.py:59 apps/core/models.py:62 apps/core/models.py:124
-#: apps/core/models.py:232
+#: apps/accounts/models.py:59 apps/core/models.py:96 apps/core/models.py:158
+#: apps/core/models.py:266
 msgid "établissement"
 msgstr "facility"
 
@@ -185,11 +185,12 @@ msgid "matricule"
 msgstr "staff ID"
 
 #: apps/accounts/models.py:72 apps/assurances/models.py:42
-#: apps/core/models.py:186 apps/patients/models.py:81
+#: apps/core/models.py:220 apps/patients/models.py:81
 msgid "téléphone"
 msgstr "phone"
 
 #: apps/accounts/models.py:73 apps/bloc_operatoire/models.py:142
+#: apps/consultations/models.py:53 apps/core/models.py:55
 msgid "spécialité"
 msgstr "specialty"
 
@@ -201,7 +202,7 @@ msgstr "preferred language"
 msgid "adresse électronique"
 msgstr "email address"
 
-#: apps/accounts/models.py:81 apps/core/models.py:242
+#: apps/accounts/models.py:81 apps/core/models.py:276
 msgid "utilisateur"
 msgstr "user"
 
@@ -259,7 +260,7 @@ msgid "ONG / organisme humanitaire"
 msgstr "NGO / humanitarian organisation"
 
 #: apps/assurances/models.py:34 apps/bloc_operatoire/models.py:318
-#: apps/bloc_operatoire/models.py:409 apps/core/models.py:228
+#: apps/bloc_operatoire/models.py:409 apps/core/models.py:262
 #: apps/facturation/models.py:35 apps/facturation/models.py:44
 #: apps/hospitalisation/models.py:255 apps/patients/models.py:63
 #: apps/patients/models.py:191 apps/pharmacie/models.py:39
@@ -267,13 +268,13 @@ msgid "Autre"
 msgstr "Other"
 
 #: apps/assurances/models.py:36 apps/bloc_operatoire/models.py:45
-#: apps/core/models.py:25 apps/core/models.py:51
+#: apps/core/models.py:25 apps/core/models.py:51 apps/core/models.py:81
 #: apps/hospitalisation/models.py:30 apps/patients/models.py:69
 msgid "nom"
 msgstr "last name"
 
 #: apps/assurances/models.py:37 apps/bloc_operatoire/models.py:46
-#: apps/core/models.py:24 apps/facturation/models.py:48
+#: apps/core/models.py:24 apps/core/models.py:50 apps/facturation/models.py:48
 #: apps/hospitalisation/models.py:31 apps/laboratoire/models.py:33
 #: apps/pharmacie/models.py:45
 msgid "code"
@@ -285,7 +286,7 @@ msgstr "code"
 msgid "type"
 msgstr "type"
 
-#: apps/assurances/models.py:40 apps/core/models.py:185
+#: apps/assurances/models.py:40 apps/core/models.py:219
 #: apps/patients/models.py:82
 msgid "adresse"
 msgstr "address"
@@ -294,7 +295,7 @@ msgstr "address"
 msgid "interlocuteur"
 msgstr "contact person"
 
-#: apps/assurances/models.py:43 apps/core/models.py:187
+#: apps/assurances/models.py:43 apps/core/models.py:221
 msgid "courriel"
 msgstr "email"
 
@@ -387,7 +388,7 @@ msgstr "insured patient"
 msgid "patients assurés"
 msgstr "insured patients"
 
-#: apps/assurances/models.py:161 apps/consultations/models.py:134
+#: apps/assurances/models.py:161 apps/consultations/models.py:137
 #: apps/facturation/models.py:81
 msgid "Brouillon"
 msgstr "Draft"
@@ -402,7 +403,7 @@ msgstr "Settled"
 
 #: apps/assurances/models.py:165 apps/bloc_operatoire/models.py:112
 #: apps/bloc_operatoire/models.py:197 apps/consultations/models.py:45
-#: apps/consultations/models.py:140 apps/facturation/models.py:87
+#: apps/consultations/models.py:143 apps/facturation/models.py:87
 #: apps/facturation/models.py:241 apps/hospitalisation/models.py:155
 #: apps/laboratoire/models.py:68 apps/maternite/models.py:44
 #: apps/pharmacie/models.py:155
@@ -414,8 +415,8 @@ msgid "généré le"
 msgstr "generated on"
 
 #: apps/assurances/models.py:172 apps/bloc_operatoire/models.py:54
-#: apps/bloc_operatoire/models.py:227 apps/consultations/models.py:59
-#: apps/consultations/models.py:148 apps/core/models.py:53
+#: apps/bloc_operatoire/models.py:227 apps/consultations/models.py:62
+#: apps/consultations/models.py:151 apps/core/models.py:83
 #: apps/facturation/models.py:97 apps/hospitalisation/models.py:106
 #: apps/hospitalisation/models.py:174 apps/laboratoire/models.py:90
 #: apps/maternite/models.py:58 apps/pharmacie/models.py:234
@@ -456,14 +457,14 @@ msgid "Bordereaux d'assurance"
 msgstr "Insurance statements"
 
 #: apps/assurances/views.py:65 apps/bloc_operatoire/views.py:93
-#: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:31
+#: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:33
 #: apps/facturation/views.py:44 apps/facturation/views.py:106
-#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:48
+#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:55
 #: templates/assurances/bordereaux.html:37
 #: templates/bloc_operatoire/liste.html:30
-#: templates/consultations/liste.html:29 templates/facturation/impayes.html:13
+#: templates/consultations/liste.html:37 templates/facturation/impayes.html:13
 #: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
-#: templates/laboratoire/liste.html:37
+#: templates/laboratoire/liste.html:41
 #: templates/maternite/dossier_liste.html:30
 #: templates/patients/detail.html:141
 msgid "Référence"
@@ -487,12 +488,12 @@ msgid "Montant"
 msgstr "Amount"
 
 #: apps/assurances/views.py:66 apps/bloc_operatoire/views.py:94
-#: apps/consultations/views.py:32 apps/facturation/views.py:45
-#: apps/hospitalisation/views.py:57 apps/laboratoire/views.py:49
+#: apps/consultations/views.py:34 apps/facturation/views.py:45
+#: apps/hospitalisation/views.py:57 apps/laboratoire/views.py:56
 #: templates/assurances/bordereaux.html:39
 #: templates/bloc_operatoire/liste.html:33
-#: templates/consultations/liste.html:31 templates/facturation/liste.html:38
-#: templates/hospitalisation/liste.html:34 templates/laboratoire/liste.html:39
+#: templates/consultations/liste.html:39 templates/facturation/liste.html:38
+#: templates/hospitalisation/liste.html:34 templates/laboratoire/liste.html:43
 #: templates/maternite/dossier_detail.html:84
 #: templates/maternite/dossier_liste.html:17
 #: templates/maternite/dossier_liste.html:31
@@ -512,14 +513,14 @@ msgid "Facture"
 msgstr "Invoice"
 
 #: apps/assurances/views.py:96 apps/bloc_operatoire/views.py:93
-#: apps/consultations/views.py:31 apps/facturation/models.py:238
+#: apps/consultations/views.py:33 apps/facturation/models.py:238
 #: apps/facturation/views.py:44 apps/facturation/views.py:106
-#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:48
+#: apps/hospitalisation/views.py:56 apps/laboratoire/views.py:55
 #: templates/assurances/bordereau_detail.html:23
 #: templates/bloc_operatoire/liste.html:30
-#: templates/consultations/liste.html:30 templates/facturation/impayes.html:13
+#: templates/consultations/liste.html:38 templates/facturation/impayes.html:13
 #: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
-#: templates/laboratoire/liste.html:37
+#: templates/laboratoire/liste.html:41
 #: templates/pharmacie/dispensations.html:20
 msgid "Patient"
 msgstr "Patient"
@@ -534,16 +535,16 @@ msgstr "Insurer's share"
 #: apps/bloc_operatoire/views.py:278 apps/bloc_operatoire/views.py:300
 #: apps/bloc_operatoire/views.py:321 apps/bloc_operatoire/views.py:331
 #: apps/bloc_operatoire/views.py:349 apps/bloc_operatoire/views.py:374
-#: apps/bloc_operatoire/views.py:395 apps/consultations/views.py:203
-#: apps/consultations/views.py:224 apps/consultations/views.py:235
-#: apps/consultations/views.py:256 apps/facturation/views.py:130
+#: apps/bloc_operatoire/views.py:395 apps/consultations/views.py:210
+#: apps/consultations/views.py:231 apps/consultations/views.py:242
+#: apps/consultations/views.py:263 apps/facturation/views.py:130
 #: apps/facturation/views.py:159 apps/facturation/views.py:174
 #: apps/facturation/views.py:194 apps/facturation/views.py:212
 #: apps/facturation/views.py:223 apps/facturation/views.py:247
 #: apps/hospitalisation/views.py:153 apps/hospitalisation/views.py:171
-#: apps/hospitalisation/views.py:195 apps/laboratoire/views.py:170
-#: apps/laboratoire/views.py:201 apps/laboratoire/views.py:239
-#: apps/pharmacie/views.py:174 apps/pharmacie/views.py:240
+#: apps/hospitalisation/views.py:195 apps/laboratoire/views.py:177
+#: apps/laboratoire/views.py:208 apps/laboratoire/views.py:246
+#: apps/pharmacie/views.py:251 apps/pharmacie/views.py:317
 msgid "Action non autorisée."
 msgstr "Action not allowed."
 
@@ -723,7 +724,7 @@ msgid "durée standard (minutes)"
 msgstr "standard duration (minutes)"
 
 #: apps/bloc_operatoire/models.py:145 apps/bloc_operatoire/models.py:417
-#: apps/core/models.py:247 apps/hospitalisation/models.py:32
+#: apps/core/models.py:281 apps/hospitalisation/models.py:32
 #: apps/hospitalisation/models.py:261
 msgid "description"
 msgstr "description"
@@ -784,7 +785,7 @@ msgid "Reportée"
 msgstr "Postponed"
 
 #: apps/bloc_operatoire/models.py:193 apps/consultations/models.py:43
-#: apps/consultations/models.py:138 apps/facturation/models.py:85
+#: apps/consultations/models.py:141 apps/facturation/models.py:85
 #: apps/hospitalisation/models.py:147 apps/laboratoire/models.py:66
 #: apps/pharmacie/models.py:226 templates/facturation/detail.html:90
 #: templates/laboratoire/detail.html:39
@@ -1092,9 +1093,9 @@ msgstr "Avg. duration"
 msgid "Durée moyenne par praticien"
 msgstr "Average duration by practitioner"
 
-#: apps/bloc_operatoire/views.py:212 apps/consultations/views.py:32
+#: apps/bloc_operatoire/views.py:212 apps/consultations/views.py:34
 #: templates/bloc_operatoire/indicateurs.html:66
-#: templates/consultations/liste.html:31 templates/patients/detail.html:142
+#: templates/consultations/liste.html:39 templates/patients/detail.html:142
 msgid "Praticien"
 msgstr "Practitioner"
 
@@ -1103,10 +1104,10 @@ msgstr "Practitioner"
 msgid "Déprogrammation / annulation"
 msgstr "Postponement / cancellation"
 
-#: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:32
-#: apps/pharmacie/views.py:218 templates/bloc_operatoire/detail.html:40
-#: templates/consultations/detail.html:44
-#: templates/consultations/liste.html:30
+#: apps/bloc_operatoire/views.py:216 apps/consultations/views.py:34
+#: apps/pharmacie/views.py:295 templates/bloc_operatoire/detail.html:40
+#: templates/consultations/detail.html:45
+#: templates/consultations/liste.html:38
 #: templates/hospitalisation/detail.html:33 templates/patients/detail.html:142
 #: templates/pharmacie/medicament_detail.html:58
 #: templates/pharmacie/mouvements.html:25
@@ -1163,7 +1164,7 @@ msgid "Étape enregistrée."
 msgstr "Step saved."
 
 #: apps/bloc_operatoire/views.py:377 apps/facturation/views.py:177
-#: apps/laboratoire/views.py:242
+#: apps/laboratoire/views.py:249
 msgid "Le motif est obligatoire."
 msgstr "The reason is required."
 
@@ -1179,6 +1180,10 @@ msgstr "The operative technique is required."
 msgid "Compte-rendu opératoire enregistré."
 msgstr "Operative report saved."
 
+#: apps/consultations/forms.py:34
+msgid "— Médecine générale —"
+msgstr "— General medicine —"
+
 #: apps/consultations/models.py:42
 msgid "Clôturée"
 msgstr "Closed"
@@ -1187,185 +1192,185 @@ msgstr "Closed"
 msgid "praticien"
 msgstr "practitioner"
 
-#: apps/consultations/models.py:51
+#: apps/consultations/models.py:54
 msgid "date de la consultation"
 msgstr "consultation date"
 
-#: apps/consultations/models.py:53
+#: apps/consultations/models.py:56
 msgid "motif de consultation"
 msgstr "reason for consultation"
 
-#: apps/consultations/models.py:54
+#: apps/consultations/models.py:57
 msgid "histoire de la maladie / symptômes"
 msgstr "history of illness / symptoms"
 
-#: apps/consultations/models.py:55
+#: apps/consultations/models.py:58
 msgid "examen clinique"
 msgstr "clinical examination"
 
-#: apps/consultations/models.py:56
+#: apps/consultations/models.py:59
 msgid "diagnostic"
 msgstr "diagnosis"
 
-#: apps/consultations/models.py:57
+#: apps/consultations/models.py:60
 msgid "conduite à tenir / traitement"
 msgstr "management plan / treatment"
 
-#: apps/consultations/models.py:63 apps/consultations/models.py:83
-#: apps/consultations/models.py:143 apps/maternite/models.py:158
+#: apps/consultations/models.py:66 apps/consultations/models.py:86
+#: apps/consultations/models.py:146 apps/maternite/models.py:158
 #: templates/laboratoire/demande.html:9
 msgid "consultation"
 msgstr "consultation"
 
-#: apps/consultations/models.py:64
+#: apps/consultations/models.py:67
 msgid "consultations"
 msgstr "consultations"
 
-#: apps/consultations/models.py:84 apps/maternite/forms.py:79
+#: apps/consultations/models.py:87 apps/maternite/forms.py:79
 msgid "poids (kg)"
 msgstr "weight (kg)"
 
-#: apps/consultations/models.py:86
+#: apps/consultations/models.py:89
 msgid "taille (cm)"
 msgstr "height (cm)"
 
-#: apps/consultations/models.py:88 apps/hospitalisation/models.py:262
+#: apps/consultations/models.py:91 apps/hospitalisation/models.py:262
 #: apps/maternite/forms.py:88
 msgid "température (°C)"
 msgstr "temperature (°C)"
 
-#: apps/consultations/models.py:90 apps/maternite/forms.py:82
+#: apps/consultations/models.py:93 apps/maternite/forms.py:82
 msgid "TA systolique (mmHg)"
 msgstr "systolic BP (mmHg)"
 
-#: apps/consultations/models.py:92 apps/maternite/forms.py:85
+#: apps/consultations/models.py:95 apps/maternite/forms.py:85
 msgid "TA diastolique (mmHg)"
 msgstr "diastolic BP (mmHg)"
 
-#: apps/consultations/models.py:94
+#: apps/consultations/models.py:97
 msgid "fréquence cardiaque (bpm)"
 msgstr "heart rate (bpm)"
 
-#: apps/consultations/models.py:97
+#: apps/consultations/models.py:100
 msgid "fréquence respiratoire (cycles/min)"
 msgstr "respiratory rate (breaths/min)"
 
-#: apps/consultations/models.py:98
+#: apps/consultations/models.py:101
 msgid "SpO₂ (%)"
 msgstr "SpO₂ (%)"
 
-#: apps/consultations/models.py:99
+#: apps/consultations/models.py:102
 msgid "glycémie (g/L)"
 msgstr "blood glucose (g/L)"
 
-#: apps/consultations/models.py:101
+#: apps/consultations/models.py:104
 msgid "relevé le"
 msgstr "recorded on"
 
-#: apps/consultations/models.py:104
+#: apps/consultations/models.py:107
 msgid "relevé par"
 msgstr "recorded by"
 
-#: apps/consultations/models.py:107 apps/consultations/models.py:108
+#: apps/consultations/models.py:110 apps/consultations/models.py:111
 msgid "constantes"
 msgstr "vital signs"
 
-#: apps/consultations/models.py:111
+#: apps/consultations/models.py:114
 msgid "Constantes de %(ref)s"
 msgstr "Vital signs for %(ref)s"
 
-#: apps/consultations/models.py:135
+#: apps/consultations/models.py:138
 msgid "Transmise à la pharmacie"
 msgstr "Sent to pharmacy"
 
-#: apps/consultations/models.py:136
+#: apps/consultations/models.py:139
 msgid "Dispensée partiellement"
 msgstr "Partially dispensed"
 
-#: apps/consultations/models.py:137
+#: apps/consultations/models.py:140
 msgid "Dispensée"
 msgstr "Dispensed"
 
-#: apps/consultations/models.py:146 apps/laboratoire/models.py:83
+#: apps/consultations/models.py:149 apps/laboratoire/models.py:83
 msgid "prescripteur"
 msgstr "prescriber"
 
-#: apps/consultations/models.py:147
+#: apps/consultations/models.py:150
 msgid "date de prescription"
 msgstr "prescription date"
 
-#: apps/consultations/models.py:150
+#: apps/consultations/models.py:153
 msgid "date de transmission"
 msgstr "date sent"
 
-#: apps/consultations/models.py:151
+#: apps/consultations/models.py:154
 msgid "notes au pharmacien"
 msgstr "notes for the pharmacist"
 
-#: apps/consultations/models.py:154 apps/consultations/models.py:188
+#: apps/consultations/models.py:157 apps/consultations/models.py:191
 #: apps/pharmacie/models.py:230
 msgid "ordonnance"
 msgstr "prescription"
 
-#: apps/consultations/models.py:155
+#: apps/consultations/models.py:158
 msgid "ordonnances"
 msgstr "prescriptions"
 
-#: apps/consultations/models.py:191 apps/pharmacie/forms.py:31
+#: apps/consultations/models.py:194 apps/pharmacie/forms.py:46
 #: apps/pharmacie/models.py:69 apps/pharmacie/models.py:111
 #: apps/pharmacie/models.py:149
 msgid "médicament"
 msgstr "medicine"
 
-#: apps/consultations/models.py:192
+#: apps/consultations/models.py:195
 msgid "libellé prescrit"
 msgstr "prescribed name"
 
-#: apps/consultations/models.py:193
+#: apps/consultations/models.py:196
 msgid "Copie du libellé au moment de la prescription."
 msgstr "Copy of the name at the time of prescribing."
 
-#: apps/consultations/models.py:194
+#: apps/consultations/models.py:197
 msgid "posologie"
 msgstr "dosage"
 
-#: apps/consultations/models.py:195
+#: apps/consultations/models.py:198
 msgid "Ex. : 1 comprimé matin et soir."
 msgstr "E.g.: 1 tablet morning and evening."
 
-#: apps/consultations/models.py:196
+#: apps/consultations/models.py:199
 msgid "durée (jours)"
 msgstr "duration (days)"
 
-#: apps/consultations/models.py:198
+#: apps/consultations/models.py:201
 msgid "quantité à délivrer"
 msgstr "quantity to dispense"
 
-#: apps/consultations/models.py:199
+#: apps/consultations/models.py:202
 msgid "Nombre total d'unités à dispenser."
 msgstr "Total number of units to dispense."
 
-#: apps/consultations/models.py:201
+#: apps/consultations/models.py:204
 msgid "instructions complémentaires"
 msgstr "additional instructions"
 
-#: apps/consultations/models.py:205
+#: apps/consultations/models.py:208
 msgid "ligne d'ordonnance"
 msgstr "prescription line"
 
-#: apps/consultations/models.py:206
+#: apps/consultations/models.py:209
 msgid "lignes d'ordonnance"
 msgstr "prescription lines"
 
-#: apps/consultations/views.py:27 apps/core/views.py:104
+#: apps/consultations/views.py:29 apps/core/views.py:104
 #: apps/core/views.py:158 templates/consultations/detail.html:7
 #: templates/consultations/liste.html:3 templates/consultations/liste.html:7
-#: templates/core/statistiques.html:23 templates/core/vitrine.html:93
+#: templates/core/statistiques.html:23 templates/core/vitrine.html:96
 msgid "Consultations"
 msgstr "Consultations"
 
-#: apps/consultations/views.py:31 apps/pharmacie/views.py:217
-#: templates/consultations/liste.html:29
+#: apps/consultations/views.py:33 apps/pharmacie/views.py:294
+#: templates/consultations/liste.html:37
 #: templates/maternite/dossier_detail.html:83
 #: templates/patients/detail.html:141
 #: templates/pharmacie/dispensation_detail.html:79
@@ -1375,56 +1380,56 @@ msgstr "Consultations"
 msgid "Date"
 msgstr "Date"
 
-#: apps/consultations/views.py:81
+#: apps/consultations/views.py:88
 msgid "Consultation créée."
 msgstr "Consultation created."
 
-#: apps/consultations/views.py:101
+#: apps/consultations/views.py:108
 msgid "Consultation mise à jour."
 msgstr "Consultation updated."
 
-#: apps/consultations/views.py:141
+#: apps/consultations/views.py:148
 msgid "Constantes enregistrées."
 msgstr "Vital signs saved."
 
-#: apps/consultations/views.py:170
+#: apps/consultations/views.py:177
 msgid "Ordonnance créée. Ajoutez les médicaments."
 msgstr "Prescription created. Add the medicines."
 
-#: apps/consultations/views.py:206
+#: apps/consultations/views.py:213
 msgid "Cette ordonnance n'est plus modifiable."
 msgstr "This prescription can no longer be edited."
 
-#: apps/consultations/views.py:213
+#: apps/consultations/views.py:220
 msgid "Médicament ajouté à l'ordonnance."
 msgstr "Medicine added to the prescription."
 
-#: apps/consultations/views.py:215
+#: apps/consultations/views.py:222
 msgid "Formulaire invalide : %(err)s"
 msgstr "Invalid form: %(err)s"
 
-#: apps/consultations/views.py:227 apps/facturation/views.py:215
+#: apps/consultations/views.py:234 apps/facturation/views.py:215
 msgid "Ligne retirée."
 msgstr "Line removed."
 
-#: apps/consultations/views.py:238
+#: apps/consultations/views.py:245
 msgid "Ajoutez au moins un médicament avant de transmettre."
 msgstr "Add at least one medicine before sending."
 
-#: apps/consultations/views.py:248
+#: apps/consultations/views.py:255
 msgid "Ordonnance transmise à la pharmacie."
 msgstr "Prescription sent to pharmacy."
 
-#: apps/consultations/views.py:261
+#: apps/consultations/views.py:268
 msgid "Consultation clôturée."
 msgstr "Consultation closed."
 
-#: apps/core/admin.py:40
-#: templates/core/proprietaire/etablissement_creer.html:27
+#: apps/core/admin.py:48
+#: templates/core/proprietaire/etablissement_creer.html:35
 msgid "Premier administrateur de l'hôpital"
 msgstr "Hospital's first administrator"
 
-#: apps/core/admin.py:59
+#: apps/core/admin.py:67
 msgid ""
 "L'hôpital est créé, mais l'e-mail d'invitation n'a pas pu être envoyé. Dans "
 "Utilisateurs, utilisez l'action « Renvoyer l'invitation »."
@@ -1432,27 +1437,37 @@ msgstr ""
 "The hospital was created, but the invitation e-mail could not be sent. In "
 "Users, use the “Resend the invitation” action."
 
-#: apps/core/admin.py:128 apps/core/models.py:254
+#: apps/core/admin.py:136 apps/core/models.py:288
 msgid "journal d'audit"
 msgstr "audit log"
 
-#: apps/core/forms.py:28
+#: apps/core/forms.py:34
+#: templates/core/proprietaire/etablissement_creer.html:27
+#: templates/core/proprietaire/etablissement_detail.html:43
+msgid "Spécialités proposées"
+msgstr "Specialties offered"
+
+#: apps/core/forms.py:35
+msgid "Cochez les spécialités que l'hôpital propose (modifiable plus tard)."
+msgstr "Tick the specialties the hospital offers (can be changed later)."
+
+#: apps/core/forms.py:45
 msgid "Prénom de l'administrateur"
 msgstr "Administrator's first name"
 
-#: apps/core/forms.py:30
+#: apps/core/forms.py:47
 msgid "Nom de l'administrateur"
 msgstr "Administrator's last name"
 
-#: apps/core/forms.py:33
+#: apps/core/forms.py:50
 msgid "E-mail de l'administrateur"
 msgstr "Administrator's e-mail"
 
-#: apps/core/forms.py:34
+#: apps/core/forms.py:51
 msgid "L'invitation et le lien de connexion y seront envoyés."
 msgstr "The invitation and sign-in link will be sent there."
 
-#: apps/core/forms.py:96
+#: apps/core/forms.py:116
 msgid "— Choisir l'hôpital —"
 msgstr "— Choose the hospital —"
 
@@ -1484,169 +1499,185 @@ msgstr "subscription plan"
 msgid "plans d'abonnement"
 msgstr "subscription plans"
 
-#: apps/core/models.py:47
+#: apps/core/models.py:52
+msgid "ordre d'affichage"
+msgstr "display order"
+
+#: apps/core/models.py:56
+msgid "spécialités"
+msgstr "specialties"
+
+#: apps/core/models.py:77
 msgid "Période d'essai"
 msgstr "Trial period"
 
-#: apps/core/models.py:48 templates/facturation/tarifs.html:12
-#: templates/core/proprietaire/etablissement_detail.html:71
+#: apps/core/models.py:78 templates/facturation/tarifs.html:12
+#: templates/core/proprietaire/etablissement_detail.html:76
 #: templates/core/proprietaire/utilisateurs.html:37
 msgid "Actif"
 msgstr "Active"
 
-#: apps/core/models.py:49
+#: apps/core/models.py:79
 msgid "Suspendu"
 msgstr "Suspended"
 
-#: apps/core/models.py:52
+#: apps/core/models.py:82
 msgid "identifiant court"
 msgstr "short identifier"
 
-#: apps/core/models.py:55
+#: apps/core/models.py:85
 msgid "fin de la période d'essai"
 msgstr "trial period end"
 
-#: apps/core/models.py:57
+#: apps/core/models.py:87
 msgid "plan"
 msgstr "plan"
 
-#: apps/core/models.py:58
+#: apps/core/models.py:88
 msgid "Vide = aucune limite."
 msgstr "Empty = no limit."
 
-#: apps/core/models.py:59 apps/core/models.py:155
+#: apps/core/models.py:91
+msgid "spécialités proposées"
+msgstr "specialties offered"
+
+#: apps/core/models.py:92
+msgid "Les spécialités que cet hôpital propose à ses patients."
+msgstr "The specialties this hospital offers to its patients."
+
+#: apps/core/models.py:93 apps/core/models.py:189
 msgid "créé le"
 msgstr "created on"
 
-#: apps/core/models.py:63
+#: apps/core/models.py:97
 msgid "établissements"
 msgstr "facilities"
 
-#: apps/core/models.py:156
+#: apps/core/models.py:190
 msgid "modifié le"
 msgstr "updated on"
 
-#: apps/core/models.py:163
+#: apps/core/models.py:197
 msgid "créé par"
 msgstr "created by"
 
-#: apps/core/models.py:171
+#: apps/core/models.py:205
 msgid "modifié par"
 msgstr "updated by"
 
-#: apps/core/models.py:182
+#: apps/core/models.py:216
 msgid "nom de l'établissement"
 msgstr "facility name"
 
-#: apps/core/models.py:184
+#: apps/core/models.py:218
 msgid "logo"
 msgstr "logo"
 
-#: apps/core/models.py:188
+#: apps/core/models.py:222
 msgid "fuseau horaire"
 msgstr "time zone"
 
-#: apps/core/models.py:191
+#: apps/core/models.py:225
 msgid "langues actives"
 msgstr "active languages"
 
-#: apps/core/models.py:193
+#: apps/core/models.py:227
 msgid "Codes des langues proposées dans l'interface, ex. [\"fr\", \"bm\"]."
 msgstr "Language codes offered in the interface, e.g. [\"fr\", \"bm\"]."
 
-#: apps/core/models.py:197 apps/core/models.py:198
+#: apps/core/models.py:231 apps/core/models.py:232
 msgid "paramètres système"
 msgstr "system settings"
 
-#: apps/core/models.py:222
+#: apps/core/models.py:256
 msgid "Création"
 msgstr "Creation"
 
-#: apps/core/models.py:223
+#: apps/core/models.py:257
 msgid "Modification"
 msgstr "Update"
 
-#: apps/core/models.py:224 apps/facturation/models.py:30
+#: apps/core/models.py:258 apps/facturation/models.py:30
 #: apps/facturation/models.py:39 templates/consultations/formulaire.html:3
 #: templates/consultations/ordonnance_formulaire.html:7
 msgid "Consultation"
 msgstr "View"
 
-#: apps/core/models.py:225
+#: apps/core/models.py:259
 msgid "Suppression"
 msgstr "Deletion"
 
-#: apps/core/models.py:226 templates/registration/login.html:3
+#: apps/core/models.py:260 templates/registration/login.html:3
 #: templates/registration/login.html:7
 msgid "Connexion"
 msgstr "Login"
 
-#: apps/core/models.py:227 templates/base.html:81
+#: apps/core/models.py:261 templates/base.html:81
 #: templates/core/proprietaire/_base.html:46
 msgid "Déconnexion"
 msgstr "Logout"
 
-#: apps/core/models.py:244
+#: apps/core/models.py:278
 msgid "action"
 msgstr "action"
 
-#: apps/core/models.py:245
+#: apps/core/models.py:279
 msgid "type d'objet"
 msgstr "object type"
 
-#: apps/core/models.py:246
+#: apps/core/models.py:280
 msgid "identifiant de l'objet"
 msgstr "object ID"
 
-#: apps/core/models.py:248
+#: apps/core/models.py:282
 msgid "adresse IP"
 msgstr "IP address"
 
-#: apps/core/models.py:249
+#: apps/core/models.py:283
 msgid "données complémentaires"
 msgstr "additional data"
 
-#: apps/core/models.py:250
+#: apps/core/models.py:284
 msgid "horodatage"
 msgstr "timestamp"
 
-#: apps/core/models.py:253
+#: apps/core/models.py:287
 msgid "entrée du journal d'audit"
 msgstr "audit log entry"
 
-#: apps/core/models.py:262
+#: apps/core/models.py:296
 msgid "système"
 msgstr "system"
 
-#: apps/core/models.py:296
+#: apps/core/models.py:330
 msgid "destinataire"
 msgstr "recipient"
 
-#: apps/core/models.py:298
+#: apps/core/models.py:332
 msgid "titre"
 msgstr "title"
 
-#: apps/core/models.py:299
+#: apps/core/models.py:333
 msgid "message"
 msgstr "message"
 
-#: apps/core/models.py:300
+#: apps/core/models.py:334
 msgid "lien"
 msgstr "link"
 
-#: apps/core/models.py:301
+#: apps/core/models.py:335
 msgid "lu"
 msgstr "read"
 
-#: apps/core/models.py:302
+#: apps/core/models.py:336
 msgid "créée le"
 msgstr "created on"
 
-#: apps/core/models.py:305
+#: apps/core/models.py:339
 msgid "notification"
 msgstr "notification"
 
-#: apps/core/models.py:306
+#: apps/core/models.py:340
 msgid "notifications"
 msgstr "notifications"
 
@@ -1754,7 +1785,7 @@ msgid "Statistiques générales"
 msgstr "General statistics"
 
 #: apps/core/views.py:155 apps/patients/views.py:45
-#: templates/core/vitrine.html:71 templates/core/vitrine.html:88
+#: templates/core/vitrine.html:71 templates/core/vitrine.html:89
 #: templates/patients/detail.html:8 templates/patients/liste.html:3
 #: templates/patients/liste.html:7
 msgid "Patients"
@@ -1769,12 +1800,12 @@ msgid "Maternité"
 msgstr "Maternity"
 
 #: apps/core/views.py:165 apps/facturation/models.py:40
-#: templates/core/vitrine.html:103
+#: templates/core/vitrine.html:110
 msgid "Hospitalisation"
 msgstr "Inpatient care"
 
 #: apps/core/views.py:169 templates/bloc_operatoire/detail.html:7
-#: templates/core/vitrine.html:73 templates/core/vitrine.html:108
+#: templates/core/vitrine.html:73 templates/core/vitrine.html:117
 msgid "Bloc opératoire"
 msgstr "Operating theatre"
 
@@ -1784,7 +1815,7 @@ msgid "Analyses & imagerie"
 msgstr "Lab & imaging"
 
 #: apps/core/views.py:177 templates/core/vitrine.html:74
-#: templates/core/vitrine.html:118
+#: templates/core/vitrine.html:131
 msgid "Facturation"
 msgstr "Billing"
 
@@ -1873,14 +1904,14 @@ msgid "réf. transaction"
 msgstr "transaction ref."
 
 #: apps/facturation/forms.py:25 apps/facturation/models.py:256
-#: apps/facturation/models.py:291 apps/laboratoire/forms.py:75
-#: apps/laboratoire/forms.py:86 apps/laboratoire/models.py:179
-#: apps/pharmacie/models.py:237 templates/laboratoire/detail.html:87
+#: apps/facturation/models.py:291 apps/laboratoire/forms.py:115
+#: apps/laboratoire/forms.py:140 apps/laboratoire/models.py:179
+#: apps/pharmacie/models.py:237 templates/laboratoire/detail.html:88
 msgid "commentaire"
 msgstr "comment"
 
 #: apps/facturation/forms.py:52 apps/facturation/models.py:109
-#: apps/laboratoire/forms.py:97 apps/laboratoire/models.py:92
+#: apps/laboratoire/forms.py:151 apps/laboratoire/models.py:92
 msgid "motif d'annulation"
 msgstr "cancellation reason"
 
@@ -1892,12 +1923,12 @@ msgstr "Inpatient stay (per day)"
 msgid "Acte de bloc opératoire"
 msgstr "Operating theatre procedure"
 
-#: apps/facturation/models.py:33 apps/pharmacie/views.py:30
-#: apps/pharmacie/views.py:217
+#: apps/facturation/models.py:33 apps/pharmacie/views.py:34
+#: apps/pharmacie/views.py:294
 #: templates/consultations/ordonnance_detail.html:38
 #: templates/pharmacie/dispensation_detail.html:32
 #: templates/pharmacie/dispensation_detail.html:79
-#: templates/pharmacie/medicaments.html:39
+#: templates/pharmacie/medicaments.html:40
 #: templates/pharmacie/medicament_formulaire.html:3
 #: templates/pharmacie/mouvements.html:23
 msgid "Médicament"
@@ -1920,7 +1951,7 @@ msgstr "Pharmacy dispensing"
 msgid "libellé"
 msgstr "label"
 
-#: apps/facturation/models.py:50 apps/laboratoire/forms.py:41
+#: apps/facturation/models.py:50 apps/laboratoire/forms.py:81
 #: apps/laboratoire/models.py:35 apps/laboratoire/models.py:72
 msgid "catégorie"
 msgstr "category"
@@ -2403,68 +2434,89 @@ msgstr "Enter the discharge type and the summary."
 msgid "Sortie enregistrée."
 msgstr "Discharge saved."
 
-#: apps/laboratoire/forms.py:28
+#: apps/laboratoire/forms.py:14 apps/pharmacie/forms.py:29
+msgid "fichier Excel (.xlsx)"
+msgstr "Excel file (.xlsx)"
+
+#: apps/laboratoire/forms.py:21 apps/pharmacie/forms.py:36
+msgid "Le fichier doit être au format Excel (.xlsx)."
+msgstr "The file must be in Excel format (.xlsx)."
+
+#: apps/laboratoire/forms.py:23 apps/pharmacie/forms.py:38
+msgid "Fichier trop volumineux (5 Mo maximum)."
+msgstr "File too large (5 MB maximum)."
+
+#: apps/laboratoire/forms.py:43
 msgid "Format de fichier non autorisé (formats acceptés : PDF, JPG, PNG)."
 msgstr "File format not allowed (accepted formats: PDF, JPG, PNG)."
 
-#: apps/laboratoire/forms.py:31
+#: apps/laboratoire/forms.py:46
 msgid "Le fichier dépasse la taille maximale autorisée (10 Mo)."
 msgstr "The file exceeds the maximum allowed size (10 MB)."
 
-#: apps/laboratoire/forms.py:36
+#: apps/laboratoire/forms.py:51
 msgid "Le contenu du fichier ne correspond pas à son extension."
 msgstr "The file's content does not match its extension."
 
-#: apps/laboratoire/forms.py:44 apps/laboratoire/models.py:84
+#: apps/laboratoire/forms.py:76
+msgid "Ce code existe déjà."
+msgstr "This code already exists."
+
+#: apps/laboratoire/forms.py:84 apps/laboratoire/models.py:84
 msgid "priorité"
 msgstr "priority"
 
-#: apps/laboratoire/forms.py:45 apps/laboratoire/models.py:58
+#: apps/laboratoire/forms.py:85 apps/laboratoire/models.py:58
 msgid "Routine"
 msgstr "Routine"
 
-#: apps/laboratoire/forms.py:45 apps/laboratoire/models.py:59
+#: apps/laboratoire/forms.py:85 apps/laboratoire/models.py:59
 #: templates/laboratoire/detail.html:16
 msgid "Urgent"
 msgstr "Urgent"
 
-#: apps/laboratoire/forms.py:48 apps/laboratoire/models.py:86
+#: apps/laboratoire/forms.py:88 apps/laboratoire/models.py:86
 msgid "renseignements cliniques"
 msgstr "clinical information"
 
-#: apps/laboratoire/forms.py:51
+#: apps/laboratoire/forms.py:91
 msgid "examens demandés"
 msgstr "requested tests"
 
-#: apps/laboratoire/forms.py:63
+#: apps/laboratoire/forms.py:103
 msgid "Ces examens ne correspondent pas à la catégorie : %(l)s"
 msgstr "These tests do not match the category: %(l)s"
 
-#: apps/laboratoire/forms.py:69 apps/laboratoire/models.py:170
+#: apps/laboratoire/forms.py:109 apps/laboratoire/models.py:170
 msgid "valeur mesurée"
 msgstr "measured value"
 
-#: apps/laboratoire/forms.py:72 apps/laboratoire/models.py:171
+#: apps/laboratoire/forms.py:112 apps/laboratoire/models.py:171
 msgid "interprétation"
 msgstr "interpretation"
 
-#: apps/laboratoire/forms.py:73
+#: apps/laboratoire/forms.py:113
 msgid "— automatique —"
 msgstr "— automatic —"
 
-#: apps/laboratoire/forms.py:80 apps/laboratoire/models.py:174
-#: templates/laboratoire/detail.html:92
+#: apps/laboratoire/forms.py:117 apps/laboratoire/forms.py:138
+#: apps/laboratoire/models.py:176 templates/laboratoire/detail.html:90
+msgid "pièce jointe (image / PDF)"
+msgstr "attachment (image / PDF)"
+
+#: apps/laboratoire/forms.py:129
+msgid "Saisissez une valeur ou joignez un fichier."
+msgstr "Enter a value or attach a file."
+
+#: apps/laboratoire/forms.py:134 apps/laboratoire/models.py:174
+#: templates/laboratoire/detail.html:95
 msgid "compte-rendu"
 msgstr "report"
 
-#: apps/laboratoire/forms.py:82 apps/laboratoire/models.py:175
-#: templates/laboratoire/detail.html:94
+#: apps/laboratoire/forms.py:136 apps/laboratoire/models.py:175
+#: templates/laboratoire/detail.html:97
 msgid "conclusion"
 msgstr "conclusion"
-
-#: apps/laboratoire/forms.py:84 apps/laboratoire/models.py:176
-msgid "pièce jointe (image / PDF)"
-msgstr "attachment (image / PDF)"
 
 #: apps/laboratoire/models.py:28
 msgid "Analyse biologique"
@@ -2538,19 +2590,19 @@ msgstr "test line"
 msgid "lignes d'examen"
 msgstr "test lines"
 
-#: apps/laboratoire/models.py:161 templates/laboratoire/detail.html:81
+#: apps/laboratoire/models.py:161 templates/laboratoire/detail.html:82
 msgid "Normal"
 msgstr "Normal"
 
-#: apps/laboratoire/models.py:162 templates/laboratoire/detail.html:82
+#: apps/laboratoire/models.py:162 templates/laboratoire/detail.html:83
 msgid "Anormal — bas"
 msgstr "Abnormal — low"
 
-#: apps/laboratoire/models.py:163 templates/laboratoire/detail.html:83
+#: apps/laboratoire/models.py:163 templates/laboratoire/detail.html:84
 msgid "Anormal — haut"
 msgstr "Abnormal — high"
 
-#: apps/laboratoire/models.py:164 templates/laboratoire/detail.html:84
+#: apps/laboratoire/models.py:164 templates/laboratoire/detail.html:85
 msgid "Anormal"
 msgstr "Abnormal"
 
@@ -2578,42 +2630,94 @@ msgstr "results"
 msgid "CR imagerie"
 msgstr "imaging report"
 
-#: apps/laboratoire/views.py:44 templates/laboratoire/liste.html:7
+#: apps/laboratoire/views.py:51 templates/laboratoire/liste.html:7
 msgid "Demandes d'examen"
 msgstr "Test requests"
 
-#: apps/laboratoire/views.py:48 templates/facturation/tarifs.html:11
-#: templates/laboratoire/liste.html:38
+#: apps/laboratoire/views.py:55 templates/facturation/tarifs.html:11
+#: templates/laboratoire/liste.html:42
 msgid "Catégorie"
 msgstr "Category"
 
-#: apps/laboratoire/views.py:49 templates/laboratoire/liste.html:38
+#: apps/laboratoire/views.py:56 templates/laboratoire/liste.html:42
 msgid "Priorité"
 msgstr "Priority"
 
-#: apps/laboratoire/views.py:49 templates/laboratoire/liste.html:39
+#: apps/laboratoire/views.py:56 templates/laboratoire/liste.html:43
 msgid "Demandée le"
 msgstr "Requested on"
 
-#: apps/laboratoire/views.py:121
+#: apps/laboratoire/views.py:128
 msgid "Demande d'examen enregistrée."
 msgstr "Test request saved."
 
-#: apps/laboratoire/views.py:176
+#: apps/laboratoire/views.py:183
 msgid "Formulaire de résultat invalide."
 msgstr "Invalid result form."
 
-#: apps/laboratoire/views.py:193
+#: apps/laboratoire/views.py:200
 msgid "Résultat enregistré."
 msgstr "Result saved."
 
-#: apps/laboratoire/views.py:208
+#: apps/laboratoire/views.py:215
 msgid "Résultats validés. Le prescripteur a été notifié."
 msgstr "Results validated. The prescriber has been notified."
 
-#: apps/laboratoire/views.py:248
+#: apps/laboratoire/views.py:255
 msgid "Demande annulée."
 msgstr "Request cancelled."
+
+#: apps/laboratoire/views.py:260
+msgid "Code *"
+msgstr "Code *"
+
+#: apps/laboratoire/views.py:260
+msgid "Libellé *"
+msgstr "Label *"
+
+#: apps/laboratoire/views.py:260
+msgid "Catégorie (biologie/imagerie)"
+msgstr "Category (biology/imaging)"
+
+#: apps/laboratoire/views.py:261 apps/pharmacie/views.py:103
+msgid "Unité"
+msgstr "Unit"
+
+#: apps/laboratoire/views.py:261
+msgid "Valeurs de référence"
+msgstr "Reference values"
+
+#: apps/laboratoire/views.py:261
+msgid "Délai de rendu (heures)"
+msgstr "Turnaround time (hours)"
+
+#: apps/laboratoire/views.py:262 apps/pharmacie/views.py:104
+msgid "Actif (oui/non)"
+msgstr "Active (yes/no)"
+
+#: apps/laboratoire/views.py:282
+msgid "Analyse ajoutée au référentiel."
+msgstr "Test added to the catalogue."
+
+#: apps/laboratoire/views.py:308
+msgid "Ligne %(n)s : code et libellé sont obligatoires, ignorée."
+msgstr "Row %(n)s: code and label are required, skipped."
+
+#: apps/laboratoire/views.py:313 apps/pharmacie/views.py:140
+msgid "Ligne %(n)s : code « %(code)s » déjà utilisé, ignorée."
+msgstr "Row %(n)s: code “%(code)s” already used, skipped."
+
+#: apps/laboratoire/views.py:329
+msgid "%(n)s type(s) d'examen importé(s)."
+msgstr "%(n)s exam type(s) imported."
+
+#: apps/laboratoire/views.py:334 apps/pharmacie/views.py:167
+msgid " … (%(n)s de plus)"
+msgstr " … (%(n)s more)"
+
+#: apps/laboratoire/views.py:337 apps/pharmacie/views.py:170
+msgid "Le fichier ne contenait aucune ligne à importer."
+msgstr "The file contained no rows to import."
 
 #: apps/maternite/forms.py:35
 msgid "La date des dernières règles ne peut pas être dans le futur."
@@ -2993,7 +3097,7 @@ msgstr "Emergency contact"
 msgid "Informations complémentaires"
 msgstr "Additional information"
 
-#: apps/patients/admin.py:51 templates/core/vitrine.html:152
+#: apps/patients/admin.py:51 templates/core/vitrine.html:175
 msgid "Traçabilité"
 msgstr "Traceability"
 
@@ -3238,27 +3342,27 @@ msgstr "below threshold"
 msgid "périmé"
 msgstr "expired"
 
-#: apps/pharmacie/forms.py:34 apps/pharmacie/models.py:112
+#: apps/pharmacie/forms.py:49 apps/pharmacie/models.py:112
 msgid "numéro de lot"
 msgstr "batch number"
 
-#: apps/pharmacie/forms.py:36
+#: apps/pharmacie/forms.py:51
 msgid "quantité reçue"
 msgstr "quantity received"
 
-#: apps/pharmacie/forms.py:39 apps/pharmacie/models.py:115
+#: apps/pharmacie/forms.py:54 apps/pharmacie/models.py:115
 msgid "date de péremption"
 msgstr "expiry date"
 
-#: apps/pharmacie/forms.py:43 apps/pharmacie/models.py:116
+#: apps/pharmacie/forms.py:58 apps/pharmacie/models.py:116
 msgid "date de réception"
 msgstr "reception date"
 
-#: apps/pharmacie/forms.py:46 apps/pharmacie/models.py:117
+#: apps/pharmacie/forms.py:61 apps/pharmacie/models.py:117
 msgid "fournisseur"
 msgstr "supplier"
 
-#: apps/pharmacie/forms.py:52
+#: apps/pharmacie/forms.py:67
 msgid "La date de péremption doit être future."
 msgstr "The expiry date must be in the future."
 
@@ -3482,74 +3586,107 @@ msgstr "dispensing line"
 msgid "lignes de dispensation"
 msgstr "dispensing lines"
 
-#: apps/pharmacie/views.py:26 templates/pharmacie/medicaments.html:3
+#: apps/pharmacie/views.py:30 templates/pharmacie/medicaments.html:3
 #: templates/pharmacie/medicaments.html:7
 msgid "Catalogue et stock"
 msgstr "Catalogue and stock"
 
-#: apps/pharmacie/views.py:30 templates/pharmacie/medicaments.html:39
+#: apps/pharmacie/views.py:34 templates/pharmacie/medicaments.html:40
 msgid "Forme"
 msgstr "Form"
 
-#: apps/pharmacie/views.py:30 templates/pharmacie/medicaments.html:40
+#: apps/pharmacie/views.py:34 templates/pharmacie/medicaments.html:41
 msgid "Stock utilisable"
 msgstr "Usable stock"
 
-#: apps/pharmacie/views.py:31 templates/pharmacie/medicaments.html:41
+#: apps/pharmacie/views.py:35 templates/pharmacie/medicaments.html:42
 msgid "Seuil"
 msgstr "Threshold"
 
-#: apps/pharmacie/views.py:31 templates/pharmacie/medicaments.html:51
+#: apps/pharmacie/views.py:35 templates/pharmacie/medicaments.html:52
 #: templates/pharmacie/medicament_detail.html:18
 msgid "Sous le seuil"
 msgstr "Below threshold"
 
-#: apps/pharmacie/views.py:31 templates/pharmacie/medicaments.html:52
+#: apps/pharmacie/views.py:35 templates/pharmacie/medicaments.html:53
 msgid "Lots périmés"
 msgstr "Expired batches"
 
-#: apps/pharmacie/views.py:65
+#: apps/pharmacie/views.py:69
 msgid "Médicament ajouté au catalogue."
 msgstr "Medicine added to the catalogue."
 
-#: apps/pharmacie/views.py:77
+#: apps/pharmacie/views.py:81
 msgid "Médicament mis à jour."
 msgstr "Medicine updated."
 
-#: apps/pharmacie/views.py:120
+#: apps/pharmacie/views.py:102
+msgid "Dénomination *"
+msgstr "Name *"
+
+#: apps/pharmacie/views.py:102
+msgid "Dosage"
+msgstr "Strength"
+
+#: apps/pharmacie/views.py:102
+msgid "Forme galénique"
+msgstr "Dosage form"
+
+#: apps/pharmacie/views.py:103
+msgid "Seuil d'alerte"
+msgstr "Alert threshold"
+
+#: apps/pharmacie/views.py:103 templates/facturation/tarifs.html:10
+#: templates/core/proprietaire/plans.html:21
+msgid "Code"
+msgstr "Code"
+
+#: apps/pharmacie/views.py:104
+msgid "Prescriptible sage-femme (oui/non)"
+msgstr "Prescribable by midwife (yes/no)"
+
+#: apps/pharmacie/views.py:134
+msgid "Ligne %(n)s : dénomination manquante, ignorée."
+msgstr "Row %(n)s: name missing, skipped."
+
+#: apps/pharmacie/views.py:162
+msgid "%(n)s médicament(s) importé(s)."
+msgstr "%(n)s medicine(s) imported."
+
+#: apps/pharmacie/views.py:197
 msgid "Entrée de stock enregistrée."
 msgstr "Stock receipt saved."
 
-#: apps/pharmacie/views.py:184
+#: apps/pharmacie/views.py:261
 msgid "Aucune quantité à délivrer saisie."
 msgstr "No quantity to dispense entered."
 
-#: apps/pharmacie/views.py:203
+#: apps/pharmacie/views.py:280
 msgid "Délivrance enregistrée."
 msgstr "Dispensing saved."
 
-#: apps/pharmacie/views.py:213 templates/pharmacie/mouvements.html:3
+#: apps/pharmacie/views.py:290 templates/pharmacie/mouvements.html:3
 msgid "Mouvements de stock"
 msgstr "Stock movements"
 
-#: apps/pharmacie/views.py:217 templates/pharmacie/medicament_detail.html:57
+#: apps/pharmacie/views.py:294 templates/pharmacie/medicament_detail.html:57
 #: templates/pharmacie/mouvements.html:24
 msgid "Type"
 msgstr "Type"
 
-#: apps/pharmacie/views.py:218 templates/pharmacie/mouvements.html:24
+#: apps/pharmacie/views.py:295 templates/pharmacie/mouvements.html:24
 msgid "Quantité"
 msgstr "Quantity"
 
-#: apps/pharmacie/views.py:218 templates/pharmacie/mouvements.html:25
+#: apps/pharmacie/views.py:295 templates/pharmacie/mouvements.html:25
 msgid "Opérateur"
 msgstr "Operator"
 
-#: apps/pharmacie/views.py:244
+#: apps/pharmacie/views.py:321
 msgid "%(n)d unité(s) périmée(s) retirée(s) du stock."
 msgstr "%(n)d expired unit(s) removed from stock."
 
-#: apps/pharmacie/views.py:247
+#: apps/pharmacie/views.py:324
 msgid "Aucun lot périmé à retirer."
 msgstr "No expired batch to remove."
 
@@ -3600,14 +3737,14 @@ msgstr ""
 
 #: templates/assurances/bordereaux.html:48
 #: templates/bloc_operatoire/liste.html:45
-#: templates/consultations/liste.html:42 templates/core/notifications.html:24
+#: templates/consultations/liste.html:50 templates/core/notifications.html:24
 #: templates/facturation/impayes.html:25 templates/facturation/liste.html:50
-#: templates/hospitalisation/liste.html:45 templates/laboratoire/liste.html:50
+#: templates/hospitalisation/liste.html:45 templates/laboratoire/liste.html:54
 #: templates/maternite/dossier_detail.html:94
 #: templates/maternite/dossier_liste.html:41
 #: templates/maternite/_tableau_dossiers.html:15
 #: templates/patients/detail.html:153 templates/patients/liste.html:58
-#: templates/pharmacie/medicaments.html:55
+#: templates/pharmacie/medicaments.html:56
 #: templates/core/proprietaire/etablissements.html:44
 msgid "Ouvrir"
 msgstr "Open"
@@ -3616,7 +3753,7 @@ msgstr "Open"
 msgid "Aucun bordereau."
 msgstr "No statement."
 
-#: templates/assurances/liste.html:3 templates/core/vitrine.html:123
+#: templates/assurances/liste.html:3 templates/core/vitrine.html:138
 msgid "Assurances"
 msgstr "Insurers"
 
@@ -3652,7 +3789,8 @@ msgstr "Attach an insurance plan"
 #: templates/assurances/patient_assure_formulaire.html:20
 #: templates/consultations/constantes.html:19
 #: templates/consultations/formulaire.html:23
-#: templates/laboratoire/detail.html:96
+#: templates/laboratoire/detail.html:91 templates/laboratoire/detail.html:99
+#: templates/laboratoire/typeexamen_form.html:22
 #: templates/maternite/dossier_formulaire.html:28
 #: templates/patients/dossier_formulaire.html:19
 #: templates/patients/formulaire.html:26
@@ -3671,6 +3809,8 @@ msgstr "Save"
 #: templates/facturation/detail.html:83
 #: templates/hospitalisation/admission.html:28
 #: templates/laboratoire/demande.html:40
+#: templates/laboratoire/typeexamen_form.html:23
+#: templates/laboratoire/typeexamen_import.html:29
 #: templates/maternite/dossier_formulaire.html:29
 #: templates/maternite/dossier_terminer.html:21
 #: templates/maternite/visite_formulaire.html:75
@@ -3678,7 +3818,8 @@ msgstr "Save"
 #: templates/patients/formulaire.html:28
 #: templates/pharmacie/entree_stock.html:19
 #: templates/pharmacie/medicament_formulaire.html:24
-#: templates/core/proprietaire/etablissement_creer.html:39
+#: templates/pharmacie/medicament_import.html:29
+#: templates/core/proprietaire/etablissement_creer.html:47
 #: templates/core/proprietaire/etablissement_modifier.html:23
 #: templates/core/proprietaire/plan_formulaire.html:29
 #: templates/core/proprietaire/utilisateur_formulaire.html:31
@@ -3686,7 +3827,7 @@ msgid "Annuler"
 msgstr "Cancel"
 
 #: templates/base.html:30 templates/base.html:105
-#: templates/core/vitrine.html:52 templates/core/vitrine.html:176
+#: templates/core/vitrine.html:52 templates/core/vitrine.html:200
 msgid "Gestion hospitalière"
 msgstr "Hospital management"
 
@@ -3930,10 +4071,10 @@ msgid "Tous les statuts"
 msgstr "All statuses"
 
 #: templates/bloc_operatoire/liste.html:24
-#: templates/consultations/liste.html:16 templates/facturation/liste.html:29
-#: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:31
+#: templates/consultations/liste.html:24 templates/facturation/liste.html:29
+#: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:35
 #: templates/maternite/dossier_liste.html:24 templates/patients/liste.html:22
-#: templates/pharmacie/medicaments.html:22
+#: templates/pharmacie/medicaments.html:23
 #: templates/core/proprietaire/etablissements.html:25
 #: templates/core/proprietaire/journal.html:24
 #: templates/core/proprietaire/utilisateurs.html:30
@@ -3986,7 +4127,7 @@ msgstr ""
 
 #: templates/consultations/constantes.html:3
 #: templates/consultations/constantes.html:6
-#: templates/consultations/detail.html:56
+#: templates/consultations/detail.html:57
 #: templates/maternite/visite_detail.html:38
 #: templates/maternite/visite_formulaire.html:21
 msgid "Constantes"
@@ -3999,7 +4140,7 @@ msgstr "Vital signs"
 #: templates/pharmacie/medicament_detail.html:26
 #: templates/pharmacie/medicament_formulaire.html:7
 #: templates/core/proprietaire/etablissement_detail.html:19
-#: templates/core/proprietaire/etablissement_detail.html:80
+#: templates/core/proprietaire/etablissement_detail.html:85
 #: templates/core/proprietaire/etablissement_modifier.html:3
 #: templates/core/proprietaire/etablissement_modifier.html:9
 #: templates/core/proprietaire/plans.html:34
@@ -4020,70 +4161,74 @@ msgstr "Request a test"
 msgid "Facturer"
 msgstr "Invoice"
 
-#: templates/consultations/detail.html:45
+#: templates/consultations/detail.html:44
+msgid "Spécialité"
+msgstr "Specialty"
+
+#: templates/consultations/detail.html:46
 msgid "Histoire / symptômes"
 msgstr "History / symptoms"
 
-#: templates/consultations/detail.html:46
+#: templates/consultations/detail.html:47
 msgid "Examen clinique"
 msgstr "Clinical examination"
 
-#: templates/consultations/detail.html:47
+#: templates/consultations/detail.html:48
 #: templates/hospitalisation/detail.html:34
 msgid "Diagnostic"
 msgstr "Diagnosis"
 
-#: templates/consultations/detail.html:48
+#: templates/consultations/detail.html:49
 msgid "Conduite à tenir"
 msgstr "Management plan"
 
-#: templates/consultations/detail.html:58
+#: templates/consultations/detail.html:59
 msgid "Saisir"
 msgstr "Enter"
 
-#: templates/consultations/detail.html:65
+#: templates/consultations/detail.html:66
 msgid "Poids / Taille"
 msgstr "Weight / Height"
 
-#: templates/consultations/detail.html:66
+#: templates/consultations/detail.html:67
 msgid "IMC"
 msgstr "BMI"
 
-#: templates/consultations/detail.html:67
+#: templates/consultations/detail.html:68
 #: templates/maternite/visite_detail.html:42
 msgid "Température"
 msgstr "Temperature"
 
-#: templates/consultations/detail.html:68
+#: templates/consultations/detail.html:69
 msgid "Tension"
 msgstr "Blood pressure"
 
-#: templates/consultations/detail.html:69
+#: templates/consultations/detail.html:70
 msgid "FC / FR"
 msgstr "HR / RR"
 
-#: templates/consultations/detail.html:70
+#: templates/consultations/detail.html:71
 msgid "SpO₂ / Glycémie"
 msgstr "SpO₂ / Glucose"
 
-#: templates/consultations/detail.html:73
+#: templates/consultations/detail.html:74
 msgid "Aucune constante saisie."
 msgstr "No vital signs recorded."
 
-#: templates/consultations/detail.html:81
+#: templates/consultations/detail.html:82
 #: templates/pharmacie/dispensations.html:20
 msgid "Ordonnance"
 msgstr "Prescription"
 
-#: templates/consultations/detail.html:84
+#: templates/consultations/detail.html:85
 msgid "Créer"
 msgstr "Create"
 
-#: templates/consultations/detail.html:98
+#: templates/consultations/detail.html:99
 msgid "Ouvrir l'ordonnance"
 msgstr "Open the prescription"
 
-#: templates/consultations/detail.html:100
+#: templates/consultations/detail.html:101
 msgid "Aucune ordonnance."
 msgstr "No prescription."
 
@@ -4099,11 +4244,15 @@ msgstr "New consultation"
 msgid "Référence, patient, motif…"
 msgstr "Reference, patient, reason…"
 
-#: templates/consultations/liste.html:21
+#: templates/consultations/liste.html:19
+msgid "Toutes les spécialités"
+msgstr "All specialties"
+
+#: templates/consultations/liste.html:29
 msgid "Mes consultations"
 msgstr "My consultations"
 
-#: templates/consultations/liste.html:45
+#: templates/consultations/liste.html:53
 msgid "Aucune consultation."
 msgstr "No consultation."
 
@@ -4319,7 +4468,7 @@ msgstr "No notification."
 msgid "Hôpital"
 msgstr "Hospital"
 
-#: templates/core/proprietaire/etablissement_creer.html:28
+#: templates/core/proprietaire/etablissement_creer.html:36
 msgid ""
 "Il recevra un e-mail avec son identifiant et un lien pour choisir son mot de"
 " passe : vous ne transmettez jamais de mot de passe."
@@ -4327,7 +4476,7 @@ msgstr ""
 "They will receive an e-mail with their username and a link to choose their "
 "password: you never hand over a password."
 
-#: templates/core/proprietaire/etablissement_creer.html:38
+#: templates/core/proprietaire/etablissement_creer.html:46
 msgid "Créer l'hôpital"
 msgstr "Create the hospital"
 
@@ -4344,40 +4493,44 @@ msgstr "Places remaining"
 msgid "Illimité"
 msgstr "Unlimited"
 
-#: templates/core/proprietaire/etablissement_detail.html:46
+#: templates/core/proprietaire/etablissement_detail.html:44
+msgid "Aucune (médecine générale uniquement)"
+msgstr "None (general medicine only)"
+
+#: templates/core/proprietaire/etablissement_detail.html:51
 msgid "Activer l'abonnement"
 msgstr "Activate subscription"
 
-#: templates/core/proprietaire/etablissement_detail.html:52
+#: templates/core/proprietaire/etablissement_detail.html:57
 msgid "Suspendre l'accès"
 msgstr "Suspend access"
 
-#: templates/core/proprietaire/etablissement_detail.html:57
+#: templates/core/proprietaire/etablissement_detail.html:62
 msgid "Prolonger l'essai de 30 jours"
 msgstr "Extend the trial by 30 days"
 
-#: templates/core/proprietaire/etablissement_detail.html:62
+#: templates/core/proprietaire/etablissement_detail.html:67
 msgid "Personnel"
 msgstr "Staff"
 
-#: templates/core/proprietaire/etablissement_detail.html:64
+#: templates/core/proprietaire/etablissement_detail.html:69
 #: templates/core/proprietaire/utilisateurs.html:14
 #: templates/core/proprietaire/utilisateur_formulaire.html:3
 #: templates/core/proprietaire/utilisateur_formulaire.html:10
 msgid "Ajouter un utilisateur"
 msgstr "Add a user"
 
-#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/etablissement_detail.html:75
 #: templates/core/proprietaire/utilisateurs.html:36
 msgid "Rôle"
 msgstr "Role"
 
-#: templates/core/proprietaire/etablissement_detail.html:70
+#: templates/core/proprietaire/etablissement_detail.html:75
 #: templates/core/proprietaire/utilisateurs.html:37
 msgid "E-mail"
 msgstr "E-mail"
 
-#: templates/core/proprietaire/etablissement_detail.html:83
+#: templates/core/proprietaire/etablissement_detail.html:88
 #: templates/core/proprietaire/utilisateurs.html:66
 msgid "Aucun utilisateur."
 msgstr "No users."
@@ -4550,7 +4703,7 @@ msgstr ""
 "the lab, billing and insurance together in one platform."
 
 #: templates/core/vitrine.html:41 templates/core/vitrine.html:44
-#: templates/core/vitrine.html:63 templates/core/vitrine.html:168
+#: templates/core/vitrine.html:63 templates/core/vitrine.html:192
 #: templates/registration/inscription_hopital.html:32
 #: templates/registration/login.html:26
 #: templates/registration/mot_de_passe_termine.html:9
@@ -4581,7 +4734,7 @@ msgstr ""
 msgid "Inscrire mon hôpital"
 msgstr "Register my hospital"
 
-#: templates/core/vitrine.html:61 templates/core/vitrine.html:166
+#: templates/core/vitrine.html:61 templates/core/vitrine.html:190
 msgid "Nous contacter"
 msgstr "Contact us"
 
@@ -4593,7 +4746,7 @@ msgstr "Explore the features"
 msgid "Dossiers médicaux"
 msgstr "Medical records"
 
-#: templates/core/vitrine.html:72 templates/core/vitrine.html:98
+#: templates/core/vitrine.html:72 templates/core/vitrine.html:103
 msgid "Pharmacie"
 msgstr "Pharmacy"
 
@@ -4621,104 +4774,104 @@ msgstr ""
 "Every department gets its own tools, without stepping on each other's toes —"
 " access is defined by role."
 
-#: templates/core/vitrine.html:89
+#: templates/core/vitrine.html:90
 msgid ""
 "Dossiers médicaux, allergies et antécédents centralisés pour chaque patient."
 msgstr "Medical records, allergies and history centralised for every patient."
 
-#: templates/core/vitrine.html:94
+#: templates/core/vitrine.html:97
 msgid ""
 "Constantes, diagnostic et ordonnances avec alertes d'allergie et "
 "d'interaction."
 msgstr ""
 "Vitals, diagnosis and prescriptions with allergy and interaction alerts."
 
-#: templates/core/vitrine.html:99
+#: templates/core/vitrine.html:104
 msgid "Stock par lots (FEFO), dispensation et alertes de péremption."
 msgstr "Batch-tracked stock (FEFO), dispensing and expiry alerts."
 
-#: templates/core/vitrine.html:104
+#: templates/core/vitrine.html:111
 msgid "Occupation des lits en temps réel, admission, suivi quotidien, sortie."
 msgstr "Real-time bed occupancy, admission, daily follow-up, discharge."
 
-#: templates/core/vitrine.html:109
+#: templates/core/vitrine.html:118
 msgid ""
 "Planification sans conflit, checklist sécurité, comptes-rendus opératoires."
 msgstr "Conflict-free scheduling, safety checklist, operative reports."
 
-#: templates/core/vitrine.html:113
+#: templates/core/vitrine.html:124
 msgid "Laboratoire & imagerie"
 msgstr "Lab & imaging"
 
-#: templates/core/vitrine.html:114
+#: templates/core/vitrine.html:125
 msgid ""
 "Demandes d'examen, résultats et notification automatique du prescripteur."
 msgstr ""
 "Test requests, results and automatic notification of the requesting "
 "clinician."
 
-#: templates/core/vitrine.html:119
+#: templates/core/vitrine.html:132
 msgid "Factures générées automatiquement à la clôture de chaque acte."
 msgstr "Invoices generated automatically when each procedure is closed."
 
-#: templates/core/vitrine.html:124
+#: templates/core/vitrine.html:139
 msgid "Contrats, taux de couverture et bordereaux par organisme."
 msgstr "Contracts, coverage rates and settlement statements per insurer."
 
-#: templates/core/vitrine.html:132
+#: templates/core/vitrine.html:148
 msgid "Conçu pour un usage hospitalier sérieux"
 msgstr "Built for serious hospital use"
 
-#: templates/core/vitrine.html:137
+#: templates/core/vitrine.html:154
 msgid "Accès par rôle"
 msgstr "Role-based access"
 
-#: templates/core/vitrine.html:138
+#: templates/core/vitrine.html:155
 msgid "Chaque utilisateur ne voit que ce qui concerne son métier."
 msgstr "Each user only sees what concerns their role."
 
-#: templates/core/vitrine.html:142
+#: templates/core/vitrine.html:161
 msgid "Multilingue"
 msgstr "Multilingual"
 
-#: templates/core/vitrine.html:143
+#: templates/core/vitrine.html:162
 msgid "Français, anglais, arabe et langues nationales."
 msgstr "French, English, Arabic and national languages."
 
-#: templates/core/vitrine.html:147
+#: templates/core/vitrine.html:168
 msgid "Exports PDF/Excel"
 msgstr "PDF/Excel exports"
 
-#: templates/core/vitrine.html:148
+#: templates/core/vitrine.html:169
 msgid "Sur tous les modules, pour le suivi et le reporting."
 msgstr "Across every module, for tracking and reporting."
 
-#: templates/core/vitrine.html:153
+#: templates/core/vitrine.html:176
 msgid "Journal d'audit sur les actions sensibles."
 msgstr "Audit log for sensitive actions."
 
-#: templates/core/vitrine.html:160
+#: templates/core/vitrine.html:184
 msgid "Prête à organiser votre hôpital ?"
 msgstr "Ready to organise your hospital?"
 
-#: templates/core/vitrine.html:162
+#: templates/core/vitrine.html:186
 msgid ""
 "Créez l'espace de votre établissement en quelques minutes : essai gratuit, "
 "sans carte bancaire."
 msgstr ""
 "Set up your facility's workspace in minutes: free trial, no credit card."
 
-#: templates/core/vitrine.html:163
+#: templates/core/vitrine.html:187
 msgid "Commencer l'essai gratuit"
 msgstr "Start the free trial"
 
-#: templates/core/vitrine.html:165
+#: templates/core/vitrine.html:189
 msgid ""
 "Contactez-nous : nous ouvrons l'espace de votre établissement et formons "
 "votre équipe."
 msgstr "Contact us: we set up your facility's workspace and train your team."
 
-#: templates/core/vitrine.html:168
+#: templates/core/vitrine.html:192
 msgid "Déjà client ?"
 msgstr "Already a customer?"
 
@@ -4796,7 +4949,7 @@ msgid "Grille tarifaire"
 msgstr "Fee schedule"
 
 #: templates/facturation/liste.html:21 templates/hospitalisation/liste.html:16
-#: templates/laboratoire/liste.html:16
+#: templates/laboratoire/liste.html:20
 msgid "Référence, patient…"
 msgstr "Reference, patient…"
 
@@ -4807,11 +4960,6 @@ msgstr "No invoice."
 #: templates/facturation/tarifs.html:7
 msgid "Modifiable via l'interface d'administration."
 msgstr "Editable via the admin site."
-
-#: templates/facturation/tarifs.html:10
-#: templates/core/proprietaire/plans.html:21
-msgid "Code"
-msgstr "Code"
 
 #: templates/facturation/tarifs.html:11
 msgid "Réf. externe"
@@ -4985,43 +5133,53 @@ msgstr "pending"
 msgid "réf."
 msgstr "ref."
 
-#: templates/laboratoire/detail.html:63
-msgid "Conclusion"
-msgstr "Conclusion"
-
-#: templates/laboratoire/detail.html:64
+#: templates/laboratoire/detail.html:61 templates/laboratoire/detail.html:65
 msgid "Pièce jointe"
 msgstr "Attachment"
 
-#: templates/laboratoire/detail.html:67
+#: templates/laboratoire/detail.html:64
+msgid "Conclusion"
+msgstr "Conclusion"
+
+#: templates/laboratoire/detail.html:68
 msgid "saisi par"
 msgstr "entered by"
 
-#: templates/laboratoire/detail.html:77
+#: templates/laboratoire/detail.html:78
 msgid "valeur"
 msgstr "value"
 
-#: templates/laboratoire/detail.html:80
+#: templates/laboratoire/detail.html:81
 msgid "— auto —"
 msgstr "— auto —"
 
-#: templates/laboratoire/detail.html:110
+#: templates/laboratoire/detail.html:113
 msgid "Annuler la demande"
 msgstr "Cancel the request"
 
-#: templates/laboratoire/liste.html:10
+#: templates/laboratoire/liste.html:11
+#: templates/laboratoire/typeexamen_form.html:3
+#: templates/laboratoire/typeexamen_form.html:6
+msgid "Ajouter une analyse"
+msgstr "Add a test"
+
+#: templates/laboratoire/liste.html:12
+msgid "Importer le référentiel (Excel)"
+msgstr "Import the catalogue (Excel)"
+
+#: templates/laboratoire/liste.html:14
 msgid "Mes résultats validés"
 msgstr "My validated results"
 
-#: templates/laboratoire/liste.html:20
+#: templates/laboratoire/liste.html:24
 msgid "En cours (défaut)"
 msgstr "In progress (default)"
 
-#: templates/laboratoire/liste.html:28
+#: templates/laboratoire/liste.html:32
 msgid "Mes prescriptions"
 msgstr "My requests"
 
-#: templates/laboratoire/liste.html:53
+#: templates/laboratoire/liste.html:57
 msgid "Aucune demande."
 msgstr "No request."
 
@@ -5040,6 +5198,29 @@ msgstr "test(s)"
 #: templates/laboratoire/mes_resultats.html:17
 msgid "Aucun résultat validé."
 msgstr "No validated result."
+
+#: templates/laboratoire/typeexamen_import.html:3
+#: templates/laboratoire/typeexamen_import.html:6
+msgid "Importer des types d'examen"
+msgstr "Import exam types"
+
+#: templates/laboratoire/typeexamen_import.html:10
+msgid ""
+"Vous avez déjà la liste de vos examens (biologie ou imagerie) dans un "
+"tableau ? Téléchargez le modèle, complétez-le, puis importez-le ici."
+msgstr ""
+"Already have your list of exams (biology or imaging) in a spreadsheet? "
+"Download the template, fill it in, then import it here."
+
+#: templates/laboratoire/typeexamen_import.html:14
+#: templates/pharmacie/medicament_import.html:14
+msgid "Télécharger le modèle Excel"
+msgstr "Download the Excel template"
+
+#: templates/laboratoire/typeexamen_import.html:28
+#: templates/pharmacie/medicament_import.html:28
+msgid "Importer"
+msgstr "Import"
 
 #: templates/maternite/_alertes.html:3
 msgid "Signes de danger"
@@ -5285,14 +5466,14 @@ msgid "Œdèmes"
 msgstr "Oedema"
 
 #: templates/maternite/visite_detail.html:51
-#: templates/core/proprietaire/etablissement_detail.html:79
+#: templates/core/proprietaire/etablissement_detail.html:84
 #: templates/core/proprietaire/plans.html:32
 #: templates/core/proprietaire/utilisateurs.html:46
 msgid "Oui"
 msgstr "Yes"
 
 #: templates/maternite/visite_detail.html:51
-#: templates/core/proprietaire/etablissement_detail.html:79
+#: templates/core/proprietaire/etablissement_detail.html:84
 #: templates/core/proprietaire/plans.html:32
 #: templates/core/proprietaire/utilisateurs.html:46
 msgid "Non"
@@ -5615,34 +5796,52 @@ msgstr "Recent movements"
 msgid "Aucun mouvement."
 msgstr "No movement."
 
+#: templates/pharmacie/medicament_import.html:3
+#: templates/pharmacie/medicament_import.html:6
+msgid "Importer des médicaments"
+msgstr "Import medicines"
+
+#: templates/pharmacie/medicament_import.html:10
+msgid ""
+"Vous avez déjà la liste de vos médicaments dans un tableau (Excel, ou une "
+"autre pharmacie) ? Téléchargez le modèle, complétez-le, puis importez-le "
+"ici."
+msgstr ""
+"Already have your list of medicines in a spreadsheet (Excel, or another "
+"pharmacy)? Download the template, fill it in, then import it here."
+
 #: templates/pharmacie/medicaments.html:14
+msgid "Importer (Excel)"
+msgstr "Import (Excel)"
+
+#: templates/pharmacie/medicaments.html:15
 #: templates/pharmacie/medicament_formulaire.html:8
 msgid "Nouveau médicament"
 msgstr "New medicine"
 
-#: templates/pharmacie/medicaments.html:21
+#: templates/pharmacie/medicaments.html:22
 msgid "Rechercher…"
 msgstr "Search…"
 
-#: templates/pharmacie/medicaments.html:26
+#: templates/pharmacie/medicaments.html:27
 msgid "%(n)s sous le seuil"
 msgid_plural "%(n)s sous le seuil"
 msgstr[0] "%(n)s below threshold"
 msgstr[1] "%(n)s below threshold"
 
-#: templates/pharmacie/medicaments.html:30
+#: templates/pharmacie/medicaments.html:31
 msgid "Retirer les périmés"
 msgstr "Remove expired items"
 
-#: templates/pharmacie/medicaments.html:33
+#: templates/pharmacie/medicaments.html:34
 msgid "Journal des mouvements"
 msgstr "Movement log"
 
-#: templates/pharmacie/medicaments.html:53
+#: templates/pharmacie/medicaments.html:54
 msgid "Inactif"
 msgstr "Inactive"
 
-#: templates/pharmacie/medicaments.html:58
+#: templates/pharmacie/medicaments.html:59
 msgid "Catalogue vide."
 msgstr "Empty catalogue."
 
