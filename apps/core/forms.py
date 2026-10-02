@@ -18,10 +18,19 @@ _DATE = {"class": "form-control", "type": "date"}
 _CHECK = {"class": "form-check-input"}
 
 
+class _CasesACocher(forms.CheckboxSelectMultiple):
+    """Cases à cocher : la classe Bootstrap va sur chaque case, pas sur le conteneur."""
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        option["attrs"]["class"] = "form-check-input me-2"
+        return option
+
+
 def _champ_specialites() -> forms.ModelMultipleChoiceField:
     return forms.ModelMultipleChoiceField(
         queryset=Specialite.objects.all(), required=False,
-        widget=forms.CheckboxSelectMultiple(attrs=_CHECK),
+        widget=_CasesACocher,
         label=_("Spécialités proposées"),
         help_text=_("Cochez les spécialités que l'hôpital propose (modifiable plus tard)."))
 

@@ -84,3 +84,11 @@ class ConsultationParSpecialiteTests(TestCase):
         page = self.client.get(reverse("consultations:liste"), {"specialite": self.oph.pk})
         self.assertContains(page, "vue floue")
         self.assertNotContains(page, "toux")
+
+
+class AffichageCasesTests(TestCase):
+    def test_la_classe_bootstrap_est_sur_chaque_case_et_pas_sur_le_conteneur(self):
+        from apps.core.forms import EtablissementModifierForm
+        html = str(EtablissementModifierForm()["specialites"])
+        self.assertEqual(html.count("form-check-input"), Specialite.objects.count())
+        self.assertNotIn('<div id="id_specialites" class="form-check-input', html)
