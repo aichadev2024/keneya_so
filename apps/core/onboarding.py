@@ -85,6 +85,7 @@ def creer_hopital_client(form, *, request):
     if etab.statut == Etablissement.Statut.ESSAI and not etab.essai_jusqu_au:
         etab.essai_jusqu_au = date.today() + timedelta(days=settings.ESSAI_DUREE_JOURS)
     etab.save()
+    form.save_m2m()
 
     d = form.cleaned_data
     admin = initialiser_etablissement(

@@ -48,6 +48,9 @@ class Consultation(TenantOwnedModel, TimeStampedModel):
     praticien = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
                                   null=True, blank=True, related_name="consultations_effectuees",
                                   verbose_name=_("praticien"))
+    specialite = models.ForeignKey("core.Specialite", on_delete=models.SET_NULL, null=True,
+                                   blank=True, related_name="consultations",
+                                   verbose_name=_("spécialité"))
     date_consultation = models.DateTimeField(_("date de la consultation"), default=timezone.now)
 
     motif = models.CharField(_("motif de consultation"), max_length=255)

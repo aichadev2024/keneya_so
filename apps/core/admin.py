@@ -5,11 +5,19 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from .forms import CreationHopitalForm
-from .models import Etablissement, HistoriqueAction, Notification, ParametresSysteme, Plan
+from .models import (
+    Etablissement, HistoriqueAction, Notification, ParametresSysteme, Plan, Specialite,
+)
 from .onboarding import creer_hopital_client
 
 logger = logging.getLogger(__name__)
 Utilisateur = get_user_model()
+
+
+@admin.register(Specialite)
+class SpecialiteAdmin(admin.ModelAdmin):
+    list_display = ("nom", "code", "ordre")
+    prepopulated_fields = {"code": ("nom",)}
 
 
 @admin.register(Plan)
@@ -36,7 +44,7 @@ class EtablissementAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=None):
         if obj is None:
             return [
-                (None, {"fields": ("nom", "plan", "statut", "essai_jusqu_au")}),
+                (None, {"fields": ("nom", "plan", "statut", "essai_jusqu_au", "specialites")}),
                 (_("Premier administrateur de l'hôpital"), {
                     "fields": ("admin_prenom", "admin_nom", "admin_email", "admin_username")}),
             ]

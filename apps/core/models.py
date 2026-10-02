@@ -40,6 +40,36 @@ class Plan(models.Model):
         return self.nom
 
 
+class Specialite(models.Model):
+    """Spécialité médicale du catalogue de la plateforme (ophtalmologie, pédiatrie…).
+
+    Catalogue global géré par le propriétaire ; chaque hôpital choisit celles qu'il propose
+    (``Etablissement.specialites``).
+    """
+
+    code = models.SlugField(_("code"), max_length=40, unique=True)
+    nom = models.CharField(_("nom"), max_length=100)
+    ordre = models.PositiveSmallIntegerField(_("ordre d'affichage"), default=0)
+
+    class Meta:
+        verbose_name = _("spécialité")
+        verbose_name_plural = _("spécialités")
+        ordering = ["ordre", "nom"]
+
+    def __str__(self) -> str:
+        return self.nom
+
+    @classmethod
+    def de_l_etablissement_courant(cls):
+        """Spécialités proposées par l'hôpital du contexte courant (aucune hors contexte)."""
+        from .tenancy import contexte_courant
+
+        valeur = contexte_courant()
+        if isinstance(valeur, int):
+            return cls.objects.filter(etablissements=valeur)
+        return cls.objects.none()
+
+
 class Etablissement(models.Model):
     """Un hôpital / établissement client de la plateforme (le « locataire » du SaaS)."""
 
@@ -56,6 +86,10 @@ class Etablissement(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.PROTECT, null=True, blank=True,
                              related_name="etablissements", verbose_name=_("plan"),
                              help_text=_("Vide = aucune limite."))
+    specialites = models.ManyToManyField(
+        Specialite, blank=True, related_name="etablissements",
+        verbose_name=_("spécialités proposées"),
+        help_text=_("Les spécialités que cet hôpital propose à ses patients."))
     cree_le = models.DateTimeField(_("créé le"), auto_now_add=True)
 
     class Meta:

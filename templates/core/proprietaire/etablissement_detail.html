@@ -39,6 +39,11 @@
   </div></div></div>
 </div>
 
+<div class="card shadow-sm mb-4"><div class="card-body">
+  <div class="small text-body-secondary mb-1">{% translate "Spécialités proposées" %}</div>
+  {% for s in etablissement.specialites.all %}<span class="badge text-bg-info me-1">{{ s.nom }}</span>{% empty %}<span class="text-body-secondary">{% translate "Aucune (médecine générale uniquement)" %}</span>{% endfor %}
+</div></div>
+
 <div class="card shadow-sm mb-4"><div class="card-body d-flex flex-wrap gap-2">
   {% if etablissement.statut != "ACTIF" %}
     <form method="post" action="{% url 'core:proprietaire_etablissement_activer' etablissement.pk %}">

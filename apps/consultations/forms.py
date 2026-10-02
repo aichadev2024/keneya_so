@@ -1,4 +1,7 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
+
+from apps.core.models import Specialite
 
 from .models import Constantes, Consultation, LigneOrdonnance, Ordonnance
 
@@ -9,7 +12,7 @@ _SELECT = {"class": "form-select"}
 class ConsultationForm(forms.ModelForm):
     class Meta:
         model = Consultation
-        fields = ["motif", "histoire_maladie", "examen_clinique", "diagnostic",
+        fields = ["specialite", "motif", "histoire_maladie", "examen_clinique", "diagnostic",
                   "conduite_a_tenir", "statut"]
         widgets = {
             "motif": forms.TextInput(attrs=_INPUT),
@@ -18,7 +21,19 @@ class ConsultationForm(forms.ModelForm):
             "diagnostic": forms.Textarea(attrs={**_INPUT, "rows": 2}),
             "conduite_a_tenir": forms.Textarea(attrs={**_INPUT, "rows": 2}),
             "statut": forms.Select(attrs=_SELECT),
+            "specialite": forms.Select(attrs=_SELECT),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Seules les spécialités de l'hôpital sont proposées ; le champ disparaît si
+        # l'hôpital n'en a déclaré aucune.
+        disponibles = Specialite.de_l_etablissement_courant()
+        if disponibles.exists():
+            self.fields["specialite"].queryset = disponibles
+            self.fields["specialite"].empty_label = _("— Médecine générale —")
+        else:
+            del self.fields["specialite"]
 
 
 class ConstantesForm(forms.ModelForm):

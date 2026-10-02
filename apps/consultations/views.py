@@ -13,6 +13,8 @@ from apps.core.exports import ExportableListMixin
 from apps.core.models import HistoriqueAction
 from apps.patients.models import Patient
 
+from apps.core.models import Specialite
+
 from .forms import ConstantesForm, ConsultationForm, LigneOrdonnanceForm, OrdonnanceForm
 from .models import Consultation, LigneOrdonnance, Ordonnance
 from .services import alertes_prescription
@@ -48,12 +50,17 @@ class ConsultationListView(LoginRequiredMixin, PermissionRequiredMixin,
             )
         if self.request.GET.get("mes") == "1":
             qs = qs.filter(praticien=self.request.user)
+        self.specialite = self.request.GET.get("specialite", "").strip()
+        if self.specialite.isdigit():
+            qs = qs.filter(specialite_id=int(self.specialite))
         return qs
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx["q"] = self.q
         ctx["mes"] = self.request.GET.get("mes") == "1"
+        ctx["specialites"] = Specialite.de_l_etablissement_courant()
+        ctx["specialite"] = self.specialite
         return ctx
 
 

@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.accounts.forms import CreationPersonnelForm
 
-from .models import Etablissement, Plan
+from .models import Etablissement, Plan, Specialite
 
 Utilisateur = get_user_model()
 
@@ -16,6 +16,14 @@ _INPUT = {"class": "form-control"}
 _SELECT = {"class": "form-select"}
 _DATE = {"class": "form-control", "type": "date"}
 _CHECK = {"class": "form-check-input"}
+
+
+def _champ_specialites() -> forms.ModelMultipleChoiceField:
+    return forms.ModelMultipleChoiceField(
+        queryset=Specialite.objects.all(), required=False,
+        widget=forms.CheckboxSelectMultiple(attrs=_CHECK),
+        label=_("Spécialités proposées"),
+        help_text=_("Cochez les spécialités que l'hôpital propose (modifiable plus tard)."))
 
 
 class CreationHopitalForm(forms.ModelForm):
@@ -34,10 +42,11 @@ class CreationHopitalForm(forms.ModelForm):
         help_text=_("L'invitation et le lien de connexion y seront envoyés."))
     admin_username = forms.CharField(label=_("Identifiant de connexion"), max_length=150,
                                      widget=forms.TextInput(attrs=_INPUT))
+    specialites = _champ_specialites()
 
     class Meta:
         model = Etablissement
-        fields = ("nom", "plan", "statut", "essai_jusqu_au")
+        fields = ("nom", "plan", "statut", "essai_jusqu_au", "specialites")
         widgets = {
             "nom": forms.TextInput(attrs=_INPUT),
             "plan": forms.Select(attrs=_SELECT),
@@ -58,11 +67,13 @@ class CreationHopitalForm(forms.ModelForm):
 
 
 class EtablissementModifierForm(forms.ModelForm):
-    """Modification d'un hôpital existant (nom, plan, statut, fin d'essai)."""
+    """Modification d'un hôpital existant (nom, plan, statut, fin d'essai, spécialités)."""
+
+    specialites = _champ_specialites()
 
     class Meta:
         model = Etablissement
-        fields = ("nom", "plan", "statut", "essai_jusqu_au")
+        fields = ("nom", "plan", "statut", "essai_jusqu_au", "specialites")
         widgets = {
             "nom": forms.TextInput(attrs=_INPUT),
             "plan": forms.Select(attrs=_SELECT),

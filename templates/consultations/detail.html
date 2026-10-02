@@ -41,6 +41,7 @@
   <div class="col-lg-7">
     <div class="card shadow-sm h-100"><div class="card-body">
       <dl class="row mb-0">
+        {% if consultation.specialite %}<dt class="col-sm-4">{% translate "Spécialité" %}</dt><dd class="col-sm-8">{{ consultation.specialite }}</dd>{% endif %}
         <dt class="col-sm-4">{% translate "Motif" %}</dt><dd class="col-sm-8">{{ consultation.motif }}</dd>
         <dt class="col-sm-4">{% translate "Histoire / symptômes" %}</dt><dd class="col-sm-8">{{ consultation.histoire_maladie|default:"—"|linebreaksbr }}</dd>
         <dt class="col-sm-4">{% translate "Examen clinique" %}</dt><dd class="col-sm-8">{{ consultation.examen_clinique|default:"—"|linebreaksbr }}</dd>

@@ -24,6 +24,14 @@
   </div></div>
 
   <div class="card shadow-sm mb-3"><div class="card-body">
+    <h2 class="h6 mb-3">{% translate "Spécialités proposées" %}</h2>
+    <p class="small text-body-secondary">{{ form.specialites.help_text }}</p>
+    {% for choix in form.specialites %}
+      <div class="form-check">{{ choix.tag }} <label class="form-check-label" for="{{ choix.id_for_label }}">{{ choix.choice_label }}</label></div>
+    {% endfor %}
+  </div></div>
+
+  <div class="card shadow-sm mb-3"><div class="card-body">
     <h2 class="h6 mb-3">{% translate "Premier administrateur de l'hôpital" %}</h2>
     <p class="small text-body-secondary">{% translate "Il recevra un e-mail avec son identifiant et un lien pour choisir son mot de passe : vous ne transmettez jamais de mot de passe." %}</p>
     <div class="row g-3">

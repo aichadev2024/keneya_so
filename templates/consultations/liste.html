@@ -13,6 +13,14 @@
     <input type="search" name="q" value="{{ q }}" class="form-control"
            placeholder="{% translate 'Référence, patient, motif…' %}">
   </div>
+  {% if specialites %}
+  <div class="col-auto">
+    <select name="specialite" class="form-select" onchange="this.form.submit()">
+      <option value="">{% translate "Toutes les spécialités" %}</option>
+      {% for s in specialites %}<option value="{{ s.pk }}" {% if specialite == s.pk|stringformat:"s" %}selected{% endif %}>{{ s.nom }}</option>{% endfor %}
+    </select>
+  </div>
+  {% endif %}
   <div class="col-auto"><button class="btn btn-outline-primary">{% translate "Rechercher" %}</button></div>
   <div class="col-auto d-flex align-items-center">
     <div class="form-check">

@@ -224,7 +224,7 @@ class PiegesDeConstructionTests(BaseDeuxHopitaux):
         from django.apps import apps as registre
         from apps.core.models import TenantOwnedModel
 
-        exemptes = {"Etablissement", "Plan", "Utilisateur", "HistoriqueAction"}
+        exemptes = {"Etablissement", "Plan", "Specialite", "Utilisateur", "HistoriqueAction"}  # Plan et Specialite : catalogues globaux
         oublies = [
             m.__name__ for m in registre.get_models()
             if m.__module__.startswith("apps.") and not issubclass(m, TenantOwnedModel)
