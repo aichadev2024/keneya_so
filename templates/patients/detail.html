@@ -29,6 +29,9 @@
         <a class="btn btn-outline-primary" href="{% url 'maternite:dossier_nouveau' patient.pk %}"><i class="bi bi-heart-pulse"></i> {% translate "Dossier de grossesse" %}</a>
       {% endif %}
     {% endif %}
+    {% if perms.soins.add_soin %}
+      <a class="btn btn-outline-primary" href="{% url 'soins:creer' patient.pk %}"><i class="bi bi-bandaid"></i> {% translate "Enregistrer un soin" %}</a>
+    {% endif %}
     {% if perms.hospitalisation.add_hospitalisation %}
       <a class="btn btn-outline-primary" href="{% url 'hospitalisation:admettre' patient.pk %}">{% translate "Admettre" %}</a>
     {% endif %}
@@ -126,6 +129,25 @@
           </li>
         {% empty %}
           <li class="list-group-item text-body-secondary">{% translate "Aucune couverture enregistrée." %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if perms.soins.view_soin %}
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header">{% translate "Soins récents" %}</div>
+      <ul class="list-group list-group-flush">
+        {% for s in patient.soins.all|slice:":5" %}
+          <li class="list-group-item d-flex justify-content-between">
+            <span><a href="{% url 'soins:detail' s.pk %}">{{ s.get_type_soin_display }}</a>
+              <span class="small text-body-secondary">— {{ s.soignant.get_full_name|default:"—" }}</span></span>
+            <span class="small text-body-secondary">{{ s.date_soin|date:"d/m/Y H:i" }}</span>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-body-secondary">{% translate "Aucun soin enregistré." %}</li>
         {% endfor %}
       </ul>
     </div>

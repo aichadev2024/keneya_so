@@ -43,6 +43,7 @@ urlpatterns += i18n_patterns(
     path("assurances/", include("apps.assurances.urls")),
     path("laboratoire/", include("apps.laboratoire.urls")),
     path("maternite/", include("apps.maternite.urls")),
+    path("soins/", include("apps.soins.urls")),
     prefix_default_language=True,
 )
 

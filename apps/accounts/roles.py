@@ -19,7 +19,7 @@ Role = Utilisateur.Role
 APPS_GEREES = {
     "core", "accounts", "patients", "consultations", "pharmacie",
     "hospitalisation", "bloc_operatoire", "laboratoire", "facturation",
-    "assurances", "maternite", "auth",  # "auth" : gestion des utilisateurs/groupes par l'admin
+    "assurances", "maternite", "soins", "auth",  # "auth" : gestion des utilisateurs/groupes par l'admin
 }
 
 _LECTURE_PATIENT = [
@@ -208,6 +208,10 @@ _MATERNITE_SUIVI = _MATERNITE_LECTURE + [
     "maternite.change_consultationprenatale",
 ]
 
+# Soins : injections, pansements, pansements post-opératoires
+_SOINS_LECTURE = ["soins.view_soin"]
+_SOINS_REALISER = _SOINS_LECTURE + ["soins.add_soin", "soins.change_soin"]
+
 PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
     Role.ADMIN: ["*"],
     Role.AGENT_ACCUEIL: [
@@ -229,21 +233,21 @@ PERMISSIONS_PAR_ROLE: dict[str, list[str]] = {
         "bloc_operatoire.view_compterenduoperatoire",
         "bloc_operatoire.view_salleoperatoire",
         "bloc_operatoire.view_typeintervention",
-    ],
+    ] + _SOINS_LECTURE,
     # La sage-femme suit la grossesse, hospitalise et prescrit dans la limite des
     # médicaments que l'hôpital lui autorise (Medicament.prescriptible_sage_femme).
     Role.SAGE_FEMME: (_SUIVI_MEDICAL + _PRESCRIRE + _LABO_PRESCRIRE + _MATERNITE_SUIVI
                       + _HOSPIT_MEDECIN + ["patients.add_patient"]),
     Role.CHIRURGIEN: (_SUIVI_MEDICAL + _PRESCRIRE + _HOSPIT_MEDECIN + _BLOC_CHIRURGIEN
-                      + _LABO_PRESCRIRE),
+                      + _LABO_PRESCRIRE + _SOINS_REALISER),
     # L'anesthésiste consulte, prescrit, demande des examens et participe aux interventions.
     Role.ANESTHESISTE: (_SUIVI_MEDICAL + _PRESCRIRE + _LABO_PRESCRIRE + _HOSPIT_SOIGNANT
-                        + _BLOC_LECTURE + _BLOC_CHECKLIST + [
+                        + _BLOC_LECTURE + _BLOC_CHECKLIST + _SOINS_LECTURE + [
         "bloc_operatoire.change_intervention",  # validation de la faisabilité anesthésique
     ]),
     # L'infirmier consulte, prescrit, demande des examens et réalise les soins.
     Role.INFIRMIER: (_LECTURE_PATIENT + _PRESCRIRE + _LABO_PRESCRIRE + _HOSPIT_SOIGNANT
-                     + _MATERNITE_LECTURE),
+                     + _MATERNITE_LECTURE + _SOINS_REALISER),
     Role.IBODE: ["patients.view_patient", "patients.view_dossiermedical"]
     + _HOSPIT_LECTURE + _BLOC_LECTURE + _BLOC_CHECKLIST,
     Role.PHARMACIEN: ["patients.view_patient"] + _PHARMACIE,

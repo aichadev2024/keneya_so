@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ soin.reference }} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb"><ol class="breadcrumb small">
+  <li class="breadcrumb-item"><a href="{% url 'soins:liste' %}">{% translate "Soins" %}</a></li>
+  <li class="breadcrumb-item active">{{ soin.reference }}</li>
+</ol></nav>
+<h1 class="h3 mb-3">{{ soin.get_type_soin_display }} <small class="text-body-secondary fs-6">{{ soin.reference }}</small></h1>
+
+<div class="card shadow-sm"><div class="card-body">
+  <dl class="row mb-0">
+    <dt class="col-sm-3">{% translate "Patient" %}</dt>
+    <dd class="col-sm-9"><a href="{% url 'patients:detail' soin.patient.pk %}">{{ soin.patient.nom_complet }}</a></dd>
+    <dt class="col-sm-3">{% translate "Date du soin" %}</dt><dd class="col-sm-9">{{ soin.date_soin|date:"d/m/Y H:i" }}</dd>
+    <dt class="col-sm-3">{% translate "Soignant" %}</dt><dd class="col-sm-9">{{ soin.soignant.get_full_name|default:"—" }}</dd>
+    <dt class="col-sm-3">{% translate "Soin réalisé" %}</dt><dd class="col-sm-9">{{ soin.description|linebreaksbr }}</dd>
+    <dt class="col-sm-3">{% translate "Observations" %}</dt><dd class="col-sm-9">{{ soin.observations|default:"—"|linebreaksbr }}</dd>
+    {% if soin.hospitalisation %}
+      <dt class="col-sm-3">{% translate "Séjour" %}</dt>
+      <dd class="col-sm-9"><a href="{% url 'hospitalisation:detail' soin.hospitalisation.pk %}">{{ soin.hospitalisation.reference }}</a></dd>
+    {% endif %}
+    {% if soin.intervention %}
+      <dt class="col-sm-3">{% translate "Intervention" %}</dt>
+      <dd class="col-sm-9"><a href="{% url 'bloc_operatoire:detail' soin.intervention.pk %}">{{ soin.intervention.reference }}</a></dd>
+    {% endif %}
+  </dl>
+</div></div>
+{% endblock %}

@@ -91,6 +91,7 @@ LOCAL_APPS = [
     "apps.facturation",     # phase 6
     "apps.assurances",      # phase 6
     "apps.maternite",       # suivi prénatal (sage-femme)
+    "apps.soins",           # soins infirmiers : injections, pansements
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

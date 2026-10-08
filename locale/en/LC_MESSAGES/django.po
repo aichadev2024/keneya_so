@@ -72,7 +72,7 @@ msgid "Prénom"
 msgstr "First name"
 
 #: apps/accounts/forms.py:68 apps/patients/views.py:49
-#: templates/patients/detail.html:79 templates/patients/liste.html:39
+#: templates/patients/detail.html:82 templates/patients/liste.html:39
 #: templates/core/proprietaire/etablissements.html:31
 #: templates/core/proprietaire/etablissement_detail.html:75
 #: templates/core/proprietaire/plans.html:21
@@ -348,7 +348,7 @@ msgstr "insurance plans"
 #: apps/consultations/admin.py:48 apps/consultations/models.py:47
 #: apps/facturation/models.py:90 apps/hospitalisation/models.py:157
 #: apps/laboratoire/models.py:71 apps/patients/models.py:112
-#: apps/patients/models.py:163
+#: apps/patients/models.py:163 apps/soins/models.py:29
 msgid "patient"
 msgstr "patient"
 
@@ -406,7 +406,7 @@ msgstr "Settled"
 #: apps/consultations/models.py:143 apps/facturation/models.py:87
 #: apps/facturation/models.py:241 apps/hospitalisation/models.py:155
 #: apps/laboratoire/models.py:68 apps/maternite/models.py:44
-#: apps/pharmacie/models.py:155
+#: apps/pharmacie/models.py:155 apps/soins/models.py:27
 msgid "référence"
 msgstr "reference"
 
@@ -466,7 +466,7 @@ msgstr "Insurance statements"
 #: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
 #: templates/laboratoire/liste.html:41
 #: templates/maternite/dossier_liste.html:30
-#: templates/patients/detail.html:141
+#: templates/patients/detail.html:163 templates/soins/liste.html:34
 msgid "Référence"
 msgstr "Reference"
 
@@ -497,7 +497,7 @@ msgstr "Amount"
 #: templates/maternite/dossier_detail.html:84
 #: templates/maternite/dossier_liste.html:17
 #: templates/maternite/dossier_liste.html:31
-#: templates/patients/detail.html:143
+#: templates/patients/detail.html:165
 #: templates/pharmacie/dispensations.html:21
 #: templates/core/proprietaire/etablissements.html:18
 #: templates/core/proprietaire/etablissements.html:31
@@ -521,7 +521,8 @@ msgstr "Invoice"
 #: templates/consultations/liste.html:38 templates/facturation/impayes.html:13
 #: templates/facturation/liste.html:35 templates/hospitalisation/liste.html:32
 #: templates/laboratoire/liste.html:41
-#: templates/pharmacie/dispensations.html:20
+#: templates/pharmacie/dispensations.html:20 templates/soins/detail.html:14
+#: templates/soins/liste.html:35
 msgid "Patient"
 msgstr "Patient"
 
@@ -869,7 +870,7 @@ msgid "annulée / reportée le"
 msgstr "cancelled / postponed on"
 
 #: apps/bloc_operatoire/models.py:255 apps/bloc_operatoire/models.py:321
-#: apps/bloc_operatoire/models.py:378
+#: apps/bloc_operatoire/models.py:378 apps/soins/models.py:44
 msgid "intervention"
 msgstr "procedure"
 
@@ -1095,7 +1096,7 @@ msgstr "Average duration by practitioner"
 
 #: apps/bloc_operatoire/views.py:212 apps/consultations/views.py:34
 #: templates/bloc_operatoire/indicateurs.html:66
-#: templates/consultations/liste.html:39 templates/patients/detail.html:142
+#: templates/consultations/liste.html:39 templates/patients/detail.html:164
 msgid "Praticien"
 msgstr "Practitioner"
 
@@ -1108,7 +1109,7 @@ msgstr "Postponement / cancellation"
 #: apps/pharmacie/views.py:295 templates/bloc_operatoire/detail.html:40
 #: templates/consultations/detail.html:45
 #: templates/consultations/liste.html:38
-#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:142
+#: templates/hospitalisation/detail.html:33 templates/patients/detail.html:164
 #: templates/pharmacie/medicament_detail.html:58
 #: templates/pharmacie/mouvements.html:25
 msgid "Motif"
@@ -1372,10 +1373,10 @@ msgstr "Consultations"
 #: apps/consultations/views.py:33 apps/pharmacie/views.py:294
 #: templates/consultations/liste.html:37
 #: templates/maternite/dossier_detail.html:83
-#: templates/patients/detail.html:141
+#: templates/patients/detail.html:163
 #: templates/pharmacie/dispensation_detail.html:79
 #: templates/pharmacie/medicament_detail.html:57
-#: templates/pharmacie/mouvements.html:23
+#: templates/pharmacie/mouvements.html:23 templates/soins/liste.html:34
 #: templates/core/proprietaire/journal.html:30
 msgid "Date"
 msgstr "Date"
@@ -1768,7 +1769,7 @@ msgstr "Procedures requested"
 msgid "Interventions terminées"
 msgstr "Procedures completed"
 
-#: apps/core/views.py:122 apps/core/views.py:184
+#: apps/core/views.py:122 apps/core/views.py:187
 #: templates/core/statistiques.html:57
 #: templates/pharmacie/dispensations.html:3
 #: templates/pharmacie/dispensation_detail.html:7
@@ -1791,7 +1792,12 @@ msgstr "General statistics"
 msgid "Patients"
 msgstr "Patients"
 
-#: apps/core/views.py:162 templates/maternite/accueil.html:3
+#: apps/core/views.py:162 templates/soins/detail.html:7
+#: templates/soins/liste.html:3 templates/soins/liste.html:6
+msgid "Soins"
+msgstr "Care"
+
+#: apps/core/views.py:165 templates/maternite/accueil.html:3
 #: templates/maternite/accueil.html:8
 #: templates/maternite/dossier_detail.html:7
 #: templates/maternite/dossier_liste.html:7
@@ -1799,39 +1805,39 @@ msgstr "Patients"
 msgid "Maternité"
 msgstr "Maternity"
 
-#: apps/core/views.py:165 apps/facturation/models.py:40
+#: apps/core/views.py:168 apps/facturation/models.py:40
 #: templates/core/vitrine.html:110
 msgid "Hospitalisation"
 msgstr "Inpatient care"
 
-#: apps/core/views.py:169 templates/bloc_operatoire/detail.html:7
+#: apps/core/views.py:172 templates/bloc_operatoire/detail.html:7
 #: templates/core/vitrine.html:73 templates/core/vitrine.html:117
 msgid "Bloc opératoire"
 msgstr "Operating theatre"
 
-#: apps/core/views.py:173 templates/laboratoire/detail.html:7
+#: apps/core/views.py:176 templates/laboratoire/detail.html:7
 #: templates/laboratoire/liste.html:3
 msgid "Analyses & imagerie"
 msgstr "Lab & imaging"
 
-#: apps/core/views.py:177 templates/core/vitrine.html:74
+#: apps/core/views.py:180 templates/core/vitrine.html:74
 #: templates/core/vitrine.html:131
 msgid "Facturation"
 msgstr "Billing"
 
-#: apps/core/views.py:180
+#: apps/core/views.py:183
 msgid "Bordereaux assurance"
 msgstr "Insurance statements"
 
-#: apps/core/views.py:188
+#: apps/core/views.py:191
 msgid "Pharmacie — stock"
 msgstr "Pharmacy — stock"
 
-#: apps/core/views.py:192
+#: apps/core/views.py:195
 msgid "Statistiques"
 msgstr "Statistics"
 
-#: apps/core/views.py:195
+#: apps/core/views.py:198
 msgid "Administration"
 msgstr "Administration"
 
@@ -2078,7 +2084,7 @@ msgid "paiements"
 msgstr "payments"
 
 #: apps/facturation/models.py:281 apps/patients/views.py:50
-#: templates/patients/detail.html:63 templates/patients/detail.html:81
+#: templates/patients/detail.html:66 templates/patients/detail.html:84
 #: templates/patients/liste.html:42
 msgid "Téléphone"
 msgstr "Phone"
@@ -2204,7 +2210,7 @@ msgstr "ward"
 #: apps/hospitalisation/forms.py:24 apps/hospitalisation/models.py:111
 #: apps/hospitalisation/models.py:120 apps/hospitalisation/models.py:161
 #: templates/hospitalisation/detail.html:18
-#: templates/hospitalisation/liste.html:41 templates/patients/detail.html:51
+#: templates/hospitalisation/liste.html:41 templates/patients/detail.html:54
 msgid "lit"
 msgstr "bed"
 
@@ -2354,7 +2360,7 @@ msgstr "Medication administration"
 msgid "Relevé de constantes"
 msgstr "Vital signs recording"
 
-#: apps/hospitalisation/models.py:258
+#: apps/hospitalisation/models.py:258 apps/soins/models.py:41
 msgid "séjour"
 msgstr "stay"
 
@@ -3085,11 +3091,11 @@ msgstr "Antenatal visit updated."
 msgid "Identité"
 msgstr "Identity"
 
-#: apps/patients/admin.py:41 templates/patients/detail.html:60
+#: apps/patients/admin.py:41 templates/patients/detail.html:63
 msgid "Coordonnées"
 msgstr "Contact details"
 
-#: apps/patients/admin.py:44 templates/patients/detail.html:76
+#: apps/patients/admin.py:44 templates/patients/detail.html:79
 msgid "Personne à prévenir"
 msgstr "Emergency contact"
 
@@ -3309,7 +3315,7 @@ msgstr "Sex"
 msgid "Âge"
 msgstr "Age"
 
-#: apps/patients/views.py:50 templates/patients/detail.html:65
+#: apps/patients/views.py:50 templates/patients/detail.html:68
 #: templates/patients/liste.html:43
 msgid "Ville"
 msgstr "Town"
@@ -3690,27 +3696,95 @@ msgstr "%(n)d expired unit(s) removed from stock."
 msgid "Aucun lot périmé à retirer."
 msgstr "No expired batch to remove."
 
-#: config/settings.py:194 apps/accounts/models.py:50
+#: apps/soins/forms.py:33
+msgid "— Soin ambulatoire —"
+msgstr "— Outpatient care —"
+
+#: apps/soins/forms.py:34
+msgid "— Aucune —"
+msgstr "— None —"
+
+#: apps/soins/models.py:20
+msgid "Injection"
+msgstr "Injection"
+
+#: apps/soins/models.py:21
+msgid "Pansement"
+msgstr "Dressing"
+
+#: apps/soins/models.py:22
+msgid "Pansement post-opératoire"
+msgstr "Post-operative dressing"
+
+#: apps/soins/models.py:23
+msgid "Perfusion"
+msgstr "Infusion"
+
+#: apps/soins/models.py:24
+msgid "Suture / retrait de fils"
+msgstr "Suturing / suture removal"
+
+#: apps/soins/models.py:25
+msgid "Autre soin"
+msgstr "Other care"
+
+#: apps/soins/models.py:30
+msgid "type de soin"
+msgstr "type of care"
+
+#: apps/soins/models.py:32
+msgid "soin réalisé"
+msgstr "care provided"
+
+#: apps/soins/models.py:33
+msgid "Produit, dose, voie d'administration, site, état de la plaie…"
+msgstr "Product, dose, route of administration, site, wound condition…"
+
+#: apps/soins/models.py:34
+msgid "observations"
+msgstr "observations"
+
+#: apps/soins/models.py:35
+msgid "date du soin"
+msgstr "date of care"
+
+#: apps/soins/models.py:38
+msgid "soignant"
+msgstr "caregiver"
+
+#: apps/soins/models.py:47
+msgid "soin"
+msgstr "care"
+
+#: apps/soins/models.py:48
+msgid "soins"
+msgstr "care"
+
+#: apps/soins/views.py:70
+msgid "Soin enregistré."
+msgstr "Care recorded."
+
+#: config/settings.py:195 apps/accounts/models.py:50
 msgid "Français"
 msgstr "French"
 
-#: config/settings.py:195 apps/accounts/models.py:51
+#: config/settings.py:196 apps/accounts/models.py:51
 msgid "Anglais"
 msgstr "English"
 
-#: config/settings.py:196 apps/accounts/models.py:52
+#: config/settings.py:197 apps/accounts/models.py:52
 msgid "Arabe"
 msgstr "Arabic"
 
-#: config/settings.py:197 apps/accounts/models.py:53
+#: config/settings.py:198 apps/accounts/models.py:53
 msgid "Bambara"
 msgstr "Bambara"
 
-#: config/settings.py:198 apps/accounts/models.py:54
+#: config/settings.py:199 apps/accounts/models.py:54
 msgid "Peulh (fulfulde)"
 msgstr "Fula (Fulfulde)"
 
-#: config/settings.py:199 apps/accounts/models.py:55
+#: config/settings.py:200 apps/accounts/models.py:55
 msgid "Soninké"
 msgstr "Soninke"
 
@@ -3743,8 +3817,8 @@ msgstr ""
 #: templates/maternite/dossier_detail.html:94
 #: templates/maternite/dossier_liste.html:41
 #: templates/maternite/_tableau_dossiers.html:15
-#: templates/patients/detail.html:153 templates/patients/liste.html:58
-#: templates/pharmacie/medicaments.html:56
+#: templates/patients/detail.html:175 templates/patients/liste.html:58
+#: templates/pharmacie/medicaments.html:56 templates/soins/liste.html:46
 #: templates/core/proprietaire/etablissements.html:44
 msgid "Ouvrir"
 msgstr "Open"
@@ -3765,7 +3839,7 @@ msgstr "Partner insurers"
 msgid "plafond"
 msgstr "cap"
 
-#: templates/assurances/liste.html:30 templates/patients/detail.html:125
+#: templates/assurances/liste.html:30 templates/patients/detail.html:128
 msgid "inactif"
 msgstr "inactive"
 
@@ -3795,6 +3869,7 @@ msgstr "Attach an insurance plan"
 #: templates/patients/dossier_formulaire.html:19
 #: templates/patients/formulaire.html:26
 #: templates/pharmacie/medicament_formulaire.html:23
+#: templates/soins/formulaire.html:21
 #: templates/core/proprietaire/etablissement_modifier.html:22
 #: templates/core/proprietaire/plan_formulaire.html:28
 #: templates/core/proprietaire/utilisateur_formulaire.html:30
@@ -3819,6 +3894,7 @@ msgstr "Save"
 #: templates/pharmacie/entree_stock.html:19
 #: templates/pharmacie/medicament_formulaire.html:24
 #: templates/pharmacie/medicament_import.html:29
+#: templates/soins/formulaire.html:22
 #: templates/core/proprietaire/etablissement_creer.html:47
 #: templates/core/proprietaire/etablissement_modifier.html:23
 #: templates/core/proprietaire/plan_formulaire.html:29
@@ -4074,7 +4150,7 @@ msgstr "All statuses"
 #: templates/consultations/liste.html:24 templates/facturation/liste.html:29
 #: templates/hospitalisation/liste.html:26 templates/laboratoire/liste.html:35
 #: templates/maternite/dossier_liste.html:24 templates/patients/liste.html:22
-#: templates/pharmacie/medicaments.html:23
+#: templates/pharmacie/medicaments.html:23 templates/soins/liste.html:21
 #: templates/core/proprietaire/etablissements.html:25
 #: templates/core/proprietaire/journal.html:24
 #: templates/core/proprietaire/utilisateurs.html:30
@@ -4135,8 +4211,8 @@ msgstr "Vital signs"
 
 #: templates/consultations/detail.html:24
 #: templates/maternite/dossier_detail.html:30
-#: templates/maternite/visite_detail.html:24 templates/patients/detail.html:42
-#: templates/patients/detail.html:92 templates/patients/formulaire.html:7
+#: templates/maternite/visite_detail.html:24 templates/patients/detail.html:45
+#: templates/patients/detail.html:95 templates/patients/formulaire.html:7
 #: templates/pharmacie/medicament_detail.html:26
 #: templates/pharmacie/medicament_formulaire.html:7
 #: templates/core/proprietaire/etablissement_detail.html:19
@@ -4978,7 +5054,7 @@ msgid "Ce patient a déjà un séjour en cours."
 msgstr "This patient already has an ongoing stay."
 
 #: templates/hospitalisation/admission.html:27
-#: templates/patients/detail.html:33
+#: templates/patients/detail.html:36
 msgid "Admettre"
 msgstr "Admit"
 
@@ -5553,89 +5629,102 @@ msgstr "Archived"
 msgid "âge inconnu"
 msgstr "age unknown"
 
-#: templates/patients/detail.html:36
+#: templates/patients/detail.html:33 templates/soins/formulaire.html:3
+#: templates/soins/formulaire.html:6
+msgid "Enregistrer un soin"
+msgstr "Record care"
+
+#: templates/patients/detail.html:39
 msgid "Demander une intervention"
 msgstr "Request a procedure"
 
-#: templates/patients/detail.html:39
+#: templates/patients/detail.html:42
 msgid "Ajouter une assurance"
 msgstr "Add insurance"
 
-#: templates/patients/detail.html:50
+#: templates/patients/detail.html:53
 msgid "Patient hospitalisé — %(s)s"
 msgstr "Patient admitted — %(s)s"
 
-#: templates/patients/detail.html:64
+#: templates/patients/detail.html:67
 msgid "Adresse"
 msgstr "Address"
 
-#: templates/patients/detail.html:66
+#: templates/patients/detail.html:69
 msgid "Date de naissance"
 msgstr "Date of birth"
 
-#: templates/patients/detail.html:67
+#: templates/patients/detail.html:70
 msgid "estimée"
 msgstr "estimated"
 
-#: templates/patients/detail.html:68
+#: templates/patients/detail.html:71
 msgid "Lieu de naissance"
 msgstr "Place of birth"
 
-#: templates/patients/detail.html:69
+#: templates/patients/detail.html:72
 msgid "Profession"
 msgstr "Occupation"
 
-#: templates/patients/detail.html:80
+#: templates/patients/detail.html:83
 msgid "Lien"
 msgstr "Relationship"
 
-#: templates/patients/detail.html:90
+#: templates/patients/detail.html:93
 #: templates/patients/dossier_formulaire.html:3
 #: templates/patients/dossier_formulaire.html:6
 msgid "Dossier médical"
 msgstr "Medical record"
 
-#: templates/patients/detail.html:98
+#: templates/patients/detail.html:101
 msgid "Antécédents médicaux"
 msgstr "Medical history"
 
-#: templates/patients/detail.html:99
+#: templates/patients/detail.html:102
 msgid "Antécédents chirurgicaux"
 msgstr "Surgical history"
 
-#: templates/patients/detail.html:100
+#: templates/patients/detail.html:103
 msgid "Antécédents familiaux"
 msgstr "Family history"
 
-#: templates/patients/detail.html:101
+#: templates/patients/detail.html:104
 msgid "Traitements en cours"
 msgstr "Current treatments"
 
-#: templates/patients/detail.html:102
+#: templates/patients/detail.html:105
 msgid "Habitudes de vie"
 msgstr "Lifestyle habits"
 
-#: templates/patients/detail.html:103
+#: templates/patients/detail.html:106 templates/soins/detail.html:19
 msgid "Observations"
 msgstr "Observations"
 
-#: templates/patients/detail.html:104
+#: templates/patients/detail.html:107
 msgid "Allergies"
 msgstr "Allergies"
 
-#: templates/patients/detail.html:119
+#: templates/patients/detail.html:122
 msgid "Couvertures d'assurance"
 msgstr "Insurance coverage"
 
-#: templates/patients/detail.html:128
+#: templates/patients/detail.html:131
 msgid "Aucune couverture enregistrée."
 msgstr "No coverage recorded."
 
-#: templates/patients/detail.html:138
+#: templates/patients/detail.html:141
+msgid "Soins récents"
+msgstr "Recent care"
+
+#: templates/patients/detail.html:150 templates/soins/liste.html:49
+msgid "Aucun soin enregistré."
+msgstr "No care recorded."
+
+#: templates/patients/detail.html:160
 msgid "Historique des consultations"
 msgstr "Consultation history"
 
-#: templates/patients/detail.html:156
+#: templates/patients/detail.html:178
 msgid "Aucune consultation enregistrée."
 msgstr "No consultation recorded."
 
@@ -5849,7 +5938,7 @@ msgstr "Empty catalogue."
 msgid "Journal des mouvements de stock"
 msgstr "Stock movement log"
 
-#: templates/pharmacie/mouvements.html:13
+#: templates/pharmacie/mouvements.html:13 templates/soins/liste.html:15
 msgid "Tous les types"
 msgstr "All types"
 
@@ -6082,3 +6171,35 @@ msgstr "Creating the first administrator account"
 #: templates/registration/premiere_configuration.html:27
 msgid "Créer le compte administrateur"
 msgstr "Create administrator account"
+
+#: templates/soins/detail.html:16
+msgid "Date du soin"
+msgstr "Date of care"
+
+#: templates/soins/detail.html:17 templates/soins/liste.html:36
+msgid "Soignant"
+msgstr "Caregiver"
+
+#: templates/soins/detail.html:18
+msgid "Soin réalisé"
+msgstr "Care provided"
+
+#: templates/soins/detail.html:21
+msgid "Séjour"
+msgstr "Stay"
+
+#: templates/soins/detail.html:25
+msgid "Intervention"
+msgstr "Surgery"
+
+#: templates/soins/liste.html:11
+msgid "Patient, n° de dossier, référence…"
+msgstr "Patient, file no., reference…"
+
+#: templates/soins/liste.html:14 templates/soins/liste.html:35
+msgid "Type de soin"
+msgstr "Type of care"
+
+#: templates/soins/liste.html:26
+msgid "Mes soins"
+msgstr "My care"

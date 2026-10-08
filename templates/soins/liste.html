@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Soins" %} — Kènèya Sô{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-3">{% translate "Soins" %}</h1>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-sm-6 col-md-4">
+    <input type="search" name="q" value="{{ q }}" class="form-control"
+           placeholder="{% translate 'Patient, n° de dossier, référence…' %}">
+  </div>
+  <div class="col-sm-4 col-md-3">
+    <select name="type" class="form-select" onchange="this.form.submit()" aria-label="{% translate 'Type de soin' %}">
+      <option value="">{% translate "Tous les types" %}</option>
+      {% for valeur, libelle in types %}
+        <option value="{{ valeur }}"{% if valeur == type_soin %} selected{% endif %}>{{ libelle }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto"><button class="btn btn-outline-primary">{% translate "Rechercher" %}</button></div>
+  <div class="col-auto d-flex align-items-center">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="mes" value="1" id="mes"
+             {% if mes %}checked{% endif %} onchange="this.form.submit()">
+      <label class="form-check-label small" for="mes">{% translate "Mes soins" %}</label>
+    </div>
+  </div>
+</form>
+
+<div class="card shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead><tr>
+      <th>{% translate "Référence" %}</th><th>{% translate "Date" %}</th>
+      <th>{% translate "Patient" %}</th><th>{% translate "Type de soin" %}</th>
+      <th>{% translate "Soignant" %}</th><th></th>
+    </tr></thead>
+    <tbody>
+      {% for s in soins %}
+        <tr>
+          <td><code>{{ s.reference }}</code></td>
+          <td>{{ s.date_soin|date:"d/m/Y H:i" }}</td>
+          <td>{{ s.patient.nom_complet }}</td>
+          <td>{{ s.get_type_soin_display }}</td>
+          <td>{{ s.soignant.get_full_name|default:"—" }}</td>
+          <td class="text-end"><a class="btn btn-sm btn-outline-primary" href="{% url 'soins:detail' s.pk %}">{% translate "Ouvrir" %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center text-body-secondary py-4">{% translate "Aucun soin enregistré." %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+
+{% if is_paginated %}
+<nav class="mt-3"><ul class="pagination">
+  {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{ q }}&type={{ type_soin }}">&laquo;</a></li>{% endif %}
+  <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+  {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{ q }}&type={{ type_soin }}">&raquo;</a></li>{% endif %}
+</ul></nav>
+{% endif %}
+{% endblock %}
