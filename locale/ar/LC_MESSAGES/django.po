@@ -1439,6 +1439,24 @@ msgstr ""
 msgid "journal d'audit"
 msgstr "سجل التدقيق"
 
+#: apps/core/context_processors.py:9 apps/core/context_processors.py:9
+#: apps/core/context_processors.py:10 apps/core/context_processors.py:10
+#: apps/core/context_processors.py:11 apps/core/context_processors.py:11
+msgid "Clinique"
+msgstr "الرعاية السريرية"
+
+#: apps/core/context_processors.py:12 apps/core/context_processors.py:12
+msgid "Examens & pharmacie"
+msgstr "الفحوص والصيدلية"
+
+#: apps/core/context_processors.py:13 apps/core/context_processors.py:13
+msgid "Gestion"
+msgstr "الإدارة"
+
+#: apps/core/context_processors.py:15
+msgid "Pilotage"
+msgstr "المتابعة"
+
 #: apps/core/forms.py:34
 #: templates/core/proprietaire/etablissement_creer.html:27
 #: templates/core/proprietaire/etablissement_detail.html:43
@@ -1610,7 +1628,7 @@ msgstr "حذف"
 msgid "Connexion"
 msgstr "تسجيل الدخول"
 
-#: apps/core/models.py:261 templates/base.html:81
+#: apps/core/models.py:261 templates/base.html:93
 #: templates/core/proprietaire/_base.html:46
 msgid "Déconnexion"
 msgstr "تسجيل الخروج"
@@ -3896,30 +3914,30 @@ msgstr "حفظ"
 msgid "Annuler"
 msgstr "إلغاء"
 
-#: templates/base.html:30 templates/base.html:105
+#: templates/base.html:30 templates/base.html:117
 #: templates/core/vitrine.html:52 templates/core/vitrine.html:200
 msgid "Gestion hospitalière"
 msgstr "إدارة المستشفى"
 
-#: templates/base.html:39
-msgid "Modules"
-msgstr "الوحدات"
+#: templates/base.html:34
+msgid "Navigation principale"
+msgstr "التنقل الرئيسي"
 
-#: templates/base.html:52
+#: templates/base.html:64
 msgid "Menu"
 msgstr "القائمة"
 
-#: templates/base.html:56 templates/core/notifications.html:3
+#: templates/base.html:68 templates/core/notifications.html:3
 #: templates/core/notifications.html:7
 msgid "Notifications"
 msgstr "الإشعارات"
 
-#: templates/base.html:66 templates/core/vitrine.html:32
+#: templates/base.html:78 templates/core/vitrine.html:32
 #: templates/core/proprietaire/_base.html:32
 msgid "Changer de langue"
 msgstr "تغيير اللغة"
 
-#: templates/base.html:92
+#: templates/base.html:104
 msgid "Période d'essai : %(n)s jour restant."
 msgid_plural "Période d'essai : %(n)s jours restants."
 msgstr[0] "انتهت الفترة التجريبية"

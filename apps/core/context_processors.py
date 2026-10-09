@@ -1,6 +1,18 @@
 """Contexte global des gabarits : notifications non lues, navigation principale."""
 
+from django.utils.translation import gettext_lazy as _
+
 from .models import Notification
+
+# Regroupement de la barre latérale : espace de noms du module -> (rang, libellé du groupe).
+_GROUPES = {
+    "patients": (0, _("Clinique")), "consultations": (0, _("Clinique")),
+    "soins": (0, _("Clinique")), "maternite": (0, _("Clinique")),
+    "hospitalisation": (0, _("Clinique")), "bloc_operatoire": (0, _("Clinique")),
+    "laboratoire": (1, _("Examens & pharmacie")), "pharmacie": (1, _("Examens & pharmacie")),
+    "facturation": (2, _("Gestion")), "assurances": (2, _("Gestion")),
+}
+_GROUPE_DEFAUT = (3, _("Pilotage"))
 
 
 def navigation(request):
@@ -24,6 +36,11 @@ def navigation(request):
             or (vue_active and vue_active.split(":")[0] == namespace
                 and namespace not in {"core", "admin"})
         )
+        rang, libelle = _GROUPES.get(namespace, _GROUPE_DEFAUT)
+        item["groupe"] = libelle
+        item["_rang"] = rang
+    # Tri stable : les éléments d'un même groupe deviennent contigus (requis par {% regroup %}).
+    items.sort(key=lambda i: i["_rang"])
     return {"navigation_principale": items}
 
 

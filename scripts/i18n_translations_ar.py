@@ -1241,3 +1241,9 @@ TRADUCTIONS.update(TRADUCTIONS_SPECIALITES)
 from i18n_soins_ar import TRADUCTIONS_SOINS  # noqa: E402
 
 TRADUCTIONS.update(TRADUCTIONS_SOINS)
+
+
+# Barre latérale : groupes
+from i18n_navigation_ar import TRADUCTIONS_NAVIGATION  # noqa: E402
+
+TRADUCTIONS.update(TRADUCTIONS_NAVIGATION)

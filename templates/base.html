@@ -31,20 +31,32 @@
         {% endif %}
       </span>
     </div>
-    <nav class="sidebar-nav">
-      <a class="sidebar-link{% if request.resolver_match.url_name == 'dashboard' %} active{% endif %}"
-         href="{% url 'core:dashboard' %}">
-        <i class="bi bi-speedometer2"></i><span>{% translate "Tableau de bord" %}</span>
+    <nav class="sidebar-nav" aria-label="{% translate 'Navigation principale' %}">
+      <a class="sidebar-link tone-slate{% if request.resolver_match.url_name == 'dashboard' %} active{% endif %}"
+         href="{% url 'core:dashboard' %}"{% if request.resolver_match.url_name == 'dashboard' %} aria-current="page"{% endif %}>
+        <span class="nav-chip"><i class="bi bi-speedometer2"></i></span><span>{% translate "Tableau de bord" %}</span>
       </a>
-      <div class="sidebar-section">{% translate "Modules" %}</div>
-      {% for item in navigation_principale %}
-        <a class="sidebar-link{% if item.actif %} active{% endif %}"
-           href="{% url item.url_name %}">
-          <i class="bi {{ item.icone }}"></i><span>{{ item.libelle }}</span>
-        </a>
+      {% regroup navigation_principale by groupe as groupes_nav %}
+      {% for groupe in groupes_nav %}
+        <div class="sidebar-section">{{ groupe.grouper }}</div>
+        {% for item in groupe.list %}
+          <a class="sidebar-link tone-{{ item.couleur }}{% if item.actif %} active{% endif %}"
+             href="{% url item.url_name %}"{% if item.actif %} aria-current="page"{% endif %}>
+            <span class="nav-chip"><i class="bi {{ item.icone }}"></i></span><span>{{ item.libelle }}</span>
+          </a>
+        {% endfor %}
       {% endfor %}
     </nav>
-    <div class="sidebar-footer">Kènèya Sô · {% now "Y" %}</div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <span class="sidebar-avatar" aria-hidden="true">{{ user.first_name|slice:":1"|default:user.username|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}</span>
+        <span class="sidebar-user-text">
+          <span class="sidebar-user-name">{{ user.get_full_name|default:user.username }}</span>
+          {% if user.get_role_display %}<span class="sidebar-user-role">{{ user.get_role_display }}</span>{% endif %}
+        </span>
+      </div>
+      <div class="sidebar-copy">Kènèya Sô · {% now "Y" %}</div>
+    </div>
   </aside>
 
   <div class="app-main">
