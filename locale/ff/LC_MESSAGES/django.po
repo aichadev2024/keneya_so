@@ -1453,6 +1453,67 @@ msgstr ""
 msgid "Pilotage"
 msgstr ""
 
+#: apps/core/context_processors.py:57 apps/core/tests.py:33
+#: apps/core/tests.py:49 templates/base.html:37
+#: templates/core/dashboard.html:3
+msgid "Tableau de bord"
+msgstr ""
+
+#: apps/core/context_processors.py:58
+#: templates/core/console_proprietaire.html:53
+#: templates/core/proprietaire/etablissements.html:3
+#: templates/core/proprietaire/etablissements.html:7
+#: templates/core/proprietaire/etablissement_creer.html:7
+#: templates/core/proprietaire/etablissement_detail.html:7
+#: templates/core/proprietaire/etablissement_modifier.html:7
+#: templates/core/proprietaire/_base.html:58
+msgid "Établissements"
+msgstr ""
+
+#: apps/core/context_processors.py:59 apps/core/context_processors.py:61
+msgid "Clients"
+msgstr ""
+
+#: apps/core/context_processors.py:60
+#: templates/core/console_proprietaire.html:73
+#: templates/core/proprietaire/etablissements.html:32
+#: templates/core/proprietaire/utilisateurs.html:3
+#: templates/core/proprietaire/utilisateurs.html:8
+#: templates/core/proprietaire/utilisateurs.html:12
+#: templates/core/proprietaire/utilisateur_formulaire.html:7
+#: templates/core/proprietaire/_base.html:64
+msgid "Utilisateurs"
+msgstr ""
+
+#: apps/core/context_processors.py:62
+#: templates/core/console_proprietaire.html:63
+#: templates/core/proprietaire/plans.html:3
+#: templates/core/proprietaire/plans.html:8
+#: templates/core/proprietaire/plans.html:12
+#: templates/core/proprietaire/plan_formulaire.html:7
+msgid "Plans d'abonnement"
+msgstr ""
+
+#: apps/core/context_processors.py:63
+msgid "Abonnements"
+msgstr ""
+
+#: apps/core/context_processors.py:64
+#: templates/core/console_proprietaire.html:83
+#: templates/core/proprietaire/journal.html:3
+#: templates/core/proprietaire/journal.html:8
+#: templates/core/proprietaire/journal.html:10
+msgid "Journal d'audit"
+msgstr ""
+
+#: apps/core/context_processors.py:65 apps/core/context_processors.py:66
+msgid "Contrôle"
+msgstr ""
+
+#: apps/core/context_processors.py:66 apps/core/views.py:198
+msgid "Administration"
+msgstr ""
+
 #: apps/core/forms.py:34
 #: templates/core/proprietaire/etablissement_creer.html:27
 #: templates/core/proprietaire/etablissement_detail.html:43
@@ -1626,6 +1687,7 @@ msgstr ""
 
 #: apps/core/models.py:261 templates/base.html:93
 #: templates/core/proprietaire/_base.html:46
+#: templates/core/proprietaire/_base.html:46
 msgid "Déconnexion"
 msgstr ""
 
@@ -1691,11 +1753,6 @@ msgstr ""
 
 #: apps/core/models.py:340
 msgid "notifications"
-msgstr ""
-
-#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:37
-#: templates/core/dashboard.html:3
-msgid "Tableau de bord"
 msgstr ""
 
 #: apps/core/views.py:101 templates/core/statistiques.html:18
@@ -1846,10 +1903,6 @@ msgstr ""
 
 #: apps/core/views.py:195
 msgid "Statistiques"
-msgstr ""
-
-#: apps/core/views.py:198
-msgid "Administration"
 msgstr ""
 
 #: apps/core/views_proprietaire.py:112
@@ -3759,27 +3812,27 @@ msgstr ""
 msgid "Soin enregistré."
 msgstr ""
 
-#: config/settings.py:195 apps/accounts/models.py:50
+#: config/settings.py:196 apps/accounts/models.py:50
 msgid "Français"
 msgstr ""
 
-#: config/settings.py:196 apps/accounts/models.py:51
+#: config/settings.py:197 apps/accounts/models.py:51
 msgid "Anglais"
 msgstr ""
 
-#: config/settings.py:197 apps/accounts/models.py:52
+#: config/settings.py:198 apps/accounts/models.py:52
 msgid "Arabe"
 msgstr ""
 
-#: config/settings.py:198 apps/accounts/models.py:53
+#: config/settings.py:199 apps/accounts/models.py:53
 msgid "Bambara"
 msgstr ""
 
-#: config/settings.py:199 apps/accounts/models.py:54
+#: config/settings.py:200 apps/accounts/models.py:54
 msgid "Peulh (fulfulde)"
 msgstr ""
 
-#: config/settings.py:200 apps/accounts/models.py:55
+#: config/settings.py:201 apps/accounts/models.py:55
 msgid "Soninké"
 msgstr ""
 
@@ -3900,7 +3953,7 @@ msgstr ""
 msgid "Gestion hospitalière"
 msgstr ""
 
-#: templates/base.html:34
+#: templates/base.html:34 templates/core/proprietaire/_base.html:53
 msgid "Navigation principale"
 msgstr ""
 
@@ -3914,7 +3967,7 @@ msgid "Notifications"
 msgstr ""
 
 #: templates/base.html:78 templates/core/vitrine.html:32
-#: templates/core/proprietaire/_base.html:32
+#: templates/core/proprietaire/_base.html:33
 msgid "Changer de langue"
 msgstr ""
 
@@ -4449,49 +4502,16 @@ msgstr ""
 msgid "Gérer la plateforme"
 msgstr ""
 
-#: templates/core/console_proprietaire.html:53
-#: templates/core/proprietaire/etablissements.html:3
-#: templates/core/proprietaire/etablissements.html:7
-#: templates/core/proprietaire/etablissement_creer.html:7
-#: templates/core/proprietaire/etablissement_detail.html:7
-#: templates/core/proprietaire/etablissement_modifier.html:7
-msgid "Établissements"
-msgstr ""
-
 #: templates/core/console_proprietaire.html:54
 msgid "Vos clients"
-msgstr ""
-
-#: templates/core/console_proprietaire.html:63
-#: templates/core/proprietaire/plans.html:3
-#: templates/core/proprietaire/plans.html:8
-#: templates/core/proprietaire/plans.html:12
-#: templates/core/proprietaire/plan_formulaire.html:7
-msgid "Plans d'abonnement"
 msgstr ""
 
 #: templates/core/console_proprietaire.html:64
 msgid "Prix, limites"
 msgstr ""
 
-#: templates/core/console_proprietaire.html:73
-#: templates/core/proprietaire/etablissements.html:32
-#: templates/core/proprietaire/utilisateurs.html:3
-#: templates/core/proprietaire/utilisateurs.html:8
-#: templates/core/proprietaire/utilisateurs.html:12
-#: templates/core/proprietaire/utilisateur_formulaire.html:7
-msgid "Utilisateurs"
-msgstr ""
-
 #: templates/core/console_proprietaire.html:74
 msgid "Tous les hôpitaux"
-msgstr ""
-
-#: templates/core/console_proprietaire.html:83
-#: templates/core/proprietaire/journal.html:3
-#: templates/core/proprietaire/journal.html:8
-#: templates/core/proprietaire/journal.html:10
-msgid "Journal d'audit"
 msgstr ""
 
 #: templates/core/console_proprietaire.html:84
@@ -4526,6 +4546,18 @@ msgstr ""
 
 #: templates/core/notifications.html:33
 msgid "Aucune notification."
+msgstr ""
+
+#: templates/core/proprietaire/_base.html:55
+msgid "Accueil"
+msgstr ""
+
+#: templates/core/proprietaire/_base.html:61
+msgid "Plans"
+msgstr ""
+
+#: templates/core/proprietaire/_base.html:67
+msgid "Journal"
 msgstr ""
 
 #: templates/core/proprietaire/etablissement_creer.html:17
@@ -4628,7 +4660,7 @@ msgstr ""
 #: templates/core/proprietaire/plans.html:7
 #: templates/core/proprietaire/utilisateurs.html:7
 #: templates/core/proprietaire/_base.html:7
-#: templates/core/proprietaire/_base.html:25
+#: templates/core/proprietaire/_base.html:26
 msgid "Console propriétaire"
 msgstr ""
 

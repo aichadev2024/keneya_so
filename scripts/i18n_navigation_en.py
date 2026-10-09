@@ -6,4 +6,7 @@ TRADUCTIONS_NAVIGATION = {
     "Gestion": "Management",
     "Pilotage": "Oversight",
     "Navigation principale": "Main navigation",
+    "Accueil": "Home",
+    "Plans": "Plans",
+    "Journal": "Log",
 }

@@ -1457,6 +1457,67 @@ msgstr "الإدارة"
 msgid "Pilotage"
 msgstr "المتابعة"
 
+#: apps/core/context_processors.py:57 apps/core/tests.py:33
+#: apps/core/tests.py:49 templates/base.html:37
+#: templates/core/dashboard.html:3
+msgid "Tableau de bord"
+msgstr "لوحة التحكم"
+
+#: apps/core/context_processors.py:58
+#: templates/core/console_proprietaire.html:53
+#: templates/core/proprietaire/etablissements.html:3
+#: templates/core/proprietaire/etablissements.html:7
+#: templates/core/proprietaire/etablissement_creer.html:7
+#: templates/core/proprietaire/etablissement_detail.html:7
+#: templates/core/proprietaire/etablissement_modifier.html:7
+#: templates/core/proprietaire/_base.html:58
+msgid "Établissements"
+msgstr "المستشفيات"
+
+#: apps/core/context_processors.py:59 apps/core/context_processors.py:61
+msgid "Clients"
+msgstr "العملاء"
+
+#: apps/core/context_processors.py:60
+#: templates/core/console_proprietaire.html:73
+#: templates/core/proprietaire/etablissements.html:32
+#: templates/core/proprietaire/utilisateurs.html:3
+#: templates/core/proprietaire/utilisateurs.html:8
+#: templates/core/proprietaire/utilisateurs.html:12
+#: templates/core/proprietaire/utilisateur_formulaire.html:7
+#: templates/core/proprietaire/_base.html:64
+msgid "Utilisateurs"
+msgstr "المستخدمون"
+
+#: apps/core/context_processors.py:62
+#: templates/core/console_proprietaire.html:63
+#: templates/core/proprietaire/plans.html:3
+#: templates/core/proprietaire/plans.html:8
+#: templates/core/proprietaire/plans.html:12
+#: templates/core/proprietaire/plan_formulaire.html:7
+msgid "Plans d'abonnement"
+msgstr "خطط الاشتراك"
+
+#: apps/core/context_processors.py:63
+msgid "Abonnements"
+msgstr "الاشتراكات"
+
+#: apps/core/context_processors.py:64
+#: templates/core/console_proprietaire.html:83
+#: templates/core/proprietaire/journal.html:3
+#: templates/core/proprietaire/journal.html:8
+#: templates/core/proprietaire/journal.html:10
+msgid "Journal d'audit"
+msgstr "سجل التدقيق"
+
+#: apps/core/context_processors.py:65 apps/core/context_processors.py:66
+msgid "Contrôle"
+msgstr "الرقابة"
+
+#: apps/core/context_processors.py:66 apps/core/views.py:198
+msgid "Administration"
+msgstr "الإدارة"
+
 #: apps/core/forms.py:34
 #: templates/core/proprietaire/etablissement_creer.html:27
 #: templates/core/proprietaire/etablissement_detail.html:43
@@ -1630,6 +1691,7 @@ msgstr "تسجيل الدخول"
 
 #: apps/core/models.py:261 templates/base.html:93
 #: templates/core/proprietaire/_base.html:46
+#: templates/core/proprietaire/_base.html:46
 msgid "Déconnexion"
 msgstr "تسجيل الخروج"
 
@@ -1696,11 +1758,6 @@ msgstr "إشعار"
 #: apps/core/models.py:340
 msgid "notifications"
 msgstr "الإشعارات"
-
-#: apps/core/tests.py:33 apps/core/tests.py:49 templates/base.html:37
-#: templates/core/dashboard.html:3
-msgid "Tableau de bord"
-msgstr "لوحة التحكم"
 
 #: apps/core/views.py:101 templates/core/statistiques.html:18
 msgid "Fréquentation"
@@ -1851,10 +1908,6 @@ msgstr "الصيدلية — المخزون"
 #: apps/core/views.py:195
 msgid "Statistiques"
 msgstr "الإحصائيات"
-
-#: apps/core/views.py:198
-msgid "Administration"
-msgstr "الإدارة"
 
 #: apps/core/views_proprietaire.py:112
 msgid "Hôpital créé. Invitation envoyée à %(e)s."
@@ -3777,27 +3830,27 @@ msgstr "عنايات"
 msgid "Soin enregistré."
 msgstr "تم تسجيل العناية."
 
-#: config/settings.py:195 apps/accounts/models.py:50
+#: config/settings.py:196 apps/accounts/models.py:50
 msgid "Français"
 msgstr "الفرنسية"
 
-#: config/settings.py:196 apps/accounts/models.py:51
+#: config/settings.py:197 apps/accounts/models.py:51
 msgid "Anglais"
 msgstr "الإنجليزية"
 
-#: config/settings.py:197 apps/accounts/models.py:52
+#: config/settings.py:198 apps/accounts/models.py:52
 msgid "Arabe"
 msgstr "العربية"
 
-#: config/settings.py:198 apps/accounts/models.py:53
+#: config/settings.py:199 apps/accounts/models.py:53
 msgid "Bambara"
 msgstr "البمبارا"
 
-#: config/settings.py:199 apps/accounts/models.py:54
+#: config/settings.py:200 apps/accounts/models.py:54
 msgid "Peulh (fulfulde)"
 msgstr "الفولانية (الفولفولدي)"
 
-#: config/settings.py:200 apps/accounts/models.py:55
+#: config/settings.py:201 apps/accounts/models.py:55
 msgid "Soninké"
 msgstr "السوننكية"
 
@@ -3919,7 +3972,7 @@ msgstr "إلغاء"
 msgid "Gestion hospitalière"
 msgstr "إدارة المستشفى"
 
-#: templates/base.html:34
+#: templates/base.html:34 templates/core/proprietaire/_base.html:53
 msgid "Navigation principale"
 msgstr "التنقل الرئيسي"
 
@@ -3933,7 +3986,7 @@ msgid "Notifications"
 msgstr "الإشعارات"
 
 #: templates/base.html:78 templates/core/vitrine.html:32
-#: templates/core/proprietaire/_base.html:32
+#: templates/core/proprietaire/_base.html:33
 msgid "Changer de langue"
 msgstr "تغيير اللغة"
 
@@ -4477,50 +4530,17 @@ msgstr "معلّقة"
 msgid "Gérer la plateforme"
 msgstr "إدارة المنصة"
 
-#: templates/core/console_proprietaire.html:53
-#: templates/core/proprietaire/etablissements.html:3
-#: templates/core/proprietaire/etablissements.html:7
-#: templates/core/proprietaire/etablissement_creer.html:7
-#: templates/core/proprietaire/etablissement_detail.html:7
-#: templates/core/proprietaire/etablissement_modifier.html:7
-msgid "Établissements"
-msgstr "المستشفيات"
-
 #: templates/core/console_proprietaire.html:54
 msgid "Vos clients"
 msgstr "عملاؤك"
-
-#: templates/core/console_proprietaire.html:63
-#: templates/core/proprietaire/plans.html:3
-#: templates/core/proprietaire/plans.html:8
-#: templates/core/proprietaire/plans.html:12
-#: templates/core/proprietaire/plan_formulaire.html:7
-msgid "Plans d'abonnement"
-msgstr "خطط الاشتراك"
 
 #: templates/core/console_proprietaire.html:64
 msgid "Prix, limites"
 msgstr "الأسعار والحدود"
 
-#: templates/core/console_proprietaire.html:73
-#: templates/core/proprietaire/etablissements.html:32
-#: templates/core/proprietaire/utilisateurs.html:3
-#: templates/core/proprietaire/utilisateurs.html:8
-#: templates/core/proprietaire/utilisateurs.html:12
-#: templates/core/proprietaire/utilisateur_formulaire.html:7
-msgid "Utilisateurs"
-msgstr "المستخدمون"
-
 #: templates/core/console_proprietaire.html:74
 msgid "Tous les hôpitaux"
 msgstr "كل المستشفيات"
-
-#: templates/core/console_proprietaire.html:83
-#: templates/core/proprietaire/journal.html:3
-#: templates/core/proprietaire/journal.html:8
-#: templates/core/proprietaire/journal.html:10
-msgid "Journal d'audit"
-msgstr "سجل التدقيق"
 
 #: templates/core/console_proprietaire.html:84
 msgid "Qui a fait quoi"
@@ -4555,6 +4575,18 @@ msgstr "تحديد كمقروء"
 #: templates/core/notifications.html:33
 msgid "Aucune notification."
 msgstr "لا يوجد إشعار."
+
+#: templates/core/proprietaire/_base.html:55
+msgid "Accueil"
+msgstr "الرئيسية"
+
+#: templates/core/proprietaire/_base.html:61
+msgid "Plans"
+msgstr "الباقات"
+
+#: templates/core/proprietaire/_base.html:67
+msgid "Journal"
+msgstr "السجل"
 
 #: templates/core/proprietaire/etablissement_creer.html:17
 msgid "Hôpital"
@@ -4658,7 +4690,7 @@ msgstr "لا توجد مستشفيات."
 #: templates/core/proprietaire/plans.html:7
 #: templates/core/proprietaire/utilisateurs.html:7
 #: templates/core/proprietaire/_base.html:7
-#: templates/core/proprietaire/_base.html:25
+#: templates/core/proprietaire/_base.html:26
 msgid "Console propriétaire"
 msgstr "لوحة المالك"
 

@@ -6,4 +6,7 @@ TRADUCTIONS_NAVIGATION = {
     "Gestion": "الإدارة",
     "Pilotage": "المتابعة",
     "Navigation principale": "التنقل الرئيسي",
+    "Accueil": "الرئيسية",
+    "Plans": "الباقات",
+    "Journal": "السجل",
 }

@@ -802,17 +802,126 @@ body.sidebar-locked { overflow: hidden; }
 
 /* ==========================================================================
    Console propriétaire — écran du super-administrateur de la plateforme.
-   Volontairement sans barre latérale (il n'a aucun module clinique) : une
-   page simple, un fil d'en-tête léger puis le contenu centré.
+   Sans barre latérale : en-tête sombre premium (même habillage que le menu
+   de l'application) et navigation en pastilles : établissements, utilisateurs, plans, journal.
    ========================================================================== */
-.owner-shell { min-height: 100vh; background: var(--ks-bg); }
-.owner-topbar {
-  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
-  padding: 1rem 1.5rem; background: var(--ks-surface); border-bottom: 1px solid var(--ks-border);
+.owner-content { max-width: 68rem; margin-inline: auto; }
+.owner-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(70rem 30rem at 100% -10%, rgba(13, 148, 136, .06), transparent 60%),
+    var(--ks-bg);
 }
-.owner-topbar .brand-mark { width: 30px; height: 30px; flex-shrink: 0; }
-.owner-topbar-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: inherit; margin-inline-end: auto; }
-.owner-topbar-brand strong { display: block; font-weight: 700; color: var(--ks-text); line-height: 1.15; }
-.owner-topbar-brand span { display: block; font-size: .72rem; color: var(--ks-text-muted); letter-spacing: .02em; }
+
+/* En-tête sombre (même fond que la barre latérale de l'application) */
+.owner-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  padding: .85rem 1.5rem 0;
+  color: #fff;
+  background:
+    radial-gradient(60% 140% at 0% 0%, rgba(13, 148, 136, .30) 0%, transparent 62%),
+    radial-gradient(50% 120% at 100% 100%, rgba(99, 102, 241, .20) 0%, transparent 65%),
+    linear-gradient(100deg, #17305e 0%, #0e1d3c 60%, #0a1429 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  box-shadow: 0 8px 28px rgba(10, 20, 41, .22);
+}
+.owner-topbar-row {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  flex-wrap: wrap;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+.owner-topbar .brand-mark {
+  width: 34px; height: 34px; flex-shrink: 0;
+  filter: drop-shadow(0 4px 12px rgba(13, 148, 136, .55));
+}
+.owner-topbar-brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; color: inherit; margin-inline-end: auto; }
+.owner-topbar-brand:hover { color: inherit; }
+.owner-topbar-brand strong { display: block; font-weight: 700; color: #fff; line-height: 1.15; letter-spacing: -.01em; }
+.owner-topbar-brand span span { display: block; margin-top: .1rem; font-size: .64rem; font-weight: 600; color: #5eead4; letter-spacing: .09em; text-transform: uppercase; }
+
+.owner-lang {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .14);
+}
+.owner-lang option { color: var(--ks-text); }
+.owner-lang:focus { border-color: #5eead4; box-shadow: 0 0 0 .2rem rgba(94, 234, 212, .2); }
+
+.owner-user {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .3rem .4rem .3rem .35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .10);
+}
+.owner-user-name { font-size: .82rem; font-weight: 600; color: #fff; padding-inline-end: .15rem; }
+.owner-logout {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2rem; height: 2rem;
+  border: 0; border-radius: 50%;
+  color: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .08);
+  transition: background-color .15s ease, color .15s ease;
+}
+.owner-logout:hover { background: rgba(244, 63, 94, .85); color: #fff; }
+.owner-logout:focus-visible { outline: 2px solid #5eead4; outline-offset: 2px; }
+
+/* Navigation en pastilles (remplace la barre latérale) */
+.owner-nav {
+  display: flex;
+  gap: .35rem;
+  max-width: 62rem;
+  margin: .85rem auto 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.owner-nav::-webkit-scrollbar { display: none; }
+.owner-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  flex-shrink: 0;
+  padding: .5rem .8rem .55rem .5rem;
+  border-radius: 10px 10px 0 0;
+  color: rgba(255, 255, 255, .72);
+  text-decoration: none;
+  font-size: .86rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color .15s ease, color .15s ease;
+}
+.owner-nav-link .nav-chip { width: 1.7rem; height: 1.7rem; font-size: .9rem; border-radius: 8px; }
+.owner-nav-link:hover { background: rgba(255, 255, 255, .07); color: #fff; }
+.owner-nav-link:hover .nav-chip { background: color-mix(in srgb, var(--tone, #94a3b8) 32%, transparent); }
+.owner-nav-link.active {
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .04));
+}
+.owner-nav-link.active::after {
+  content: "";
+  position: absolute;
+  inset-inline: .5rem;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--tone, #2dd4bf);
+  box-shadow: 0 0 12px var(--tone, #2dd4bf);
+}
+.owner-nav-link.active .nav-chip {
+  background: var(--tone, #2dd4bf);
+  color: #0a1429;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--tone, #2dd4bf) 55%, transparent);
+}
+.owner-nav-link:focus-visible { outline: 2px solid #5eead4; outline-offset: -2px; }
+
 .owner-main { max-width: 62rem; margin-inline: auto; padding: 2rem 1.5rem 3rem; }
-@media (max-width: 575.98px) { .owner-topbar { padding: .85rem 1rem; } .owner-main { padding: 1.5rem 1rem 2.5rem; } }
+@media (max-width: 575.98px) { .owner-topbar { padding: .75rem 1rem 0; } .owner-main { padding: 1.5rem 1rem 2.5rem; } }

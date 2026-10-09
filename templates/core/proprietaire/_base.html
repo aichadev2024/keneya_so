@@ -15,39 +15,59 @@
 <body>
 <div class="owner-shell">
   <header class="owner-topbar">
-    <a class="owner-topbar-brand" href="{% url 'core:dashboard' %}">
-      <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="64" height="64" rx="14" fill="#16294f"/>
-        <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#0d9488"/>
-      </svg>
-      <span>
-        <strong>Kènèya&nbsp;Sô</strong>
-        <span>{% translate "Console propriétaire" %}</span>
-      </span>
-    </a>
-    <form action="{% url 'set_language' %}" method="post" class="d-flex m-0">
-      {% csrf_token %}
-      <input type="hidden" name="next" value="{{ request.get_full_path }}">
-      <select name="language" class="form-select form-select-sm" onchange="this.form.submit()"
-              aria-label="{% translate 'Changer de langue' %}" style="width:auto">
-        {% get_current_language as CUR %}
-        {% get_available_languages as LANGS %}
-        {% for code, name in LANGS %}
-          <option value="{{ code }}"{% if code == CUR %} selected{% endif %}>{{ name }}</option>
-        {% endfor %}
-      </select>
-    </form>
-    <div class="d-flex align-items-center gap-2 ps-2 border-start">
-      <div class="text-end d-none d-sm-block lh-sm">
-        <div class="small fw-semibold">{{ user.get_full_name|default:user.username }}</div>
-      </div>
-      <form action="{% url 'accounts:logout' %}" method="post" class="m-0">
+    <div class="owner-topbar-row">
+      <a class="owner-topbar-brand" href="{% url 'core:dashboard' %}">
+        <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#0d9488"/>
+          <path d="M28 14h8v14h14v8H36v14h-8V36H14v-8h14V14z" fill="#ffffff"/>
+        </svg>
+        <span>
+          <strong>Kènèya&nbsp;Sô</strong>
+          <span>{% translate "Console propriétaire" %}</span>
+        </span>
+      </a>
+      <form action="{% url 'set_language' %}" method="post" class="d-flex m-0">
         {% csrf_token %}
-        <button class="btn btn-sm btn-outline-secondary" type="submit" title="{% translate 'Déconnexion' %}">
-          <i class="bi bi-box-arrow-right"></i>
-        </button>
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <select name="language" class="form-select form-select-sm owner-lang" onchange="this.form.submit()"
+                aria-label="{% translate 'Changer de langue' %}" style="width:auto">
+          {% get_current_language as CUR %}
+          {% get_available_languages as LANGS %}
+          {% for code, name in LANGS %}
+            <option value="{{ code }}"{% if code == CUR %} selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
       </form>
+      <div class="owner-user">
+        <span class="sidebar-avatar" aria-hidden="true">{{ user.first_name|slice:":1"|default:user.username|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}</span>
+        <span class="owner-user-name d-none d-sm-block">{{ user.get_full_name|default:user.username }}</span>
+        <form action="{% url 'accounts:logout' %}" method="post" class="m-0">
+          {% csrf_token %}
+          <button class="owner-logout" type="submit" title="{% translate 'Déconnexion' %}" aria-label="{% translate 'Déconnexion' %}">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </form>
+      </div>
     </div>
+    {% with nom=request.resolver_match.url_name %}
+    <nav class="owner-nav" aria-label="{% translate 'Navigation principale' %}">
+      <a class="owner-nav-link tone-slate{% if nom == 'dashboard' %} active{% endif %}" href="{% url 'core:dashboard' %}"{% if nom == 'dashboard' %} aria-current="page"{% endif %}>
+        <span class="nav-chip"><i class="bi bi-house-door"></i></span><span>{% translate "Accueil" %}</span>
+      </a>
+      <a class="owner-nav-link tone-bleu{% if 'etablissement' in nom %} active{% endif %}" href="{% url 'core:proprietaire_etablissements' %}"{% if 'etablissement' in nom %} aria-current="page"{% endif %}>
+        <span class="nav-chip"><i class="bi bi-hospital"></i></span><span>{% translate "Établissements" %}</span>
+      </a>
+      <a class="owner-nav-link tone-ambre{% if 'plan' in nom %} active{% endif %}" href="{% url 'core:proprietaire_plans' %}"{% if 'plan' in nom %} aria-current="page"{% endif %}>
+        <span class="nav-chip"><i class="bi bi-tags"></i></span><span>{% translate "Plans" %}</span>
+      </a>
+      <a class="owner-nav-link tone-violet{% if 'utilisateur' in nom %} active{% endif %}" href="{% url 'core:proprietaire_utilisateurs' %}"{% if 'utilisateur' in nom %} aria-current="page"{% endif %}>
+        <span class="nav-chip"><i class="bi bi-people"></i></span><span>{% translate "Utilisateurs" %}</span>
+      </a>
+      <a class="owner-nav-link tone-teal{% if nom == 'proprietaire_journal' %} active{% endif %}" href="{% url 'core:proprietaire_journal' %}"{% if nom == 'proprietaire_journal' %} aria-current="page"{% endif %}>
+        <span class="nav-chip"><i class="bi bi-journal-text"></i></span><span>{% translate "Journal" %}</span>
+      </a>
+    </nav>
+    {% endwith %}
   </header>
 
   <main class="owner-main">
